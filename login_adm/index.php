@@ -147,13 +147,13 @@ require_once "../inc/conexao.php";
           <div class="col-lg-8">
             <div class="card card-chart">
               <div class="card-header">
-                <h5 class="card-category">Administrador</h5>
+                <h5 class="card-category"><i class="fa fa-user-secret"></i> Administrador</h5>
                 <h4 class="card-title">Olá, </h4>
                 <div class="chart" id="graficoProdutosAnual"></div>
               </div>
               <div class="card-footer ">
                 <div class="stats">
-                  <i class="now-ui-icons ui-1_calendar-60"></i> Data
+                  <i class="now-ui-icons ui-1_calendar-60"></i> <?php echo date("d/m/Y"); ?> 
                 </div>
               </div>
             </div>
@@ -164,7 +164,7 @@ require_once "../inc/conexao.php";
           <div class="col-lg-4">
             <div class="card card-chart">
               <div class="card-header">
-                <h5 class="card-category">Aviso</h5>
+                <h5 class="card-category"><i class="fa fa-exclamation-triangle"></i> Aviso</h5>
                 <h4 class="card-title">Prazo de Rescisões Próximas</h4>
                 <div class="chart" id="graficoVendedor"></div>
               </div>
@@ -180,7 +180,7 @@ require_once "../inc/conexao.php";
            <div class="col-lg-4">
             <div class="card card-chart">
               <div class="card-header">
-                <h5 class="card-category">Lembrete</h5>
+                <h5 class="card-category"><i class="fa fa-tags"></i> Lembrete</h5>
                 <h4 class="card-title">status Lembrete</h4>
                 <h5>anotação</h5>
               </div>
