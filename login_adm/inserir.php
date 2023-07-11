@@ -61,6 +61,7 @@ if (isset($_GET['confirmar_notificacao'])){
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- CSS Files -->
   <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="assets/css/now-ui-dashboard.css?v=1.3.0" rel="stylesheet" />
@@ -167,7 +168,7 @@ if (isset($_GET['confirmar_notificacao'])){
           <div class="col-md-6">
             <div class="card">
               <div class="card-header"><br><br>
-                <center><h5 >INSERIR OCORRÊNCIA</h5>
+                <center><h5><i class="fa fa-warning "></i> INSERIR OCORRÊNCIA</h5>
               </div>
               <div class="card-body">
                 <form action="inserir.php" method="GET">
@@ -224,7 +225,7 @@ if (isset($_GET['confirmar_notificacao'])){
                     </div>
                   </div>
                 <div class="row">
-                    <div class="col-md-12 pr-1">
+                    <div class="col-md-12">
                       <div class="form-group">
                         <label>Arquivo</label>
                            <div class="custom-file">
@@ -251,7 +252,7 @@ if (isset($_GET['confirmar_notificacao'])){
                   </div>
 
                  <div class="row">
-                    <div class="col-md-12 pr-1">
+                    <div class="col-md-12">
                       <div class="form-group">
                         <label>Observação</label>
                         <input type="text" name="datainicio" class="form-control" required="" >
@@ -262,7 +263,7 @@ if (isset($_GET['confirmar_notificacao'])){
                    <div class="row">
                     <div class="col-md-12">
                       <div class="form-group"><br>
-                        <button type="submit" name="confirmar_notificacao" class="btn btn-outline-success" style="width: 100%;"><b>Cadastrar Ocorrência</b></button><br>
+                        <button type="submit" name="confirmar_notificacao" class="btn btn-outline-success" style="width: 100%;"><b> Cadastrar Ocorrência</b></button><br>
                       </div>
                     </div>
                   </div>
@@ -277,39 +278,38 @@ if (isset($_GET['confirmar_notificacao'])){
               </div>
               <div class="card-body">
                 <div class="author">
-                  <H5>
-                   INSERIR RESCISÃO
-                  </H5>
+                  <H5><i class="fa fa-close "></i> INSERIR RESCISÃO</H5>
                 </div><form action="inserir.php" method="GET">
                 <div class="row">
-                    <div class="col-md-4 pr-1">
+                    <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Data</label>
                         <input type="date" name="stat" class="form-control" required="" >
                       </div>
                     </div>
                   
-                    <div class="col-md-4 pr-1">
+                    <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Selecionar Loja</label>
                         <select name="status" class="form-control">
                           <option value="ativo">1</option>
                         </select>
                       </div>
-                    </div>
-                    <div class="col-md-4 pl-1">
+                    </div>            
+                </div>
+
+                  <div class="row">     
+
+                    <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Selecionar Funcionário</label>
                         <select name="status" class="form-control">
                           <option value="ativo">1</option>
                         </select>
                       </div>
-                    </div>               
-                </div>
-
-                  <div class="row">                
+                    </div>              
                     
-                     <div class="col-md-5 pr-1">
+                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Motivo</label>
                         <select name="status" class="form-control">
@@ -320,8 +320,11 @@ if (isset($_GET['confirmar_notificacao'])){
                           <option value="ativo">Pedido de Demissão</option>
                         </select>
                       </div>
-                    </div> 
-                     <div class="col-md-5 pl-1">
+                    </div>         
+                  </div>
+
+                  <div class="row">
+                       <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Tipo</label>
                         <select name="status" class="form-control">
@@ -331,10 +334,13 @@ if (isset($_GET['confirmar_notificacao'])){
                         </select>
                       </div>
                     </div> 
-                    <div class="col-md-2 pr-1">
+                    <div class="col-md-6 pl-1">
                       <div class="form-group">
                        <label>Exame Demissional</label>
-                         <input type="checkbox" name="anotacao" class="form-control">
+                         <select name="status" class="form-control">
+                          <option value="ativo">Não</option>
+                           <option value="ativo">Sim</option>
+                        </select>
                       </div>
                     </div>
                   </div>
@@ -399,7 +405,7 @@ if (isset($_GET['confirmar_notificacao'])){
           <div class="col-md-6">
             <div class="card">
               <div class="card-header"><br><br>
-                <center><h5 >INSERIR FÉRIAS</h5>
+                <center><h5><i class="fa fa-plane"></i> INSERIR FÉRIAS</h5>
               </div>
               <div class="card-body">
                 <form action="inserir.php" method="GET">
@@ -439,7 +445,7 @@ if (isset($_GET['confirmar_notificacao'])){
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-12 pr-1">
+                    <div class="col-md-12">
                       <div class="form-group">
                         <label>Observação</label>
                         <input type="text" name="obsferias" class="form-control" required="" >
@@ -467,9 +473,7 @@ if (isset($_GET['confirmar_notificacao'])){
               </div>
               <div class="card-body">
                 <div class="author">
-                  <H5>
-                   INSERIR LEMBRETE
-                  </H5>
+                  <H5><i class="fa fa-tags"></i> INSERIR LEMBRETE </H5>
                 </div><form action="inserir.php" method="GET">
                  <div class="row">
                     <div class="col-md-6 pr-1">
@@ -504,7 +508,7 @@ if (isset($_GET['confirmar_notificacao'])){
                       </div>
                     </div>
                   </div>
-        
+                
                    </div>
 
 
@@ -521,7 +525,7 @@ if (isset($_GET['confirmar_notificacao'])){
           <div class="col-md-6">
             <div class="card">
               <div class="card-header"><br><br>
-                <center><h5>CADASTRAR FUNCIONÁRIO</h5>
+                <center><h5><i class="fa fa-user-plus"></i> CADASTRAR FUNCIONÁRIO</h5>
               </div>
               <div class="card-body">
                 <form action="inserir.php" method="GET">
@@ -562,7 +566,7 @@ if (isset($_GET['confirmar_notificacao'])){
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-12 pr-1">
+                    <div class="col-md-12">
                       <div class="form-group">
                         <label>Empresa</label>
                         <select name="empresa" class="form-control">
@@ -710,9 +714,7 @@ if (isset($_GET['confirmar_notificacao'])){
               </div>
               <div class="card-body">
                 <div class="author">
-                  <H5>
-                   CADASTRAR USUÁRIO ADMINISTRATIVO
-                  </H5>
+                  <H5><i class="  fa fa-user-secret"></i>  CADASTRAR USUÁRIO ADMINISTRATIVO </H5>
                 </div><form action="inserir.php" method="GET">
                  <div class="row"><div class="col-md-12">
                   <!--Caso o usuário já exista-->
