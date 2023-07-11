@@ -2,7 +2,7 @@
 header("Content-Type:Text/html; charset=utf8");
 
 //Puxando variavel de conexão
-  require_once "inc/conexao.php";
+  //require_once "inc/conexao.php";
 
 //Verificando se já está logado
 session_start();
