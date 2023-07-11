@@ -1,0 +1,20 @@
+FUNCIONÁRIOS	Nome, cpf, Data nascimento, STATUS: (ativo, afastado, inativo, transferido). Setor, função, Data Inicio, VALE TRANSPORTE: (Nenhum, Ótimo, Bhbus, Combustível, Dinheiro) , Valor Vale Transporte, Salario, nome pai, nome mae, Observação
+
+
+RESCISÕES	Data, seleção loja, seleção funcionario,  Exame Demissional(campo seleção p marcar) Motivo: (Termino de Contrato, Termino de Contrato Antecipado, Aviso, Dispensa, Pedido de Demissão) - Tipo: (Normal, Acordo, Justiça) - Dias de Aviso - Fim Aviso(Calcular data inicio +dias de aviso) - Prazo(fim aviso + 10 dias) - Status: Pago, Pendente - Observação
+
+
+OCORRÊNCIAS	Data, seleção loja, seleção funcionario, campo arquivo foto ou pdf se possivel, Motivo(Advertencia, atestado, Atestado de Obito, Erro Operacional, Falta Injustificada, Reembolso, Hora Extra, Afastamento INSS, Licença Maternidade, Licença Paternidade, Meta, Quebra de Caixa, Segunda Via Cartao, Vale Avulso, Atestado de Comparecimento, Feriado) Quantidade de Faltas, Valor, Observação
+
+
+FÉRIAS	Data, Seleção loja, seleção funcionario,  Quantidade de dias. data inicio, data fim(data inicio + quantidade de dias), , Puxar o mês (escrito), Observação
+
+
+LEMBRETES	DATA, CAMPO PARA INSERIR INFORMAÇÕES
+
+
+-------------------
+
+
+Duvidas:
+Somente quem fez o lembrete poderá ver?
