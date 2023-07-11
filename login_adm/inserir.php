@@ -67,6 +67,7 @@ if (isset($_GET['confirmar_notificacao'])){
   <link href="assets/css/now-ui-dashboard.css?v=1.3.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="assets/demo/demo.css" rel="stylesheet" />
+
 </head>
 
 <body class="user-profile">
@@ -230,7 +231,7 @@ if (isset($_GET['confirmar_notificacao'])){
                         <label>Arquivo</label>
                            <div class="custom-file">
                            <input type="file" class="custom-file-input" id="customFile">
-                            <label class="custom-file-label" for="customFile"><i class="  fa fa-user-circle-o fa-lg fa-fw" aria-hidden="true"></i> Este campo não é obrigatório</label>
+                            <label class="custom-file-label" for="customFile"><i class="  fa fa-file fa-lg fa-fw" aria-hidden="true"></i> Este campo não é obrigatório</label>
                           </div>
                       </div>
                     </div>
@@ -246,7 +247,7 @@ if (isset($_GET['confirmar_notificacao'])){
                      <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Valor</label>
-                       <input type="number" name="datainicio" class="form-control" required="" >
+                       <input size="10" maxlength="10" onkeydown="FormataMoeda(this,10,event)" onkeypress="return maskKeyPress(event)" type="text" name="datainicio" class="form-control" required="" >
                       </div>
                     </div>
                   </div>
@@ -272,6 +273,8 @@ if (isset($_GET['confirmar_notificacao'])){
               </div>
             </div>
           </div>
+
+
       <div class="col-md-6">
           <div class="card card-user">
             <div class="image">
@@ -389,13 +392,14 @@ if (isset($_GET['confirmar_notificacao'])){
                       </div>
                     </div>
                   </div>
-                   
-                  </div>
-         
+               </div>
 
               </div>
             </div>
-          </div> 
+
+
+
+     </div> 
  <!-- FIM DIV -->
 
  <!-- INICIO DIV -->
@@ -542,8 +546,20 @@ if (isset($_GET['confirmar_notificacao'])){
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>CPF</label>
-                        <input type="number" name="cpf" maxlength="30" class="form-control" required="" placeholder="CPF" >
+                        <input type="text" name="cpf" maxlength="14" class="form-control" required="" placeholder="CPF" OnKeyPress="formatar('###.###.###-##', this)">
                       </div>
+                      <script>
+                        function formatar(mascara, documento){
+                          var i = documento.value.length;
+                          var saida = mascara.substring(0,1);
+                          var texto = mascara.substring(i)
+                          
+                          if (texto.substring(0,1) != saida){
+                                    documento.value += texto.substring(0,1);
+                          }
+                          
+                        }
+                      </script>
                     </div>
                   </div>
                   <div class="row">
@@ -662,13 +678,13 @@ if (isset($_GET['confirmar_notificacao'])){
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Valor do Vale Transporte</label>
-                        <input type="number" name="valorvt" class="form-control" required="" placeholder="Valor do Vale Transporte" >
+                        <input size="10" maxlength="10" onkeydown="FormataMoeda(this,10,event)" onkeypress="return maskKeyPress(event)" type="text" name="valorvt" class="form-control" required="" placeholder="Valor do Vale Transporte" >
                       </div>
                     </div>
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Salário</label>
-                         <input type="number" name="salario" class="form-control" required="" placeholder="Salário" >
+                         <input size="10" maxlength="10" onkeydown="FormataMoeda(this,10,event)" onkeypress="return maskKeyPress(event)" type="text" name="salario" class="form-control" required="" placeholder="Salário" >
                       </div>
                     </div>
                   </div>
@@ -739,9 +755,25 @@ if (isset($_GET['confirmar_notificacao'])){
                     <div class="col-md-8">
                       <div class="form-group">
                         <center><label>Senha</label>
-                        <input type="password" name="senha" class="form-control" required="" >
-                      </div></center><center>
+                        <input type="password" name="senha" id="myInput" class="form-control" required="" ></center>
+                        <div class="custom-control custom-checkbox mb-3"><br>
+                          <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                          <label class="custom-control-label" for="customCheck" onclick="myFunction()">Mostrar senha</label>
+                        </div>
+                      </div>
+                    </div>
 
+                           <script>
+                          function myFunction() {
+                              var x = document.getElementById("myInput");
+                              if (x.type === "password") {
+                                  x.type = "text";
+                              } else {
+                                  x.type = "password";
+                              }
+                          }
+                          </script>
+                      <center>
                         <div class="col-md-6 pr-1">
                            <div class="form-group">
                              <div class="tab">   
@@ -788,6 +820,7 @@ if (isset($_GET['confirmar_notificacao'])){
                            </div>
                         </div>
 
+
                         <button type="submit" name="confirmar_user_adm" class="btn btn-outline-success" style="width: 100%"><b>Cadastrar Administrador</b></button>
                       </form>
                     </div>
@@ -814,11 +847,123 @@ if (isset($_GET['confirmar_notificacao'])){
     </div>
   </div>
 
+<!-- MASCARA DE DINHEIRO -->
+   <script type="text/javascript">
+
+        function BlockKeybord()
+        {
+            if(window.event) // IE
+            {
+                if((event.keyCode < 48) || (event.keyCode > 57))
+                {
+                    event.returnValue = false;
+                }
+            }
+            else if(e.which) // Netscape/Firefox/Opera
+            {
+                if((event.which < 48) || (event.which > 57))
+                {
+                    event.returnValue = false;
+                }
+            }
 
 
+        }
 
+        function troca(str,strsai,strentra)
+        {
+            while(str.indexOf(strsai)>-1)
+            {
+                str = str.replace(strsai,strentra);
+            }
+            return str;
+        }
 
+        function FormataMoeda(campo,tammax,teclapres,caracter)
+        {
+            if(teclapres == null || teclapres == "undefined")
+            {
+                var tecla = -1;
+            }
+            else
+            {
+                var tecla = teclapres.keyCode;
+            }
 
+            if(caracter == null || caracter == "undefined")
+            {
+                caracter = ".";
+            }
+
+            vr = campo.value;
+            if(caracter != "")
+            {
+                vr = troca(vr,caracter,"");
+            }
+            vr = troca(vr,"/","");
+            vr = troca(vr,",","");
+            vr = troca(vr,".","");
+
+            tam = vr.length;
+            if(tecla > 0)
+            {
+                if(tam < tammax && tecla != 8)
+                {
+                    tam = vr.length + 1;
+                }
+
+                if(tecla == 8)
+                {
+                    tam = tam - 1;
+                }
+            }
+            if(tecla == -1 || tecla == 8 || tecla >= 48 && tecla <= 57 || tecla >= 96 && tecla <= 105)
+            {
+                if(tam <= 2)
+                {
+                    campo.value = vr;
+                }
+                if((tam > 2) && (tam <= 5))
+                {
+                    campo.value = vr.substr(0, tam - 2) + ',' + vr.substr(tam - 2, tam);
+                }
+                if((tam >= 6) && (tam <= 8))
+                {
+                    campo.value = vr.substr(0, tam - 5) + caracter + vr.substr(tam - 5, 3) + ',' + vr.substr(tam - 2, tam);
+                }
+                if((tam >= 9) && (tam <= 11))
+                {
+                    campo.value = vr.substr(0, tam - 8) + caracter + vr.substr(tam - 8, 3) + caracter + vr.substr(tam - 5, 3) + ',' + vr.substr(tam - 2, tam);
+                }
+                if((tam >= 12) && (tam <= 14))
+                {
+                    campo.value = vr.substr(0, tam - 11) + caracter + vr.substr(tam - 11, 3) + caracter + vr.substr(tam - 8, 3) + caracter + vr.substr(tam - 5, 3) + ',' + vr.substr(tam - 2, tam);
+                }
+                if((tam >= 15) && (tam <= 17))
+                {
+                    campo.value = vr.substr(0, tam - 14) + caracter + vr.substr(tam - 14, 3) + caracter + vr.substr(tam - 11, 3) + caracter + vr.substr(tam - 8, 3) + caracter + vr.substr(tam - 5, 3) + ',' + vr.substr(tam - 2, tam);
+                }
+            }
+        }
+
+        function maskKeyPress(objEvent)
+        {
+            var iKeyCode;
+
+            if(window.event) // IE
+            {
+                iKeyCode = objEvent.keyCode;
+                if(iKeyCode>=48 && iKeyCode<=57) return true;
+                return false;
+            }
+            else if(e.which) // Netscape/Firefox/Opera
+            {
+                iKeyCode = objEvent.which;
+                if(iKeyCode>=48 && iKeyCode<=57) return true;
+                return false;
+            }
+        }
+    </script>
 
   <style type="text/css">
   input[type='radio'] {
@@ -837,6 +982,16 @@ input[type='checkbox'] {
   place-content: center;
   border-radius: 50%;
 }
+/*input[type='text'] {
+ font-size: 15px;
+}
+input[type='number'] {
+ font-size: 15px;
+}
+*/
+
+
+
 </style>
   <!--   Core JS Files   -->
   <script src="assets/js/core/jquery.min.js"></script>
