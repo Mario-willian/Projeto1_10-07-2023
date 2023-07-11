@@ -1,9 +1,9 @@
 <?php 
 //Puxando Info do Usuário
-require_once "../inc/inicio_php_adm.php";
+//require_once "../inc/inicio_php_adm.php";
 
 //Puxando variavel de conexão
-require_once "../inc/conexao.php";
+//require_once "../inc/conexao.php";
 
 ?>
 

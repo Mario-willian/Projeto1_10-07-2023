@@ -1,9 +1,9 @@
 <?php
 //Puxando Info do Usuário
-require_once "../inc/inicio_php_adm.php";
+//require_once "../inc/inicio_php_adm.php";
 
 //Puxando variavel de conexão
-require_once "../inc/conexao.php";
+//require_once "../inc/conexao.php";
 
 ?>
 
@@ -161,7 +161,7 @@ require_once "../inc/conexao.php";
                       </th>
                     </thead>
                     <tbody>
-                      <?php while ($rows_visu_comentario = mysqli_fetch_assoc($resultado_visu_comentario)){ ?>
+                      <?php /* while ($rows_visu_comentario = mysqli_fetch_assoc($resultado_visu_comentario)){ ?>
                       <tr>
                         <td>
                           <?php echo $rows_visu_comentario['nome'];?>
@@ -176,7 +176,7 @@ require_once "../inc/conexao.php";
                           <?php echo $rows_visu_comentario['mensagem'];?>
                         </td>
                       </tr>
-                    <?php }?>
+                    <?php } */ ?>
                     </tbody>
                   </table>
                 </div>

@@ -44,7 +44,7 @@ session_start();
 					<img src="img/lg.jpg" alt="IMG">
 				</div>
 
-				<form action="classe/ActLogin.php" method="POST" class="login100-form validate-form">
+				<form action="login_adm/index.php" method="POST" class="login100-form validate-form">
 					<span class="login100-form-title">
 						Acessar Conta
 					</span>

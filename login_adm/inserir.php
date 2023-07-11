@@ -1,4 +1,6 @@
 <?php
+/*
+
 //Puxando Info do Usuário
 require_once "../inc/inicio_php_adm.php";
 
@@ -45,6 +47,8 @@ if (isset($_GET['confirmar_notificacao'])){
     }    
         
 }
+
+*/
 ?>
 <!DOCTYPE html>
 <html lang="pt">
@@ -735,8 +739,8 @@ if (isset($_GET['confirmar_notificacao'])){
                  <div class="row"><div class="col-md-12">
                   <!--Caso o usuário já exista-->
                     <center><b style="color: red">
-                    <?php 
-                      echo "".$erro_usuario;
+                    <?php /*
+                      echo "".$erro_usuario; */
                     ?>
                     </b></center><center>
                     <div class="col-md-8">

@@ -1,4 +1,5 @@
 <?php
+/*
 //Puxando Info do Usuário
 require_once "../inc/inicio_php_adm.php";
 
@@ -21,7 +22,7 @@ if (isset($_GET["excluir"])) {
     $excluir->excluir_cliente($_GET["cpf"]);
     header("location:compradores.php");
 }
-
+*/
 ?>
 
 <!DOCTYPE html>
@@ -192,7 +193,7 @@ function myFunction() {
                       </th>
                     </thead>
                     <tbody>
-                      <?php while ($rows_visu_cliente = mysqli_fetch_assoc($resultado_visu_cliente)){ ?>
+                      <?php /* while ($rows_visu_cliente = mysqli_fetch_assoc($resultado_visu_cliente)){ ?>
                       <tr>
                        <td>
                           <?php echo $rows_visu_cliente['cpf'];?>
@@ -222,7 +223,7 @@ function myFunction() {
                         </form>
                         </td>
                       </tr>
-                    <?php } ?>
+                    <?php } */?>
                     </tbody>
                   </table>
                 </div>
