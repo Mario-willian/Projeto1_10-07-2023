@@ -2,7 +2,7 @@
 		
 		$servidor = "localhost";
 		$usuario = "root";
-		$senha = "2909icac";
+		$senha = "";
 		$dbname = "bd";
 
 
