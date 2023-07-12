@@ -3,7 +3,7 @@
 		$servidor = "localhost";
 		$usuario = "root";
 		$senha = "";
-		$dbname = "bd";
+		$dbname = "supermercados_paranaiba";
 
 
 		//Criar a conexão
