@@ -91,6 +91,12 @@ if (isset($_GET["excluir"])) {
               <p>Férias</p>
             </a>
           </li>
+          <li>
+            <a href="./usuarios.php">
+              <i class="now-ui-icons design_bullet-list-67"></i>
+              <p>Usuários</p>
+            </a>
+          </li>
 
                    <li class="active-pro" id="txt">
             <a href="" onclick="imprime()">

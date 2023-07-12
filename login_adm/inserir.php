@@ -117,6 +117,12 @@ if (isset($_GET['confirmar_notificacao'])){
               <p>Férias</p>
             </a>
           </li>
+          <li>
+            <a href="./usuarios.php">
+              <i class="now-ui-icons design_bullet-list-67"></i>
+              <p>Usuários</p>
+            </a>
+          </li>
         </ul>
       </div>
     </div>

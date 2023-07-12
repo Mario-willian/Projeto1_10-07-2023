@@ -34,7 +34,7 @@ if (isset($_GET["excluir"])) {
   <link rel="icon" type="image/png" href="../img/logo.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    SUPERMERCADOS PARANAIBA | Rescisões
+    SUPERMERCADOS PARANAIBA | Usuários
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -49,7 +49,7 @@ if (isset($_GET["excluir"])) {
 
 <body class="">
   <div class="wrapper ">
-    <div class="sidebar" data-color="red">
+    <div class="sidebar" data-color="black">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
@@ -79,7 +79,7 @@ if (isset($_GET["excluir"])) {
               <p>Ocorrências</p>
             </a>
           </li>
-          <li class="active ">
+          <li>
             <a href="./rescisoes.php">
               <i class="now-ui-icons design_bullet-list-67"></i>
               <p>Rescisões</p>
@@ -91,10 +91,10 @@ if (isset($_GET["excluir"])) {
               <p>Férias</p>
             </a>
           </li>
-          <li>
+          <li class="active">
             <a href="./usuarios.php">
-              <i class="now-ui-icons design_bullet-list-67"></i>
-              <p>Usuários</p>
+              <i style="color: black;" class="now-ui-icons design_bullet-list-67"></i>
+              <p style="color: black;">Usuários</p>
             </a>
           </li>
            <li class="active-pro" id="txt">
@@ -127,7 +127,7 @@ if (isset($_GET["excluir"])) {
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="#agronomig"> Rescisões</a>
+            <a class="navbar-brand" href="#agronomig"> Usuários</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -170,7 +170,7 @@ function myFunction() {
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title"> Lista de Rescisões</h4>
+                <h4 class="card-title"> Usuários Cadastrados</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
