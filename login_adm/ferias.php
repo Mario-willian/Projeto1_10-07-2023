@@ -27,6 +27,8 @@
   <link href="assets/css/now-ui-dashboard.css?v=1.3.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="assets/demo/demo.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body class="">
@@ -51,8 +53,8 @@
           </li>
           <li>
             <a href="./inserir.php">
-              <i class="now-ui-icons users_single-02"></i>
-              <p>Cadastro</p>
+              <i class="fa fa-plus"></i>
+              <p>Cadastrar</p>
             </a>
           </li>
           <li>
@@ -74,9 +76,9 @@
             </a>
           </li>
           <li>
-            <a href="./usuarios.php">
-              <i class="now-ui-icons design_bullet-list-67"></i>
-              <p>Usuários</p>
+            <a href="./cadastros.php">
+              <i class="fa fa-group"></i>
+              <p>Cadastros</p>
             </a>
           </li>
            <li class="active-pro" id="txt">
