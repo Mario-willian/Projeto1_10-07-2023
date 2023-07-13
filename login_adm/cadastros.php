@@ -214,7 +214,7 @@ function myFunction() {
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title"><i class="fa fa-user"></i> Seus Funcionários:</h4>
+                <h4 class="card-title"><i class="fa fa-id-card-o"></i> Seus Funcionários:</h4>
                 <h6><i class="fa fa-sliders"></i> Filtro</h6>
                 <div class="row">
                     <div class="col-md-3 pr-1">
