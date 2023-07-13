@@ -28,6 +28,8 @@
 
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="assets/demo/demo.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body class="">
@@ -52,8 +54,8 @@
          
           <li>
             <a href="./inserir.php">
-              <i class="now-ui-icons users_single-02 "></i>
-              <p>Cadastro</p>
+              <i class="fa fa-plus"></i>
+              <p>Cadastrar</p>
             </a>
           </li>
           <li>
@@ -72,6 +74,12 @@
             <a href="./ferias.php">
               <i class="now-ui-icons design_bullet-list-67"></i>
               <p>Férias</p>
+            </a>
+          </li>
+          <li>
+            <a href="./cadastros.php">
+              <i class="fa fa-group"></i>
+              <p>Cadastros</p>
             </a>
           </li>
            <li class="active-pro" id="txt">

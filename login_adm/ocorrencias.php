@@ -45,6 +45,8 @@ if (isset($_GET["excluir"])) {
   <link href="assets/css/now-ui-dashboard.css?v=1.3.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="assets/demo/demo.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body class="">
@@ -69,8 +71,8 @@ if (isset($_GET["excluir"])) {
           </li>
           <li>
             <a href="./inserir.php">
-              <i class="now-ui-icons users_single-02"></i>
-              <p>Cadastro</p>
+              <i class="fa fa-plus"></i>
+              <p>Cadastrar</p>
             </a>
           </li>
           <li class="active ">
@@ -89,6 +91,12 @@ if (isset($_GET["excluir"])) {
             <a href="./ferias.php">
               <i class="now-ui-icons design_bullet-list-67"></i>
               <p>Férias</p>
+            </a>
+          </li>
+          <li>
+            <a href="./cadastros.php">
+              <i class="fa fa-group"></i>
+              <p>Cadastros</p>
             </a>
           </li>
 
@@ -166,7 +174,7 @@ function myFunction() {
             <div class="card">
               <div class="card-header">
                 <h4 class="card-title"> Lista de Ocorrências</h4>
-                <h6>Filtro</h6>
+                <h6><i class="fa fa-sliders"></i> Filtro</h6>
                 <div class="row">
                     <div class="col-md-2 pr-1">
                       <div class="form-group">
@@ -216,7 +224,7 @@ function myFunction() {
 
                   <div class="col-md-2">
                       <div class="form-group"><br>
-                        <button type="submit" name="filtrar" class="btn btn-outline-success" style="width: 100%;"><b>Buscar</b></button><br>
+                        <button type="submit" name="filtrar" class="btn btn-outline-success" style="width: 100%;"><b><i class="fa fa-search"></i> Buscar</b></button><br>
                       </div>
                     </div>
 
