@@ -13,8 +13,18 @@ FÉRIAS	Data, Seleção loja, seleção funcionario,  Quantidade de dias. data i
 LEMBRETES	DATA, CAMPO PARA INSERIR INFORMAÇÕES
 
 
--------------------
+---------------------
+
+!!!!Verificar se a sessao existe, caso nao. Voltar pro index.php
 
 
-Duvidas:
-Somente quem fez o lembrete poderá ver?
+*Colocar uma funcao para deixar o login seguro, como o addslashes
+*Senha em MD5
+
+
+
+----------------------
+
+
+
+----------------------

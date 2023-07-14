@@ -33,13 +33,13 @@
 					<img src="img/lg.jpg" alt="IMG">
 				</div>
 
-				<form action="login_adm/index.php" method="POST" class="login100-form validate-form">
+				<form action="classes/valida_login.php" method="POST" class="login100-form validate-form">
 					<span class="login100-form-title">
 						Acessar Conta
 					</span>
 
-					<div class="wrap-input100 validate-input" data-validate = "Usuário inválido">
-						<input class="input100" name="usuario" type="text" required="" placeholder="Usuário">
+					<div class="wrap-input100 validate-input" data-validate = "E-mail inválido">
+						<input class="input100" name="email_login" type="text" required="" placeholder="E-mail">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-user" aria-hidden="true"></i>
@@ -47,7 +47,7 @@
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Senha inválida">
-						<input class="input100" name="senha" type="password" placeholder="Senha" required="">
+						<input class="input100" name="senha_login" type="password" placeholder="Senha" required="">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
@@ -55,7 +55,7 @@
 					</div>
 					
 					<div class="container-login100-form-btn">
-						<button name="salvar" class="login100-form-btn">
+						<button name="entrar" class="login100-form-btn">
 							Entrar
 						</button>
 					</div>

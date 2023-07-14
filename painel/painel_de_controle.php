@@ -1,15 +1,10 @@
 <?php 
 //Puxando Info do Usuário
-//require_once "../inc/inicio_php_adm.php";
-
-//Puxando variavel de conexão
-//require_once "../inc/conexao.php";
-
+include_once "../complements/inicio_php.php";
 ?>
 
 <!DOCTYPE html>
 <html lang="pt">
-
 <head>
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="../img/logo.png">
@@ -156,7 +151,7 @@
             <div class="card card-chart">
               <div class="card-header">
                 <h5 class="card-category"><i class="fa fa-user-secret"></i> Administrador</h5>
-                <h4 class="card-title">Olá, </h4>
+                <h4 class="card-title">Olá,  <?php echo $_SESSION["id_usuario_login"]['nome_completo'] ?></h4>
                 <div class="chart" id="graficoProdutosAnual"></div>
               </div>
               <div class="card-footer ">
