@@ -1,85 +1,17 @@
-<?php
-/*
-
+<?php 
 //Puxando Info do Usuário
-require_once "../inc/inicio_php_adm.php";
+include_once "../complements/inicio_php.php";
 
-//Variaveis para validar os campos
-$erro_usuario = "";
+//Carregando o inicio da pagina
+require "../complements/begin_page.php";
 
-//Chamar a funcao para inserir a determinada ação
-if (isset($_GET['confirmar_notificacao'])){
-  //Recuperar arquivo da classe
-  require_once "../classe/NotificacaoClasse.php";
-  //Criar um objeto do tipo notificacao
-  $notificacao = new Notificacao();
-  //Chama a função e insere a notificação
-  $notificacao->inserir();
-}else if(isset($_GET['confirmar_user_adm'])){
-    //Variaveis para o critério do select SQL
-    $usuarioo = $_GET["login"];
-
-    //Recuperar arquivo da classe
-    include_once ("../inc/conexao.php");
-
-    //Select para buscar se já existe o usuario no VENDEDOR
-      $result_usuario_vendedor = "SELECT count(usuario) FROM vendedor where usuario = '$usuarioo'";
-      $resultado_usuario_vendedor = mysqli_query($conn, $result_usuario_vendedor);
-      $row_usuario_vendedor = mysqli_fetch_assoc($resultado_usuario_vendedor);
-    //Select para buscar se já existe o usuario no COMPRADOR
-      $result_usuario_cliente = "SELECT count(usuario) FROM cliente where usuario = '$usuarioo'";
-      $resultado_usuario_cliente = mysqli_query($conn, $result_usuario_cliente);
-      $row_usuario_cliente = mysqli_fetch_assoc($resultado_usuario_cliente);
-    //Select para buscar se já existe o usuario no ADM
-      $result_usuario_adm = "SELECT count(login) FROM adm where login = '$usuarioo'";
-      $resultado_usuario_adm = mysqli_query($conn, $result_usuario_adm);
-      $row_usuario_adm = mysqli_fetch_assoc($resultado_usuario_adm);
-
-    if($row_usuario_cliente['count(usuario)']>=1 || $row_usuario_vendedor['count(usuario)']>=1 || $row_usuario_adm['count(login)']>=1) {
-        $erro_usuario = "Este Usuario já está Cadastrado";
-    }else{
-        //Recuperar arquivo da classe
-        require_once "../classe/AdmClasse.php";
-        //Criar um objeto do tipo notificacao
-        $user_adm = new Adm();
-        //Chama a função e insere o novo user ADM
-        $user_adm->inserir_adm();
-    }    
-        
-}
-
-*/
 ?>
-<!DOCTYPE html>
-<html lang="pt">
-
-<head>
-  <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../img/logo.png">
-  <link rel="icon" type="image/png" href="../img/logo.png">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>
-        SUPERMERCADOS PARANAIBA | Cadastro
-  </title>
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-  <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!-- CSS Files -->
-  <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="assets/css/now-ui-dashboard.css?v=1.3.0" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="assets/demo/demo.css" rel="stylesheet" />
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
 
 <body class="user-profile">
   <div class="wrapper ">
     <div class="sidebar" data-color="green">
       <!--
-        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
+         data-color="blue | green | orange | red | yellow"
     -->
       <div class="logo">
         <a href="" class="simple-text logo-normal">
@@ -139,7 +71,7 @@ if (isset($_GET['confirmar_notificacao'])){
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="#agronomig">Inserir</a>
+            <a class="navbar-brand">Inserir</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -169,6 +101,8 @@ if (isset($_GET['confirmar_notificacao'])){
         </div>
       </nav>
       <!-- End Navbar -->
+
+
       <div class="panel-header panel-header-sm">
       </div>
 
