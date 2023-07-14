@@ -1,53 +1,11 @@
-<?php
-/*
+<?php 
 //Puxando Info do Usuário
-require_once "../inc/inicio_php_adm.php";
+include_once "../complements/inicio_php.php";
 
-//Puxando variavel de conexão
-require_once "../inc/conexao.php";
+//Carregando o inicio da pagina
+require "../complements/begin_page.php";
 
-//Selecionar os vendedor a serem apresentado na página
-$result_visu_vendedor = "SELECT * FROM vendedor where ativo = 1";
-$resultado_visu_vendedor = mysqli_query($conn, $result_visu_vendedor);
-$total_visu_vendedor = mysqli_num_rows ($resultado_visu_vendedor);
-
-//Recuperar arquivo da classe
-require_once "../classe/ContaClasse.php";
-
-//Criar um objeto
-$excluir = new Conta();
-
-//Excluindo a notificação no visual do usuário, passando o codigo escolhido pelo usuario.
-if (isset($_GET["excluir"])) {
-    $excluir->excluir_vendedor($_GET["cpf"]);
-    header("location:vendedores.php");
-}
-*/
 ?>
-
-<!DOCTYPE html>
-<html lang="pt">
-
-<head>
-  <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../img/logo.png">
-  <link rel="icon" type="image/png" href="../img/logo.png">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>
-    SUPERMERCADOS PARANAIBA | Ocorrências
-  </title>
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-  <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-  <!-- CSS Files -->
-  <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="assets/css/now-ui-dashboard.css?v=1.3.0" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="assets/demo/demo.css" rel="stylesheet" />
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
 
 <body class="">
   <div class="wrapper ">
@@ -130,7 +88,7 @@ if (isset($_GET["excluir"])) {
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="#agronomig"> Lista de Ocorrências</a>
+            <a class="navbar-brand"> Lista de Ocorrências</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
