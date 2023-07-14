@@ -89,7 +89,7 @@ if (isset($_GET['confirmar_notificacao'])){
       <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
           <li>
-            <a href="./index.php">
+            <a href="./painel_de_controle.php">
               <i class="now-ui-icons tech_tv"></i>
               <p><b>Painel de Controle</p>
             </a>
@@ -160,7 +160,7 @@ if (isset($_GET['confirmar_notificacao'])){
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="../inc/sair.php">Sair</a>
+                  <a class="dropdown-item" href="../classes/retira_login.php">Sair</a>
                 </div>
               </li>
 
