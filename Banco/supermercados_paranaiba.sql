@@ -259,6 +259,9 @@ CREATE TABLE IF NOT EXISTS `supermercados_paranaiba`.`setores` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+ALTER TABLE `supermercados_paranaiba`.`lembretes` 
+CHANGE COLUMN `id` `id` INT(10) NOT NULL AUTO_INCREMENT ;
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

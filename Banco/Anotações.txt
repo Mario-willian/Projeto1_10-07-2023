@@ -25,6 +25,9 @@ LEMBRETES	DATA, CAMPO PARA INSERIR INFORMAÇÕES
 
 ----------------------
 
+Fazer altecarao abaixo no banco
 
+ALTER TABLE `supermercados_paranaiba`.`lembretes` 
+CHANGE COLUMN `id` `id` INT(10) NOT NULL AUTO_INCREMENT ;
 
 ----------------------

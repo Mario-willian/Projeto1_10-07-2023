@@ -117,7 +117,7 @@ require "../complements/begin_page.php";
                 <center><h5><i class="fa fa-warning "></i> INSERIR OCORRÊNCIA</h5>
               </div>
               <div class="card-body">
-                <form action="inserir.php" method="GET">
+                <form action="inserir.php" method="POST">
                   <div class="row">
                     
                   </div>
@@ -125,13 +125,13 @@ require "../complements/begin_page.php";
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Data</label>
-                        <input type="date" name="nome" maxlength="100" class="form-control" required="" placeholder="Nome" >
+                        <input type="date" name="ocorrencia_data" maxlength="100" class="form-control" required="" placeholder="Nome" >
                       </div>
                     </div>
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Selecionar Loja</label>
-                        <select name="status" class="form-control">
+                        <select name="ocorrencia_loja" class="form-control">
                           <option value="ativo"></option>
                         </select>
                       </div>
@@ -141,7 +141,7 @@ require "../complements/begin_page.php";
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Selecionar Funcionário</label>
-                        <select name="status" class="form-control">
+                        <select name="ocorrencia_funcionarios" class="form-control">
                           <option value="ativo"></option>
                         </select>
                       </div>
@@ -149,23 +149,23 @@ require "../complements/begin_page.php";
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Motivo</label>
-                           <select name="empresa" class="form-control">
-                          <option value="">Advertência</option>
-                          <option value="">Atestado</option>
-                          <option value="">Atestado de Óbito</option>
-                          <option value="">Erro Operacional</option>
-                          <option value="">Falta Injustificada</option>
-                          <option value="">Reembolso</option>
-                          <option value="">Hora Extra</option>
-                          <option value="">Afastamento INSS</option>
-                          <option value="">Licença Maternidade</option>
-                          <option value="">Licença Parternidade</option>
-                          <option value="">Meta</option>
-                          <option value="">Quebra de Caixa</option>
-                          <option value="">Segunda Via Cartão</option>
-                          <option value="">Vale Avulso</option>
-                          <option value="">Atestado de Comparecimento</option>
-                          <option value="">Feriado</option>
+                           <select name="ocorrencia_motivo" class="form-control">
+                          <option value="Advertencia">Advertência</option>
+                          <option value="Atestado">Atestado</option>
+                          <option value="Atestado de Óbito">Atestado de Óbito</option>
+                          <option value="Erro Operacional">Erro Operacional</option>
+                          <option value="Falta Injustificada">Falta Injustificada</option>
+                          <option value="Reembolso">Reembolso</option>
+                          <option value="Hora Extra">Hora Extra</option>
+                          <option value="Afastamento INSS">Afastamento INSS</option>
+                          <option value="Licença Maternidade">Licença Maternidade</option>
+                          <option value="Licença Parternidade">Licença Parternidade</option>
+                          <option value="Meta">Meta</option>
+                          <option value="Quebra de Caixa">Quebra de Caixa</option>
+                          <option value="Segunda Via Cartão">Segunda Via Cartão</option>
+                          <option value="Vale Avulso">Vale Avulso</option>
+                          <option value="Atestado de Comparecimento">Atestado de Comparecimento</option>
+                          <option value="Feriado">Feriado</option>
                         </select>
                       </div>
                     </div>
@@ -175,7 +175,7 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>Arquivo</label>
                            <div class="custom-file">
-                           <input type="file" class="custom-file-input" id="customFile">
+                           <input type="file" name="ocorrencia_arquivo" class="custom-file-input" id="customFile">
                             <label class="custom-file-label" for="customFile"><i class="  fa fa-file fa-lg fa-fw" aria-hidden="true"></i> Este campo não é obrigatório</label>
                           </div>
                       </div>
@@ -186,13 +186,13 @@ require "../complements/begin_page.php";
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Quantidade de Faltas</label>
-                       <input type="number" name="datainicio" class="form-control" required="" >
+                       <input type="number" name="ocorrencia_quantidade_faltas" class="form-control" required="" >
                       </div>
                     </div>
                      <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Valor</label>
-                       <input size="10" maxlength="10" onkeydown="FormataMoeda(this,10,event)" onkeypress="return maskKeyPress(event)" type="text" name="datainicio" class="form-control" required="" >
+                       <input size="10" maxlength="10" onkeydown="FormataMoeda(this,10,event)" onkeypress="return maskKeyPress(event)" type="text" name="ocorrencia_valor" class="form-control" required="" >
                       </div>
                     </div>
                   </div>
@@ -201,7 +201,7 @@ require "../complements/begin_page.php";
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Observação</label>
-                        <input type="text" name="datainicio" class="form-control" required="" >
+                        <input type="text" name="ocorrencia_observacao" class="form-control" required="" >
                       </div>
                     </div>
                   </div>
@@ -209,7 +209,7 @@ require "../complements/begin_page.php";
                    <div class="row">
                     <div class="col-md-12">
                       <div class="form-group"><br>
-                        <button type="submit" name="confirmar_notificacao" class="btn btn-outline-success" style="width: 100%;"><b> Cadastrar Ocorrência</b></button><br>
+                        <button type="submit" name="ocorrencia_enviar" class="btn btn-outline-success" style="width: 100%;"><b> Cadastrar Ocorrência</b></button><br>
                       </div>
                     </div>
                   </div>
@@ -219,7 +219,6 @@ require "../complements/begin_page.php";
             </div>
           </div>
 
-
       <div class="col-md-6">
           <div class="card card-user">
             <div class="image">
@@ -227,19 +226,19 @@ require "../complements/begin_page.php";
               <div class="card-body">
                 <div class="author">
                   <H5><i class="fa fa-close "></i> INSERIR RESCISÃO</H5>
-                </div><form action="inserir.php" method="GET">
+                </div><form action="inserir.php" method="POST">
                 <div class="row">
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Data</label>
-                        <input type="date" name="stat" class="form-control" required="" >
+                        <input type="date" name="recisao_data" class="form-control" required="" >
                       </div>
                     </div>
                   
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Selecionar Loja</label>
-                        <select name="status" class="form-control">
+                        <select name="recisao_loja" class="form-control">
                           <option value="ativo">1</option>
                         </select>
                       </div>
@@ -251,7 +250,7 @@ require "../complements/begin_page.php";
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Selecionar Funcionário</label>
-                        <select name="status" class="form-control">
+                        <select name="recisao_funcionario" class="form-control">
                           <option value="ativo">1</option>
                         </select>
                       </div>
@@ -260,12 +259,12 @@ require "../complements/begin_page.php";
                      <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Motivo</label>
-                        <select name="status" class="form-control">
-                          <option value="ativo">Término de Contrato</option>
-                          <option value="ativo">Término de Contrato Antecipado</option>
-                          <option value="ativo">Aviso</option>
-                          <option value="ativo">Dispensa</option>
-                          <option value="ativo">Pedido de Demissão</option>
+                        <select name="recisao_motivo" class="form-control">
+                          <option value="Término de Contrato">Término de Contrato</option>
+                          <option value="Término de Contrato Antecipado">Término de Contrato Antecipado</option>
+                          <option value="Aviso">Aviso</option>
+                          <option value="Dispensa">Dispensa</option>
+                          <option value="Pedido de Demissão">Pedido de Demissão</option>
                         </select>
                       </div>
                     </div>         
@@ -275,19 +274,19 @@ require "../complements/begin_page.php";
                        <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Tipo</label>
-                        <select name="status" class="form-control">
-                          <option value="ativo">Normal</option>
-                          <option value="ativo">Acordo</option>
-                          <option value="ativo">Justiça</option>
+                        <select name="recisao_tipo" class="form-control">
+                          <option value="Normal">Normal</option>
+                          <option value="Acordo">Acordo</option>
+                          <option value="Justiça">Justiça</option>
                         </select>
                       </div>
                     </div> 
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                        <label>Exame Demissional</label>
-                         <select name="status" class="form-control">
-                          <option value="ativo">Não</option>
-                           <option value="ativo">Sim</option>
+                         <select name="recisao_exame_demissional" class="form-control">
+                          <option value="Não">Não</option>
+                           <option value="Sim">Sim</option>
                         </select>
                       </div>
                     </div>
@@ -297,13 +296,13 @@ require "../complements/begin_page.php";
                      <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Dias de Aviso</label>
-                       <input type="number" name="diasaviso" class="form-control">
+                       <input type="number" name="recisao_dias_de_aviso" class="form-control">
                       </div>
                     </div> 
                      <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Prazo</label>
-                        <input type="number" name="anotacao" class="form-control">
+                        <input type="number" name="recisao_prazo" class="form-control">
                       </div>
                     </div> 
                  </div>
@@ -312,9 +311,9 @@ require "../complements/begin_page.php";
                     <div class="col-md-12">
                       <div class="form-group"> 
                        <label>Status</label>
-                        <select name="status" class="form-control">
-                          <option value="ativo">Pago</option>
-                          <option value="ativo">Pendente</option>
+                        <select name="recisao_status" class="form-control">
+                          <option value="Pago">Pago</option>
+                          <option value="Pendente">Pendente</option>
                         </select>
                       </div>
                     </div>
@@ -324,7 +323,7 @@ require "../complements/begin_page.php";
                     <div class="col-md-12">
                       <div class="form-group"> 
                         <label>Observação</label>
-                        <input type="number" name="anotacao" class="form-control">
+                        <input type="text" name="recisao_observacao" class="form-control">
                       </div>
                     </div>
                   </div>
@@ -333,17 +332,14 @@ require "../complements/begin_page.php";
                    <div class="row">
                     <div class="col-md-12">
                       <div class="form-group"><br>
-                        <button type="submit" name="confirmar_notificacao" class="btn btn-outline-success" style="width: 100%;"><b>Cadastrar Rescisão</b></button><br>
+                        <button type="submit" name="recisao_enviar" class="btn btn-outline-success" style="width: 100%;"><b>Cadastrar Rescisão</b></button><br>
                       </div>
                     </div>
                   </div>
                </div>
-
               </div>
             </div>
-
-
-
+      </form>
      </div> 
  <!-- FIM DIV -->
 
@@ -357,12 +353,12 @@ require "../complements/begin_page.php";
                 <center><h5><i class="fa fa-plane"></i> INSERIR FÉRIAS</h5>
               </div>
               <div class="card-body">
-                <form action="inserir.php" method="GET">                 
+                <form action="inserir.php" method="POST">                 
                   <div class="row">
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Selecionar Loja</label>
-                        <select name="status" class="form-control">
+                        <select name="ferias_loja" class="form-control">
                           <option value="ativo">1</option>
                         </select>
                       </div>
@@ -370,7 +366,7 @@ require "../complements/begin_page.php";
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Selecionar Funcionário</label>
-                        <select name="status" class="form-control">
+                        <select name="ferias_funcionario" class="form-control">
                           <option value="ativo">1</option>
                         </select>
                       </div>
@@ -380,13 +376,13 @@ require "../complements/begin_page.php";
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Data Início</label>
-                        <input type="date" name="dataferias" class="form-control" required="" >
+                        <input type="date" name="ferias_data_inicio" class="form-control" required="" >
                       </div>
                     </div>
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Quantidade de dias</label>
-                         <input type="number" name="qntdias" class="form-control" required="" >
+                         <input type="number" name="ferias_quantidade_dias" class="form-control" required="" >
                       </div>
                     </div>
                   </div>
@@ -394,7 +390,7 @@ require "../complements/begin_page.php";
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Observação</label>
-                        <input type="text" name="obsferias" class="form-control" required="" >
+                        <input type="text" name="ferias_observacao" class="form-control" required="" >
                       </div>
                     </div>
                   </div>
@@ -402,7 +398,7 @@ require "../complements/begin_page.php";
                    <div class="row">
                     <div class="col-md-12">
                       <div class="form-group"><br>
-                        <button type="submit" name="confirmar_notificacao" class="btn btn-outline-success" style="width: 100%;"><b>Cadastrar Férias</b></button><br>
+                        <button type="submit" name="ferias_enviar" class="btn btn-outline-success" style="width: 100%;"><b>Cadastrar Férias</b></button><br>
                       </div>
                     </div>
                   </div>
@@ -421,19 +417,20 @@ require "../complements/begin_page.php";
                 <div class="author">
                   <H5><i class="fa fa-tags"></i> INSERIR LEMBRETE </H5>
                 </div><br>
-                <form action="inserir.php" method="GET">
+                <form action="../classes/inserts/lembrete.php" method="POST">
                  <div class="row">
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
-                        <label>Status</label>
-                        <input type="text" name="stat" class="form-control" required="" >
                       </div>
                     </div>
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Cor</label>
-                        <select name="status" class="form-control">
-                          <option value="ativo">Azul</option>
+                        <select name="lembrete_cor" class="form-control">
+                          <option value="Orange">Laranja</option>
+                          <option value="Red">Vermelho</option>
+                          <option value="Yellow">Amarelo</option>
+                          <option value="Green">Verde</option>
                         </select>
                       </div>
                     </div>
@@ -442,7 +439,7 @@ require "../complements/begin_page.php";
                     <div class="col-md-12 ">
                       <div class="form-group">
                       <label>Prazo</label>
-                      <input type="date" name="stat" class="form-control" required="" >
+                      <input type="date" name="lembrete_data_prazo" class="form-control" required="" >
                       </div>
                     </div>
                   </div>
@@ -450,7 +447,7 @@ require "../complements/begin_page.php";
                     <div class="col-md-12 ">
                       <div class="form-group">
                         <label>Anotação</label>
-                         <input type="text" name="anotacao" class="form-control" required="" >
+                         <input type="text" name="lembrete_anotacao" class="form-control" required="" >
                       </div>
                     </div>
                   </div>
@@ -459,20 +456,17 @@ require "../complements/begin_page.php";
                    <div class="row">
                     <div class="col-md-12">
                       <div class="form-group"><br>
-                        <button type="submit" name="confirmar_notificacao" class="btn btn-outline-success" style="width: 100%;"><b>Cadastrar Lembrete</b></button><br>
+                        <button type="submit" name="lembrete_enviar" class="btn btn-outline-success" style="width: 100%;"><b>Cadastrar Lembrete</b></button><br>
                       </div>
                     </div>
                   </div>
-                
                    </div>
-
-
                  </div>
                </div>
               </div>
             </div>
           </div>  <!-- FIM DIV -->
-
+</form>
 
  <!-- INICIO DIV -->
       <div class="content">
@@ -483,7 +477,7 @@ require "../complements/begin_page.php";
                 <center><h5><i class="fa fa-user-plus"></i> CADASTRAR FUNCIONÁRIO</h5>
               </div>
               <div class="card-body">
-                <form action="inserir.php" method="GET">
+                <form action="inserir.php" method="POST">
                   <div class="row">
                     
                   </div>
@@ -491,13 +485,13 @@ require "../complements/begin_page.php";
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Nome Completo</label>
-                        <input type="text" name="nome" maxlength="100" class="form-control" required="" placeholder="Nome" >
+                        <input type="text" name="funcionario_nome" maxlength="100" class="form-control" required="" placeholder="Nome" >
                       </div>
                     </div>
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>CPF</label>
-                        <input type="text" name="cpf" maxlength="14" class="form-control" required="" placeholder="CPF" OnKeyPress="formatar('###.###.###-##', this)">
+                        <input type="text" name="funcionario_cpf" maxlength="14" class="form-control" required="" placeholder="CPF" OnKeyPress="formatar('###.###.###-##', this)">
                       </div>
                       <script>
                         function formatar(mascara, documento){
@@ -517,17 +511,17 @@ require "../complements/begin_page.php";
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Data de Nascimento</label>
-                        <input type="date" name="datanascimento" class="form-control" required="" >
+                        <input type="date" name="funcionario_data_nascimento" class="form-control" required="" >
                       </div>
                     </div>
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Status</label>
-                        <select name="status" class="form-control">
-                          <option value="ativo">Ativo</option>
-                          <option value="afastado">Afastado</option>
-                          <option value="inativo">Inativo</option>
-                          <option value="transferido">Transferido</option>
+                        <select name="funcionario_status" class="form-control">
+                          <option value="Ativo">Ativo</option>
+                          <option value="Afastado">Afastado</option>
+                          <option value="Inativo">Inativo</option>
+                          <option value="Transferido">Transferido</option>
                         </select>
                       </div>
                     </div>
@@ -536,7 +530,7 @@ require "../complements/begin_page.php";
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Empresa</label>
-                        <select name="empresa" class="form-control">
+                        <select name="funcionario_empresa" class="form-control">
                           <option value="">puxar do banco as empresas que o adm administra</option>
                         </select>
                       </div>
@@ -546,59 +540,59 @@ require "../complements/begin_page.php";
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Setor</label>
-                        <select name="setor" class="form-control">
-                          <option value="acougue">Açougue</option>
-                          <option value="padaria">Padaria</option>
-                          <option value="hortifruti">Hortifruti</option>
-                          <option value="caixa">Caixa</option>
-                          <option value="fiscalizacao">Fiscalização</option>
-                          <option value="reposicao">Reposição</option>
-                          <option value="limpeza">Limpeza</option>
-                          <option value="administrativo">Administrativo</option>
-                          <option value="gerencia">Gerencia</option>
-                          <option value="frios">Frios</option>
-                          <option value="subgerencia">Sub-Gerencia</option>
-                          <option value="entregas">Entregas</option>
-                          <option value="recebimento">Recebimento Merc.</option>
-                          <option value="operacaoloja">Operação Loja</option>
-                          <option value="rh">Recursos Humanos</option>
+                        <select name="funcionario_setor" class="form-control">
+                          <option value="Açougue">Açougue</option>
+                          <option value="Padaria">Padaria</option>
+                          <option value="Hortifruti">Hortifruti</option>
+                          <option value="Caixa">Caixa</option>
+                          <option value="Fiscalização">Fiscalização</option>
+                          <option value="Reposição">Reposição</option>
+                          <option value="Limpeza">Limpeza</option>
+                          <option value="Administrativo">Administrativo</option>
+                          <option value="Gerencia">Gerencia</option>
+                          <option value="Frios">Frios</option>
+                          <option value="Sub-Gerencia">Sub-Gerencia</option>
+                          <option value="Entregas">Entregas</option>
+                          <option value="Recebimento Merc.">Recebimento Merc.</option>
+                          <option value="Operação Loja">Operação Loja</option>
+                          <option value="Recursos Humanos">Recursos Humanos</option>
                         </select>
                       </div>
                     </div>
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Função</label>
-                        <select name="funcao" class="form-control">
-                          <option value="operadorcaixa">Operador de Caixa</option>
-                          <option value="frentecaixa">Frente de Caixa</option>
-                          <option value="supervisoracougue">Supervisor de Açougue</option>
-                          <option value="encarregadoacougue">Encarregado de Açougue</option>
-                          <option value="auxiliaracougue">Auxiliar de Açougue</option>
-                          <option value="supervisorpadaria">Supervisor de Padaria</option>
-                          <option value="encarregadopadaria">Encarregado de Padaria</option>
-                          <option value="padeiro">Padeiro</option>
-                          <option value="confeteiro">Confeiteiro</option>
-                          <option value="auxiliarpadaria">Auxiliar de Padaria</option>
-                          <option value="balconista">Balconista</option>
-                          <option value="supervisorhorti">Supervisor de Hortifruti</option>
-                          <option value="encarregadohorti">Encarregado de Hortifruti</option>
-                          <option value="fiscalloja">Fiscal de Loja</option>
-                          <option value="repositor">Repositor</option>
-                          <option value="embalador">Embalador</option>
-                          <option value="asg">Auxiliar de Serviços Gerais</option>
-                          <option value="auxiliaradm">Auxiliar Administrativo</option>
-                          <option value="assistenteadm">Assistente Administrativo</option>
-                          <option value="adp">Assistente Departamento Pessoal</option>
-                          <option value="sdp">Supervisor Departamento Pessoal</option>
-                          <option value="gerente">Gerente</option>
-                          <option value="subgerente">Sub-Gerente</option>
-                          <option value="epl">Encarregado de Piso Loja</option>
-                          <option value="supervisorfrios">Supervisor de Frios</option>
-                          <option value="encarregadofrios">Encarregado de Frios</option>
-                          <option value="auxiliarfrios">Auxiliar de Frios</option>
-                          <option value="motorista">Motorista</option>
-                          <option value="conferente">Conferente</option>
-                          <option value="operadorloja">Operador de Loja</option>
+                        <select name="funcionmario_funcao" class="form-control">
+                          <option value="Operador de Caixa">Operador de Caixa</option>
+                          <option value="Frente de Caixa">Frente de Caixa</option>
+                          <option value="Supervisor de Açougue">Supervisor de Açougue</option>
+                          <option value="Encarregado de Açougue">Encarregado de Açougue</option>
+                          <option value="Auxiliar de Açougue">Auxiliar de Açougue</option>
+                          <option value="Supervisor de Padaria">Supervisor de Padaria</option>
+                          <option value="Encarregado de Padaria">Encarregado de Padaria</option>
+                          <option value="Padeiro">Padeiro</option>
+                          <option value="Confeiteiro">Confeiteiro</option>
+                          <option value="Auxiliar de Padaria">Auxiliar de Padaria</option>
+                          <option value="Balconista">Balconista</option>
+                          <option value="Supervisor de Hortifruti">Supervisor de Hortifruti</option>
+                          <option value="ncarregado de Hortifruti">Encarregado de Hortifruti</option>
+                          <option value="Fiscal de Loja">Fiscal de Loja</option>
+                          <option value="Repositor">Repositor</option>
+                          <option value="Embalador">Embalador</option>
+                          <option value="Auxiliar de Serviços Gerais">Auxiliar de Serviços Gerais</option>
+                          <option value="Auxiliar Administrativo">Auxiliar Administrativo</option>
+                          <option value="Assistente Administrativo">Assistente Administrativo</option>
+                          <option value="Assistente Departamento Pessoal">Assistente Departamento Pessoal</option>
+                          <option value="upervisor Departamento Pessoal">Supervisor Departamento Pessoal</option>
+                          <option value="Gerente">Gerente</option>
+                          <option value="Sub-Gerente">Sub-Gerente</option>
+                          <option value="ncarregado de Piso Loja">Encarregado de Piso Loja</option>
+                          <option value="Supervisor de Frios">Supervisor de Frios</option>
+                          <option value="Encarregado de Frios">Encarregado de Frios</option>
+                          <option value="Auxiliar de Frios">Auxiliar de Frios</option>
+                          <option value="Motorista">Motorista</option>
+                          <option value="Conferente">Conferente</option>
+                          <option value="Operador de Loja">Operador de Loja</option>
                         </select>
                       </div>
                     </div>
@@ -608,18 +602,18 @@ require "../complements/begin_page.php";
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Data de Início</label>
-                        <input type="date" name="datainicio" class="form-control" required="" >
+                        <input type="date" name="funcionario_data_de_inicio" class="form-control" required="" >
                       </div>
                     </div>
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Vale Transporte</label>
-                        <select name="vt" class="form-control">
-                          <option value="nenhum">Nenhum</option>
-                          <option value="otimo">Ótimo</option>
-                          <option value="bhbus">Bhbus</option>
-                          <option value="combustivel">Combustível</option>
-                          <option value="dinheiro">Dinheiro</option>
+                        <select name="funcionario_vale_transporte" class="form-control">
+                          <option value="Nenhum">Nenhum</option>
+                          <option value="Ótimo">Ótimo</option>
+                          <option value="Bhbus">Bhbus</option>
+                          <option value="Combustível">Combustível</option>
+                          <option value="Dinheiro">Dinheiro</option>
                         </select>
                       </div>
                     </div>
@@ -629,13 +623,13 @@ require "../complements/begin_page.php";
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Valor do Vale Transporte</label>
-                        <input size="10" maxlength="10" onkeydown="FormataMoeda(this,10,event)" onkeypress="return maskKeyPress(event)" type="text" name="valorvt" class="form-control" required="" placeholder="Valor do Vale Transporte" >
+                        <input size="10" maxlength="10" onkeydown="FormataMoeda(this,10,event)" onkeypress="return maskKeyPress(event)" type="text" name="funcionario__valor_vale_transporte" class="form-control" required="" placeholder="Valor do Vale Transporte" >
                       </div>
                     </div>
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Salário</label>
-                         <input size="10" maxlength="10" onkeydown="FormataMoeda(this,10,event)" onkeypress="return maskKeyPress(event)" type="text" name="salario" class="form-control" required="" placeholder="Salário" >
+                         <input size="10" maxlength="10" onkeydown="FormataMoeda(this,10,event)" onkeypress="return maskKeyPress(event)" type="text" name="funcionario_salario" class="form-control" required="" placeholder="Salário" >
                       </div>
                     </div>
                   </div>
@@ -644,13 +638,13 @@ require "../complements/begin_page.php";
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Nome Pai</label>
-                        <input type="text" name="nomepai" class="form-control" required="" placeholder="Nome do Pai" >
+                        <input type="text" name="funcionario_nome_pai" class="form-control" placeholder="Nome do Pai" >
                       </div>
                     </div>
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Nome Mãe</label>
-                        <input type="text" name="nomemae" class="form-control" required="" placeholder="Nome da Mãe" >
+                        <input type="text" name="funcionario_nome_mae" class="form-control" required="" placeholder="Nome da Mãe" >
                       </div>
                     </div>
                   </div>
@@ -659,14 +653,14 @@ require "../complements/begin_page.php";
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Observação</label>
-                        <input type="text" name="obs" maxlength="500" class="form-control" required="" placeholder="Observação" >
+                        <input type="text" name="funcionario_observacao" maxlength="500" class="form-control" required="" placeholder="Observação" >
                       </div>
                     </div>
                   </div>
                    <div class="row">
                     <div class="col-md-12">
                       <div class="form-group"><br>
-                        <button type="submit" name="confirmar_notificacao" class="btn btn-outline-success" style="width: 100%;"><b>Cadastrar Funcionário</b></button><br>
+                        <button type="submit" name="funcionario_enviar" class="btn btn-outline-success" style="width: 100%;"><b>Cadastrar Funcionário</b></button><br>
                       </div>
                     </div>
                   </div>
@@ -682,7 +676,7 @@ require "../complements/begin_page.php";
               <div class="card-body">
                 <div class="author">
                   <H5><i class="fa fa-user-secret"></i>  CADASTRAR USUÁRIO ADMINISTRATIVO </H5>
-                </div><form action="inserir.php" method="GET">
+                </div><form action="inserir.php" method="POST">
                  <div class="row"><div class="col-md-12">
                   <!--Caso o usuário já exista-->
                     <center><b style="color: red">
@@ -693,20 +687,20 @@ require "../complements/begin_page.php";
                     <div class="col-md-8">
                       <div class="form-group">
                         <center><label>Nome</label>
-                        <input type="text" name="nome" class="form-control" required="" >
+                        <input type="text" name="usuario_nome" class="form-control" required="" >
                       </div>
                        </div>
                       <center>
                     <div class="col-md-8">
                       <div class="form-group">
-                        <center><label>Usuário</label>
-                        <input type="text" name="login" class="form-control" required="" >
+                        <center><label>E-mail</label>
+                        <input type="text" name="usuario_email" class="form-control" required="" >
                       </div>
                     </div>
                     <div class="col-md-8">
                       <div class="form-group">
                         <center><label>Senha</label>
-                        <input type="password" name="senha" id="myInput" class="form-control" required="" ></center>
+                        <input type="password" name="usuario_senha" id="myInput" class="form-control" required="" ></center>
                         <div class="custom-control custom-checkbox mb-3"><br>
                           <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
                           <label class="custom-control-label" for="customCheck" onclick="myFunction()">Mostrar senha</label>
@@ -740,27 +734,27 @@ require "../complements/begin_page.php";
                                       </thead>
                                       <tbody>
                                         <tr>
-                                          <td><input type="checkbox" name="valor1" id="preco" value="1"></td>
+                                          <td><input type="checkbox" name="usuario_acesso_planalto" id="preco" value="Planalto"></td>
                                           <td>PLANALTO</td>
                                         </tr>
                                         <tr>
-                                          <td><input type="checkbox" name="valor1" id="preco" value="2"></td>
+                                          <td><input type="checkbox" name="usuario_acesso_rodoviaria" id="preco" value="Rodoviaria"></td>
                                           <td>RODOVIARIA</td>
                                         </tr>
                                         <tr>
-                                          <td><input type="checkbox" name="valor1" id="preco" value="2"></td>
+                                          <td><input type="checkbox" name="usuario_acesso_varzea" id="preco" value="Varzea"></td>
                                           <td>VARZEA</td>
                                         </tr>
                                         <tr>
-                                          <td><input type="checkbox" name="valor1" id="preco" value="2"></td>
+                                          <td><input type="checkbox" name="usuario_acesso_guanabara" id="preco" value="Guanabara"></td>
                                           <td>GUANABARA</td>
                                         </tr>
                                         <tr>
-                                          <td><input type="checkbox" name="valor1" id="preco" value="2"></td>
+                                          <td><input type="checkbox" name="usuario_acesso_botafogo" id="preco" value="Botafogo"></td>
                                           <td>BOTAFOGO</td>
                                         </tr>
                                         <tr>
-                                          <td><input type="checkbox" name="valor1" id="preco" value="2"></td>
+                                          <td><input type="checkbox" name="usuario_acesso_rio_branco" id="preco" value="io Branco"></td>
                                           <td>RIO BRANCO</td>
                                         </tr>
                                       </tbody>
@@ -772,7 +766,7 @@ require "../complements/begin_page.php";
                         </div>
 
 
-                        <button type="submit" name="confirmar_user_adm" class="btn btn-outline-success" style="width: 100%"><b>Cadastrar Administrador</b></button>
+                        <button type="submit" name="usuario_enviar" class="btn btn-outline-success" style="width: 100%"><b>Cadastrar Administrador</b></button>
                       </form>
                     </div>
                   </div>

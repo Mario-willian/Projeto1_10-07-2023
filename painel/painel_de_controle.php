@@ -1,3 +1,12 @@
+<?php 
+//Puxando Info do Usuário
+include_once "../complements/inicio_php.php";
+
+//Carregando o inicio da pagina
+require "../complements/begin_page.php";
+
+?>
+
 <body class="user-profile">
   <div class="wrapper ">
     <div class="sidebar" data-color="blue">
