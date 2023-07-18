@@ -108,7 +108,7 @@ require "../complements/begin_page.php";
       <div class="content">
         <div class="row"><div class="col-lg-2"></div>
           <div class="col-lg-8">
-            <div class="card card-chart">
+            <div class="card card-chart"><center>
               <div class="card-header">
                 <h5 class="card-category"><i class="fa fa-user-secret"></i> Administrador</h5>
                 <h4 class="card-title">Olá,  <?php echo $_SESSION["id_usuario_login"]['nome_completo'] ?></h4>
@@ -116,7 +116,7 @@ require "../complements/begin_page.php";
               </div>
               <div class="card-footer ">
                 <div class="stats">
-                  <i class="now-ui-icons ui-1_calendar-60"></i> <?php echo date("d/m/Y"); ?> 
+                  <p>Hoje é <?php echo date("d/m/Y"); ?> </p>
                 </div>
               </div>
             </div>
