@@ -156,6 +156,114 @@ require "../complements/begin_page.php";
             </div>
           </div>
 
+          
+        <div class="col-lg-4">
+          <div class="w3-display-container" >
+            <div class="card card-chart" style="background-color:orange;">
+            <span style="margin-left: 95%;font-size: 20px;cursor:pointer;" onclick="this.parentElement.style.display='none'"
+            class="w3-display-topright">&times;</span>
+              <div style="margin-top: -30px;" class="card-header">
+                <h5 style="color:black;" class="card-category"><i class="fa fa-tags"></i> Lembrete</h5>
+                <h4 class="card-title">status Lembrete</h4>
+                <h5>anotação</h5>
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats" style="color:black;">
+                  <i  class="now-ui-icons ui-1_calendar-60"></i> Data
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="w3-display-container" >
+            <div class="card card-chart" style="background-color:yellow;">
+            <span style="margin-left: 95%;font-size: 20px;cursor:pointer;" onclick="this.parentElement.style.display='none'"
+            class="w3-display-topright">&times;</span>
+              <div style="margin-top: -30px;" class="card-header">
+                <h5 style="color:black;" class="card-category"><i class="fa fa-tags"></i> Lembrete</h5>
+                <h4 class="card-title">status Lembrete</h4>
+                <h5>anotação</h5>
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats" style="color:black;">
+                  <i  class="now-ui-icons ui-1_calendar-60"></i> Data
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="w3-display-container" >
+            <div class="card card-chart" style="background-color:dodgerblue;">
+            <span style="margin-left: 95%;font-size: 20px;cursor:pointer;" onclick="this.parentElement.style.display='none'"
+            class="w3-display-topright">&times;</span>
+              <div style="margin-top: -30px;" class="card-header">
+                <h5 style="color:black;" class="card-category"><i class="fa fa-tags"></i> Lembrete</h5>
+                <h4 class="card-title">status Lembrete</h4>
+                <h5>anotação</h5>
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats" style="color:black;">
+                  <i  class="now-ui-icons ui-1_calendar-60"></i> Data
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="w3-display-container" >
+            <div class="card card-chart" style="background-color:red;">
+            <span style="margin-left: 95%;font-size: 20px;cursor:pointer;" onclick="this.parentElement.style.display='none'"
+            class="w3-display-topright">&times;</span>
+              <div style="margin-top: -30px;" class="card-header">
+                <h5 style="color:black;" class="card-category"><i class="fa fa-tags"></i> Lembrete</h5>
+                <h4 class="card-title">status Lembrete</h4>
+                <h5>anotação</h5>
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats" style="color:black;">
+                  <i  class="now-ui-icons ui-1_calendar-60"></i> Data
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="w3-display-container" >
+            <div class="card card-chart" style="background-color:#3fff00;">
+            <span style="margin-left: 95%;font-size: 20px;cursor:pointer;" onclick="this.parentElement.style.display='none'"
+            class="w3-display-topright">&times;</span>
+              <div style="margin-top: -30px;" class="card-header">
+                <h5 style="color:black;" class="card-category"><i class="fa fa-tags"></i> Lembrete</h5>
+                <h4 class="card-title">status Lembrete</h4>
+                <h5>anotação</h5>
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats" style="color:black;">
+                  <i  class="now-ui-icons ui-1_calendar-60"></i> Data
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+       
+
+        
+
+
+          
+          
     
 
 
