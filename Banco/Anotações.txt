@@ -22,12 +22,26 @@ LEMBRETES	DATA, CAMPO PARA INSERIR INFORMAÇÕES
 *Senha em MD5
 
 
+----------------------
+Feito:
+*Ajustado o banco. Necessario dropar e criar dnv.
+*Configurado as classes de inserir de todos os cadastros e nome das inputs
+*Inserir lembrete - Ok.
+
+Pendente finalizar:
+*Inserir ferias - Ok. Pendente somente de Ajustar data fim das ferias (está com a mesma data inicial)
+*Inserir Recisao, pendente de ajustar o arquivo para finalizar.
+*Inserir Recisao, pendente de ajustar datas de aviso para inserir
+
+Pendencias extras: 
+*Inserir funcionario, pendente finalizar.
+*Nao deixar criar usuario ja existente.
+*Puxar Selects do banco.
+
+Acrescentar:
+*Tela para cadastrar empresas
+*Tela para exibir arquivos da ocorrencia
+*Notificação pra informar que foi cadastrado com sucesso.
 
 ----------------------
 
-Fazer altecarao abaixo no banco
-
-ALTER TABLE `supermercados_paranaiba`.`lembretes` 
-CHANGE COLUMN `id` `id` INT(10) NOT NULL AUTO_INCREMENT ;
-
-----------------------

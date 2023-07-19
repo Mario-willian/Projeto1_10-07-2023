@@ -117,7 +117,7 @@ require "../complements/begin_page.php";
                 <center><h5><i class="fa fa-warning "></i> INSERIR OCORRÊNCIA</h5>
               </div>
               <div class="card-body">
-                <form action="inserir.php" method="POST">
+                <form action="../classes/inserts/ocorrencia.php" method="POST">
                   <div class="row">
                     
                   </div>
@@ -132,7 +132,7 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>Selecionar Loja</label>
                         <select name="ocorrencia_loja" class="form-control">
-                          <option value="ativo"></option>
+                          <option value="1">1</option>
                         </select>
                       </div>
                     </div>
@@ -142,7 +142,7 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>Selecionar Funcionário</label>
                         <select name="ocorrencia_funcionarios" class="form-control">
-                          <option value="ativo"></option>
+                          <option value="1">1</option>
                         </select>
                       </div>
                     </div>
@@ -175,7 +175,7 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>Arquivo</label>
                            <div class="custom-file">
-                           <input type="file" name="ocorrencia_arquivo" class="custom-file-input" id="customFile">
+                           <input type="file" name="ocorrencia_arquivo[]" class="custom-file-input" id="customFile">
                             <label class="custom-file-label" for="customFile"><i class="  fa fa-file fa-lg fa-fw" aria-hidden="true"></i> Este campo não é obrigatório</label>
                           </div>
                       </div>
@@ -201,7 +201,7 @@ require "../complements/begin_page.php";
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Observação</label>
-                        <input type="text" name="ocorrencia_observacao" class="form-control" required="" >
+                        <input type="text" name="ocorrencia_observacao" class="form-control" >
                       </div>
                     </div>
                   </div>
@@ -226,7 +226,7 @@ require "../complements/begin_page.php";
               <div class="card-body">
                 <div class="author">
                   <H5><i class="fa fa-close "></i> INSERIR RESCISÃO</H5>
-                </div><form action="inserir.php" method="POST">
+                </div><form action="../classes/inserts/recisao.php" method="POST">
                 <div class="row">
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
@@ -296,13 +296,13 @@ require "../complements/begin_page.php";
                      <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Dias de Aviso</label>
-                       <input type="number" name="recisao_dias_de_aviso" class="form-control">
+                       <input type="number" name="recisao_inicio_dias_de_aviso" class="form-control">
                       </div>
                     </div> 
                      <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Prazo</label>
-                        <input type="number" name="recisao_prazo" class="form-control">
+                        <input type="number" name="recisao_prazo_dias_de_aviso" class="form-control">
                       </div>
                     </div> 
                  </div>
@@ -353,13 +353,13 @@ require "../complements/begin_page.php";
                 <center><h5><i class="fa fa-plane"></i> INSERIR FÉRIAS</h5>
               </div>
               <div class="card-body">
-                <form action="inserir.php" method="POST">                 
+                <form action="../classes/inserts/ferias.php" method="POST">                 
                   <div class="row">
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Selecionar Loja</label>
                         <select name="ferias_loja" class="form-control">
-                          <option value="ativo">1</option>
+                          <option value="1">1</option>
                         </select>
                       </div>
                     </div>
@@ -367,7 +367,7 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>Selecionar Funcionário</label>
                         <select name="ferias_funcionario" class="form-control">
-                          <option value="ativo">1</option>
+                          <option value="1">1</option>
                         </select>
                       </div>
                     </div>
@@ -390,7 +390,7 @@ require "../complements/begin_page.php";
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Observação</label>
-                        <input type="text" name="ferias_observacao" class="form-control" required="" >
+                        <input type="text" name="ferias_observacao" class="form-control" >
                       </div>
                     </div>
                   </div>
@@ -477,7 +477,7 @@ require "../complements/begin_page.php";
                 <center><h5><i class="fa fa-user-plus"></i> CADASTRAR FUNCIONÁRIO</h5>
               </div>
               <div class="card-body">
-                <form action="inserir.php" method="POST">
+                <form action="../classes/inserts/funcionario.php" method="POST">
                   <div class="row">
                     
                   </div>
@@ -562,7 +562,7 @@ require "../complements/begin_page.php";
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Função</label>
-                        <select name="funcionmario_funcao" class="form-control">
+                        <select name="funcionario_funcao" class="form-control">
                           <option value="Operador de Caixa">Operador de Caixa</option>
                           <option value="Frente de Caixa">Frente de Caixa</option>
                           <option value="Supervisor de Açougue">Supervisor de Açougue</option>
@@ -623,7 +623,7 @@ require "../complements/begin_page.php";
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Valor do Vale Transporte</label>
-                        <input size="10" maxlength="10" onkeydown="FormataMoeda(this,10,event)" onkeypress="return maskKeyPress(event)" type="text" name="funcionario__valor_vale_transporte" class="form-control" required="" placeholder="Valor do Vale Transporte" >
+                        <input size="10" maxlength="10" onkeydown="FormataMoeda(this,10,event)" onkeypress="return maskKeyPress(event)" type="text" name="funcionario_valor_vale_transporte" class="form-control" required="" placeholder="Valor do Vale Transporte" >
                       </div>
                     </div>
                     <div class="col-md-6 pl-1">
@@ -653,7 +653,7 @@ require "../complements/begin_page.php";
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Observação</label>
-                        <input type="text" name="funcionario_observacao" maxlength="500" class="form-control" required="" placeholder="Observação" >
+                        <input type="text" name="funcionario_observacao" maxlength="500" class="form-control" placeholder="Observação" >
                       </div>
                     </div>
                   </div>
@@ -676,7 +676,7 @@ require "../complements/begin_page.php";
               <div class="card-body">
                 <div class="author">
                   <H5><i class="fa fa-user-secret"></i>  CADASTRAR USUÁRIO ADMINISTRATIVO </H5>
-                </div><form action="inserir.php" method="POST">
+                </div><form action="../classes/inserts/usuario.php" method="POST">
                  <div class="row"><div class="col-md-12">
                   <!--Caso o usuário já exista-->
                     <center><b style="color: red">
