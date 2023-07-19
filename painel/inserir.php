@@ -17,13 +17,13 @@ require "../complements/begin_page.php";
         <a href="" class="simple-text logo-normal">
           <CENTER><b>SUPERMERCADOS PARANAIBA</b></CENTER>
         </a>
-      </div>
+      </div><b>
       <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
           <li>
             <a href="./painel_de_controle.php">
               <i class="now-ui-icons tech_tv"></i>
-              <p><b>Painel de Controle</p>
+              <p>Painel de Controle</p>
             </a>
           </li>
           <li class="active ">
@@ -83,8 +83,18 @@ require "../complements/begin_page.php";
              
             </form>
             <ul class="navbar-nav">
-              
+
               <li class="nav-item dropdown">
+                <a href="notificacoes.php" class="nav-link">
+                  <i class="fa fa-bell-o"></i>
+                  <p>
+                    <span class="d-lg-none d-md-block">Notificações</span>
+                    <span class="badge badge-light">5</span>
+                  </p>
+                </a>
+              </li>
+              
+              <li style="cursor: pointer;" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="now-ui-icons users_single-02"></i>
                   <p>
@@ -92,10 +102,11 @@ require "../complements/begin_page.php";
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="../classes/retira_login.php">Sair</a>
+                <a class="dropdown-item" href="conta.php">Minha Conta</a>  
+                <a class="dropdown-item" href="../classes/retira_login.php">Sair</a>
                 </div>
               </li>
-
+              
             </ul>
           </div>
         </div>
@@ -419,11 +430,8 @@ require "../complements/begin_page.php";
                 </div><br>
                 <form action="../classes/inserts/lembrete.php" method="POST">
                  <div class="row">
-                    <div class="col-md-6 pr-1">
-                      <div class="form-group">
-                      </div>
-                    </div>
-                    <div class="col-md-6 pl-1">
+                    
+                    <div class="col-md-12">
                       <div class="form-group">
                         <label>Cor</label>
                         <select name="lembrete_cor" class="form-control">
@@ -431,6 +439,7 @@ require "../complements/begin_page.php";
                           <option value="Red">Vermelho</option>
                           <option value="Yellow">Amarelo</option>
                           <option value="Green">Verde</option>
+                          <option value="blue">Azul</option>
                         </select>
                       </div>
                     </div>
@@ -459,14 +468,14 @@ require "../complements/begin_page.php";
                         <button type="submit" name="lembrete_enviar" class="btn btn-outline-success" style="width: 100%;"><b>Cadastrar Lembrete</b></button><br>
                       </div>
                     </div>
-                  </div>
+                  </div></form>
                    </div>
                  </div>
                </div>
               </div>
             </div>
           </div>  <!-- FIM DIV -->
-</form>
+
 
  <!-- INICIO DIV -->
       <div class="content">
@@ -778,6 +787,55 @@ require "../complements/begin_page.php";
  <!-- FIM DIV -->
  
 
+      <div class="col-md-6">
+          <div class="card card-user">
+            <div class="image">
+              </div>
+              <div class="card-body">
+                <div class="author">
+                  <H5><i class="fa fa-check"></i> Cadastrar Empresa </H5>
+                </div><br>
+                <form action="../classes/inserts/lembrete.php" method="POST">
+                 <div class="row">
+                    
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Nome da Loja</label>
+                        <input type="text" name="nome_empresa" class="form-control" required="" >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">                
+                    <div class="col-md-12 ">
+                      <div class="form-group">
+                      <label>Razão Social</label>
+                      <input type="text" name="razao_social" class="form-control" required="" >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">                
+                    <div class="col-md-12 ">
+                      <div class="form-group">
+                        <label>CNPJ</label>
+                         <input type="text" name="cnpj" class="form-control" required="" >
+                      </div>
+                    </div>
+                  </div>
+
+             
+                   <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group"><br>
+                        <button type="submit" name="lembrete_enviar" class="btn btn-outline-success" style="width: 100%;"><b>Cadastrar Empresa</b></button><br>
+                      </div>
+                    </div>
+                  </div></form>
+                   </div>
+                 </div>
+               </div>
+              </div>
+            </div>
+          </div>  <!-- FIM DIV -->
 
 
                   <!-- FIM -->
@@ -910,34 +968,7 @@ require "../complements/begin_page.php";
         }
     </script>
 
-  <style type="text/css">
-  input[type='radio'] {
-  border: 1px solid #fff;
-  width: 30px;
-  height: 30px;
-  display: grid;
-  place-content: center;
-  border-radius: 50%;
-}
-input[type='checkbox'] {
-  border: 1px solid #fff;
-  width: 30px;
-  height: 30px;
-  display: grid;
-  place-content: center;
-  border-radius: 50%;
-}
-/*input[type='text'] {
- font-size: 15px;
-}
-input[type='number'] {
- font-size: 15px;
-}
-*/
 
-
-
-</style>
   <!--   Core JS Files   -->
   <script src="assets/js/core/jquery.min.js"></script>
   <script src="assets/js/core/popper.min.js"></script>

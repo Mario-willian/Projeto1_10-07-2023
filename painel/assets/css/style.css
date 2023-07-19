@@ -1,0 +1,33 @@
+.badge {
+    font-size: 10px;
+    position: relative;
+    top: -8px;
+    left: -1px;
+    /*border: 1px solid white;
+    color: white;
+    background-color: transparent;*/
+   }
+
+   input[type='radio'] {
+    border: 1px solid #fff;
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-content: center;
+    border-radius: 50%;
+  }
+  input[type='checkbox'] {
+    border: 1px solid #fff;
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-content: center;
+    border-radius: 50%;
+  }
+  /*input[type='text'] {
+   font-size: 15px;
+  }
+  input[type='number'] {
+   font-size: 15px;
+  }
+  */

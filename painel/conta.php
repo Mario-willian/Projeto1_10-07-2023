@@ -6,11 +6,12 @@ include_once "../complements/inicio_php.php";
 require "../complements/begin_page.php";
 
 ?>
+
 <body class="">
   <div class="wrapper ">
-    <div class="sidebar" data-color="yellow">
+    <div class="sidebar" data-color="blue">
       <!--
-         data-color="blue | green | orange | red | yellow"
+        data-color="blue | green | orange | red | yellow"
     -->
       <div class="logo">
 
@@ -20,7 +21,7 @@ require "../complements/begin_page.php";
       </div><b>
       <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
-         <li>
+          <li>
             <a href="./painel_de_controle.php">
               <i class="now-ui-icons tech_tv"></i>
               <p>Painel de Controle</p>
@@ -44,7 +45,7 @@ require "../complements/begin_page.php";
               <p>Rescisões</p>
             </a>
           </li>
-          <li class="active ">
+          <li>
             <a href="./ferias.php">
               <i class="now-ui-icons design_bullet-list-67"></i>
               <p>Férias</p>
@@ -60,14 +61,14 @@ require "../complements/begin_page.php";
             <a href="" onclick="imprime()">
               <i class="now-ui-icons arrows-1_cloud-download-93"></i>
               <script type="text/javascript" language="javascript">
-      function imprime(text){
-        text=document
-        print(text)
-      }
-    </script>
-    <form>
-    <p>IMPRIMIR DADOS</p>
-    </form>
+                function imprime(text){
+                  text=document
+                  print(text)
+                }
+              </script>
+              <form>
+              <p>IMPRIMIR DADOS</p>
+              </form>
 
             </a>
           </li>
@@ -86,7 +87,7 @@ require "../complements/begin_page.php";
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand"> Lista de Comentários</a>
+            <a class="navbar-brand"> Conta</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -108,7 +109,7 @@ require "../complements/begin_page.php";
                   </p>
                 </a>
               </li>
-              
+
               <li style="cursor: pointer;" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="now-ui-icons users_single-02"></i>
@@ -121,63 +122,90 @@ require "../complements/begin_page.php";
                 <a class="dropdown-item" href="../classes/retira_login.php">Sair</a>
                 </div>
               </li>
-              
-            </ul>
+
+              </ul>
           </div>
         </div>
       </nav>
+      <script>
+function myFunction() {
+    alert("Conta excluida com sucesso!");
+}
+</script>
       <!-- End Navbar -->
+     
       <div class="panel-header panel-header-sm">
       </div>
+      
       <div class="content">
         <div class="row">
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title"> Lista de Todos os Comentários</h4>
+                <h4 class="card-title"><i class="now-ui-icons users_single-02"></i> Conta</h4>
               </div>
               <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead class=" text-primary">
-                      <th>
-                        Nome
-                      </th>
-                      <th>
-                        E-mail
-                      </th>
-                      <th>
-                        Telefone
-                      </th>
-                      <th>
-                        Mensagem
-                      </th>
-                    </thead>
-                    <tbody>
-                      <?php /* while ($rows_visu_comentario = mysqli_fetch_assoc($resultado_visu_comentario)){ ?>
-                      <tr>
-                        <td>
-                          <?php echo $rows_visu_comentario['nome'];?>
-                        </td>
-                        <td>
-                          <?php echo $rows_visu_comentario['email'];?>
-                        </td>
-                        <td>
-                          <?php echo $rows_visu_comentario['telefone'];?>
-                        </td>
-                        <td>
-                          <?php echo $rows_visu_comentario['mensagem'];?>
-                        </td>
-                      </tr>
-                    <?php } */ ?>
-                    </tbody>
-                  </table>
+                <div class="table">
+                <form action="" method="POST">
+                 <div class="row"><div class="col-md-12">
+                 
+                    <center>
+                    <div class="col-md-8">
+                      <div class="form-group">
+                        <center><label>Nome</label>
+                        <input type="text" name="usuario_nome" class="form-control" disabled >
+                      </div>
+                       </div>
+                      <center>
+                    <div class="col-md-8">
+                      <div class="form-group">
+                        <center><label>E-mail</label>
+                        <input type="text" name="usuario_email" class="form-control" disabled >
+                      </div>
+                    </div>
+                    <div class="col-md-8">
+                      <div class="form-group">
+                        <center><label>Senha</label>
+                        <input type="password" name="usuario_senha" id="myInput" class="form-control" disabled ></center>
+
+                      </div>
+                    </div>
+
+                      <center>
+                        <div class="col-md-6 pr-1">
+                           <div class="form-group">
+                             <div class="tab">   
+
+                                 <div class="row ">
+
+                                    <table class="table table">
+                                      <thead>
+                                        <tr>                                        
+                                          <th>Empresas Administradas</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td>PLANALTO</td>
+                                        </tr>                                       
+                                      </tbody>
+                                    </table>
+
+                                </div>
+                             </div>
+                           </div>
+                        </div>
+
+                        <button type="submit" name="usuario_enviar" class="btn btn-outline-warning" style="width: 50%"><b>Editar Dados</b></button>
+                      </form>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+          
+
+          
+      
       <footer class="footer">
         <div class="container-fluid">
          

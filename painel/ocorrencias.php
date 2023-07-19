@@ -18,13 +18,13 @@ require "../complements/begin_page.php";
         <a href="" class="simple-text logo-normal">
           <center><b>SUPERMERCADOS PARANAIBA</b></center>
         </a>
-      </div>
+      </div><b>
       <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
           <li>
             <a href="./painel_de_controle.php">
               <i class="now-ui-icons tech_tv"></i>
-              <p><b>Painel de Controle</p>
+              <p>Painel de Controle</p>
             </a>
           </li>
           <li>
@@ -100,8 +100,18 @@ require "../complements/begin_page.php";
             
             </form>
             <ul class="navbar-nav">
-              
+
               <li class="nav-item dropdown">
+                <a href="notificacoes.php" class="nav-link">
+                  <i class="fa fa-bell-o"></i>
+                  <p>
+                    <span class="d-lg-none d-md-block">Notificações</span>
+                    <span class="badge badge-light">5</span>
+                  </p>
+                </a>
+              </li>
+              
+              <li style="cursor: pointer;" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="now-ui-icons users_single-02"></i>
                   <p>
@@ -109,8 +119,8 @@ require "../complements/begin_page.php";
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="../classes/retira_login.php">Sair</a>
-
+                <a class="dropdown-item" href="conta.php">Minha Conta</a>  
+                <a class="dropdown-item" href="../classes/retira_login.php">Sair</a>
                 </div>
               </li>
               
@@ -210,7 +220,7 @@ function myFunction() {
                         Telefone
                       </th>
                       <th>
-                        Avaliação
+                        Arquivo
                       </th>
                       <th>
                         
