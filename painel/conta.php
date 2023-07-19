@@ -127,11 +127,7 @@ require "../complements/begin_page.php";
           </div>
         </div>
       </nav>
-      <script>
-function myFunction() {
-    alert("Conta excluida com sucesso!");
-}
-</script>
+      
       <!-- End Navbar -->
      
       <div class="panel-header panel-header-sm">
