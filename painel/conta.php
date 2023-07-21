@@ -143,26 +143,27 @@ require "../complements/begin_page.php";
               <div class="card-body">
                 <div class="table">
                 <form action="" method="POST">
-                 <div class="row"><div class="col-md-12">
+                 <div class="row">
+                  <div class="col-md-12">
                  
                     <center>
                     <div class="col-md-8">
                       <div class="form-group">
                         <center><label>Nome</label>
-                        <input type="text" name="usuario_nome" class="form-control" disabled >
+                        <input type="text" name="usuario_nome" class="form-control" disabled style="width: 80%;">
                       </div>
                        </div>
                       <center>
                     <div class="col-md-8">
                       <div class="form-group">
                         <center><label>E-mail</label>
-                        <input type="text" name="usuario_email" class="form-control" disabled >
+                        <input type="text" name="usuario_email" class="form-control" disabled style="width: 80%;">
                       </div>
                     </div>
                     <div class="col-md-8">
                       <div class="form-group">
                         <center><label>Senha</label>
-                        <input type="password" name="usuario_senha" id="myInput" class="form-control" disabled ></center>
+                        <input type="password" name="usuario_senha" id="myInput" class="form-control" disabled style="width: 80%;"></center>
 
                       </div>
                     </div>
@@ -192,12 +193,51 @@ require "../complements/begin_page.php";
                            </div>
                         </div>
 
-                        <button type="submit" name="usuario_enviar" class="btn btn-outline-warning" style="width: 50%"><b>Editar Dados</b></button>
+                        <button style="width: 50%" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"><i class="fa fa-edit"></i> Editar Dados</button>
                       </form>
                 </div>
               </div>
             </div>
           </div>
+         
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+                      <center>
+                     <h3> Procedimento de Verificação<br>
+                      <b style="font-size: 18px;">Confirme seu login para continuar</b></h3>
+                    <form>
+                    <div class="col-md-8">
+                      <div class="form-group">
+                        <center><label>E-mail</label>
+                        <input type="text" name="usuario_email" class="form-control" required>
+                      </div>
+                    </div>
+                    <div class="col-md-8">
+                      <div class="form-group">
+                        <center><label>Senha</label>
+                        <input type="password" name="usuario_senha" id="myInput" class="form-control" required></center>
+
+                      </div>
+                    </div>
+        </div>
+                  <div class="modal-footer">
+                  <button type="submit" class="btn btn-success" data-dismiss="modal">Continuar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                  </div>
+                  </form>
+    </div>
+      
+ </div>
+</div>
           
 
           

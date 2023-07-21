@@ -24,6 +24,8 @@
 
    <!-- icones animados notificações -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.2.1/font-awesome-animation.min.css" rel="stylesheet" />
-  
+
+    <!-- MODAL -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
