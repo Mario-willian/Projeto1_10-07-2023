@@ -148,18 +148,32 @@ require "../complements/begin_page.php";
   <div class="container">
     <div class="row">
 
+    <div class="col-sm-12">
+        <div class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
+          <button type="button" class="close font__size-18" data-dismiss="alert">
+									<span aria-hidden="true">
+										<i class="fa fa-times danger "></i>
+									</span>
+									<span class="sr-only">Fechar</span>
+								</button>
+          <i class="start-icon far fa-times-circle faa-pulse animated"></i>
+          <strong class="font__weight-semibold">O funcionário X da loja Y recebeu uma ocorrência por MOTIVO no dia DATA</strong>
+        </div>
+      </div>
+
       <div class="col-sm-12">
         <div class="alert fade alert-simple alert-success alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show">
           <button type="button" class="close font__size-18" data-dismiss="alert">
 									<span aria-hidden="true"><a>
                     <i class="fa fa-times greencross"></i>
                     </a></span>
-									<span class="sr-only">Close</span> 
+									<span class="sr-only">Fechar</span> 
 								</button>
           <i class="start-icon far fa-check-circle faa-tada animated"></i>
-          <strong class="font__weight-semibold">Well done!</strong> You successfullyread this important.
+         <strong class="font__weight-semibold">Funcionário Mário William da Silva foi Cadastrado com Sucesso na loja Rio Branco!</strong>
         </div>
       </div>
+      
 
       <div class="col-sm-12">
         <div class="alert fade alert-simple alert-info alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
@@ -167,10 +181,10 @@ require "../complements/begin_page.php";
 									<span aria-hidden="true">
 										<i class="fa fa-times blue-cross"></i>
 									</span>
-									<span class="sr-only">Close</span>
+									<span class="sr-only">Fechar</span>
 								</button>
           <i class="start-icon  fa fa-info-circle faa-shake animated"></i>
-          <strong class="font__weight-semibold">Heads up!</strong> This alert needs your attention, but it's not super important.
+          <strong class="font__weight-semibold">Você tem um lembrete importante a fazer!</strong>
         </div>
 
       </div>
@@ -181,10 +195,10 @@ require "../complements/begin_page.php";
 									<span aria-hidden="true">
 										<i class="fa fa-times warning"></i>
 									</span>
-									<span class="sr-only">Close</span>
+									<span class="sr-only">Fechar</span>
 								</button>
           <i class="start-icon fa fa-exclamation-triangle faa-flash animated"></i>
-          <strong class="font__weight-semibold">Warning!</strong> Better check yourself, you're not looking too good.
+          <strong class="font__weight-semibold">O funcionário X da loja Y está de férias do dia 21/07/2023 até 11/08/2023</strong>
         </div>
       </div>
 
@@ -194,10 +208,10 @@ require "../complements/begin_page.php";
 									<span aria-hidden="true">
 										<i class="fa fa-times danger "></i>
 									</span>
-									<span class="sr-only">Close</span>
+									<span class="sr-only">Fechar</span>
 								</button>
           <i class="start-icon far fa-times-circle faa-pulse animated"></i>
-          <strong class="font__weight-semibold">Oh snap!</strong> Change a few things up and try submitting again.
+          <strong class="font__weight-semibold">O funcionário X foi desligado da loja Y</strong>
         </div>
       </div>
 
@@ -205,10 +219,10 @@ require "../complements/begin_page.php";
         <div class="alert fade alert-simple alert-primary alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
           <button type="button" class="close font__size-18" data-dismiss="alert">
 									<span  aria-hidden="true"><i class="fa fa-times alertprimary"></i></span>
-									<span class="sr-only">Close</span>
+									<span class="sr-only">Fechar</span>
 								</button>
-          <i class="start-icon fa fa-thumbs-up faa-bounce animated"></i>
-          <strong class="font__weight-semibold">Well done!</strong> You successfullyread this important.
+          <i class="start-icon fa fa-edit faa-tada animated"></i><!-- faa-bounce (animação para cima)-->
+          <strong class="font__weight-semibold">Seus dados foram editados com sucesso!</strong>
         </div>
 
       </div>
