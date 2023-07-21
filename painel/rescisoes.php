@@ -141,31 +141,96 @@ function myFunction() {
             <div class="card">
               <div class="card-header">
                 <h4 class="card-title"> Lista de Rescisões</h4>
+                <h6><i class="fa fa-sliders"></i> Filtro</h6>
+                <div class="row">
+                    <div class="col-md-2 pr-1">
+                      <div class="form-group">
+                        <label>Data</label>
+                        <input type="date" name="data" class="form-control" >
+                      </div>
+                    </div>
+                    <div class="col-md-2 pl-1">
+                      <div class="form-group">
+                        <label>Selecionar Loja</label>
+                        <select name="" class="form-control">
+                          <option value="">puxar do banco as empresas que o adm administra</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-2 pl-1">
+                      <div class="form-group">
+                        <label>Selecionar Funcionário</label>
+                        <select name="" class="form-control">
+                          <option value="">puxar do banco os funcionarios da empresa selecionada</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-2 pl-1">
+                      <div class="form-group">
+                        <label>Motivo</label>
+                        <select name="" class="form-control">
+                          <option value="">Advertência</option>
+                          <option value="">Atestado</option>
+                          <option value="">Atestado de Óbito</option>
+                          <option value="">Erro Operacional</option>
+                          <option value="">Falta Injustificada</option>
+                          <option value="">Reembolso</option>
+                          <option value="">Hora Extra</option>
+                          <option value="">Afastamento INSS</option>
+                          <option value="">Licença Maternidade</option>
+                          <option value="">Licença Paternidade</option>
+                          <option value="">Meta</option>
+                          <option value="">Quebra de Caixa</option>
+                          <option value="">Segunda Via Cartão</option>
+                          <option value="">Vale Avulso</option>
+                          <option value="">Atestado de Comparecimento</option>
+                          <option value="">Feriado</option>
+                        </select>
+                      </div>
+                    </div>
+
+                  <div class="col-md-2">
+                      <div class="form-group"><br>
+                        <button type="submit" name="filtrar" class="btn btn-outline-success" style="width: 100%;"><b><i class="fa fa-search"></i> Buscar</b></button><br>
+                      </div>
+                    </div>
+
+             </div>
+
               </div>
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table">
                     <thead class=" text-primary">
                       <th>
-                        CPF
+                        Funcionário
                       </th>
                       <th>
-                        Nome
+                        Loja
                       </th>
                       <th>
-                        Estado
+                        Motivo
                       </th>
                       <th>
-                        E-mail
+                        Data
                       </th>
                       <th>
-                        Telefone
+                        Tipo
                       </th>
                       <th>
-
+                        Exame Demissional
                       </th>
                       <th>
-
+                        Dias de Aviso
+                      </th>
+                      <th>
+                        Prazo
+                      </th>
+                      <th>
+                        Status
+                      </th>
+                      <th>
+                        Observação
                       </th>
                     </thead>
                     <tbody>
@@ -202,6 +267,19 @@ function myFunction() {
                     <?php } */?>
                     </tbody>
                   </table>
+                  <nav aria-label="Navegação de página exemplo">
+                    <ul class="pagination justify-content-center">
+                      <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">Anterior</a>
+                      </li>
+                      <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">Próximo</a>
+                      </li>
+                    </ul>
+                  </nav>
                 </div>
               </div>
             </div>
