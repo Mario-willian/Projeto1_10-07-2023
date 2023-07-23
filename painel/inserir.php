@@ -2,6 +2,9 @@
 //Puxando Info do Usuário
 include_once "../complements/inicio_php.php";
 
+//Carregando Consultas SQL da pagina
+require "../complements/inicio_inserir.php";
+
 //Carregando o inicio da pagina
 require "../complements/begin_page.php";
 
@@ -186,8 +189,8 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>Arquivo</label>
                            <div class="custom-file">
-                           <input type="file" name="ocorrencia_arquivo[]" class="custom-file-input" id="customFile">
-                            <label class="custom-file-label" for="customFile"><i class="  fa fa-file fa-lg fa-fw" aria-hidden="true"></i> Este campo não é obrigatório</label>
+                           <input type="file" name="ocorrencia_arquivo[]" class="custom-file-input" id="customFile" multiple="multiple">
+                           <label class="custom-file-label" for="customFile"><i class="  fa fa-file fa-lg fa-fw" aria-hidden="true"></i> Este campo não é obrigatório</label>
                           </div>
                       </div>
                     </div>
@@ -250,7 +253,7 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>Selecionar Loja</label>
                         <select name="recisao_loja" class="form-control">
-                          <option value="ativo">1</option>
+                          <option value="1">1</option>
                         </select>
                       </div>
                     </div>            
@@ -262,7 +265,17 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>Selecionar Funcionário</label>
                         <select name="recisao_funcionario" class="form-control">
-                          <option value="ativo">1</option>
+                        
+                        <!-- Inicio de uma codição PHP -->
+                        <?php 
+                        while ($row_funcionarios = mysqli_fetch_assoc($resultado_funcionarios_recisao)){ ?>
+
+                       <option value="<?php echo $row_funcionarios['id'];?>"><?php echo $row_funcionarios['nome_completo'];?></option>
+
+                        <?php } ?>
+                        <!-- Fim de uma codição PHP -->
+
+
                         </select>
                       </div>
                     </div>              
@@ -307,30 +320,21 @@ require "../complements/begin_page.php";
                      <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Dias de Aviso</label>
-                       <input type="number" name="recisao_inicio_dias_de_aviso" class="form-control">
+                       <input type="number" name="recisao_dias_de_aviso" class="form-control">
                       </div>
                     </div> 
                      <div class="col-md-6 pl-1">
                       <div class="form-group">
-                        <label>Prazo</label>
-                        <input type="number" name="recisao_prazo_dias_de_aviso" class="form-control">
-                      </div>
-                    </div> 
-                 </div>
-
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group"> 
-                       <label>Status</label>
+                      <label>Status</label>
                         <select name="recisao_status" class="form-control">
                           <option value="Pago">Pago</option>
                           <option value="Pendente">Pendente</option>
                         </select>
                       </div>
-                    </div>
-                  </div>
+                    </div> 
+                 </div>
 
-                   <div class="row">
+                 <div class="row">
                     <div class="col-md-12">
                       <div class="form-group"> 
                         <label>Observação</label>
@@ -540,7 +544,7 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>Empresa</label>
                         <select name="funcionario_empresa" class="form-control">
-                          <option value="">puxar do banco as empresas que o adm administra</option>
+                          <option value="1">1</option>
                         </select>
                       </div>
                     </div>
@@ -795,13 +799,13 @@ require "../complements/begin_page.php";
                 <div class="author">
                   <H5><i class="fa fa-check"></i> Cadastrar Empresa </H5>
                 </div><br>
-                <form action="../classes/inserts/lembrete.php" method="POST">
+                <form action="../classes/inserts/empresa.php" method="POST">
                  <div class="row">
                     
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Nome da Loja</label>
-                        <input type="text" name="nome_empresa" class="form-control" required="" >
+                        <input type="text" name="empresa_nome_loja" class="form-control" required="" >
                       </div>
                     </div>
                   </div>
@@ -809,7 +813,7 @@ require "../complements/begin_page.php";
                     <div class="col-md-12 ">
                       <div class="form-group">
                       <label>Razão Social</label>
-                      <input type="text" name="razao_social" class="form-control" required="" >
+                      <input type="text" name="empresa_razao_social" class="form-control" required="" >
                       </div>
                     </div>
                   </div>
@@ -817,7 +821,7 @@ require "../complements/begin_page.php";
                     <div class="col-md-12 ">
                       <div class="form-group">
                         <label>CNPJ</label>
-                         <input type="text" name="cnpj" class="form-control" required="" >
+                         <input type="text" name="empresa_cnpj" class="form-control" required="" >
                       </div>
                     </div>
                   </div>
@@ -826,7 +830,7 @@ require "../complements/begin_page.php";
                    <div class="row">
                     <div class="col-md-12">
                       <div class="form-group"><br>
-                        <button type="submit" name="lembrete_enviar" class="btn btn-outline-success" style="width: 100%;"><b>Cadastrar Empresa</b></button><br>
+                        <button type="submit" name="empresa_enviar" class="btn btn-outline-success" style="width: 100%;"><b>Cadastrar Empresa</b></button><br>
                       </div>
                     </div>
                   </div></form>
