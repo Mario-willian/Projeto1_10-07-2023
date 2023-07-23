@@ -1,0 +1,31 @@
+# wampserver -> apache -> apache modules -> rewrite_module (ativar).
+# Ativar o módulo de Rewrite, que realiza a reescrita de URLs.
+
+RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-d 
+    # !-d informa que será criada uma condição a ser aplicada 
+    # ao nome do diretório requisitado. O sinal de exclamação é 
+    # usado para negação e -d é utilizado para verificar a 
+    # existência de um diretório físico.
+    RewriteCond %{REQUEST_FILENAME} !-f 
+    # !-f informa que será criada uma condição a ser aplicada
+    # ao nome do arquivo requisitado...    
+    RewriteCond %{REQUEST_FILENAME} !-l 
+    # !-l informa que será criada uma condição a ser aplicada
+    # ao link simbólico requisitado... 
+      RewriteRule ^([0-9A-Za-z-_]+)$ ./erro.php
+
+    # Quando ocorrer o erro 403, redirecione o usuário.
+    ErrorDocument 403 https://10envolveu.com.br/
+
+    # Bloquear a opção de listar os arquivos do diretório.     
+    Options -Indexes
+
+    # Bloquear o acesso de algum arquivo do projeto
+    <Files exemplo.php>
+      Order allow,deny
+      Deny from all
+    </Files>
+    
+
+ 
