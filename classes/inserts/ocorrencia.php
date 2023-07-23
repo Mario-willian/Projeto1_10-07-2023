@@ -1,13 +1,7 @@
 <?php
 
-//Puxando Info do Usuário
-//include_once "../complements/inicio_php.php";
-
-//CORRETO USAR O INCLUIDE DE CIMA
-//Puxando variável de conexão
-include_once '../conexao_bd.php';
-//Startando Sessão
-session_start();
+//Puxando Elementos inicias da classe
+include_once "../../complements/inicio_classe.php";
 
 //Recebendo os campos do formulário
 $ocorrencia_data = $_POST['ocorrencia_data'];
@@ -29,7 +23,7 @@ $data_criacao = date('Y-m-d H:i:s');
 $ocorrencia_observacao = addslashes($ocorrencia_observacao);
 
 //Inserir Lembrete
-$inserir_ocorrencia = "insert into ocorrencias(id, arquivo, motivo, valor, observacao, status, , data_criacao, funcionarios_id, empresas_id) values (NULL, '".$ocorrencia_data."', '".$caminho_arquivo."', '".$ocorrencia_motivo."', '".$ocorrencia_valor."', '".$ocorrencia_observacao."', 'Ativo', '".$data_criacao."', '".$ocorrencia_funcionarios."', ".$ocorrencia_loja.");";
+$inserir_ocorrencia = "insert into ocorrencias(id, arquivo, motivo, valor, observacao, status, data_criacao, funcionarios_id, empresas_id) values (NULL, '".$ocorrencia_data."', '".$caminho_arquivo."', '".$ocorrencia_motivo."', '".$ocorrencia_valor."', '".$ocorrencia_observacao."', 'Ativo', '".$data_criacao."', '".$ocorrencia_funcionarios."', ".$ocorrencia_loja.");";
 $enviar_ocorrencia = mysqli_query($conn, $inserir_ocorrencia);
 
 echo $inserir_ocorrencia;

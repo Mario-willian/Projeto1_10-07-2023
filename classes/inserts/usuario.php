@@ -1,13 +1,7 @@
 <?php
 
-//Puxando Info do Usuário
-//include_once "../complements/inicio_php.php";
-
-//CORRETO USAR O INCLUIDE DE CIMA
-//Puxando variável de conexão
-include_once '../conexao_bd.php';
-//Startando Sessão
-session_start();
+//Puxando Elementos inicias da classe
+include_once "../../complements/inicio_classe.php";
 
 //Recebendo os campos do formulário
 $usuario_nome = $_POST['usuario_nome'];
