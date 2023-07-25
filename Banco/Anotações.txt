@@ -1,47 +1,33 @@
-FUNCIONÁRIOS	Nome, cpf, Data nascimento, STATUS: (ativo, afastado, inativo, transferido). Setor, função, Data Inicio, VALE TRANSPORTE: (Nenhum, Ótimo, Bhbus, Combustível, Dinheiro) , Valor Vale Transporte, Salario, nome pai, nome mae, Observação
-
-
-RESCISÕES	Data, seleção loja, seleção funcionario,  Exame Demissional(campo seleção p marcar) Motivo: (Termino de Contrato, Termino de Contrato Antecipado, Aviso, Dispensa, Pedido de Demissão) - Tipo: (Normal, Acordo, Justiça) - Dias de Aviso - Fim Aviso(Calcular data inicio +dias de aviso) - Prazo(fim aviso + 10 dias) - Status: Pago, Pendente - Observação
-
-
-OCORRÊNCIAS	Data, seleção loja, seleção funcionario, campo arquivo foto ou pdf se possivel, Motivo(Advertencia, atestado, Atestado de Obito, Erro Operacional, Falta Injustificada, Reembolso, Hora Extra, Afastamento INSS, Licença Maternidade, Licença Paternidade, Meta, Quebra de Caixa, Segunda Via Cartao, Vale Avulso, Atestado de Comparecimento, Feriado) Quantidade de Faltas, Valor, Observação
-
-
-FÉRIAS	Data, Seleção loja, seleção funcionario,  Quantidade de dias. data inicio, data fim(data inicio + quantidade de dias), , Puxar o mês (escrito), Observação
-
-
-LEMBRETES	DATA, CAMPO PARA INSERIR INFORMAÇÕES
-
-
----------------------
-
-!!!!Verificar se a sessao existe, caso nao. Voltar pro index.php
-
-
-*Colocar uma funcao para deixar o login seguro, como o addslashes
-*Senha em MD5
-
-
-----------------------
 Feito:
-*Ajustado o banco. Necessario dropar e criar dnv.
-*Configurado as classes de inserir de todos os cadastros e nome das inputs
-*Inserir lembrete - Ok.
+*Criado Views no banco. Necessário dropar e criar dnv.
+*Puxar do banco alguns select (Ex: funcionários, empresas).
+*Fazer página dos relatórios (Visualizar)
 
-Pendente finalizar:
-*Inserir ferias - Ok. Pendente somente de Ajustar data fim das ferias (está com a mesma data inicial)
+
+Pendente:
+
+*Configurado lembretes da pagina inicial.
+*Criar logs de todas as ações para notificacoes
+*inserir sweetalert ao cadastrar algo
+*Inserir usuário.
 *Inserir Recisao, pendente de ajustar o arquivo para finalizar.
-*Inserir Recisao, pendente de ajustar datas de aviso para inserir
+*Fazer página dos relatórios (editar e excluir)
 
-Pendencias extras: 
-*Inserir funcionario, pendente finalizar.
+
+*editar dados da pagina conta.php
+*mensagem de login incorreto no índex
 *Nao deixar criar usuario ja existente.
-*Puxar Selects do banco.
+*Editar usuarios permitir editar permissoes
+
+------------------------------
 
 Acrescentar:
-*Tela para cadastrar empresas
 *Tela para exibir arquivos da ocorrencia
-*Notificação pra informar que foi cadastrado com sucesso.
-
+*Colocar uma funcao para deixar o login seguro, como o addslashes
+*Senha em MD5
 ----------------------
 
+Italo:
+Tela para inserir e funcoes
+
+-------------

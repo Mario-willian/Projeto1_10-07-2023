@@ -3,7 +3,7 @@
 include_once "../complements/inicio_php.php";
 
 //Carregando Consultas SQL da pagina
-require "../complements/inicio_inserir.php";
+//require "../complements/inicio_inserir.php";
 
 //Carregando o inicio da pagina
 require "../complements/begin_page.php";
@@ -146,7 +146,17 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>Selecionar Loja</label>
                         <select name="ocorrencia_loja" class="form-control">
-                          <option value="1">1</option>
+
+
+                        <!-- Inicio de uma codição PHP -->
+                        <?php 
+                        
+                        require "../complements/selects/select_empresa.php";
+                        
+                        ?>
+                        <!-- Fim de uma codição PHP -->
+
+
                         </select>
                       </div>
                     </div>
@@ -156,7 +166,17 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>Selecionar Funcionário</label>
                         <select name="ocorrencia_funcionarios" class="form-control">
-                          <option value="1">1</option>
+
+
+                        <!-- Inicio de uma codição PHP -->
+                        <?php 
+                        
+                        require "../complements/selects/select_funcionario.php";
+                        
+                        ?>
+                        <!-- Fim de uma codição PHP -->
+
+
                         </select>
                       </div>
                     </div>
@@ -253,7 +273,17 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>Selecionar Loja</label>
                         <select name="recisao_loja" class="form-control">
-                          <option value="1">1</option>
+
+
+                        <!-- Inicio de uma codição PHP -->
+                        <?php 
+                        
+                        require "../complements/selects/select_empresa.php";
+                        
+                        ?>
+                        <!-- Fim de uma codição PHP -->
+
+
                         </select>
                       </div>
                     </div>            
@@ -268,11 +298,10 @@ require "../complements/begin_page.php";
                         
                         <!-- Inicio de uma codição PHP -->
                         <?php 
-                        while ($row_funcionarios = mysqli_fetch_assoc($resultado_funcionarios_recisao)){ ?>
-
-                       <option value="<?php echo $row_funcionarios['id'];?>"><?php echo $row_funcionarios['nome_completo'];?></option>
-
-                        <?php } ?>
+                        
+                        require "../complements/selects/select_funcionario.php";
+                        
+                        ?>
                         <!-- Fim de uma codição PHP -->
 
 
@@ -374,7 +403,17 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>Selecionar Loja</label>
                         <select name="ferias_loja" class="form-control">
-                          <option value="1">1</option>
+
+
+                        <!-- Inicio de uma codição PHP -->
+                        <?php 
+                        
+                        require "../complements/selects/select_empresa.php";
+                        
+                        ?>
+                        <!-- Fim de uma codição PHP -->
+
+
                         </select>
                       </div>
                     </div>
@@ -382,7 +421,17 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>Selecionar Funcionário</label>
                         <select name="ferias_funcionario" class="form-control">
-                          <option value="1">1</option>
+                          
+
+                        <!-- Inicio de uma codição PHP -->
+                        <?php 
+                        
+                        require "../complements/selects/select_funcionario.php";
+                        
+                        ?>
+                        <!-- Fim de uma codição PHP -->
+
+
                         </select>
                       </div>
                     </div>
@@ -746,30 +795,17 @@ require "../complements/begin_page.php";
                                         </tr>
                                       </thead>
                                       <tbody>
-                                        <tr>
-                                          <td><input type="checkbox" name="usuario_acesso_planalto" id="preco" value="Planalto"></td>
-                                          <td>PLANALTO</td>
-                                        </tr>
-                                        <tr>
-                                          <td><input type="checkbox" name="usuario_acesso_rodoviaria" id="preco" value="Rodoviaria"></td>
-                                          <td>RODOVIARIA</td>
-                                        </tr>
-                                        <tr>
-                                          <td><input type="checkbox" name="usuario_acesso_varzea" id="preco" value="Varzea"></td>
-                                          <td>VARZEA</td>
-                                        </tr>
-                                        <tr>
-                                          <td><input type="checkbox" name="usuario_acesso_guanabara" id="preco" value="Guanabara"></td>
-                                          <td>GUANABARA</td>
-                                        </tr>
-                                        <tr>
-                                          <td><input type="checkbox" name="usuario_acesso_botafogo" id="preco" value="Botafogo"></td>
-                                          <td>BOTAFOGO</td>
-                                        </tr>
-                                        <tr>
-                                          <td><input type="checkbox" name="usuario_acesso_rio_branco" id="preco" value="io Branco"></td>
-                                          <td>RIO BRANCO</td>
-                                        </tr>
+
+
+                                      <!-- Inicio de uma codição PHP -->
+                                      <?php 
+
+                                      require "../complements/selects/select_empresa2.php";
+
+                                      ?>
+                                      <!-- Fim de uma codição PHP -->
+
+                                        
                                       </tbody>
                                     </table>
 
@@ -805,7 +841,7 @@ require "../complements/begin_page.php";
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Nome da Loja</label>
-                        <input type="text" name="empresa_nome_loja" class="form-control" required="" >
+                        <input type="text" name="empresa_nome_loja" maxlength="80" class="form-control" required="" >
                       </div>
                     </div>
                   </div>
@@ -813,7 +849,7 @@ require "../complements/begin_page.php";
                     <div class="col-md-12 ">
                       <div class="form-group">
                       <label>Razão Social</label>
-                      <input type="text" name="empresa_razao_social" class="form-control" required="" >
+                      <input type="text" name="empresa_razao_social" maxlength="80" class="form-control" required="" >
                       </div>
                     </div>
                   </div>
@@ -821,7 +857,7 @@ require "../complements/begin_page.php";
                     <div class="col-md-12 ">
                       <div class="form-group">
                         <label>CNPJ</label>
-                         <input type="text" name="empresa_cnpj" class="form-control" required="" >
+                         <input type="text" name="empresa_cnpj"  maxlength="17" class="form-control" required="" >
                       </div>
                     </div>
                   </div>

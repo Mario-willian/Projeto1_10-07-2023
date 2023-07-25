@@ -5,6 +5,10 @@ include_once "../complements/inicio_php.php";
 //Carregando o inicio da pagina
 require "../complements/begin_page.php";
 
+//Select para ocorrencias
+$pesquisa_ocorrencias = "SELECT * FROM acessos_ocorrencias WHERE status = 'Ativo' AND usuarios_id =".$_SESSION["id_usuario_login"]['id']." order by data_criacao;";
+$resultado_ocorrencias = mysqli_query($conn, $pesquisa_ocorrencias);
+
 ?>
 
 <body class="">
@@ -236,40 +240,46 @@ function myFunction() {
                       </th>
                     </thead>
                     <tbody>
-                      <?php /* while ($rows_visu_vendedor = mysqli_fetch_assoc($resultado_visu_vendedor)){ ?>
+                      <?php  while ($row_ocorrencias = mysqli_fetch_assoc($resultado_ocorrencias)){ ?>
                       <tr>
                         <td>
-                          <?php echo $rows_visu_vendedor['cpf'];?>
+                          <?php echo $row_ocorrencias['funcionario_nome_completo'];?>
                         </td>
                         <td>
-                          <?php echo $rows_visu_vendedor['nome'];?>
+                          <?php echo $row_ocorrencias['empresa_nome_loja'];?>
                         </td>
                         <td>
-                          <?php echo $rows_visu_vendedor['estado'];?>
+                          <?php echo $row_ocorrencias['motivo'];?>
                         </td>
                         <td>
-                          <?php echo $rows_visu_vendedor['email'];?>
+                          <?php echo $row_ocorrencias['data_criacao'];?>
                         </td>
                         <td>
-                          <?php echo $rows_visu_vendedor['telefone'];?>
+                          <?php echo $row_ocorrencias['faltas'];?>
                         </td>
                         <td>
-                          <?php echo $rows_visu_vendedor['avaliacao'];?>
+                          <?php echo $row_ocorrencias['valor'];?>
                         </td>
                         <td>
-                          <form action="vendedores.php" method="get">
+                          <?php echo $row_ocorrencias['observacao'];?>
+                        </td>
+                        <td>
+                          <?php echo $row_ocorrencias['arquivo'];?>
+                        </td>
+                        <td>
+                          <form action="" method="get">
                             <button style="width: 60%;"  name="excluir" onclick="myFunction()" class="btn btn-danger btn-sm">X</button>
-                            <input type="text" style="display:none" value="<?php echo $rows_visu_vendedor['cpf'];?>" name="cpf">
+                            <input type="text" style="display:none" value="<?php echo $row_ocorrencias['id'];?>" name="cpf">
                         </form>
                         </td>
                         <td>
-                          <form action="editar_vendedor.php">
+                          <form action="">
                             <button class="btn btn-primary btn-sm" title="Editar Vendedor"><i class=" fa fa-edit"></i></button>
-                          <input class="w3-input w3-border" name="cpf" style="display:none" type="text" value="<?php echo $rows_visu_vendedor['cpf'];?>" >
+                          <input class="w3-input w3-border" name="cpf" style="display:none" type="text" value="<?php echo $row_ocorrencias['id'];?>" >
                         </form>
                         </td>
                       </tr>
-                    <?php }*/ ?>
+                    <?php } ?>
                     </tbody>
                   </table>
                   <nav aria-label="Navegação de página exemplo">

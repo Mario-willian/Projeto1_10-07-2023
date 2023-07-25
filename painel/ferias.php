@@ -5,6 +5,10 @@ include_once "../complements/inicio_php.php";
 //Carregando o inicio da pagina
 require "../complements/begin_page.php";
 
+//Select para Ferias
+$pesquisa_ferias = "SELECT * FROM acessos_ferias WHERE usuarios_id =".$_SESSION["id_usuario_login"]['id']." order by data_criacao;";
+$resultado_ferias = mysqli_query($conn, $pesquisa_ferias);
+
 ?>
 <body class="">
   <div class="wrapper ">
@@ -181,29 +185,44 @@ require "../complements/begin_page.php";
                         Data de Início
                       </th>
                       <th>
-                        Quantidade de Dias
+                        Data Final
                       </th>
                       <th>
                         Observação
                       </th>
                     </thead>
                     <tbody>
-                      <?php /* while ($rows_visu_comentario = mysqli_fetch_assoc($resultado_visu_comentario)){ ?>
+                    <?php  while ($row_ferias = mysqli_fetch_assoc($resultado_ferias)){ ?>
                       <tr>
                         <td>
-                          <?php echo $rows_visu_comentario['nome'];?>
+                          <?php echo $row_ferias['funcionario_nome_completo'];?>
                         </td>
                         <td>
-                          <?php echo $rows_visu_comentario['email'];?>
+                          <?php echo $row_ferias['empresa_nome_loja'];?>
                         </td>
                         <td>
-                          <?php echo $rows_visu_comentario['telefone'];?>
+                          <?php echo $row_ferias['data_inicio'];?>
                         </td>
                         <td>
-                          <?php echo $rows_visu_comentario['mensagem'];?>
+                          <?php echo $row_ferias['data_fim'];?>
+                        </td>
+                        <td>
+                          <?php echo $row_ferias['observacao'];?>
+                        </td>
+                        <td>
+                          <form action="" method="get">
+                            <button style="width: 60%;"  name="excluir" onclick="myFunction()" class="btn btn-danger btn-sm">X</button>
+                            <input type="text" style="display:none" value="<?php echo $row_ferias['id'];?>" name="cpf">
+                        </form>
+                        </td>
+                        <td>
+                          <form action="">
+                            <button class="btn btn-primary btn-sm" title="Editar Vendedor"><i class=" fa fa-edit"></i></button>
+                          <input class="w3-input w3-border" name="cpf" style="display:none" type="text" value="<?php echo $row_ferias['id'];?>" >
+                        </form>
                         </td>
                       </tr>
-                    <?php } */ ?>
+                    <?php } ?>
                     </tbody>
                   </table>
                   <nav aria-label="Navegação de página exemplo">

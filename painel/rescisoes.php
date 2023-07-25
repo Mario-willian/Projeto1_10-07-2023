@@ -5,6 +5,10 @@ include_once "../complements/inicio_php.php";
 //Carregando o inicio da pagina
 require "../complements/begin_page.php";
 
+//Select para recisões
+$pesquisa_recisoes = "SELECT * FROM acessos_recisoes WHERE usuarios_id =".$_SESSION["id_usuario_login"]['id']." order by data_criacao;";
+$resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
+
 ?>
 
 <body class="">
@@ -221,10 +225,10 @@ function myFunction() {
                         Exame Demissional
                       </th>
                       <th>
-                        Dias de Aviso
+                        Data Inicio de Aviso
                       </th>
                       <th>
-                        Prazo
+                        Data Final de Aviso
                       </th>
                       <th>
                         Status
@@ -234,37 +238,52 @@ function myFunction() {
                       </th>
                     </thead>
                     <tbody>
-                      <?php /* while ($rows_visu_cliente = mysqli_fetch_assoc($resultado_visu_cliente)){ ?>
+                    <?php  while ($row_recisoes = mysqli_fetch_assoc($resultado_recisoes)){ ?>
                       <tr>
-                       <td>
-                          <?php echo $rows_visu_cliente['cpf'];?>
+                        <td>
+                          <?php echo $row_recisoes['funcionario_nome_completo'];?>
                         </td>
                         <td>
-                          <?php echo $rows_visu_cliente['nome'];?>
+                          <?php echo $row_recisoes['empresa_nome_loja'];?>
                         </td>
                         <td>
-                          <?php echo $rows_visu_cliente['estado'];?>
+                          <?php echo $row_recisoes['motivo'];?>
                         </td>
                         <td>
-                          <?php echo $rows_visu_cliente['email'];?>
+                          <?php echo $row_recisoes['data_criacao'];?>
                         </td>
                         <td>
-                          <?php echo $rows_visu_cliente['telefone'];?>
+                          <?php echo $row_recisoes['tipo'];?>
                         </td>
                         <td>
-                          <form action="compradores.php" method="get">
+                          <?php echo $row_recisoes['exame_demissional'];?>
+                        </td>
+                        <td>
+                          <?php echo $row_recisoes['data_inicio_aviso'];?>
+                        </td>
+                        <td>
+                          <?php echo $row_recisoes['data_fim_aviso'];?>
+                        </td>
+                        <td>
+                          <?php echo $row_recisoes['status'];?>
+                        </td>
+                        <td>
+                          <?php echo $row_recisoes['observacao'];?>
+                        </td>
+                        <td>
+                          <form action="" method="get">
                             <button style="width: 60%;"  name="excluir" onclick="myFunction()" class="btn btn-danger btn-sm">X</button>
-                            <input type="text" style="display:none" value="<?php echo $rows_visu_cliente['cpf'];?>" name="cpf">
+                            <input type="text" style="display:none" value="<?php echo $row_recisoes['id'];?>" name="cpf">
                         </form>
                         </td>
                         <td>
-                          <form action="editar_comprador.php">
-                            <button class="btn btn-primary btn-sm" title="Editar Comprador"><i class=" fa fa-edit"></i></button>
-                          <input class="w3-input w3-border" name="cpf" style="display:none" type="text" value="<?php echo $rows_visu_cliente['cpf'];?>" >
+                          <form action="">
+                            <button class="btn btn-primary btn-sm" title="Editar Vendedor"><i class=" fa fa-edit"></i></button>
+                          <input class="w3-input w3-border" name="cpf" style="display:none" type="text" value="<?php echo $row_recisoes['id'];?>" >
                         </form>
                         </td>
                       </tr>
-                    <?php } */?>
+                    <?php } ?>
                     </tbody>
                   </table>
                   <nav aria-label="Navegação de página exemplo">

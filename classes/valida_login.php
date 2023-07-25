@@ -6,7 +6,7 @@ if(!empty($_POST['email_login'] AND !empty($_POST['senha_login']))){
     //Iniciando a Sessão
     session_start();
     //Conexão ao Banco
-    require_once '../classes/conexao_bd.php';
+    require_once 'conexao_bd.php';
 
     //Recebendo Valores
     $email_login = $_POST['email_login'];
