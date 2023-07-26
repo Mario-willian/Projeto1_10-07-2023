@@ -11,7 +11,7 @@ $funcionario_status = $_POST['funcionario_status'];
 $funcionario_empresa = $_POST['funcionario_empresa'];
 $funcionario_setor = $_POST['funcionario_setor'];
 $funcionario_funcao = $_POST['funcionario_funcao'];
-$funcionario_data_de_inicio = $_POST['funcionario_data_de_inicio'];
+$funcionario_data_de_inicio = $_POST['funcionario_data_de_inicio']; $funcionario_data_de_inicio = Date($funcionario_data_de_inicio);
 $funcionario_vale_transporte = $_POST['funcionario_vale_transporte'];
 $funcionario_valor_vale_transporte = "";
 $funcionario_valor_vale_transporte = $_POST['funcionario_valor_vale_transporte'];
@@ -34,7 +34,7 @@ $funcionario_valor_vale_transporte = numfmt_parse($format, $funcionario_valor_va
 $funcionario_salario = numfmt_parse($format, $funcionario_salario);
 
 //Inserir Funcionário
-$inserir_funcionario = "insert into funcionarios(id, cpf, nome_completo, data_nascimento, salario, nome_pai, nome_mae, observacao, status, data_criacao, empresas_id) values (NULL, '".$funcionario_cpf."', '".$funcionario_nome."', '".$funcionario_data_nascimento."', '".$funcionario_salario."', '".$funcionario_nome_pai."', '".$funcionario_nome_mae."', '".$funcionario_observacao."', '".$funcionario_status."', '".$data_criacao."', '".$funcionario_empresa."');";
+$inserir_funcionario = "insert into funcionarios(id, cpf, nome_completo, data_nascimento, salario, nome_pai, nome_mae, setor, funcao, observacao, status, data_inicio, data_criacao, empresas_id) values (NULL, '".$funcionario_cpf."', '".$funcionario_nome."', '".$funcionario_data_nascimento."', '".$funcionario_salario."', '".$funcionario_nome_pai."', '".$funcionario_nome_mae."', '".$funcionario_setor."', '".$funcionario_funcao."','".$funcionario_observacao."', '".$funcionario_status."', '".$funcionario_data_de_inicio."', '".$data_criacao."', '".$funcionario_empresa."');";
 $enviar_funcionario = mysqli_query($conn, $inserir_funcionario);
 
 //Pesquisar Funcionário recem criado
@@ -45,13 +45,16 @@ $row_funcionario = mysqli_fetch_assoc($resultado_funcionario);
 //ID do Funcionário recem criado
 $funcionario_id = $row_funcionario['id'];
 
-//Inserir Setores
-$inserir_setores = "insert into setores(id, setor, funcao, data_criacao, funcionarios_id) values (NULL, '".$funcionario_setor."', '".$funcionario_funcao."', '".$data_criacao."', '".$funcionario_id."');";
-$enviar_setores = mysqli_query($conn, $inserir_setores);
-
 //Inserir vale transporte
 $inserir_vale_transporte = "insert into vale_transportes(id, tipo, valor, data_criacao, funcionarios_id) values (NULL, '".$funcionario_vale_transporte."', '".$funcionario_valor_vale_transporte."', '".$data_criacao."', '".$funcionario_id."');";
 $enviar_vale_transporte = mysqli_query($conn, $inserir_vale_transporte);
+
+//Mensagem de Sucesso ou Falha na operação
+if($enviar_funcionario == 1){
+    $_SESSION['mensagem'] = "Funcionário cadastrado com sucesso!";
+}else{
+    $_SESSION['mensagem'] = "Erro ao cadastrar o Funcionário!";
+}
 
 header('location:../../painel/inserir.php');
 

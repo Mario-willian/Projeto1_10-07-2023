@@ -252,7 +252,7 @@ function myFunction() {
                           <?php echo $row_ocorrencias['motivo'];?>
                         </td>
                         <td>
-                          <?php echo $row_ocorrencias['data_criacao'];?>
+                          <?php echo date("d/m/Y", strtotime($row_ocorrencias['data_criacao']));?>
                         </td>
                         <td>
                           <?php echo $row_ocorrencias['faltas'];?>

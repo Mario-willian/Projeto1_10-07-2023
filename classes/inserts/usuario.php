@@ -8,6 +8,9 @@ $usuario_nome = $_POST['usuario_nome'];
 $usuario_email = $_POST['usuario_email'];
 $usuario_senha = $_POST['usuario_senha'];
 
+<input type="checkbox" name="Empresa 1" id="Empresa 1" value="1">
+
+
 //Recebendo os campos da Combobox
 if (isset($_POST['usuario_acesso_planalto']) && !empty($_POST['usuario_acesso_planalto'])) {
     $usuario_acesso_planalto = $_POST['usuario_acesso_planalto']; 
@@ -47,6 +50,13 @@ $enviar_acesso = mysqli_query($conn, $inserir_acesso);
 
 echo $inserir_acesso;
 exit;
+
+//Mensagem de Sucesso ou Falha na operação
+if($enviar_usuario == 1){
+    $_SESSION['mensagem'] = "Usuário cadastrado com sucesso!";
+}else{
+    $_SESSION['mensagem'] = "Erro ao cadastrar o Usuário!";
+}
 
 header('location:../../painel/inserir.php');
 

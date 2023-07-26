@@ -5,6 +5,14 @@ include_once "../complements/inicio_php.php";
 //Carregando o inicio da pagina
 require "../complements/begin_page.php";
 
+//Select para Ferias
+$pesquisa_lembrete = "SELECT * FROM lembretes WHERE usuarios_id = ".$_SESSION["id_usuario_login"]['id']." AND data_desativada >= '".date('Y-m-d')."' order by data_criacao DESC;";
+$resultado_lembrete = mysqli_query($conn, $pesquisa_lembrete);
+
+//Select para recisões
+$pesquisa_recisoes = "SELECT * FROM acessos_recisoes WHERE usuarios_id =".$_SESSION["id_usuario_login"]['id']." AND data_fim_aviso >= '".date('Y-m-d')."' order by data_fim_aviso limit 5;";
+$resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
+
 ?>
 
 <body class="user-profile">
@@ -142,7 +150,15 @@ require "../complements/begin_page.php";
               <div class="card-header">
                 <h5 class="card-category"><i class="fa fa-exclamation-triangle"></i> Aviso</h5>
                 <h4 class="card-title">Prazo de Rescisões Próximas</h4>
-                <div class="chart" id="graficoVendedor"></div>
+                
+                <div class="chart" id="graficoVendedor">
+
+                <?php  while ($row_recisoes = mysqli_fetch_assoc($resultado_recisoes)){ ?>
+                  <?php echo $row_recisoes['id']." - ".date("d/m/Y", strtotime($row_recisoes['data_fim_aviso']))." - ".$row_recisoes['funcionario_nome_completo']." - ".$row_recisoes['empresa_nome_loja'];?> -  <br>
+                <?php } ?>
+
+                </div>
+                
               </div>
               <div class="card-footer ">
                 <hr>
@@ -152,108 +168,30 @@ require "../complements/begin_page.php";
               </div>
             </div>
           </div>
-          
+
+      <?php  while ($row_lembrete = mysqli_fetch_assoc($resultado_lembrete)){ ?>
+
         <div class="col-lg-4">
           <div class="w3-display-container" >
-            <div class="card card-chart" style="background-color:orange;">
+            <div class="card card-chart" style="background-color:<?php echo $row_lembrete['cor'];?>;">
             <span style="margin-left: 95%;font-size: 20px;cursor:pointer;" onclick="this.parentElement.style.display='none'"
             class="w3-display-topright">&times;</span>
               <div style="margin-top: -30px;" class="card-header">
                 <h5 style="color:black;" class="card-category"><i class="fa fa-tags"></i> Lembrete</h5>
-                <h4 class="card-title">status Lembrete</h4>
-                <h5>anotação</h5>
+                <h4 class="card-title"><?php echo $row_lembrete['anotacao'];?></h4>
               </div>
               <div class="card-footer ">
                 <hr>
                 <div class="stats" style="color:black;">
-                  <i  class="now-ui-icons ui-1_calendar-60"></i> Data
+                  <i  class="now-ui-icons ui-1_calendar-60"></i> <?php echo date("d/m/Y", strtotime($row_lembrete['data_criacao']));?> - 
+                  <i  class="now-ui-icons ui-1_calendar-60"></i> <?php echo date("d/m/Y", strtotime($row_lembrete['data_desativada']));?>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="col-lg-4">
-          <div class="w3-display-container" >
-            <div class="card card-chart" style="background-color:yellow;">
-            <span style="margin-left: 95%;font-size: 20px;cursor:pointer;" onclick="this.parentElement.style.display='none'"
-            class="w3-display-topright">&times;</span>
-              <div style="margin-top: -30px;" class="card-header">
-                <h5 style="color:black;" class="card-category"><i class="fa fa-tags"></i> Lembrete</h5>
-                <h4 class="card-title">status Lembrete</h4>
-                <h5>anotação</h5>
-              </div>
-              <div class="card-footer ">
-                <hr>
-                <div class="stats" style="color:black;">
-                  <i  class="now-ui-icons ui-1_calendar-60"></i> Data
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4">
-          <div class="w3-display-container" >
-            <div class="card card-chart" style="background-color:dodgerblue;">
-            <span style="margin-left: 95%;font-size: 20px;cursor:pointer;" onclick="this.parentElement.style.display='none'"
-            class="w3-display-topright">&times;</span>
-              <div style="margin-top: -30px;" class="card-header">
-                <h5 style="color:black;" class="card-category"><i class="fa fa-tags"></i> Lembrete</h5>
-                <h4 class="card-title">status Lembrete</h4>
-                <h5>anotação</h5>
-              </div>
-              <div class="card-footer ">
-                <hr>
-                <div class="stats" style="color:black;">
-                  <i  class="now-ui-icons ui-1_calendar-60"></i> Data
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4">
-          <div class="w3-display-container" >
-            <div class="card card-chart" style="background-color:red;">
-            <span style="margin-left: 95%;font-size: 20px;cursor:pointer;" onclick="this.parentElement.style.display='none'"
-            class="w3-display-topright">&times;</span>
-              <div style="margin-top: -30px;" class="card-header">
-                <h5 style="color:black;" class="card-category"><i class="fa fa-tags"></i> Lembrete</h5>
-                <h4 class="card-title">status Lembrete</h4>
-                <h5>anotação</h5>
-              </div>
-              <div class="card-footer ">
-                <hr>
-                <div class="stats" style="color:black;">
-                  <i  class="now-ui-icons ui-1_calendar-60"></i> Data
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4">
-          <div class="w3-display-container" >
-            <div class="card card-chart" style="background-color:#3fff00;">
-            <span style="margin-left: 95%;font-size: 20px;cursor:pointer;" onclick="this.parentElement.style.display='none'"
-            class="w3-display-topright">&times;</span>
-              <div style="margin-top: -30px;" class="card-header">
-                <h5 style="color:black;" class="card-category"><i class="fa fa-tags"></i> Lembrete</h5>
-                <h4 class="card-title">status Lembrete</h4>
-                <h5>anotação</h5>
-              </div>
-              <div class="card-footer ">
-                <hr>
-                <div class="stats" style="color:black;">
-                  <i  class="now-ui-icons ui-1_calendar-60"></i> Data
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      
+      <?php } ?>
 
    </div>
     

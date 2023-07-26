@@ -5,6 +5,14 @@ include_once "../complements/inicio_php.php";
 //Carregando o inicio da pagina
 require "../complements/begin_page.php";
 
+//Select para Usuarios
+$pesquisa_usuario = "SELECT * FROM acessos_usuarios order by id_usuario;";
+$resultado_usuario = mysqli_query($conn, $pesquisa_usuario);
+
+//Select para Funcionarios
+$pesquisa_funcionario = "SELECT * FROM acessos_funcionarios order by id_funcionarios;";
+$resultado_funcionario = mysqli_query($conn, $pesquisa_funcionario);
+
 ?>
 
 <body class="">
@@ -158,19 +166,31 @@ function myFunction() {
 
                     </thead>
                     <tbody>
-                      <?php /* while ($rows_visu_cliente = mysqli_fetch_assoc($resultado_visu_cliente)){ ?>
+                    <?php  while ($row_usuario = mysqli_fetch_assoc($resultado_usuario)){ ?>
                       <tr>
-                       <td>
-                          <?php echo $rows_visu_cliente['cpf'];?>
+                        <td>
+                          <?php echo $row_usuario['id_usuario'];?>
                         </td>
                         <td>
-                          <?php echo $rows_visu_cliente['nome'];?>
+                          <?php echo $row_usuario['nome_completo'];?>
                         </td>
                         <td>
-                          <?php echo $rows_visu_cliente['estado'];?>
-                        </td>                       
+                          <?php echo $row_usuario['nome_loja'];?>
+                        </td>
+                        <td>
+                          <form action="" method="get">
+                            <button style="width: 60%;"  name="excluir" onclick="myFunction()" class="btn btn-danger btn-sm">X</button>
+                            <input type="text" style="display:none" value="<?php echo $row_usuario['id_usuario'];?>" name="cpf">
+                        </form>
+                        </td>
+                        <td>
+                          <form action="">
+                            <button class="btn btn-primary btn-sm" title="Editar Vendedor"><i class=" fa fa-edit"></i></button>
+                          <input class="w3-input w3-border" name="cpf" style="display:none" type="text" value="<?php echo $row_usuario['id_usuario'];?>" >
+                        </form>
+                        </td>
                       </tr>
-                    <?php } */?>
+                    <?php } ?>
                     </tbody>
                   </table>
                 </div>
@@ -278,6 +298,12 @@ function myFunction() {
                         Status
                       </th>
                       <th>
+                        CPF
+                      </th>
+                      <th>
+                        Data de Nascimento
+                      </th>
+                      <th>
                         Empresa
                       </th>
                       <th>
@@ -299,84 +325,63 @@ function myFunction() {
                         Salário
                       </th>
                       <th>
-                        CPF
-                      </th>
-                      <th>
-                        Data de Nascimento
-                      </th>
-                      <th>
-                        Nome do Pai
-                      </th>
-                      <th>
-                        Nome da Mãe
-                      </th>
-                      <th>
                         Observação
                       </th>
 
                     </thead>
                     <tbody>
-                      <?php /* while ($rows_visu_cliente = mysqli_fetch_assoc($resultado_visu_cliente)){ ?>
+                    <?php  while ($row_funcionario = mysqli_fetch_assoc($resultado_funcionario)){ ?>
                       <tr>
-
-                       <td>
-                          <?php echo $rows_visu_cliente['cpf'];?>
+                        <td>
+                          <?php echo $row_funcionario['nome_completo'];?>
                         </td>
                         <td>
-                          <?php echo $rows_visu_cliente['nome'];?>
+                          <?php echo $row_funcionario['status'];?>
                         </td>
                         <td>
-                          <?php echo $rows_visu_cliente['estado'];?>
-                        </td> 
-                         <td>
-                          <?php echo $rows_visu_cliente['estado'];?>
-                        </td> 
-                         <td>
-                          <?php echo $rows_visu_cliente['estado'];?>
-                        </td> 
-                         <td>
-                          <?php echo $rows_visu_cliente['estado'];?>
-                        </td> 
-                         <td>
-                          <?php echo $rows_visu_cliente['estado'];?>
-                        </td> 
-                         <td>
-                          <?php echo $rows_visu_cliente['estado'];?>
-                        </td> 
-                         <td>
-                          <?php echo $rows_visu_cliente['estado'];?>
-                        </td> 
-                         <td>
-                          <?php echo $rows_visu_cliente['estado'];?>
-                        </td> 
-                         <td>
-                          <?php echo $rows_visu_cliente['estado'];?>
-                        </td> 
-                         <td>
-                          <?php echo $rows_visu_cliente['estado'];?>
-                        </td> 
-                         <td>
-                          <?php echo $rows_visu_cliente['estado'];?>
-                        </td> 
-                         <td>
-                          <?php echo $rows_visu_cliente['estado'];?>
-                        </td>  
+                          <?php echo $row_funcionario['cpf'];?>
+                        </td>
                         <td>
-                          <form action="compradores.php" method="get">
+                          <?php echo date("d/m/Y", strtotime($row_funcionario['data_nascimento']));?>
+                        </td>
+                        <td>
+                          <?php echo $row_funcionario['nome_loja'];?>
+                        </td>
+                        <td>
+                          <?php echo $row_funcionario['setor'];?>
+                        </td>
+                        <td>
+                          <?php echo $row_funcionario['funcao'];?>
+                        </td>
+                        <td>
+                          <?php echo date("d/m/Y", strtotime($row_funcionario['data_inicio']));?>
+                        </td>
+                        <td>
+                          <?php echo $row_funcionario['tipo_vale_transporte'];?>
+                        </td>
+                        <td>
+                          <?php echo $row_funcionario['valor_vale_transporte'];?>
+                        </td>
+                        <td>
+                          <?php echo $row_funcionario['salario'];?>
+                        </td>
+                        <td>
+                          <?php echo $row_funcionario['observacao'];?>
+                        </td>
+                        <td>
+                          <form action="" method="get">
                             <button style="width: 60%;"  name="excluir" onclick="myFunction()" class="btn btn-danger btn-sm">X</button>
-                            <input type="text" style="display:none" value="<?php echo $rows_visu_cliente['cpf'];?>" name="cpf">
+                            <input type="text" style="display:none" value="<?php echo $row_funcionario['id_funcionarios'];?>" name="cpf">
                         </form>
                         </td>
                         <td>
-                          <form action="editar_comprador.php">
-                            <button class="btn btn-primary btn-sm" title="Editar Comprador"><i class=" fa fa-edit"></i></button>
-                          <input class="w3-input w3-border" name="cpf" style="display:none" type="text" value="<?php echo $rows_visu_cliente['cpf'];?>" >
+                          <form action="">
+                            <button class="btn btn-primary btn-sm" title="Editar Vendedor"><i class=" fa fa-edit"></i></button>
+                          <input class="w3-input w3-border" name="cpf" style="display:none" type="text" value="<?php echo $row_funcionario['id_funcionarios'];?>" >
                         </form>
-                        </td>   
-
+                        </td>
                       </tr>
-                    <?php } */?>
-                    
+                    <?php } ?>
                     </tbody>
                   </table>
                   <nav aria-label="Navegação de página exemplo">

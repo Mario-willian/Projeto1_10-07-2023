@@ -7,11 +7,12 @@ $resultado_empresas = mysqli_query($conn, $pesquisa_empresas);
 //Loop para listar em opções as empresas que o usuário tem acesso
 while ($row_empresas = mysqli_fetch_assoc($resultado_empresas)){
 
-        echo 
-        "<tr>
-                <td><input type='checkbox' name='".$row_empresas['nome_loja']."' id='".$row_empresas['nome_loja']."' value='".$row_empresas['id']."'></td>
-                <td>".$row_empresas['nome_loja']."</td>
-        </tr>";
+        $empresas_id = $row_empresas['id'];
+        $nome_loja = "'usuario_acesso_".$row_empresas['nome_loja']."'";
+
+        if (isset($_POST['usuario_acesso_planalto']) && !empty($_POST['usuario_acesso_planalto'])) {
+                $usuario_acesso_planalto = $_POST['usuario_acesso_planalto']; 
+            }
 }
 
 ?>

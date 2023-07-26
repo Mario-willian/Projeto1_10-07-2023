@@ -24,6 +24,13 @@ $ferias_observacao = addslashes($ferias_observacao);
 $inserir_ferias = "insert into ferias(id, data_inicio, data_fim, observacao, data_criacao, funcionarios_id, empresas_id) values (NULL, '".$ferias_data_inicio."', '".$ferias_data_fim."', '".$ferias_observacao."', '".$data_criacao."', '".$ferias_funcionario."', '".$ferias_loja."');";
 $enviar_ferias = mysqli_query($conn, $inserir_ferias);
 
+//Mensagem de Sucesso ou Falha na operação
+if($enviar_ferias == 1){
+    $_SESSION['mensagem'] = "Ferias cadastrado com sucesso!";
+}else{
+    $_SESSION['mensagem'] = "Erro ao cadastrar o Ferias!";
+}
+
 header('location:../../painel/inserir.php');
 
 ?>

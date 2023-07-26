@@ -22,15 +22,25 @@ inner join acessos aces on resi.empresas_id = aces.empresas_id
 inner join funcionarios func on resi.funcionarios_id = func.id
 inner join empresas empr on resi.empresas_id = empr.id;
 
+create view acessos_usuarios as SELECT usua.id as id_usuario, usua.nome_completo as nome_completo, empr.nome_loja as nome_loja, empr.razao_social as razao_social
+FROM usuarios usua 
+inner join acessos aces on usua.id = aces.usuarios_id
+inner join empresas empr on aces.empresas_id = empr.id;
+
+create view acessos_funcionarios as SELECT func.id as id_funcionarios, func.nome_completo as nome_completo, func.cpf as cpf, func.data_nascimento as data_nascimento, func.status as status, empr.id as empresas_id, empr.nome_loja as nome_loja, empr.razao_social as razao_social, func.setor as setor, func.funcao as funcao, func.data_inicio as data_inicio, vale.tipo as tipo_vale_transporte, vale.valor as valor_vale_transporte, func.salario as salario, func.nome_pai as nome_pai, func.nome_mae as nome_mae, func.observacao as observacao
+FROM funcionarios func 
+inner join vale_transportes vale on func.id = vale.funcionarios_id
+inner join empresas empr on func.empresas_id = empr.id;
+
 INSERT INTO `usuarios` (`id`, `nome_completo`, `email`, `senha`, `status`, `data_criacao`) VALUES
 (NULL, 'Mario Willian do Carmo Ribeiro', 'mario@hotmail.com.br', '123', 'Ativo', '2023-07-19 01:08:48'),
 (NULL, 'Italo Silva Peixoto', 'italo@hotmail.com.br', '1234', 'Ativo', '2023-07-19 01:08:48'),
 (NULL, 'Marcos', 'marcos@hotmail.com.br', '123', 'Inativo', '2023-07-19 01:08:48');
 
 INSERT INTO `empresas` (`id`, `cnpj`, `nome_loja`,  `razao_social`,  `status`, `data_criacao`) VALUES
-(NULL, '91.350.337/0001-84', 'Empresa 1', 'EMPRESA SAMAR', 'Ativo', '2023-07-19 01:08:48'),
-(NULL, '22.760.537/0001-92', 'Empresa 2', 'EMPRESA SAMAR','Ativo', '2023-07-19 01:08:48'),
-(NULL, '55.725.895/0001-13', 'Empresa 3', 'EMPRESA SAMAR','Ativo', '2023-07-19 01:08:48');
+(NULL, '91.350.337/0001-84', 'Empresa 1', 'EMPRESA UM', 'Ativo', '2023-07-19 01:08:48'),
+(NULL, '22.760.537/0001-92', 'Empresa 2', 'EMPRESA DOIS','Ativo', '2023-07-20 00:08:48'),
+(NULL, '55.725.895/0001-13', 'Empresa 3', 'EMPRESA TRES','Ativo', '2023-07-21 10:10:00');
 
 INSERT INTO `acessos` (`id`, `data_criacao`, `empresas_id`, `usuarios_id`) VALUES
 (NULL, '2023-07-19 01:08:48', '1', '1'),
@@ -39,10 +49,10 @@ INSERT INTO `acessos` (`id`, `data_criacao`, `empresas_id`, `usuarios_id`) VALUE
 (NULL, '2023-07-19 01:08:48', '2', '2'),
 (NULL, '2023-07-19 01:08:48', '3', '3');
 
-insert into funcionarios(id, cpf, nome_completo, data_nascimento, salario, nome_pai, nome_mae, observacao, status, data_criacao, empresas_id) values 
-(NULL, '123.456.789-00', 'Funcionario Teste 1', '2023-07-19', '3000.30', 'Pai Teste', 'Mae Teste', '', 'Ativo', '2023-07-19 01:08:48', '1'),
-(NULL, '987.654.321-00', 'Funcionario Teste 2', '2001-11-01', '3000.30', 'Pai Teste2', 'Mae Teste3', '', 'Ativo', '2023-07-19 02:30:00', '2'),
-(NULL, '123.123.852-10', 'Funcionario Teste 3', '1984-07-30', '3000.30', 'Pai Teste3', 'Mae Teste3', 'CLT', 'Ativo', '2023-07-24 10:08:48', '2');
+insert into funcionarios(id, cpf, nome_completo, data_nascimento, salario, nome_pai, nome_mae, setor, funcao, observacao, status, data_inicio, data_criacao, empresas_id) values 
+(NULL, '123.456.789-00', 'Funcionario Teste 1', '2023-07-19', '3000.30', 'Pai Teste', 'Mae Teste', 'Setor Teste 1', 'funcao teste 1', '', 'Ativo', '2023-07-20', '2023-07-19 01:08:48', '1'),
+(NULL, '987.654.321-00', 'Funcionario Teste 2', '2001-11-01', '3000.30', 'Pai Teste2', 'Mae Teste2', 'Setor Teste 2', 'funcao teste 2', '', 'Ativo', '2023-08-10', '2023-07-19 02:30:00', '2'),
+(NULL, '123.123.852-10', 'Funcionario Teste 3', '1984-07-30', '3000.30', 'Pai Teste3', 'Mae Teste3', 'Setor Teste 3', 'funcao teste 3', 'CLT', 'Ativo', '2023-07-24', '2023-07-24 10:08:48', '2');
 
 INSERT INTO `ocorrencias` (`id`, `arquivo`, `motivo`, `faltas`, `valor`, `observacao`, `status`, `data_criacao`, `funcionarios_id`, `empresas_id`) VALUES 
 (NULL, 'teste1.png', 'Teste1', 10, '150.00', 'Teste1', 'Ativo', '2023-07-24 01:22:37.000000', '1', '1'), 
@@ -62,3 +72,9 @@ insert into recisoes(id, exame_demissional, tipo, data_inicio_aviso, data_fim_av
 (NULL, 'Sim', 'Normal', '2023-06-25', '2023-08-04', 'Término de Contrato', 'teste2', 'Pago','2023-07-24 23:22:27', '2', '2'),
 (NULL, 'Não', 'Normal', '2023-05-25', '2023-05-26', 'Aviso', 'teste3', 'Pago','2023-07-24 23:22:27', '3', '3'),
 (NULL, 'Não', 'Normal', '2023-07-20', '2023-08-01', 'Aviso', 'teste4', 'Pago','2023-07-24 23:22:27', '1', '3');
+
+INSERT INTO `vale_transportes` (`id`, `tipo`, `valor`, `data_criacao`, `funcionarios_id`) VALUES
+(NULL, 'Otimo', '400.00', '2023-07-25 02:06:52.000000', '1'),
+(NULL, 'Otimo', '130.00', '2023-07-25 02:06:52.000000', '2'),
+(NULL, 'BH BUS', '800.75', '2023-07-25 02:06:52.000000', '3'),
+(NULL, 'Otimo', '120.33', '2023-07-25 02:06:52.000000', '1');

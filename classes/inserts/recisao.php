@@ -28,6 +28,13 @@ $recisao_observacao = addslashes($recisao_observacao);
 $inserir_recisao = "insert into recisoes(id, exame_demissional, tipo, data_inicio_aviso, data_fim_aviso, motivo, observacao, status, data_criacao, funcionarios_id, empresas_id) values (NULL, '".$recisao_exame_demissional."', '".$recisao_tipo."', '".$recisao_data."', '".$recisao_data_fim."', '".$recisao_motivo."', '".$recisao_observacao."', '".$recisao_status."','".$data_criacao."',  '".$recisao_funcionario."', '".$recisao_loja."');";
 $enviar_recisao = mysqli_query($conn, $inserir_recisao);
 
+//Mensagem de Sucesso ou Falha na operação
+if($enviar_recisao == 1){
+    $_SESSION['mensagem'] = "Recissão cadastrado com sucesso!";
+}else{
+    $_SESSION['mensagem'] = "Erro ao cadastrar o Recissão!";
+}
+
 header('location:../../painel/inserir.php');
 
 ?>

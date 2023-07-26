@@ -250,7 +250,7 @@ function myFunction() {
                           <?php echo $row_recisoes['motivo'];?>
                         </td>
                         <td>
-                          <?php echo $row_recisoes['data_criacao'];?>
+                          <?php echo date("d/m/Y", strtotime($row_recisoes['data_criacao']));?>
                         </td>
                         <td>
                           <?php echo $row_recisoes['tipo'];?>
@@ -259,10 +259,10 @@ function myFunction() {
                           <?php echo $row_recisoes['exame_demissional'];?>
                         </td>
                         <td>
-                          <?php echo $row_recisoes['data_inicio_aviso'];?>
+                          <?php echo date("d/m/Y", strtotime($row_recisoes['data_inicio_aviso']));?>
                         </td>
                         <td>
-                          <?php echo $row_recisoes['data_fim_aviso'];?>
+                          <?php echo date("d/m/Y", strtotime($row_recisoes['data_fim_aviso']));?>
                         </td>
                         <td>
                           <?php echo $row_recisoes['status'];?>

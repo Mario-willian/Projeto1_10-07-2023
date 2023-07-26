@@ -74,7 +74,8 @@ require "../complements/begin_page.php";
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand">Inserir</a>
+            <a class="navbar-brand">Inserir</a><br>
+            
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -112,13 +113,17 @@ require "../complements/begin_page.php";
               
             </ul>
           </div>
+          
         </div>
+        
       </nav>
       <!-- End Navbar -->
 
 
       <div class="panel-header panel-header-sm">
       </div>
+
+      
 
   
  <!-- INICIO DIV -->
@@ -128,10 +133,19 @@ require "../complements/begin_page.php";
           <div class="col-md-6">
             <div class="card">
               <div class="card-header"><br><br>
+          <center>
+          <?php
+            if(isset($_SESSION["mensagem"])):
+              print $_SESSION["mensagem"];
+              unset($_SESSION["mensagem"]);
+            endif; 
+          ?>
+          </center>
+
                 <center><h5><i class="fa fa-warning "></i> INSERIR OCORRÊNCIA</h5>
               </div>
               <div class="card-body">
-                <form action="../classes/inserts/ocorrencia.php" method="POST">
+                <form action="../classes/inserts/ocorrencia.php" method="POST" enctype="multipart/form-data">
                   <div class="row">
                     
                   </div>
@@ -209,8 +223,8 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>Arquivo</label>
                            <div class="custom-file">
-                           <input type="file" name="ocorrencia_arquivo[]" class="custom-file-input" id="customFile" multiple="multiple">
-                           <label class="custom-file-label" for="customFile"><i class="  fa fa-file fa-lg fa-fw" aria-hidden="true"></i> Este campo não é obrigatório</label>
+                           <input type="file" name="ocorrencia_arquivo[]" class="custom-file-input" id="arquivo" multiple="multiple">
+                           <label class="custom-file-label" for="arquivo"><i class="  fa fa-file fa-lg fa-fw" aria-hidden="true"></i> Este campo não é obrigatório</label>
                           </div>
                       </div>
                     </div>
@@ -492,7 +506,7 @@ require "../complements/begin_page.php";
                           <option value="Red">Vermelho</option>
                           <option value="Yellow">Amarelo</option>
                           <option value="Green">Verde</option>
-                          <option value="blue">Azul</option>
+                          <option value="dodgerblue">Azul</option>
                         </select>
                       </div>
                     </div>
@@ -593,7 +607,13 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>Empresa</label>
                         <select name="funcionario_empresa" class="form-control">
-                          <option value="1">1</option>
+                          <!-- Inicio de uma codição PHP -->
+                          <?php 
+
+                          require "../complements/selects/select_empresa.php";
+
+                          ?>
+                          <!-- Fim de uma codição PHP -->
                         </select>
                       </div>
                     </div>

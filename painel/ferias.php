@@ -201,10 +201,10 @@ $resultado_ferias = mysqli_query($conn, $pesquisa_ferias);
                           <?php echo $row_ferias['empresa_nome_loja'];?>
                         </td>
                         <td>
-                          <?php echo $row_ferias['data_inicio'];?>
+                          <?php echo date("d/m/Y", strtotime($row_ferias['data_inicio']));?>
                         </td>
                         <td>
-                          <?php echo $row_ferias['data_fim'];?>
+                          <?php echo date("d/m/Y", strtotime($row_ferias['data_fim']));?>
                         </td>
                         <td>
                           <?php echo $row_ferias['observacao'];?>

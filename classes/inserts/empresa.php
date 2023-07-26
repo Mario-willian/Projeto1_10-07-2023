@@ -15,6 +15,13 @@ $data_criacao = date('Y-m-d H:i:s');
 $inserir_empresa = "insert into empresas(id, cnpj, nome_loja, razao_social, status, data_criacao) values (NULL, '".$empresa_cnpj."', '".$empresa_nome_loja."', '".$empresa_razao_social."', 'Ativo', '".$data_criacao."');";
 $enviar_empresa = mysqli_query($conn, $inserir_empresa);
 
+//Mensagem de Sucesso ou Falha na operação
+if($enviar_empresa == 1){
+    $_SESSION['mensagem'] = "Empresa cadastrado com sucesso!";
+}else{
+    $_SESSION['mensagem'] = "Erro ao cadastrar o Empresa!";
+}
+
 header('location:../../painel/inserir.php');
 
 ?>
