@@ -1,23 +1,25 @@
-Feito:
-*Criado Views no banco. Necessário dropar e criar dnv.
-*Puxar do banco alguns select (Ex: funcionários, empresas).
-*Fazer página dos relatórios (Visualizar)
+Finalizados:
+*Listagem de Usuários.
+*Listagem de Funcionarios.
+*Configurado lembretes da pagina inicial.
+*Inserir Recisao, pendente de ajustar o arquivo para finalizar.
+*inserir sweetalert ao cadastrar algo
 
+Necessário:
+Ajustar HTML do disparo
+Talvez ajustar html dos lembretes da tela inicial
 
 Pendente:
-
-*Configurado lembretes da pagina inicial.
-*Criar logs de todas as ações para notificacoes
-*inserir sweetalert ao cadastrar algo
 *Inserir usuário.
-*Inserir Recisao, pendente de ajustar o arquivo para finalizar.
+*Ajustar listagem de Usuários (Sem repetir)
 *Fazer página dos relatórios (editar e excluir)
-
-
 *editar dados da pagina conta.php
+
+*Criar logs de todas as ações para notificacoes
 *mensagem de login incorreto no índex
 *Nao deixar criar usuario ja existente.
 *Editar usuarios permitir editar permissoes
+*Deixar Filtros funcionais
 
 ------------------------------
 
@@ -26,8 +28,3 @@ Acrescentar:
 *Colocar uma funcao para deixar o login seguro, como o addslashes
 *Senha em MD5
 ----------------------
-
-Italo:
-Tela para inserir e funcoes
-
--------------
