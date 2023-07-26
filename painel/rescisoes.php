@@ -270,16 +270,17 @@ function myFunction() {
                         <td>
                           <?php echo $row_recisoes['observacao'];?>
                         </td>
-                        <td>
-                          <form action="" method="get">
-                            <button style="width: 60%;"  name="excluir" onclick="myFunction()" class="btn btn-danger btn-sm">X</button>
-                            <input type="text" style="display:none" value="<?php echo $row_recisoes['id'];?>" name="cpf">
-                        </form>
-                        </td>
+                        
                         <td>
                           <form action="">
                             <button class="btn btn-primary btn-sm" title="Editar Vendedor"><i class=" fa fa-edit"></i></button>
                           <input class="w3-input w3-border" name="cpf" style="display:none" type="text" value="<?php echo $row_recisoes['id'];?>" >
+                        </form>
+                        </td>
+                        <td>
+                          <form action="" method="get">
+                          <button name="excluir" onclick="myFunction()" class="btn btn-danger btn-sm"><i class=" fa fa-trash"></i></button>
+                            <input type="text" style="display:none" value="<?php echo $row_recisoes['id'];?>" name="cpf">
                         </form>
                         </td>
                       </tr>
