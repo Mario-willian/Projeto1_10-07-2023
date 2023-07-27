@@ -4,23 +4,23 @@
 include_once "../../complements/inicio_classe.php";
 
 //Recebendo os campos do formulário
-$funcionario_nome = $_POST['funcionario_nome'];
-$funcionario_cpf = $_POST['funcionario_cpf'];
-$funcionario_data_nascimento = $_POST['funcionario_data_nascimento']; $funcionario_data_nascimento = Date($funcionario_data_nascimento);
-$funcionario_status = $_POST['funcionario_status'];
-$funcionario_empresa = $_POST['funcionario_empresa'];
-$funcionario_setor = $_POST['funcionario_setor'];
-$funcionario_funcao = $_POST['funcionario_funcao'];
-$funcionario_data_de_inicio = $_POST['funcionario_data_de_inicio']; $funcionario_data_de_inicio = Date($funcionario_data_de_inicio);
-$funcionario_vale_transporte = $_POST['funcionario_vale_transporte'];
+$funcionario_nome = $dados['funcionario_nome'];
+$funcionario_cpf = $dados['funcionario_cpf'];
+$funcionario_data_nascimento = $dados['funcionario_data_nascimento']; $funcionario_data_nascimento = Date($funcionario_data_nascimento);
+$funcionario_status = $dados['funcionario_status'];
+$funcionario_empresa = $dados['funcionario_empresa'];
+$funcionario_setor = $dados['funcionario_setor'];
+$funcionario_funcao = $dados['funcionario_funcao'];
+$funcionario_data_de_inicio = $dados['funcionario_data_de_inicio']; $funcionario_data_de_inicio = Date($funcionario_data_de_inicio);
+$funcionario_vale_transporte = $dados['funcionario_vale_transporte'];
 $funcionario_valor_vale_transporte = "";
-$funcionario_valor_vale_transporte = $_POST['funcionario_valor_vale_transporte'];
-$funcionario_salario = $_POST['funcionario_salario'];
+$funcionario_valor_vale_transporte = $dados['funcionario_valor_vale_transporte'];
+$funcionario_salario = $dados['funcionario_salario'];
 $funcionario_nome_pai = "";
-$funcionario_nome_pai = $_POST['funcionario_nome_pai'];
-$funcionario_nome_mae = $_POST['funcionario_nome_mae'];
+$funcionario_nome_pai = $dados['funcionario_nome_pai'];
+$funcionario_nome_mae = $dados['funcionario_nome_mae'];
 $funcionario_observacao = "";
-$funcionario_observacao = $_POST['funcionario_observacao'];
+$funcionario_observacao = $dados['funcionario_observacao'];
 
 //Recebendo a data Atual
 $data_criacao = date('Y-m-d H:i:s');
@@ -51,11 +51,14 @@ $enviar_vale_transporte = mysqli_query($conn, $inserir_vale_transporte);
 
 //Mensagem de Sucesso ou Falha na operação
 if($enviar_funcionario == 1){
-    $_SESSION['mensagem'] = "Funcionário cadastrado com sucesso!";
+    // Criar o array com status e a mensagem de sucesso
+    $retorna = ['status' => true, 'msg' => "Funcionário Cadastrado com Sucesso!"];
 }else{
-    $_SESSION['mensagem'] = "Erro ao cadastrar o Funcionário!";
+    // Criar o array com status e a mensagem de erro
+    $retorna = ['status' => false, 'msg' => "Erro ao Cadastrar o(a) Funcionário(a)!"];
 }
 
-header('location:../../painel/inserir.php');
+// Converter o array em objeto e retornar para o JavaScript
+echo json_encode($retorna);
 
 ?>

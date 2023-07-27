@@ -4,14 +4,14 @@
 include_once "../../complements/inicio_classe.php";
 
 //Recebendo os campos do formulário
-$ocorrencia_data = $_POST['ocorrencia_data'];
+$ocorrencia_data = $dados['ocorrencia_data'];
 $ocorrencia_data = Date($ocorrencia_data." H:i:s");
-$ocorrencia_loja = $_POST['ocorrencia_loja'];
-$ocorrencia_funcionarios = $_POST['ocorrencia_funcionarios'];
-$ocorrencia_motivo = $_POST['ocorrencia_motivo'];
-$ocorrencia_quantidade_faltas = $_POST['ocorrencia_quantidade_faltas'];
-$ocorrencia_valor = $_POST['ocorrencia_valor'];
-$ocorrencia_observacao = $_POST['ocorrencia_observacao'];
+$ocorrencia_loja = $dados['ocorrencia_loja'];
+$ocorrencia_funcionarios = $dados['ocorrencia_funcionarios'];
+$ocorrencia_motivo = $dados['ocorrencia_motivo'];
+$ocorrencia_quantidade_faltas = $dados['ocorrencia_quantidade_faltas'];
+$ocorrencia_valor = $dados['ocorrencia_valor'];
+$ocorrencia_observacao = $dados['ocorrencia_observacao'];
 
 
 
@@ -23,8 +23,6 @@ if (isset($_FILES['ocorrencia_arquivo']) && !empty($_FILES['ocorrencia_arquivo']
     $arquivo = "";
     $nomes_arquivo = "";
 }
-
-
 
 //Recebendo a data Atual
 $data_criacao = date('Y-m-d H:i:s');
@@ -38,11 +36,14 @@ $enviar_ocorrencia = mysqli_query($conn, $inserir_ocorrencia);
 
 //Mensagem de Sucesso ou Falha na operação
 if($enviar_ocorrencia == 1){
-    $_SESSION['mensagem'] = "Ocorrencia cadastrado com sucesso!";
+    // Criar o array com status e a mensagem de sucesso
+    $retorna = ['status' => true, 'msg' => "Ocorrencia Cadastrado com Sucesso!"];
 }else{
-    $_SESSION['mensagem'] = "Erro ao cadastrar o Ocorrencia!";
+    // Criar o array com status e a mensagem de erro
+    $retorna = ['status' => false, 'msg' => "Erro ao Cadastrar a Ocorrencia!"];
 }
 
-header('location:../../painel/inserir.php');
+// Converter o array em objeto e retornar para o JavaScript
+echo json_encode($retorna);
 
 ?>

@@ -1,30 +1,22 @@
 Finalizados:
-*Listagem de Usuários.
-*Listagem de Funcionarios.
-*Configurado lembretes da pagina inicial.
-*Inserir Recisao, pendente de ajustar o arquivo para finalizar.
-*inserir sweetalert ao cadastrar algo
 
-Necessário:
-Ajustar HTML do disparo
-Talvez ajustar html dos lembretes da tela inicial
 
 Pendente:
-*Inserir usuário.
-*Ajustar listagem de Usuários (Sem repetir)
-*Fazer página dos relatórios (editar e excluir)
-*editar dados da pagina conta.php
-
-*Criar logs de todas as ações para notificacoes
-*mensagem de login incorreto no índex
+*Inserir usuário com acessos a empresas.
 *Nao deixar criar usuario ja existente.
-*Editar usuarios permitir editar permissoes
-*Deixar Filtros funcionais
+*Inserir usuarios que terao acesso a nova empresa
+*Criar logs de todas as ações para notificacoes
+*Ajustar listagem de Usuários (Sem repetir)
 
+
+*editar dados da pagina conta.php
+*Fazer página dos relatórios (editar e excluir) e lembretes
+*Editar usuarios permitir editar permissoes
+*Exibir arquivos de ocorrencia
+*Deixar Filtros funcionais
 ------------------------------
 
 Acrescentar:
-*Tela para exibir arquivos da ocorrencia
 *Colocar uma funcao para deixar o login seguro, como o addslashes
 *Senha em MD5
 ----------------------

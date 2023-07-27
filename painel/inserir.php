@@ -133,19 +133,10 @@ require "../complements/begin_page.php";
           <div class="col-md-6">
             <div class="card">
               <div class="card-header"><br><br>
-          <center>
-          <?php
-            if(isset($_SESSION["mensagem"])):
-              print $_SESSION["mensagem"];
-              unset($_SESSION["mensagem"]);
-            endif; 
-          ?>
-          </center>
-
                 <center><h5><i class="fa fa-warning "></i> INSERIR OCORRÊNCIA</h5>
               </div>
               <div class="card-body">
-                <form action="../classes/inserts/ocorrencia.php" method="POST" enctype="multipart/form-data">
+                <form id="cad-ocorrencia-form" enctype="multipart/form-data">
                   <div class="row">
                     
                   </div>
@@ -257,7 +248,7 @@ require "../complements/begin_page.php";
                    <div class="row">
                     <div class="col-md-12">
                       <div class="form-group"><br>
-                        <button type="submit" name="ocorrencia_enviar" class="btn btn-outline-success" style="width: 100%;"><b> Cadastrar Ocorrência</b></button><br>
+                        <button type="submit" name="ocorrencia_enviar" id="cad-ocorrencia-btn" value="Cadastrar" class="btn btn-outline-success" style="width: 100%;"><b> Cadastrar Ocorrência</b></button><br>
                       </div>
                     </div>
                   </div>
@@ -274,7 +265,7 @@ require "../complements/begin_page.php";
               <div class="card-body">
                 <div class="author">
                   <H5><i class="fa fa-close "></i> INSERIR RESCISÃO</H5>
-                </div><form action="../classes/inserts/recisao.php" method="POST">
+                </div><form id="cad-recisao-form">
                 <div class="row">
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
@@ -390,7 +381,7 @@ require "../complements/begin_page.php";
                    <div class="row">
                     <div class="col-md-12">
                       <div class="form-group"><br>
-                        <button type="submit" name="recisao_enviar" class="btn btn-outline-success" style="width: 100%;"><b>Cadastrar Rescisão</b></button><br>
+                        <button type="submit" name="recisao_enviar" id="cad-recisao-btn" value="Cadastrar" class="btn btn-outline-success" style="width: 100%;"><b>Cadastrar Rescisão</b></button><br>
                       </div>
                     </div>
                   </div>
@@ -411,7 +402,7 @@ require "../complements/begin_page.php";
                 <center><h5><i class="fa fa-plane"></i> INSERIR FÉRIAS</h5>
               </div>
               <div class="card-body">
-                <form action="../classes/inserts/ferias.php" method="POST">                 
+                <form id="cad-ferias-form">                 
                   <div class="row">
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
@@ -476,7 +467,7 @@ require "../complements/begin_page.php";
                    <div class="row">
                     <div class="col-md-12">
                       <div class="form-group"><br>
-                        <button type="submit" name="ferias_enviar" class="btn btn-outline-success" style="width: 100%;"><b>Cadastrar Férias</b></button><br>
+                        <button type="submit" name="ferias_enviar" id="cad-ferias-btn" value="Cadastrar" class="btn btn-outline-success" style="width: 100%;"><b>Cadastrar Férias</b></button><br>
                       </div>
                     </div>
                   </div>
@@ -495,7 +486,7 @@ require "../complements/begin_page.php";
                 <div class="author">
                   <H5><i class="fa fa-tags"></i> INSERIR LEMBRETE </H5>
                 </div><br>
-                <form action="../classes/inserts/lembrete.php" method="POST">
+                <form id="cad-lembrete-form">
                  <div class="row">
                     
                     <div class="col-md-12">
@@ -532,7 +523,7 @@ require "../complements/begin_page.php";
                    <div class="row">
                     <div class="col-md-12">
                       <div class="form-group"><br>
-                        <button type="submit" name="lembrete_enviar" class="btn btn-outline-success" style="width: 100%;"><b>Cadastrar Lembrete</b></button><br>
+                        <button type="submit" name="lembrete_enviar" id="cad-lembrete-btn" value="Cadastrar" class="btn btn-outline-success" style="width: 100%;"><b>Cadastrar Lembrete</b></button><br>
                       </div>
                     </div>
                   </div></form>
@@ -553,7 +544,7 @@ require "../complements/begin_page.php";
                 <center><h5><i class="fa fa-user-plus"></i> CADASTRAR FUNCIONÁRIO</h5>
               </div>
               <div class="card-body">
-                <form action="../classes/inserts/funcionario.php" method="POST">
+                <form id="cad-funcionario-form">
                   <div class="row">
                     
                   </div>
@@ -742,7 +733,7 @@ require "../complements/begin_page.php";
                    <div class="row">
                     <div class="col-md-12">
                       <div class="form-group"><br>
-                        <button type="submit" name="funcionario_enviar" class="btn btn-outline-success" style="width: 100%;"><b>Cadastrar Funcionário</b></button><br>
+                        <button type="submit" name="funcionario_enviar" id="cad-funcionario-btn" value="Cadastrar" class="btn btn-outline-success" style="width: 100%;"><b>Cadastrar Funcionário</b></button><br>
                       </div>
                     </div>
                   </div>
@@ -758,7 +749,7 @@ require "../complements/begin_page.php";
               <div class="card-body">
                 <div class="author">
                   <H5><i class="fa fa-user-secret"></i>  CADASTRAR USUÁRIO ADMINISTRATIVO </H5>
-                </div><form action="../classes/inserts/usuario.php" method="POST">
+                </div><form id="cad-usuario-form">
                  <div class="row"><div class="col-md-12">
                   <!--Caso o usuário já exista-->
                     <center><b style="color: red">
@@ -835,7 +826,7 @@ require "../complements/begin_page.php";
                         </div>
 
 
-                        <button type="submit" name="usuario_enviar" class="btn btn-outline-success" style="width: 100%"><b>Cadastrar Administrador</b></button>
+                        <button type="submit" name="usuario_enviar" id="cad-usuario-btn" value="Cadastrar" class="btn btn-outline-success" style="width: 100%"><b>Cadastrar Administrador</b></button>
                       </form>
                     </div>
                   </div>
@@ -855,7 +846,7 @@ require "../complements/begin_page.php";
                 <div class="author">
                   <H5><i class="fa fa-check"></i> Cadastrar Empresa </H5>
                 </div><br>
-                <form action="../classes/inserts/empresa.php" method="POST">
+                <form id="cad-empresa-form">
                  <div class="row">
                     
                     <div class="col-md-12">
@@ -886,7 +877,7 @@ require "../complements/begin_page.php";
                    <div class="row">
                     <div class="col-md-12">
                       <div class="form-group"><br>
-                        <button type="submit" name="empresa_enviar" class="btn btn-outline-success" style="width: 100%;"><b>Cadastrar Empresa</b></button><br>
+                        <button type="submit" name="empresa_enviar" id="cad-empresa-btn" value="Cadastrar" class="btn btn-outline-success" style="width: 100%;"><b>Cadastrar Empresa</b></button><br>
                       </div>
                     </div>
                   </div></form>
@@ -909,6 +900,17 @@ require "../complements/begin_page.php";
       </div>
     </div>
   </div>
+
+
+<!-- SWEETALERTS dos cadastros-->
+  <script src="../js/sweetalert2.js"></script>
+  <script src="../js/custom_empresa.js"></script>
+  <script src="../js/custom_ferias.js"></script>
+  <script src="../js/custom_funcionario.js"></script>
+  <script src="../js/custom_lembrete.js"></script>
+  <script src="../js/custom_ocorrencia.js"></script>
+  <script src="../js/custom_recisao.js"></script>
+  <script src="../js/custom_usuario.js"></script>
 
 <!-- MASCARA DE DINHEIRO -->
    <script type="text/javascript">

@@ -1,3 +1,10 @@
+<?php
+
+//Iniciando a Sessão
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,13 +68,12 @@
 					</div>
 
 					<div class="text-center p-t-12">
-			<?php 
-				      //Verificando se existe o acesso invalido
-				    if (isset($_SESSION['login_invalido'])){
-				        echo $_SESSION['login_invalido'];
-				        unset($_SESSION['login_invalido']);
-				    }
-       ?>
+					<?php
+            			if(isset($_SESSION["mensagem"])):
+              			echo $_SESSION["mensagem"];
+              			unset($_SESSION["mensagem"]);
+            			endif; 
+          			?>
 					</div>
 
 					<div class="text-center p-t-136">

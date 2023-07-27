@@ -6,7 +6,7 @@ include_once "../complements/inicio_php.php";
 require "../complements/begin_page.php";
 
 //Select para Ferias
-$pesquisa_ferias = "SELECT * FROM acessos_ferias WHERE usuarios_id =".$_SESSION["id_usuario_login"]['id']." order by data_criacao;";
+$pesquisa_ferias = "SELECT * FROM acessos_ferias WHERE usuarios_id =".$_SESSION["id_usuario_login"]['id']." order by data_criacao DESC;";
 $resultado_ferias = mysqli_query($conn, $pesquisa_ferias);
 
 ?>

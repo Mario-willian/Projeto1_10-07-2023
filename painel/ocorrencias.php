@@ -6,7 +6,7 @@ include_once "../complements/inicio_php.php";
 require "../complements/begin_page.php";
 
 //Select para ocorrencias
-$pesquisa_ocorrencias = "SELECT * FROM acessos_ocorrencias WHERE status = 'Ativo' AND usuarios_id =".$_SESSION["id_usuario_login"]['id']." order by data_criacao;";
+$pesquisa_ocorrencias = "SELECT * FROM acessos_ocorrencias WHERE status = 'Ativo' AND usuarios_id =".$_SESSION["id_usuario_login"]['id']." order by data_criacao DESC;";
 $resultado_ocorrencias = mysqli_query($conn, $pesquisa_ocorrencias);
 
 ?>

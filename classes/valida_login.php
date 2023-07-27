@@ -20,16 +20,14 @@ if(!empty($_POST['email_login'] AND !empty($_POST['senha_login']))){
     //Verifica se o login está incorreto
     if(empty($row_login)){
 
-        echo "NAO EXISTE";
-        exit;
-        $_SESSION["login_invalido"] = "Invalido";
+        $_SESSION['mensagem'] = "O usuário ou senha está incorreto!";
+        header("location:../");
 
     //Verificar se o usuários está ativo
     }else if ($row_login['status'] != "Ativo"){
 
-        echo "Inativo";
-        exit;
-        $_SESSION["login_invalido"] = "Inativo";
+        $_SESSION['mensagem'] = "O usuário inserido está desativado!";
+        header("location:../");
     
     //Tudo certo, faz o login
     }else{

@@ -4,10 +4,10 @@
 include_once "../../complements/inicio_classe.php";
 
 //Recebendo os campos do formulário
-$lembrete_cor = $_POST['lembrete_cor'];
-$lembrete_data_prazo = $_POST['lembrete_data_prazo'];
+$lembrete_cor = $dados['lembrete_cor'];
+$lembrete_data_prazo = $dados['lembrete_data_prazo'];
 $lembrete_data_prazo = Date($lembrete_data_prazo." H:i:s");
-$lembrete_anotacao = $_POST['lembrete_anotacao'];
+$lembrete_anotacao = $dados['lembrete_anotacao'];
 $lembrete_usuario_id = $_SESSION["id_usuario_login"]['id'];
 $status = "Ativo";
 
@@ -23,11 +23,13 @@ $enviar_lembrete = mysqli_query($conn, $inserir_lembrete);
 
 //Mensagem de Sucesso ou Falha na operação
 if($enviar_lembrete == 1){
-    $_SESSION['mensagem'] = "Lembrete cadastrado com sucesso!";
+    // Criar o array com status e a mensagem de sucesso
+    $retorna = ['status' => true, 'msg' => "Lembrete Cadastrado com Sucesso!"];
 }else{
-    $_SESSION['mensagem'] = "Erro ao cadastrar o Lembrete!";
+    // Criar o array com status e a mensagem de erro
+    $retorna = ['status' => false, 'msg' => "Erro ao Cadastrar o Lembrete!"];
 }
 
-header('location:../../painel/inserir.php');
-
+// Converter o array em objeto e retornar para o JavaScript
+echo json_encode($retorna);
 ?>

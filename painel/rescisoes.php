@@ -6,7 +6,7 @@ include_once "../complements/inicio_php.php";
 require "../complements/begin_page.php";
 
 //Select para recisões
-$pesquisa_recisoes = "SELECT * FROM acessos_recisoes WHERE usuarios_id =".$_SESSION["id_usuario_login"]['id']." order by data_criacao;";
+$pesquisa_recisoes = "SELECT * FROM acessos_recisoes WHERE usuarios_id =".$_SESSION["id_usuario_login"]['id']." order by data_criacao DESC;";
 $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
 
 ?>

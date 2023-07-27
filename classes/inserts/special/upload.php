@@ -19,8 +19,8 @@ for ($cont = 0; $cont < count($arquivo['name']); $cont++) {
         $extensao = ".".$extensao; 
     }
 
-    //definir o nome do arquivo com o MD5 da data
-    $novo_nome_arquivo = md5(date('Y-m-d H:i:s')).$cont.$extensao; 
+        //definir o nome do arquivo com o MD5 da data
+        $novo_nome_arquivo = md5(date('Y-m-d H:i:s')).$cont.$extensao; 
 
     // Mover o arquivo com o nome da variavel acima
     move_uploaded_file($arquivo['tmp_name'][$cont], $destino.$novo_nome_arquivo);
@@ -32,7 +32,11 @@ for ($cont = 0; $cont < count($arquivo['name']); $cont++) {
     else if(count($arquivo['name']) > 1){
         $nomes_arquivo .= " / ".$novo_nome_arquivo;
     }    
+}
 
+//Recebe Vazio se nao tiver arquivos
+if($extensao == "."){
+    $nomes_arquivo = "";
 }
 
 ?>

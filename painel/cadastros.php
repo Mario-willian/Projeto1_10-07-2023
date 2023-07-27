@@ -6,11 +6,11 @@ include_once "../complements/inicio_php.php";
 require "../complements/begin_page.php";
 
 //Select para Usuarios
-$pesquisa_usuario = "SELECT * FROM acessos_usuarios order by id_usuario;";
+$pesquisa_usuario = "SELECT * FROM acessos_usuarios order by id_usuario DESC;";
 $resultado_usuario = mysqli_query($conn, $pesquisa_usuario);
 
 //Select para Funcionarios
-$pesquisa_funcionario = "SELECT * FROM acessos_funcionarios order by id_funcionarios;";
+$pesquisa_funcionario = "SELECT * FROM acessos_funcionarios order by id_funcionarios DESC;";
 $resultado_funcionario = mysqli_query($conn, $pesquisa_funcionario);
 
 ?>

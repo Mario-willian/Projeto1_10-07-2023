@@ -4,34 +4,15 @@
 include_once "../../complements/inicio_classe.php";
 
 //Recebendo os campos do formulário
-$usuario_nome = $_POST['usuario_nome'];
-$usuario_email = $_POST['usuario_email'];
-$usuario_senha = $_POST['usuario_senha'];
-
-<input type="checkbox" name="Empresa 1" id="Empresa 1" value="1">
-
+$usuario_nome = $dados['usuario_nome'];
+$usuario_email = $dados['usuario_email'];
+$usuario_senha = $dados['usuario_senha'];
 
 //Recebendo os campos da Combobox
-if (isset($_POST['usuario_acesso_planalto']) && !empty($_POST['usuario_acesso_planalto'])) {
-    $usuario_acesso_planalto = $_POST['usuario_acesso_planalto']; 
-}
-if (isset($_POST['usuario_acesso_rodoviaria']) && !empty($_POST['usuario_acesso_rodoviaria'])) {
-    $usuario_acesso_rodoviaria = $_POST['usuario_acesso_rodoviaria']; 
-}
-if (isset($_POST['usuario_acesso_varzea']) && !empty($_POST['usuario_acesso_varzea'])) {
-    $usuario_acesso_varzea = $_POST['usuario_acesso_varzea']; 
-}
-if (isset($_POST['usuario_acesso_guanabara']) && !empty($_POST['usuario_acesso_guanabara'])) {
-    $usuario_acesso_guanabara = $_POST['usuario_acesso_guanabara']; 
-}
-if (isset($_POST['usuario_acesso_botafogo']) && !empty($_POST['usuario_acesso_botafogo'])) {
-    $usuario_acesso_botafogo = $_POST['usuario_acesso_botafogo']; 
-}
-if (isset($_POST['usuario_acesso_rio_branco']) && !empty($_POST['usuario_acesso_rio_branco'])) {
-    $usuario_acesso_rio_branco = $_POST['usuario_acesso_rio_branco']; 
-}
+$empresas = implode(',', $_POST['op']);
 
-//CRIAR FOREACH PARA PUXAR DADOS DO BANCO*****
+//Inserir cada item em uma variavel
+//trabalhando com checkbox em array no php
 
 //Recebendo a data Atual
 $data_criacao = date('Y-m-d H:i:s');
@@ -53,11 +34,14 @@ exit;
 
 //Mensagem de Sucesso ou Falha na operação
 if($enviar_usuario == 1){
-    $_SESSION['mensagem'] = "Usuário cadastrado com sucesso!";
+    // Criar o array com status e a mensagem de sucesso
+    $retorna = ['status' => true, 'msg' => "Usuário Cadastrado com Sucesso!"];
 }else{
-    $_SESSION['mensagem'] = "Erro ao cadastrar o Usuário!";
+    // Criar o array com status e a mensagem de erro
+    $retorna = ['status' => false, 'msg' => "Erro ao Cadastrar o Usuário!"];
 }
 
-header('location:../../painel/inserir.php');
+// Converter o array em objeto e retornar para o JavaScript
+echo json_encode($retorna);
 
 ?>

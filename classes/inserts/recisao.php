@@ -4,16 +4,16 @@
 include_once "../../complements/inicio_classe.php";
 
 //Recebendo os campos do formulário
-$recisao_data = $_POST['recisao_data']; $recisao_data = Date($recisao_data);
-$recisao_loja = $_POST['recisao_loja'];
-$recisao_funcionario = $_POST['recisao_funcionario'];
-$recisao_motivo = $_POST['recisao_motivo'];
-$recisao_tipo = $_POST['recisao_tipo'];
-$recisao_exame_demissional = $_POST['recisao_exame_demissional'];
-$recisao_dias_de_aviso = $_POST['recisao_dias_de_aviso'];
-$recisao_status = $_POST['recisao_status'];
+$recisao_data = $dados['recisao_data']; $recisao_data = Date($recisao_data);
+$recisao_loja = $dados['recisao_loja'];
+$recisao_funcionario = $dados['recisao_funcionario'];
+$recisao_motivo = $dados['recisao_motivo'];
+$recisao_tipo = $dados['recisao_tipo'];
+$recisao_exame_demissional = $dados['recisao_exame_demissional'];
+$recisao_dias_de_aviso = $dados['recisao_dias_de_aviso'];
+$recisao_status = $dados['recisao_status'];
 $recisao_observacao = "";
-$recisao_observacao = $_POST['recisao_observacao'];
+$recisao_observacao = $dados['recisao_observacao'];
 
 //Recebendo a data Atual
 $data_criacao = date('Y-m-d H:i:s');
@@ -30,11 +30,14 @@ $enviar_recisao = mysqli_query($conn, $inserir_recisao);
 
 //Mensagem de Sucesso ou Falha na operação
 if($enviar_recisao == 1){
-    $_SESSION['mensagem'] = "Recissão cadastrado com sucesso!";
+    // Criar o array com status e a mensagem de sucesso
+    $retorna = ['status' => true, 'msg' => "Recisão Cadastrado com Sucesso!"];
 }else{
-    $_SESSION['mensagem'] = "Erro ao cadastrar o Recissão!";
+    // Criar o array com status e a mensagem de erro
+    $retorna = ['status' => false, 'msg' => "Erro ao Cadastrar a Recisão!"];
 }
 
-header('location:../../painel/inserir.php');
+// Converter o array em objeto e retornar para o JavaScript
+echo json_encode($retorna);
 
 ?>
