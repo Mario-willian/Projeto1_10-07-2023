@@ -209,16 +209,17 @@ $resultado_ferias = mysqli_query($conn, $pesquisa_ferias);
                         <td>
                           <?php echo $row_ferias['observacao'];?>
                         </td>
-                        <td>
-                          <form action="" method="get">
-                            <button style="width: 60%;"  name="excluir" onclick="myFunction()" class="btn btn-danger btn-sm">X</button>
-                            <input type="text" style="display:none" value="<?php echo $row_ferias['id'];?>" name="cpf">
-                        </form>
-                        </td>
+                        
                         <td>
                           <form action="">
                             <button class="btn btn-primary btn-sm" title="Editar Vendedor"><i class=" fa fa-edit"></i></button>
                           <input class="w3-input w3-border" name="cpf" style="display:none" type="text" value="<?php echo $row_ferias['id'];?>" >
+                        </form>
+                        </td>
+                        <td>
+                          <form action="" method="get">
+                          <button name="excluir" onclick="myFunction()" class="btn btn-danger btn-sm"><i class=" fa fa-trash"></i></button>
+                            <input type="text" style="display:none" value="<?php echo $row_ferias['id'];?>" name="cpf">
                         </form>
                         </td>
                       </tr>

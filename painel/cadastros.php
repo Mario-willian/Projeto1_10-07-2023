@@ -148,7 +148,7 @@ function myFunction() {
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title"><i class="fa fa-user-secret"></i> Usuários Cadastrados:</h4>
+                <h4 class="card-title"><i class="fa fa-user-secret"></i><b> Usuários Cadastrados:</b></h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -176,19 +176,7 @@ function myFunction() {
                         </td>
                         <td>
                           <?php echo $row_usuario['nome_loja'];?>
-                        </td>
-                        <td>
-                          <form action="" method="get">
-                            <button style="width: 60%;"  name="excluir" onclick="myFunction()" class="btn btn-danger btn-sm">X</button>
-                            <input type="text" style="display:none" value="<?php echo $row_usuario['id_usuario'];?>" name="cpf">
-                        </form>
-                        </td>
-                        <td>
-                          <form action="">
-                            <button class="btn btn-primary btn-sm" title="Editar Vendedor"><i class=" fa fa-edit"></i></button>
-                          <input class="w3-input w3-border" name="cpf" style="display:none" type="text" value="<?php echo $row_usuario['id_usuario'];?>" >
-                        </form>
-                        </td>
+                        </td>                       
                       </tr>
                     <?php } ?>
                     </tbody>
@@ -198,11 +186,11 @@ function myFunction() {
             </div>
           </div>
           
-
+                  
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title"><i class="fa fa-id-card-o"></i> Seus Funcionários:</h4>
+                <h4 class="card-title"><i class="fa fa-id-card-o"></i><b> Seus Funcionários:</b></h4>
                 <h6><i class="fa fa-sliders"></i> Filtro</h6>
                 <div class="row">
                     <div class="col-md-3 pr-1">
@@ -360,24 +348,25 @@ function myFunction() {
                           <?php echo $row_funcionario['tipo_vale_transporte'];?>
                         </td>
                         <td>
-                          <?php echo $row_funcionario['valor_vale_transporte'];?>
+                          R$ <?php echo $row_funcionario['valor_vale_transporte'];?>
                         </td>
                         <td>
-                          <?php echo $row_funcionario['salario'];?>
+                          R$ <?php echo $row_funcionario['salario'];?> 
                         </td>
                         <td>
                           <?php echo $row_funcionario['observacao'];?>
                         </td>
-                        <td>
-                          <form action="" method="get">
-                            <button style="width: 60%;"  name="excluir" onclick="myFunction()" class="btn btn-danger btn-sm">X</button>
-                            <input type="text" style="display:none" value="<?php echo $row_funcionario['id_funcionarios'];?>" name="cpf">
-                        </form>
-                        </td>
+                        
                         <td>
                           <form action="">
                             <button class="btn btn-primary btn-sm" title="Editar Vendedor"><i class=" fa fa-edit"></i></button>
                           <input class="w3-input w3-border" name="cpf" style="display:none" type="text" value="<?php echo $row_funcionario['id_funcionarios'];?>" >
+                        </form>
+                        </td>
+                        <td>
+                          <form action="" method="get">
+                          <button name="excluir" onclick="myFunction()" class="btn btn-danger btn-sm"><i class=" fa fa-trash"></i></button>
+                            <input type="text" style="display:none" value="<?php echo $row_funcionario['id_funcionarios'];?>" name="cpf">
                         </form>
                         </td>
                       </tr>

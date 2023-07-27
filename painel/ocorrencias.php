@@ -221,7 +221,7 @@ function myFunction() {
                         Data
                       </th>             
                       <th>
-                        Quantidade de Faltas
+                        Faltas
                       </th>
                       <th>
                         Valor
@@ -258,7 +258,7 @@ function myFunction() {
                           <?php echo $row_ocorrencias['faltas'];?>
                         </td>
                         <td>
-                          <?php echo $row_ocorrencias['valor'];?>
+                          R$ <?php echo $row_ocorrencias['valor'];?>
                         </td>
                         <td>
                           <?php echo $row_ocorrencias['observacao'];?>
@@ -266,16 +266,17 @@ function myFunction() {
                         <td>
                           <?php echo $row_ocorrencias['arquivo'];?>
                         </td>
-                        <td>
-                          <form action="" method="get">
-                            <button style="width: 60%;"  name="excluir" onclick="myFunction()" class="btn btn-danger btn-sm">X</button>
-                            <input type="text" style="display:none" value="<?php echo $row_ocorrencias['id'];?>" name="cpf">
-                        </form>
-                        </td>
+                        
                         <td>
                           <form action="">
                             <button class="btn btn-primary btn-sm" title="Editar Vendedor"><i class=" fa fa-edit"></i></button>
                           <input class="w3-input w3-border" name="cpf" style="display:none" type="text" value="<?php echo $row_ocorrencias['id'];?>" >
+                        </form>
+                        </td>
+                        <td>
+                          <form action="" method="get">
+                            <button name="excluir" onclick="myFunction()" class="btn btn-danger btn-sm"><i class=" fa fa-trash"></i></button>
+                            <input type="text" style="display:none" value="<?php echo $row_ocorrencias['id'];?>" name="cpf">
                         </form>
                         </td>
                       </tr>
