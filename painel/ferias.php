@@ -137,8 +137,8 @@ $resultado_ferias = mysqli_query($conn, $pesquisa_ferias);
         <div class="row">
           <div class="col-md-12">
             <div class="card">
-              <div class="card-header">
-                <h4 class="card-title"> Lista de Todos os Comentários</h4>
+              <div class="card-header"><center>
+                <h4 class="card-title"> <i class="fa fa-list"></i><b> Listagem de Férias</b></h4></center>
                 <h6><i class="fa fa-sliders"></i> Filtro</h6>
                 <div class="row">
                     <div class="col-md-2 pr-1">
@@ -211,15 +211,15 @@ $resultado_ferias = mysqli_query($conn, $pesquisa_ferias);
                         </td>
                         
                         <td>
-                          <form action="">
-                            <button class="btn btn-primary btn-sm" title="Editar Vendedor"><i class=" fa fa-edit"></i></button>
-                          <input class="w3-input w3-border" name="cpf" style="display:none" type="text" value="<?php echo $row_ferias['id'];?>" >
+                          <form action="editar-ferias.php">
+                            <button class="btn btn-primary btn-sm" title="Editar"><i class=" fa fa-edit"></i></button>
+                         
                         </form>
                         </td>
                         <td>
                           <form action="" method="get">
                           <button name="excluir" onclick="myFunction()" class="btn btn-danger btn-sm"><i class=" fa fa-trash"></i></button>
-                            <input type="text" style="display:none" value="<?php echo $row_ferias['id'];?>" name="cpf">
+                            <input type="text" style="display:none" name="cpf">
                         </form>
                         </td>
                       </tr>

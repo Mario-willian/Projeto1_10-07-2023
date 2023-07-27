@@ -147,7 +147,7 @@ function myFunction() {
         <div class="row">
           <div class="col-md-12">
             <div class="card">
-              <div class="card-header">
+              <div class="card-header"><center>
                 <h4 class="card-title"><i class="fa fa-user-secret"></i><b> Usuários Cadastrados:</b></h4>
               </div>
               <div class="card-body">
@@ -189,8 +189,8 @@ function myFunction() {
                   
           <div class="col-md-12">
             <div class="card">
-              <div class="card-header">
-                <h4 class="card-title"><i class="fa fa-id-card-o"></i><b> Seus Funcionários:</b></h4>
+              <div class="card-header"><center>
+                <h4 class="card-title"><i class="fa fa-id-card-o"></i><b> Seus Funcionários:</b></h4></center>
                 <h6><i class="fa fa-sliders"></i> Filtro</h6>
                 <div class="row">
                     <div class="col-md-3 pr-1">
@@ -358,9 +358,8 @@ function myFunction() {
                         </td>
                         
                         <td>
-                          <form action="">
-                            <button class="btn btn-primary btn-sm" title="Editar Vendedor"><i class=" fa fa-edit"></i></button>
-                          <input class="w3-input w3-border" name="cpf" style="display:none" type="text" value="<?php echo $row_funcionario['id_funcionarios'];?>" >
+                          <form action="editar-funcionarios">
+                            <button class="btn btn-primary btn-sm" title="Editar"><i class=" fa fa-edit"></i></button>
                         </form>
                         </td>
                         <td>

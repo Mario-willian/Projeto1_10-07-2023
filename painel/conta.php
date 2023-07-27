@@ -137,7 +137,7 @@ require "../complements/begin_page.php";
         <div class="row">
           <div class="col-md-12">
             <div class="card">
-              <div class="card-header">
+              <div class="card-header"><center>
                 <h4 class="card-title"><i class="now-ui-icons users_single-02"></i> Conta</h4>
               </div>
               <div class="card-body">
@@ -202,19 +202,19 @@ require "../complements/begin_page.php";
          
 
   <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog modal-dialog-centered">
+  <div  class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
     
       <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
+      <div  class="modal-content">
+        <div  class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
                       <center>
                      <h3> Procedimento de Verificação<br>
                       <b style="font-size: 18px;">Confirme seu login para continuar</b></h3>
-                    <form>
+                <form action="editar-conta" method="get">
                     <div class="col-md-8">
                       <div class="form-group">
                         <center><label>E-mail</label>
@@ -230,7 +230,7 @@ require "../complements/begin_page.php";
                     </div>
         </div>
                   <div class="modal-footer">
-                  <button type="submit" class="btn btn-success" data-dismiss="modal">Continuar</button>
+                  <button type="submit" class="btn btn-success">Continuar</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                   </div>
                   </form>
