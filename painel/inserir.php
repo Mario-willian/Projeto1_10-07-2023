@@ -225,7 +225,7 @@ require "../complements/begin_page.php";
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Quantidade de Faltas</label>
-                       <input type="number" name="ocorrencia_quantidade_faltas" class="form-control" required="" >
+                       <input type="number" name="ocorrencia_quantidade_faltas"  maxlength="5" class="form-control" required="" >
                       </div>
                     </div>
                      <div class="col-md-6 pl-1">
@@ -240,7 +240,7 @@ require "../complements/begin_page.php";
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Observação</label>
-                        <input type="text" name="ocorrencia_observacao" class="form-control" >
+                        <input type="text" name="ocorrencia_observacao"  maxlength="500" class="form-control" >
                       </div>
                     </div>
                   </div>
@@ -354,7 +354,7 @@ require "../complements/begin_page.php";
                      <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Dias de Aviso</label>
-                       <input type="number" name="recisao_dias_de_aviso" class="form-control">
+                       <input type="number" name="recisao_dias_de_aviso"  maxlength="5" class="form-control">
                       </div>
                     </div> 
                      <div class="col-md-6 pl-1">
@@ -372,7 +372,7 @@ require "../complements/begin_page.php";
                     <div class="col-md-12">
                       <div class="form-group"> 
                         <label>Observação</label>
-                        <input type="text" name="recisao_observacao" class="form-control">
+                        <input type="text" name="recisao_observacao"  maxlength="500" class="form-control">
                       </div>
                     </div>
                   </div>
@@ -451,7 +451,7 @@ require "../complements/begin_page.php";
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Quantidade de dias</label>
-                         <input type="number" name="ferias_quantidade_dias" class="form-control" required="" >
+                         <input type="number" name="ferias_quantidade_dias"  maxlength="5" class="form-control" required="" >
                       </div>
                     </div>
                   </div>
@@ -459,7 +459,7 @@ require "../complements/begin_page.php";
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Observação</label>
-                        <input type="text" name="ferias_observacao" class="form-control" >
+                        <input type="text" name="ferias_observacao"  maxlength="500" class="form-control" >
                       </div>
                     </div>
                   </div>
@@ -514,7 +514,7 @@ require "../complements/begin_page.php";
                     <div class="col-md-12 ">
                       <div class="form-group">
                         <label>Anotação</label>
-                         <input type="text" name="lembrete_anotacao" class="form-control" required="" >
+                         <input type="text" name="lembrete_anotacao"  maxlength="500" class="form-control" required="" >
                       </div>
                     </div>
                   </div>
@@ -552,7 +552,7 @@ require "../complements/begin_page.php";
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Nome Completo</label>
-                        <input type="text" name="funcionario_nome" maxlength="100" class="form-control" required="" placeholder="Nome" >
+                        <input type="text" name="funcionario_nome" maxlength="80" class="form-control" required="" placeholder="Nome" >
                       </div>
                     </div>
                     <div class="col-md-6 pl-1">
@@ -711,13 +711,13 @@ require "../complements/begin_page.php";
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Nome Pai</label>
-                        <input type="text" name="funcionario_nome_pai" class="form-control" placeholder="Nome do Pai" >
+                        <input type="text" name="funcionario_nome_pai" maxlength="80" class="form-control" placeholder="Nome do Pai" >
                       </div>
                     </div>
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Nome Mãe</label>
-                        <input type="text" name="funcionario_nome_mae" class="form-control" required="" placeholder="Nome da Mãe" >
+                        <input type="text" name="funcionario_nome_mae"  maxlength="80" class="form-control" required="" placeholder="Nome da Mãe" >
                       </div>
                     </div>
                   </div>
@@ -751,29 +751,23 @@ require "../complements/begin_page.php";
                   <H5><i class="fa fa-user-secret"></i>  CADASTRAR USUÁRIO ADMINISTRATIVO </H5>
                 </div><form id="cad-usuario-form">
                  <div class="row"><div class="col-md-12">
-                  <!--Caso o usuário já exista-->
-                    <center><b style="color: red">
-                    <?php /*
-                      echo "".$erro_usuario; */
-                    ?>
-                    </b></center><center>
                     <div class="col-md-8">
                       <div class="form-group">
                         <center><label>Nome</label>
-                        <input type="text" name="usuario_nome" class="form-control" required="" >
+                        <input type="text" name="usuario_nome" class="form-control"  maxlength="80" required="" >
                       </div>
                        </div>
                       <center>
                     <div class="col-md-8">
                       <div class="form-group">
                         <center><label>E-mail</label>
-                        <input type="text" name="usuario_email" class="form-control" required="" >
+                        <input type="text" name="usuario_email" class="form-control" maxlength="80" required="" >
                       </div>
                     </div>
                     <div class="col-md-8">
                       <div class="form-group">
                         <center><label>Senha</label>
-                        <input type="password" name="usuario_senha" id="myInput" class="form-control" required="" ></center>
+                        <input type="password" name="usuario_senha" id="myInput" class="form-control"  maxlength="18" required="" ></center>
                         <div class="custom-control custom-checkbox mb-3"><br>
                           <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
                           <label class="custom-control-label" for="customCheck" onclick="myFunction()">Mostrar senha</label>
@@ -797,7 +791,6 @@ require "../complements/begin_page.php";
                              <div class="tab">   
 
                                  <div class="row ">
-
                                     <table class="table table">
                                       <thead>
                                         <tr>
@@ -819,14 +812,11 @@ require "../complements/begin_page.php";
                                         
                                       </tbody>
                                     </table>
-
                                 </div>
                              </div>
                            </div>
                         </div>
-
-
-                        <button type="submit" name="usuario_enviar" id="cad-usuario-btn" value="Cadastrar" class="btn btn-outline-success" style="width: 100%"><b>Cadastrar Administrador</b></button>
+                        <button type="submit" name="usuario_enviar" id="cad-usuario-btn" value="Cadastrar" class="btn btn-outline-success" style="width: 100%"><b>Cadastrar Usuário Administrativo</b></button>
                       </form>
                     </div>
                   </div>
@@ -868,10 +858,43 @@ require "../complements/begin_page.php";
                     <div class="col-md-12 ">
                       <div class="form-group">
                         <label>CNPJ</label>
-                         <input type="text" name="empresa_cnpj"  maxlength="17" class="form-control" required="" >
+                         <input type="text" name="empresa_cnpj"  maxlength="18" class="form-control" required="" >
                       </div>
                     </div>
                   </div>
+
+
+                  <center>
+                  <div class="col-md-8 pr-1">
+                    <div class="form-group">
+                      <div class="tab">   
+                        <div class="row ">
+                          <table class="table table">
+                            <thead>
+                              <tr>
+                                <th></th>
+                                <th>Usuário que Terão Acesso</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+
+
+                            <!-- Inicio de uma codição PHP -->
+                            <?php 
+
+                            require "../complements/selects/select_usuario.php";
+
+                            ?>
+                            <!-- Fim de uma codição PHP -->
+
+                                        
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </center>
 
              
                    <div class="row">
