@@ -13,7 +13,7 @@ while ($row_empresas = mysqli_fetch_assoc($resultado_empresas)){
         echo 
         "<tr>
                 <td><input type='checkbox' name='empresa[]' value='".$row_empresas['id']."'></td>
-                <td>".$row_empresas['nome_loja']."</td>
+                <td>".$row_empresas['nome_loja']." (".$row_empresas['cnpj'].")</td>
         </tr>";
 
         $i++;
