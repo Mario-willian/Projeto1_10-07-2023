@@ -1,29 +1,14 @@
-Finalizados:
-*Inserir usuário com acessos a empresas.
-*Nao deixar criar usuario ja existente.
-*Inserir usuarios que terao acesso a nova empresa
-
 Pendente:
-*Criar logs de todas as ações para notificacoes
-*Ajustar listagem de Usuários (Sem repetir)
-*editar dados da pagina conta.php
-*Fazer página dos relatórios (editar e excluir) e lembretes
-*Editar usuarios permitir editar permissoes
-*Exibir arquivos de ocorrencia
-*Deixar Filtros funcionais
+*Fazer página dos relatórios e lembretes (editar e excluir)
+**editar dados da pagina conta.php
+*Exibir arquivos de ocorrencia NO EDIT
+*Inserir logs de todas as ações
+*Deixar Filtros funcionais -> Trabalhar com post. Se nao tiver recebido nada, faz a busca. Se tiver, faz a busca de acordo a pesquisa
+*Criar paginacao
 ------------------------------
 
+
+
 Acrescentar:
-*Colocar uma funcao para deixar o login seguro, como o addslashes
 *Senha em MD5
 ----------------------
-
-Usuários e Acessos
-Ajustar Banco de Dados:
-- [ ] Criar tabela LOG. Sendo: ID, tabela_alterada, tarefa_executada, cor_importancia, usuarios_id,
-- [ ] **Tabela acessos passará a se chamar acessos_empresas e criar uma outra tabela acessos_paginas.
-
-Editar Usuários:
-- [ ] Apresentar acessos através das checkbox de empresas marcadas.
-(Verificar como apresentar checkbox ja marcada)
-- [ ] **Apresentar checkbox de registros e relatórios que o usuários pode acessar

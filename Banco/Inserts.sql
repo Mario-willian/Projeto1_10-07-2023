@@ -52,7 +52,9 @@ INSERT INTO `acessos` (`id`, `data_criacao`, `empresas_id`, `usuarios_id`) VALUE
 insert into funcionarios(id, cpf, nome_completo, data_nascimento, salario, nome_pai, nome_mae, setor, funcao, observacao, status, data_inicio, data_criacao, empresas_id) values 
 (NULL, '123.456.789-00', 'Funcionario Teste 1', '2023-07-19', '3000.30', 'Pai Teste', 'Mae Teste', 'Setor Teste 1', 'funcao teste 1', '', 'Ativo', '2023-07-20', '2023-07-19 01:08:48', '1'),
 (NULL, '987.654.321-00', 'Funcionario Teste 2', '2001-11-01', '3000.30', 'Pai Teste2', 'Mae Teste2', 'Setor Teste 2', 'funcao teste 2', '', 'Ativo', '2023-08-10', '2023-07-19 02:30:00', '2'),
-(NULL, '123.123.852-10', 'Funcionario Teste 3', '1984-07-30', '3000.30', 'Pai Teste3', 'Mae Teste3', 'Setor Teste 3', 'funcao teste 3', 'CLT', 'Ativo', '2023-07-24', '2023-07-24 10:08:48', '2');
+(NULL, '123.123.852-10', 'Funcionario Teste 3', '1984-07-30', '3000.30', 'Pai Teste3', 'Mae Teste3', 'Setor Teste 3', 'funcao teste 3', 'CLT', 'Ativo', '2023-07-24', '2023-07-24 10:08:48', '2'),
+(NULL, '123.456.789-00', 'Funcionario Teste 4', '2023-07-19', '3000.30', 'Pai Teste4', 'Mae Teste', 'Setor Teste 1', 'funcao teste 1', '', 'Ativo', '2023-07-20', '2023-07-19 01:08:48', '1'),
+(NULL, '987.654.321-00', 'Funcionario Teste 5', '2001-11-01', '3000.30', 'Pai Teste5', 'Mae Teste2', 'Setor Teste 2', 'funcao teste 2', '', 'Ativo', '2023-08-10', '2023-07-19 02:30:00', '2');
 
 INSERT INTO `ocorrencias` (`id`, `arquivo`, `motivo`, `faltas`, `valor`, `observacao`, `status`, `data_criacao`, `funcionarios_id`, `empresas_id`) VALUES 
 (NULL, 'teste1.png', 'Teste1', 10, '150.00', 'Teste1', 'Ativo', '2023-07-24 01:22:37.000000', '1', '1'), 
@@ -77,4 +79,14 @@ INSERT INTO `vale_transportes` (`id`, `tipo`, `valor`, `data_criacao`, `funciona
 (NULL, 'Otimo', '400.00', '2023-07-25 02:06:52.000000', '1'),
 (NULL, 'Otimo', '130.00', '2023-07-25 02:06:52.000000', '2'),
 (NULL, 'BH BUS', '800.75', '2023-07-25 02:06:52.000000', '3'),
-(NULL, 'Otimo', '120.33', '2023-07-25 02:06:52.000000', '1');
+(NULL, 'Otimo', '120.33', '2023-07-25 02:06:52.000000', '1'),
+(NULL, 'BH BUS', '800.75', '2023-07-25 02:06:52.000000', '4'),
+(NULL, 'Otimo', '120.33', '2023-07-25 02:06:52.000000', '5');
+
+insert into `logs` (`id`, `tabela_alterada`, `tarefa_executada`, `cor`, `icone`, `status`, `data_criacao`, `usuarios_id`) VALUES
+(NULL, 'recisoes', 'O funcionário Mário foi desligado da loja Y', 'danger', 'fa fa-exclamation-triangle faa-flash', 'ativo', '2023-07-29 09:35:00.000000', '1'),
+(NULL, 'ocorrencias', 'O funcionário Jorge da loja H recebeu uma ocorrência por Falta no dia 11/08/2023', 'warning', 'fa fa-info-circle faa-shake', 'ativo', '2023-07-29 10:35:00.000000', '1'),
+(NULL, 'funcionarios', 'Funcionário Mário William da Silva foi Cadastrado com Sucesso na loja Rio Branco!', 'success', 'far fa-check-circle faa-tada', 'ativo', '2023-07-28 09:35:00.000000', '1'),
+(NULL, 'ferias', 'O funcionário Cleydson da loja X está de férias do dia 21/07/2023 até 11/08/2023', 'info', 'fa fa-info-circle faa-shake', 'ativo', '2023-07-27 09:35:00.000000', '1'),
+(NULL, 'recisoes', 'O funcionário Cleydson foi desligado da loja Jabuticabeira', 'danger', 'fa fa-exclamation-triangle faa-flash', 'ativo', '2023-07-27 09:35:00.000000', '1'),
+(NULL, 'usuarios', 'Seus dados foram editados com sucesso!', 'primary', 'fa fa-edit faa-tada', 'ativo', '2023-07-26 09:35:00.000000', '1');

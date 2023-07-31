@@ -2,9 +2,6 @@
 //Puxando Info do Usuário
 include_once "../complements/inicio_php.php";
 
-//Carregando Consultas SQL da pagina
-//require "../complements/inicio_inserir.php";
-
 //Carregando o inicio da pagina
 require "../complements/begin_page.php";
 
@@ -93,7 +90,7 @@ require "../complements/begin_page.php";
                   <i class="fa fa-bell-o"></i>
                   <p>
                     <span class="d-lg-none d-md-block">Notificações</span>
-                    <span class="badge badge-light">5</span>
+                    <span class="badge badge-light"><?php echo $row_notificacao['count(id)']; ?></span>
                   </p>
                 </a>
               </li>
@@ -450,8 +447,8 @@ require "../complements/begin_page.php";
                     </div>
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
-                        <label>Quantidade de dias</label>
-                         <input type="number" name="ferias_quantidade_dias"  maxlength="5" class="form-control" required="" >
+                        <label>Data Final</label>
+                          <input type="date" name="ferias_data_final" class="form-control" required="" >
                       </div>
                     </div>
                   </div>
@@ -467,6 +464,7 @@ require "../complements/begin_page.php";
                    <div class="row">
                     <div class="col-md-12">
                       <div class="form-group"><br>
+                        <input type="text" name="ferias_acao" style="display:none" value="Inserir" style="display:none">
                         <button type="submit" name="ferias_enviar" id="cad-ferias-btn" value="Cadastrar" class="btn btn-outline-success" style="width: 100%;"><b>Cadastrar Férias</b></button><br>
                       </div>
                     </div>

@@ -109,7 +109,7 @@ $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
                   <i class="fa fa-bell-o"></i>
                   <p>
                     <span class="d-lg-none d-md-block">Notificações</span>
-                    <span class="badge badge-light">5</span>
+                    <span class="badge badge-light"><?php echo $row_notificacao['count(id)']; ?></span>
                   </p>
                 </a>
               </li>
@@ -131,11 +131,6 @@ $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
           </div>
         </div>
       </nav>
-      <script>
-function myFunction() {
-    alert("Conta excluida com sucesso!");
-}
-</script>
       <!-- End Navbar -->
       <div class="panel-header panel-header-sm">
       </div>
@@ -237,6 +232,9 @@ function myFunction() {
                       <th>
                         Observação
                       </th>
+                      <th>
+                        Editar
+                      </th>
                     </thead>
                     <tbody>
                     <?php  while ($row_recisoes = mysqli_fetch_assoc($resultado_recisoes)){ ?>
@@ -273,16 +271,10 @@ function myFunction() {
                         </td>
                         
                         <td>
-                          <form action="editar-rescisoes">
-                            <button class="btn btn-primary btn-sm" title="Editar Vendedor"><i class=" fa fa-edit"></i></button>
-                          <input class="w3-input w3-border" name="cpf" style="display:none" type="text" value="<?php echo $row_recisoes['id'];?>" >
-                        </form>
-                        </td>
-                        <td>
-                          <form action="" method="get">
-                          <button name="excluir" onclick="myFunction()" class="btn btn-danger btn-sm"><i class=" fa fa-trash"></i></button>
-                            <input type="text" style="display:none" value="<?php echo $row_recisoes['id'];?>" name="cpf">
-                        </form>
+                        <form action="editar-rescisoes.php" method="POST">
+                            <button class="btn btn-primary btn-sm" title="Editar"><i class=" fa fa-edit"></i></button>
+                            <input type="text" name="id_item_selecionado" style="display:none" value="<?php echo $row_recisoes['id'];?>">
+                          </form>
                         </td>
                       </tr>
                     <?php } ?>

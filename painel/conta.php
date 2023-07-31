@@ -105,7 +105,7 @@ require "../complements/begin_page.php";
                   <i class="fa fa-bell-o"></i>
                   <p>
                     <span class="d-lg-none d-md-block">Notificações</span>
-                    <span class="badge badge-light">5</span>
+                    <span class="badge badge-light"><?php echo $row_notificacao['count(id)']; ?></span>
                   </p>
                 </a>
               </li>

@@ -2,11 +2,16 @@
 //Puxando Info do Usuário
 include_once "../complements/inicio_php.php";
 
-//Carregando Consultas SQL da pagina
-//require "../complements/inicio_inserir.php";
-
 //Carregando o inicio da pagina
 require "../complements/begin_page.php";
+
+//Verificando se tem o item selecionado
+if ($_POST['id_item_selecionado'] == "") {
+	header("location:ferias.php");
+}
+
+//Recebendo ID do item selecionado
+$id_item_selecionado = $_POST['id_item_selecionado'];
 
 ?>
 
@@ -93,7 +98,7 @@ require "../complements/begin_page.php";
                   <i class="fa fa-bell-o"></i>
                   <p>
                     <span class="d-lg-none d-md-block">Notificações</span>
-                    <span class="badge badge-light">5</span>
+                    <span class="badge badge-light"><?php echo $row_notificacao['count(id)']; ?></span>
                   </p>
                 </a>
               </li>

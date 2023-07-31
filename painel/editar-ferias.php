@@ -2,11 +2,28 @@
 //Puxando Info do Usuário
 include_once "../complements/inicio_php.php";
 
-//Carregando Consultas SQL da pagina
-//require "../complements/inicio_inserir.php";
-
 //Carregando o inicio da pagina
 require "../complements/begin_page.php";
+
+//Verificando se tem o item selecionado
+if ($_POST['id_item_selecionado'] == "") {
+	header("location:ferias.php");
+}
+
+//Recebendo Informacoes do item selecionado
+$id_item_selecionado = $_POST['id_item_selecionado'];
+$id_funcionario_selecionado = $_POST['id_funcionario_selecionado'];
+$id_empresa_selecionado = $_POST['id_empresa_selecionado'];
+
+//Select das ferias escolhidas
+$pesquisa_ferias = "SELECT * FROM acessos_ferias WHERE id =".$id_item_selecionado.";";
+$resultado_ferias = mysqli_query($conn, $pesquisa_ferias);
+$row_ferias = mysqli_fetch_assoc($resultado_ferias);
+
+//parte valida a data para inserir no input type="date" YYYY-MM-DD
+$data_inicio = substr($row_ferias['data_inicio'],0,10);
+$data_fim = substr($row_ferias['data_fim'],0,10);
+
 
 ?>
 
@@ -93,7 +110,7 @@ require "../complements/begin_page.php";
                   <i class="fa fa-bell-o"></i>
                   <p>
                     <span class="d-lg-none d-md-block">Notificações</span>
-                    <span class="badge badge-light">5</span>
+                    <span class="badge badge-light"><?php echo $row_notificacao['count(id)']; ?></span>
                   </p>
                 </a>
               </li>
@@ -139,7 +156,7 @@ require "../complements/begin_page.php";
                 <center><h5><i class="fa fa-edit"></i> EDITAR FÉRIAS</h5>
               </div>
               <div class="card-body">
-                <form action="ferias.php" id="cad-ferias-form">                 
+                <form id="cad-ferias-form">              
                   <div class="row">
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
@@ -150,7 +167,7 @@ require "../complements/begin_page.php";
                         <!-- Inicio de uma codição PHP -->
                         <?php 
                         
-                        require "../complements/selects/select_empresa.php";
+                        require "../complements/selects/select_empresa_editar.php";
                         
                         ?>
                         <!-- Fim de uma codição PHP -->
@@ -168,7 +185,7 @@ require "../complements/begin_page.php";
                         <!-- Inicio de uma codição PHP -->
                         <?php 
                         
-                        require "../complements/selects/select_funcionario.php";
+                        require "../complements/selects/select_funcionario_editar.php";
                         
                         ?>
                         <!-- Fim de uma codição PHP -->
@@ -182,13 +199,13 @@ require "../complements/begin_page.php";
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Data Início</label>
-                        <input type="date" name="ferias_data_inicio" class="form-control" required="" >
+                        <input type="date" name="ferias_data_inicio" value="<?php echo $data_inicio ?>" class="form-control" required="" >
                       </div>
                     </div>
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
-                        <label>Quantidade de dias</label>
-                         <input type="number" name="ferias_quantidade_dias" class="form-control" required="" >
+                        <label>Data Final</label>
+                        <input type="date" name="ferias_data_final" value="<?php echo $data_fim ?>" class="form-control" required="" >
                       </div>
                     </div>
                   </div>
@@ -196,7 +213,7 @@ require "../complements/begin_page.php";
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Observação</label>
-                        <input type="text" name="ferias_observacao" class="form-control" >
+                        <input type="text" name="ferias_observacao" value="<?php echo $row_ferias['observacao'] ?>" class="form-control" >
                       </div>
                     </div>
                   </div>
@@ -204,7 +221,14 @@ require "../complements/begin_page.php";
                    <div class="row">
                     <div class="col-md-12">
                       <div class="form-group"><br>
+                      <input type="text" name="ferias_id" style="display:none" value="<?php echo $row_ferias['id'];?>">
+                      <input type="text" name="ferias_acao" style="display:none" value="Editar" style="display:none">
                         <button type="submit" name="ferias_enviar" id="cad-ferias-btn" value="Cadastrar" class="btn btn-outline-success" style="width: 100%;"><b>Confirmar Alterações</b></button><br>
+                        </form>
+                        <form id="cad-ferias-delete-form">
+                          <button type="submit" id="cad-ferias-delete-btn" name="excluir_ferias_enviar" value="Excluir" class="btn btn-danger btn-sm"><b>Excluir</b></button>
+                            <input type="text" name="ferias_id" style="display:none" value="<?php echo $row_ferias['id'];?>">
+                        </form>
                       </div>
                     </div>
                   </div>
@@ -234,13 +258,9 @@ require "../complements/begin_page.php";
 
 <!-- SWEETALERTS dos cadastros-->
   <script src="../js/sweetalert2.js"></script>
-  <script src="../js/custom_empresa.js"></script>
-  <script src="../js/custom_ferias.js"></script>
-  <script src="../js/custom_funcionario.js"></script>
-  <script src="../js/custom_lembrete.js"></script>
-  <script src="../js/custom_ocorrencia.js"></script>
-  <script src="../js/custom_recisao.js"></script>
-  <script src="../js/custom_usuario.js"></script>
+  <script src="../js/custom_ferias_edit.js"></script>
+  <script src="../js/custom_ferias_delete.js"></script>
+
 
 <!-- MASCARA DE DINHEIRO -->
    <script type="text/javascript">

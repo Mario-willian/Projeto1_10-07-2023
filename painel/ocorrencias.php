@@ -110,7 +110,7 @@ $resultado_ocorrencias = mysqli_query($conn, $pesquisa_ocorrencias);
                   <i class="fa fa-bell-o"></i>
                   <p>
                     <span class="d-lg-none d-md-block">Notificações</span>
-                    <span class="badge badge-light">5</span>
+                    <span class="badge badge-light"><?php echo $row_notificacao['count(id)']; ?></span>
                   </p>
                 </a>
               </li>
@@ -234,7 +234,7 @@ function myFunction() {
                         Arquivo
                       </th>
                       <th>
-                        
+                        Editar
                       </th>
                       <th>
                         
@@ -269,15 +269,9 @@ function myFunction() {
                         </td>
                         
                         <td>
-                          <form action="editar-ocorrencias">
+                        <form action="editar-ocorrencias.php" method="POST">
                             <button class="btn btn-primary btn-sm" title="Editar"><i class=" fa fa-edit"></i></button>
-                   
-                        </form>
-                        </td>
-                        <td>
-                          <form action="" method="get">
-                            <button name="excluir" onclick="myFunction()" class="btn btn-danger btn-sm"><i class=" fa fa-trash"></i></button>
-                            <input type="text" style="display:none" value="<?php echo $row_ocorrencias['id'];?>" name="cpf">
+                            <input type="text" name="id_item_selecionado" style="display:none" value="<?php echo $row_ocorrencias['id'];?>">
                         </form>
                         </td>
                       </tr>

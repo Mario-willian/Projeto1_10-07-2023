@@ -5,6 +5,17 @@ include_once "../complements/inicio_php.php";
 //Carregando o inicio da pagina
 require "../complements/begin_page.php";
 
+//Select para listar Notificações
+$pesquisa_notificacao_resultado = "SELECT * FROM logs where usuarios_id = ".$_SESSION["id_usuario_login"]['id']." AND status = 'Ativo' ORDER BY data_criacao DESC LIMIT 30;";
+$resultado_notificacao_resultado = mysqli_query($conn, $pesquisa_notificacao_resultado);
+
+//Exclusao da Notificacao
+if(isset($_GET['deletar'])){
+  $id_notificacao = $_GET['deletar'];
+  $excluir_notificacao = "UPDATE logs SET status = 'Inativo' WHERE id = ".$id_notificacao.";";
+  $enviar_exclusao_notificacao = mysqli_query($conn, $excluir_notificacao);
+  header("location:notificacoes.php");
+}
 ?>
 
 <body class="">
@@ -105,7 +116,7 @@ require "../complements/begin_page.php";
                   <i class="fa fa-bell"></i>
                   <p>
                     <span class="d-lg-none d-md-block">Notificações</span>
-                    <span class="badge badge-light">5</span>
+                    <span class="badge badge-light"><?php echo $row_notificacao['count(id)']; ?></span>
                   </p>
                 </a>
               </li>
@@ -148,84 +159,25 @@ require "../complements/begin_page.php";
   <div class="container">
     <div class="row">
 
-    <div class="col-sm-12">
-        <div class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
-          <button type="button" class="close font__size-18" data-dismiss="alert">
-									<span aria-hidden="true">
-										<i class="fa fa-times danger "></i>
-									</span>
-									<span class="sr-only">Fechar</span>
-								</button>
-          <i class="start-icon far fa-times-circle faa-pulse animated"></i>
-          <strong class="font__weight-semibold">O funcionário X da loja Y recebeu uma ocorrência por MOTIVO no dia DATA</strong>
-        </div>
-      </div>
 
+    <!--Loop para listar notifições-->
+    <?php  while ($row_notificacao_resultado = mysqli_fetch_assoc($resultado_notificacao_resultado)){ ?>
+      
       <div class="col-sm-12">
-        <div class="alert fade alert-simple alert-success alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show">
-          <button type="button" class="close font__size-18" data-dismiss="alert">
-									<span aria-hidden="true"><a>
-                    <i class="fa fa-times greencross"></i>
-                    </a></span>
-									<span class="sr-only">Fechar</span> 
-								</button>
-          <i class="start-icon far fa-check-circle faa-tada animated"></i>
-         <strong class="font__weight-semibold">Funcionário Mário William da Silva foi Cadastrado com Sucesso na loja Rio Branco!</strong>
+        <div class="alert fade alert-simple alert-<?php echo $row_notificacao_resultado['cor'] ?> alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
+          <form action="../classes/deletes/notificacao.php" method="POST">
+          <a href="?deletar=<?php echo $row_notificacao_resultado["id"]?>" class="close font__size-18">
+            <span  aria-hidden="true"><i class="fa fa-times danger"></i></span>
+            <span class="sr-only">Fechar</span>
+          </a>
+          <i class="start-icon <?php echo $row_notificacao_resultado['icone'];?> animated"></i><!-- faa-bounce (animação para cima)-->
+          <strong class="font__weight-semibold"><?php echo $row_notificacao_resultado['tarefa_executada'];?></strong>
+          </form>
         </div>
       </div>
       
+    <?php } ?>
 
-      <div class="col-sm-12">
-        <div class="alert fade alert-simple alert-info alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
-          <button type="button" class="close font__size-18" data-dismiss="alert">
-									<span aria-hidden="true">
-										<i class="fa fa-times blue-cross"></i>
-									</span>
-									<span class="sr-only">Fechar</span>
-								</button>
-          <i class="start-icon  fa fa-info-circle faa-shake animated"></i>
-          <strong class="font__weight-semibold">Você tem um lembrete importante a fazer!</strong>
-        </div>
-
-      </div>
-
-      <div class="col-sm-12">
-        <div class="alert fade alert-simple alert-warning alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
-          <button type="button" class="close font__size-18" data-dismiss="alert">
-									<span aria-hidden="true">
-										<i class="fa fa-times warning"></i>
-									</span>
-									<span class="sr-only">Fechar</span>
-								</button>
-          <i class="start-icon fa fa-exclamation-triangle faa-flash animated"></i>
-          <strong class="font__weight-semibold">O funcionário X da loja Y está de férias do dia 21/07/2023 até 11/08/2023</strong>
-        </div>
-      </div>
-
-      <div class="col-sm-12">
-        <div class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
-          <button type="button" class="close font__size-18" data-dismiss="alert">
-									<span aria-hidden="true">
-										<i class="fa fa-times danger "></i>
-									</span>
-									<span class="sr-only">Fechar</span>
-								</button>
-          <i class="start-icon far fa-times-circle faa-pulse animated"></i>
-          <strong class="font__weight-semibold">O funcionário X foi desligado da loja Y</strong>
-        </div>
-      </div>
-
-      <div class="col-sm-12">
-        <div class="alert fade alert-simple alert-primary alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
-          <button type="button" class="close font__size-18" data-dismiss="alert">
-									<span  aria-hidden="true"><i class="fa fa-times alertprimary"></i></span>
-									<span class="sr-only">Fechar</span>
-								</button>
-          <i class="start-icon fa fa-edit faa-tada animated"></i><!-- faa-bounce (animação para cima)-->
-          <strong class="font__weight-semibold">Seus dados foram editados com sucesso!</strong>
-        </div>
-
-      </div>
 
     </div>
   </div>
