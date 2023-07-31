@@ -128,15 +128,15 @@ require "../complements/begin_page.php";
       <div class="content">
         <div class="row">
           <div class="col-md-6">
-            <div class="card">
-              <div class="card-header"><br><br>
-                <center><h5><i class="fa fa-warning "></i> INSERIR OCORRÊNCIA</h5>
+            <div class="card card-user">
+            <div class="image">
               </div>
               <div class="card-body">
+                <div class="author">
+                  <H5><i class="fa fa-warning "></i> INSERIR OCORRÊNCIA</H5>
+                </div>
                 <form id="cad-ocorrencia-form" enctype="multipart/form-data">
-                  <div class="row">
-                    
-                  </div>
+                  
                   <div class="row">
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
@@ -212,7 +212,7 @@ require "../complements/begin_page.php";
                         <label>Arquivo</label>
                            <div class="custom-file">
                            <input type="file" name="ocorrencia_arquivo[]" class="custom-file-input" id="arquivo" multiple="multiple">
-                           <label class="custom-file-label" for="arquivo"><i class="  fa fa-file fa-lg fa-fw" aria-hidden="true"></i> Este campo não é obrigatório</label>
+                           <label class="custom-file-label" for="arquivo"><i class="fa fa-file fa-lg fa-fw" aria-hidden="true"></i> Este campo não é obrigatório</label>
                           </div>
                       </div>
                     </div>
@@ -262,7 +262,8 @@ require "../complements/begin_page.php";
               <div class="card-body">
                 <div class="author">
                   <H5><i class="fa fa-close "></i> INSERIR RESCISÃO</H5>
-                </div><form id="cad-recisao-form">
+                </div>
+                <form id="cad-recisao-form">
                 <div class="row">
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
@@ -394,11 +395,13 @@ require "../complements/begin_page.php";
       <div class="content">
         <div class="row">
           <div class="col-md-6">
-            <div class="card">
-              <div class="card-header"><br><br>
-                <center><h5><i class="fa fa-plane"></i> INSERIR FÉRIAS</h5>
+            <div class="card card-user">
+            <div class="image">
               </div>
               <div class="card-body">
+                <div class="author">
+                  <H5><i class="fa fa-plane"></i> INSERIR FÉRIAS </H5>
+                </div>
                 <form id="cad-ferias-form">                 
                   <div class="row">
                     <div class="col-md-6 pr-1">
@@ -483,7 +486,7 @@ require "../complements/begin_page.php";
               <div class="card-body">
                 <div class="author">
                   <H5><i class="fa fa-tags"></i> INSERIR LEMBRETE </H5>
-                </div><br>
+                </div>
                 <form id="cad-lembrete-form">
                  <div class="row">
                     
@@ -504,7 +507,13 @@ require "../complements/begin_page.php";
                     <div class="col-md-12 ">
                       <div class="form-group">
                       <label>Prazo</label>
-                      <input type="date" name="lembrete_data_prazo" class="form-control" required="" >
+                      <input type="date" id="no-spin"   min=""  name="lembrete_data_prazo" class="form-control data" required="" >
+                      <!-- BLOQUEAR DATAS PASSADAS  / impedir de digitar -> onkeypress="return false"-->
+                      <script>
+                        var today = new Date().toISOString().split('T')[0];
+                        document.getElementsByName("lembrete_data_prazo")[0].setAttribute('min', today);                      
+                      </script>
+
                       </div>
                     </div>
                   </div>
@@ -536,7 +545,7 @@ require "../complements/begin_page.php";
  <!-- INICIO DIV -->
       <div class="content">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-12">
             <div class="card">
               <div class="card-header"><br><br>
                 <center><h5><i class="fa fa-user-plus"></i> CADASTRAR FUNCIONÁRIO</h5>
@@ -740,6 +749,8 @@ require "../complements/begin_page.php";
               </div>
             </div>
           </div>
+
+
       <div class="col-md-6">
           <div class="card card-user">
             <div class="image">
@@ -748,24 +759,26 @@ require "../complements/begin_page.php";
                 <div class="author">
                   <H5><i class="fa fa-user-secret"></i>  CADASTRAR USUÁRIO ADMINISTRATIVO </H5>
                 </div><form id="cad-usuario-form">
-                 <div class="row"><div class="col-md-12">
-                    <div class="col-md-8">
-                      <div class="form-group">
-                        <center><label>Nome</label>
-                        <input type="text" name="usuario_nome" class="form-control"  maxlength="80" required="" >
-                      </div>
-                       </div>
+                 <div class="row">
+                 <div class="col-md-12">
                       <center>
                     <div class="col-md-8">
                       <div class="form-group">
-                        <center><label>E-mail</label>
-                        <input type="text" name="usuario_email" class="form-control" maxlength="80" required="" >
+                        <label>Nome</label>
+                        <input type="text" name="usuario_nome" class="form-control textcenter"  maxlength="80" required="" >
+                      </div>
+                      </div>
+                      <center>
+                    <div class="col-md-8">
+                      <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="text" name="usuario_email" class="form-control textcenter" maxlength="80" required="" >
                       </div>
                     </div>
                     <div class="col-md-8">
                       <div class="form-group">
                         <center><label>Senha</label>
-                        <input type="password" name="usuario_senha" id="myInput" class="form-control"  maxlength="18" required="" ></center>
+                        <input type="password" name="usuario_senha" id="myInput" class="form-control textcenter"  maxlength="18" required="" ></center>
                         <div class="custom-control custom-checkbox mb-3"><br>
                           <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
                           <label class="custom-control-label" for="customCheck" onclick="myFunction()">Mostrar senha</label>
@@ -822,8 +835,7 @@ require "../complements/begin_page.php";
 
               </div>
             </div>
-          </div> 
- <!-- FIM DIV -->
+       
  
 
       <div class="col-md-6">
@@ -832,34 +844,37 @@ require "../complements/begin_page.php";
               </div>
               <div class="card-body">
                 <div class="author">
-                  <H5><i class="fa fa-check"></i> Cadastrar Empresa </H5>
-                </div><br>
-                <form id="cad-empresa-form">
-                 <div class="row">
-                    
-                    <div class="col-md-12">
+                  <H5><i class="fa fa-check"></i> CADASTRAR EMPRESA </H5>
+                </div>
+                <form id="cad-empresa-form"><center>
+       
+                    <div class="col-md-8">
                       <div class="form-group">
                         <label>Nome da Loja</label>
-                        <input type="text" name="empresa_nome_loja" maxlength="80" class="form-control" required="" >
+                        <input type="text" name="empresa_nome_loja" maxlength="80" class="form-control textcenter" required="" >
                       </div>
                     </div>
-                  </div>
-                  <div class="row">                
-                    <div class="col-md-12 ">
+             
+                    <div class="col-md-8 ">
                       <div class="form-group">
                       <label>Razão Social</label>
-                      <input type="text" name="empresa_razao_social" maxlength="80" class="form-control" required="" >
+                      <input type="text" name="empresa_razao_social" maxlength="80" class="form-control textcenter" required="" >
                       </div>
                     </div>
-                  </div>
-                  <div class="row">                
-                    <div class="col-md-12 ">
+              
+                    <div class="col-md-8 ">
                       <div class="form-group">
                         <label>CNPJ</label>
-                         <input type="text" name="empresa_cnpj"  maxlength="18" class="form-control" required="" >
+                         <input type="text" name="empresa_cnpj" id="produto-1-cnpj"  maxlength="18" class="form-control textcenter" required="" >
+                         <!-- MÁSCARA CNPJ-->
+                         <script>
+                              document.getElementById('produto-1-cnpj').addEventListener('input', function (e) {
+                                var x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,3})(\d{0,3})(\d{0,4})(\d{0,2})/);
+                                e.target.value = !x[2] ? x[1] : x[1] + '.' + x[2] + '.' + x[3] + '/' + x[4] + (x[5] ? '-' + x[5] : '');
+                              });
+                        </script>
                       </div>
                     </div>
-                  </div>
 
 
                   <center>
