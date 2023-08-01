@@ -7,11 +7,22 @@ require "../complements/begin_page.php";
 
 //Verificando se tem o item selecionado
 if ($_POST['id_item_selecionado'] == "") {
-	header("location:ferias.php");
+	header("location:rescisoes.php");
 }
 
 //Recebendo ID do item selecionado
 $id_item_selecionado = $_POST['id_item_selecionado'];
+$id_funcionario_selecionado = $_POST['id_funcionario_selecionado'];
+$id_empresa_selecionado = $_POST['id_empresa_selecionado'];
+
+//Select das Recisao escolhidas
+$pesquisa_recisao = "SELECT * FROM acessos_recisoes WHERE id =".$id_item_selecionado.";";
+$resultado_recisao = mysqli_query($conn, $pesquisa_recisao);
+$row_recisao = mysqli_fetch_assoc($resultado_recisao);
+
+//parte valida a data para inserir no input type="date" YYYY-MM-DD
+$data_inicio_aviso = substr($row_recisao['data_inicio_aviso'],0,10);
+$data_fim_aviso = substr($row_recisao['data_fim_aviso'],0,10);
 
 ?>
 
@@ -144,12 +155,12 @@ $id_item_selecionado = $_POST['id_item_selecionado'];
                 <center><h5><i class="fa fa-edit"></i> EDITAR RESCISÕES</h5>
               </div>
               <div class="card-body">
-              <form id="cad-recisao-form">
+              <form method="POST" action="../classes/alter/recisao.php">
                 <div class="row">
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
-                        <label>Data</label>
-                        <input type="date" name="recisao_data" class="form-control" required="" >
+                        <label>Data Inicio do Aviso</label>
+                        <input type="date" name="recisao_data_inicio_aviso" value="<?php echo $data_inicio_aviso?>" class="form-control" required="" >
                       </div>
                     </div>
                   
@@ -162,7 +173,7 @@ $id_item_selecionado = $_POST['id_item_selecionado'];
                         <!-- Inicio de uma codição PHP -->
                         <?php 
                         
-                        require "../complements/selects/select_empresa.php";
+                        require "../complements/selects/select_empresa_editar.php";
                         
                         ?>
                         <!-- Fim de uma codição PHP -->
@@ -183,7 +194,7 @@ $id_item_selecionado = $_POST['id_item_selecionado'];
                         <!-- Inicio de uma codição PHP -->
                         <?php 
                         
-                        require "../complements/selects/select_funcionario.php";
+                        require "../complements/selects/select_funcionario_editar.php";
                         
                         ?>
                         <!-- Fim de uma codição PHP -->
@@ -197,11 +208,17 @@ $id_item_selecionado = $_POST['id_item_selecionado'];
                       <div class="form-group">
                         <label>Motivo</label>
                         <select name="recisao_motivo" class="form-control">
-                          <option value="Término de Contrato">Término de Contrato</option>
-                          <option value="Término de Contrato Antecipado">Término de Contrato Antecipado</option>
-                          <option value="Aviso">Aviso</option>
-                          <option value="Dispensa">Dispensa</option>
-                          <option value="Pedido de Demissão">Pedido de Demissão</option>
+
+                        <!-- Inicio de uma codição PHP -->
+                        <?php 
+                        
+                        require "../complements/selects/select_motivo_recisao_editar.php";
+                        
+                        ?>
+                        <!-- Fim de uma codição PHP -->
+
+                        
+                          
                         </select>
                       </div>
                     </div>         
@@ -212,9 +229,13 @@ $id_item_selecionado = $_POST['id_item_selecionado'];
                       <div class="form-group">
                         <label>Tipo</label>
                         <select name="recisao_tipo" class="form-control">
-                          <option value="Normal">Normal</option>
-                          <option value="Acordo">Acordo</option>
-                          <option value="Justiça">Justiça</option>
+                          <!-- Inicio de uma codição PHP -->
+                        <?php 
+                        
+                        require "../complements/selects/select_tipo_recisao_editar.php";
+                        
+                        ?>
+                        <!-- Fim de uma codição PHP -->
                         </select>
                       </div>
                     </div> 
@@ -222,8 +243,13 @@ $id_item_selecionado = $_POST['id_item_selecionado'];
                       <div class="form-group">
                        <label>Exame Demissional</label>
                          <select name="recisao_exame_demissional" class="form-control">
-                          <option value="Não">Não</option>
-                           <option value="Sim">Sim</option>
+                          <!-- Inicio de uma codição PHP -->
+                        <?php 
+                        
+                        require "../complements/selects/select_exame_demissional_recisao_editar.php";
+                        
+                        ?>
+                        <!-- Fim de uma codição PHP -->
                         </select>
                       </div>
                     </div>
@@ -232,17 +258,22 @@ $id_item_selecionado = $_POST['id_item_selecionado'];
                  <div class="row">                 
                      <div class="col-md-6 pr-1">
                       <div class="form-group">
-                        <label>Dias de Aviso</label>
-                       <input type="number" name="recisao_dias_de_aviso" class="form-control">
+                      <label>Status</label>
+                        <select name="recisao_status" class="form-control">
+                          <!-- Inicio de uma codição PHP -->
+                        <?php 
+                        
+                        require "../complements/selects/select_status_recisao_editar.php";
+                        
+                        ?>
+                        <!-- Fim de uma codição PHP -->
+                        </select>
                       </div>
                     </div> 
                      <div class="col-md-6 pl-1">
-                      <div class="form-group">
-                      <label>Status</label>
-                        <select name="recisao_status" class="form-control">
-                          <option value="Pago">Pago</option>
-                          <option value="Pendente">Pendente</option>
-                        </select>
+                     <div class="form-group">
+                        <label>Data Final do Aviso</label>
+                        <input type="date" name="recisao_data_final_aviso" value="<?php echo $data_fim_aviso?>" class="form-control" required="" >
                       </div>
                     </div> 
                  </div>
@@ -251,7 +282,7 @@ $id_item_selecionado = $_POST['id_item_selecionado'];
                     <div class="col-md-12">
                       <div class="form-group"> 
                         <label>Observação</label>
-                        <input type="text" name="recisao_observacao" class="form-control">
+                        <input type="text" name="recisao_observacao" value="<?php echo $row_recisao['observacao'] ?>" class="form-control">
                       </div>
                     </div>
                   </div>
@@ -261,7 +292,13 @@ $id_item_selecionado = $_POST['id_item_selecionado'];
                     <div class="col-md-12">
                       <div class="form-group"><br>
                         <button type="submit" name="recisao_enviar" id="cad-recisao-btn" value="Cadastrar" class="btn btn-outline-success" style="width: 100%;"><b>Confirmar Alterações</b></button><br>
-                      </div>
+                        <input type="text" name="recisao_id" style="display:none" value="<?php echo $row_recisao['id'];?>">
+                          </form>  
+                          <form method="POST" action="../classes/deletes/recisao.php">
+                          <button type="submit" id="cad-recisao-delete-btn" name="excluir_recisao_enviar" value="Excluir" class="btn btn-danger btn-sm"><b>Excluir</b></button>
+                            <input type="text" name="recisao_id" style="display:none" value="<?php echo $row_recisao['id'];?>">
+                        </form>
+                    </div>
                     </div>
                   </div>
                </div>

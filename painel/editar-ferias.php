@@ -156,7 +156,7 @@ $data_fim = substr($row_ferias['data_fim'],0,10);
                 <center><h5><i class="fa fa-edit"></i> EDITAR FÉRIAS</h5>
               </div>
               <div class="card-body">
-                <form id="cad-ferias-form">              
+                <form method="POST" action="../classes/alter/ferias.php">              
                   <div class="row">
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
@@ -222,10 +222,9 @@ $data_fim = substr($row_ferias['data_fim'],0,10);
                     <div class="col-md-12">
                       <div class="form-group"><br>
                       <input type="text" name="ferias_id" style="display:none" value="<?php echo $row_ferias['id'];?>">
-                      <input type="text" name="ferias_acao" style="display:none" value="Editar" style="display:none">
                         <button type="submit" name="ferias_enviar" id="cad-ferias-btn" value="Cadastrar" class="btn btn-outline-success" style="width: 100%;"><b>Confirmar Alterações</b></button><br>
                         </form>
-                        <form id="cad-ferias-delete-form">
+                        <form method="POST" action="../classes/deletes/ferias.php">
                           <button type="submit" id="cad-ferias-delete-btn" name="excluir_ferias_enviar" value="Excluir" class="btn btn-danger btn-sm"><b>Excluir</b></button>
                             <input type="text" name="ferias_id" style="display:none" value="<?php echo $row_ferias['id'];?>">
                         </form>

@@ -267,8 +267,8 @@ require "../complements/begin_page.php";
                 <div class="row">
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
-                        <label>Data</label>
-                        <input type="date" name="recisao_data" class="form-control" required="" >
+                      <label>Data Inicio de Aviso</label>
+                       <input type="date" name="recisao_data_inicio_aviso" required class="form-control">
                       </div>
                     </div>
                   
@@ -351,17 +351,17 @@ require "../complements/begin_page.php";
                  <div class="row">                 
                      <div class="col-md-6 pr-1">
                       <div class="form-group">
-                        <label>Dias de Aviso</label>
-                       <input type="number" name="recisao_dias_de_aviso"  maxlength="5" class="form-control">
-                      </div>
-                    </div> 
-                     <div class="col-md-6 pl-1">
-                      <div class="form-group">
                       <label>Status</label>
                         <select name="recisao_status" class="form-control">
                           <option value="Pago">Pago</option>
                           <option value="Pendente">Pendente</option>
                         </select>
+                      </div>
+                    </div> 
+                     <div class="col-md-6 pl-1">
+                      <div class="form-group">
+                      <label>Data Final de Aviso</label>
+                       <input type="date" name="recisao_data_final_aviso" required class="form-control">
                       </div>
                     </div> 
                  </div>
@@ -703,7 +703,7 @@ require "../complements/begin_page.php";
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Valor do Vale Transporte</label>
-                        <input size="10" maxlength="10" onkeydown="FormataMoeda(this,10,event)" onkeypress="return maskKeyPress(event)" type="text" name="funcionario_valor_vale_transporte" class="form-control" required="" placeholder="Valor do Vale Transporte" >
+                        <input size="10" maxlength="10" onkeydown="FormataMoeda(this,10,event)" onkeypress="return maskKeyPress(event)" type="text" name="funcionario_valor_vale_transporte" class="form-control" placeholder="Valor do Vale Transporte" >
                       </div>
                     </div>
                     <div class="col-md-6 pl-1">
@@ -750,7 +750,7 @@ require "../complements/begin_page.php";
             </div>
           </div>
 
-
+<!--
       <div class="col-md-6">
           <div class="card card-user">
             <div class="image">
@@ -810,17 +810,18 @@ require "../complements/begin_page.php";
                                         </tr>
                                       </thead>
                                       <tbody>
+                        -->
 
 
                                       <!-- Inicio de uma codição PHP -->
                                       <?php 
 
-                                      require "../complements/selects/select_empresa2.php";
+                                      //require "../complements/selects/select_empresa2.php";
 
                                       ?>
                                       <!-- Fim de uma codição PHP -->
 
-                                        
+                                        <!--
                                       </tbody>
                                     </table>
                                 </div>
@@ -866,7 +867,9 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>CNPJ</label>
                          <input type="text" name="empresa_cnpj" id="produto-1-cnpj"  maxlength="18" class="form-control textcenter" required="" >
+                        -->
                          <!-- MÁSCARA CNPJ-->
+                          <!--
                          <script>
                               document.getElementById('produto-1-cnpj').addEventListener('input', function (e) {
                                 var x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,3})(\d{0,3})(\d{0,4})(\d{0,2})/);
@@ -891,16 +894,16 @@ require "../complements/begin_page.php";
                             </thead>
                             <tbody>
 
-
+                            -->
                             <!-- Inicio de uma codição PHP -->
                             <?php 
 
-                            require "../complements/selects/select_usuario.php";
+                            //require "../complements/selects/select_usuario.php";
 
                             ?>
                             <!-- Fim de uma codição PHP -->
 
-                                        
+                                        <!--
                             </tbody>
                           </table>
                         </div>
@@ -922,8 +925,8 @@ require "../complements/begin_page.php";
                </div>
               </div>
             </div>
-          </div>  <!-- FIM DIV -->
-
+          </div>  --><!-- FIM DIV -->
+                            
 
                   <!-- FIM -->
                </div>

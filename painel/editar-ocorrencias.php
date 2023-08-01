@@ -7,12 +7,21 @@ require "../complements/begin_page.php";
 
 //Verificando se tem o item selecionado
 if ($_POST['id_item_selecionado'] == "") {
-	header("location:ferias.php");
+	header("location:ocorrencias.php");
 }
-
 
 //Recebendo ID do item selecionado
 $id_item_selecionado = $_POST['id_item_selecionado'];
+$id_funcionario_selecionado = $_POST['id_funcionario_selecionado'];
+$id_empresa_selecionado = $_POST['id_empresa_selecionado'];
+
+//Select das Ocorrenia escolhidas
+$pesquisa_ocorrencia = "SELECT * FROM acessos_ocorrencias WHERE id =".$id_item_selecionado.";";
+$resultado_ocorrencia = mysqli_query($conn, $pesquisa_ocorrencia);
+$row_ocorrencia = mysqli_fetch_assoc($resultado_ocorrencia);
+
+//parte valida a data para inserir no input type="date" YYYY-MM-DD
+$data_criacao = substr($row_ocorrencia['data_criacao'],0,10);
 
 
 
@@ -146,7 +155,7 @@ $id_item_selecionado = $_POST['id_item_selecionado'];
                 <center><h5><i class="fa fa-edit "></i> EDITAR OCORRÊNCIA</h5>
               </div>
               <div class="card-body">
-                <form id="cad-ocorrencia-form" enctype="multipart/form-data">
+                <form method="POST" action="../classes/alter/ocorrencia.php">
                   <div class="row">
                     
                   </div>
@@ -154,7 +163,7 @@ $id_item_selecionado = $_POST['id_item_selecionado'];
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Data</label>
-                        <input type="date" name="ocorrencia_data" maxlength="100" class="form-control" required="" placeholder="Nome" >
+                        <input type="date" name="ocorrencia_data" value="<?php echo $data_criacao ?>"  class="form-control" required="" placeholder="Nome" >
                       </div>
                     </div>
                     <div class="col-md-6 pl-1">
@@ -166,7 +175,7 @@ $id_item_selecionado = $_POST['id_item_selecionado'];
                         <!-- Inicio de uma codição PHP -->
                         <?php 
                         
-                        require "../complements/selects/select_empresa.php";
+                        require "../complements/selects/select_empresa_editar.php";
                         
                         ?>
                         <!-- Fim de uma codição PHP -->
@@ -186,7 +195,7 @@ $id_item_selecionado = $_POST['id_item_selecionado'];
                         <!-- Inicio de uma codição PHP -->
                         <?php 
                         
-                        require "../complements/selects/select_funcionario.php";
+                        require "../complements/selects/select_funcionario_editar.php";
                         
                         ?>
                         <!-- Fim de uma codição PHP -->
@@ -199,34 +208,17 @@ $id_item_selecionado = $_POST['id_item_selecionado'];
                       <div class="form-group">
                         <label>Motivo</label>
                            <select name="ocorrencia_motivo" class="form-control">
-                          <option value="Advertencia">Advertência</option>
-                          <option value="Atestado">Atestado</option>
-                          <option value="Atestado de Óbito">Atestado de Óbito</option>
-                          <option value="Erro Operacional">Erro Operacional</option>
-                          <option value="Falta Injustificada">Falta Injustificada</option>
-                          <option value="Reembolso">Reembolso</option>
-                          <option value="Hora Extra">Hora Extra</option>
-                          <option value="Afastamento INSS">Afastamento INSS</option>
-                          <option value="Licença Maternidade">Licença Maternidade</option>
-                          <option value="Licença Parternidade">Licença Parternidade</option>
-                          <option value="Meta">Meta</option>
-                          <option value="Quebra de Caixa">Quebra de Caixa</option>
-                          <option value="Segunda Via Cartão">Segunda Via Cartão</option>
-                          <option value="Vale Avulso">Vale Avulso</option>
-                          <option value="Atestado de Comparecimento">Atestado de Comparecimento</option>
-                          <option value="Feriado">Feriado</option>
+
+                            <!-- Inicio de uma codição PHP -->
+                        <?php 
+                        
+                        require "../complements/selects/select_ocorrencias_editar.php";
+                        
+                        ?>
+                        <!-- Fim de uma codição PHP -->
+
+                          
                         </select>
-                      </div>
-                    </div>
-                  </div>
-                <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Arquivo</label>
-                           <div class="custom-file">
-                           <input type="file" name="ocorrencia_arquivo[]" class="custom-file-input" id="arquivo" multiple="multiple">
-                           <label class="custom-file-label" for="arquivo"><i class="  fa fa-file fa-lg fa-fw" aria-hidden="true"></i> Este campo não é obrigatório</label>
-                          </div>
                       </div>
                     </div>
                   </div>
@@ -235,13 +227,13 @@ $id_item_selecionado = $_POST['id_item_selecionado'];
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Quantidade de Faltas</label>
-                       <input type="number" name="ocorrencia_quantidade_faltas" class="form-control" required="" >
+                       <input type="number" name="ocorrencia_quantidade_faltas" value="<?php echo $row_ocorrencia['faltas'] ?>" class="form-control" required="" >
                       </div>
                     </div>
                      <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Valor</label>
-                       <input size="10" maxlength="10" onkeydown="FormataMoeda(this,10,event)" onkeypress="return maskKeyPress(event)" type="text" name="ocorrencia_valor" class="form-control" required="" >
+                       <input size="10" maxlength="10" onkeydown="FormataMoeda(this,10,event)" onkeypress="return maskKeyPress(event)" value="<?php echo $row_ocorrencia['valor'] ?>" type="text" name="ocorrencia_valor" class="form-control" required="" >
                       </div>
                     </div>
                   </div>
@@ -250,7 +242,7 @@ $id_item_selecionado = $_POST['id_item_selecionado'];
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Observação</label>
-                        <input type="text" name="ocorrencia_observacao" class="form-control" >
+                        <input type="text" name="ocorrencia_observacao" value="<?php echo $row_ocorrencia['observacao'] ?>" class="form-control" >
                       </div>
                     </div>
                   </div>
@@ -259,11 +251,16 @@ $id_item_selecionado = $_POST['id_item_selecionado'];
                     <div class="col-md-12">
                       <div class="form-group"><br>
                         <button type="submit" name="ocorrencia_enviar" id="cad-ocorrencia-btn" value="Cadastrar" class="btn btn-outline-success" style="width: 100%;"><b> Confirmar Alterações</b></button><br>
+                        <input type="text" name="ocorrencia_id" style="display:none" value="<?php echo $row_ocorrencia['id'];?>">
+                      <input type="text" name="ocorrencia_acao" style="display:none" value="Editar" style="display:none">
+                          </form>  
+                          <form method="POST" action="../classes/deletes/ocorrencia.php">
+                          <button type="submit" id="cad-ocorrencia-delete-btn" name="excluir_ocorrencia_enviar" value="Excluir" class="btn btn-danger btn-sm"><b>Excluir</b></button>
+                            <input type="text" name="ocorrencia_id" style="display:none" value="<?php echo $row_ocorrencia['id'];?>">
+                        </form>
                       </div>
                     </div>
                   </div>
-
-                </form>
               </div>
             </div>
           </div>

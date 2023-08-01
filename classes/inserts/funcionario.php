@@ -22,16 +22,16 @@ $funcionario_nome_mae = $dados['funcionario_nome_mae'];
 $funcionario_observacao = "";
 $funcionario_observacao = $dados['funcionario_observacao'];
 
-//Recebendo a data Atual
-$data_criacao = date('Y-m-d H:i:s');
-
 //'ADDSLASHER' para nao conflitar as aspas com o banco
 $funcionario_observacao = addslashes($funcionario_observacao);
 
-//Convertendo Valores no padrão do Banco de dados
+
+//Recebendo a data Atual
+$data_criacao = date('Y-m-d H:i:s');
+
 $format = numfmt_create('pt_BR', NumberFormatter::DECIMAL);
-$funcionario_valor_vale_transporte = numfmt_parse($format, $funcionario_valor_vale_transporte);
 $funcionario_salario = numfmt_parse($format, $funcionario_salario);
+$funcionario_valor_vale_transporte = numfmt_parse($format, $funcionario_valor_vale_transporte);
 
 //Inserir Funcionário
 $inserir_funcionario = "insert into funcionarios(id, cpf, nome_completo, data_nascimento, salario, nome_pai, nome_mae, setor, funcao, observacao, status, data_inicio, data_criacao, empresas_id) values (NULL, '".$funcionario_cpf."', '".$funcionario_nome."', '".$funcionario_data_nascimento."', '".$funcionario_salario."', '".$funcionario_nome_pai."', '".$funcionario_nome_mae."', '".$funcionario_setor."', '".$funcionario_funcao."','".$funcionario_observacao."', '".$funcionario_status."', '".$funcionario_data_de_inicio."', '".$data_criacao."', '".$funcionario_empresa."');";

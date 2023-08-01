@@ -5,12 +5,30 @@ include_once "../complements/inicio_php.php";
 //Carregando o inicio da pagina
 require "../complements/begin_page.php";
 
+//PAGINACAO
+$pagina = 1;
+if(isset($_GET['pagina'])){
+  $pagina = filter_input(INPUT_GET, "pagina", FILTER_VALIDATE_INT);
+}
+if(!$pagina){
+  $pagina = 1;
+}
+$limite = 10;
+$inicio = ($pagina * $limite) - $limite;
+
+//Select para paginacao
+$pesquisa_funcionario2 = "SELECT count(id_funcionarios) FROM acessos_funcionarios;";
+$resultado_funcionario2 = mysqli_query($conn, $pesquisa_funcionario2);
+$row_funcionario2 = mysqli_fetch_assoc($resultado_funcionario2);
+//PAGINACAO
+$paginas = ceil($row_funcionario2['count(id_funcionarios)'] / $limite);
+
 //Select para Usuarios
 $pesquisa_usuario = "SELECT * FROM acessos_usuarios order by id_usuario DESC;";
 $resultado_usuario = mysqli_query($conn, $pesquisa_usuario);
 
 //Select para Funcionarios
-$pesquisa_funcionario = "SELECT * FROM acessos_funcionarios order by id_funcionarios DESC;";
+$pesquisa_funcionario = "SELECT * FROM acessos_funcionarios order by id_funcionarios DESC LIMIT ".$inicio.", ".$limite.";";
 $resultado_funcionario = mysqli_query($conn, $pesquisa_funcionario);
 
 ?>
@@ -113,7 +131,7 @@ $resultado_funcionario = mysqli_query($conn, $pesquisa_funcionario);
                   <i class="fa fa-bell-o"></i>
                   <p>
                     <span class="d-lg-none d-md-block">Notificações</span>
-                    <span class="badge badge-light">5</span>
+                    <span class="badge badge-light"><?php echo $row_notificacao['count(id)']; ?></span>
                   </p>
                 </a>
               </li>
@@ -145,6 +163,7 @@ function myFunction() {
       </div>
       <div class="content">
         <div class="row">
+          <!--
           <div class="col-md-12">
             <div class="card">
               <div class="card-header"><center>
@@ -166,26 +185,26 @@ function myFunction() {
 
                     </thead>
                     <tbody>
-                    <?php  while ($row_usuario = mysqli_fetch_assoc($resultado_usuario)){ ?>
+                    <?php  //while ($row_usuario = mysqli_fetch_assoc($resultado_usuario)){ ?>
                       <tr>
                         <td>
-                          <?php echo $row_usuario['id_usuario'];?>
+                          <?php //echo $row_usuario['id_usuario'];?>
                         </td>
                         <td>
-                          <?php echo $row_usuario['nome_completo'];?>
+                          <?php //echo $row_usuario['nome_completo'];?>
                         </td>
                         <td>
-                          <?php echo $row_usuario['nome_loja'];?>
+                          <?php //echo $row_usuario['nome_loja'];?>
                         </td>                       
                       </tr>
-                    <?php } ?>
+                    <?php //} ?>
                     </tbody>
                   </table>
                 </div>
               </div>
             </div>
           </div>
-          
+                    -->
                   
           <div class="col-md-12">
             <div class="card">
@@ -283,9 +302,6 @@ function myFunction() {
                         Nome Completo
                       </th>
                       <th>
-                        Status
-                      </th>
-                      <th>
                         CPF
                       </th>
                       <th>
@@ -315,6 +331,9 @@ function myFunction() {
                       <th>
                         Observação
                       </th>
+                      <th>
+                        Editar
+                      </th>
 
                     </thead>
                     <tbody>
@@ -322,9 +341,6 @@ function myFunction() {
                       <tr>
                         <td>
                           <?php echo $row_funcionario['nome_completo'];?>
-                        </td>
-                        <td>
-                          <?php echo $row_funcionario['status'];?>
                         </td>
                         <td>
                           <?php echo $row_funcionario['cpf'];?>
@@ -358,33 +374,42 @@ function myFunction() {
                         </td>
                         
                         <td>
-                          <form action="editar-funcionarios">
+                        <form action="editar-funcionarios.php" method="POST">
                             <button class="btn btn-primary btn-sm" title="Editar"><i class=" fa fa-edit"></i></button>
+                            <input type="text" name="id_item_selecionado" style="display:none" value="<?php echo $row_funcionario['id_funcionarios'];?>">
+                            <input type="text" name="id_empresa_selecionado" style="display:none" value="<?php echo $row_funcionario['empresas_id'];?>">
                         </form>
                         </td>
                         <td>
-                          <form action="" method="get">
-                          <button name="excluir" onclick="myFunction()" class="btn btn-danger btn-sm"><i class=" fa fa-trash"></i></button>
-                            <input type="text" style="display:none" value="<?php echo $row_funcionario['id_funcionarios'];?>" name="cpf">
-                        </form>
                         </td>
                       </tr>
                     <?php } ?>
                     </tbody>
                   </table>
-                  <nav aria-label="Navegação de página exemplo">
-  <ul class="pagination justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="#" tabindex="-1">Anterior</a>
-    </li>
-    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#">Próximo</a>
-    </li>
-  </ul>
-</nav>
+                  <!--<nav aria-label="Navegação de página exemplo">
+                    <ul class="pagination justify-content-center">
+                      <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">Anterior</a>
+                      </li>
+                      <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">Próximo</a>
+                      </li>
+                    </ul>
+                  </nav>-->
+                  <a href="?pagina=1">PRIMEIRA</a>
+                      <?php if($pagina>1): ?>
+                        <a href="?pagina=<?=$pagina-1?>"><<</a>
+                      <?php endif; ?>
+
+                      <?=$pagina?>
+
+                      <?php if($pagina<$paginas): ?>
+                        <a href="?pagina=<?=$pagina+1?>">>></a>
+                      <?php endif; ?>
+                        <a href="?pagina=<?=$paginas?>">ÚLTIMA</a>
                 </div>
               </div>
             </div>
@@ -401,7 +426,11 @@ function myFunction() {
       </footer>
     </div>
   </div>
-  <!--   Core JS Files   -->
+    <!-- SWEETALERTS dos cadastros-->
+    <script src="../js/sweetalert2.js"></script>
+    <script src="../js/custom_funcionario_delete.js"></script>
+    
+    <!--   Core JS Files   -->
   <script src="assets/js/core/jquery.min.js"></script>
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap.min.js"></script>

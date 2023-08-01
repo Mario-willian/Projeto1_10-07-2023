@@ -5,8 +5,26 @@ include_once "../complements/inicio_php.php";
 //Carregando o inicio da pagina
 require "../complements/begin_page.php";
 
+//PAGINACAO
+$pagina = 1;
+if(isset($_GET['pagina'])){
+  $pagina = filter_input(INPUT_GET, "pagina", FILTER_VALIDATE_INT);
+}
+if(!$pagina){
+  $pagina = 1;
+}
+$limite = 10;
+$inicio = ($pagina * $limite) - $limite;
+
+//Select para paginacao
+$pesquisa_recisoes2 = "SELECT count(id) FROM acessos_recisoes WHERE usuarios_id =".$_SESSION["id_usuario_login"]['id'];
+$resultado_recisoes2 = mysqli_query($conn, $pesquisa_recisoes2);
+$row_recisoes2 = mysqli_fetch_assoc($resultado_recisoes2);
+//PAGINACAO
+$paginas = ceil($row_recisoes2['count(id)'] / $limite);
+
 //Select para recisões
-$pesquisa_recisoes = "SELECT * FROM acessos_recisoes WHERE usuarios_id =".$_SESSION["id_usuario_login"]['id']." order by data_criacao DESC;";
+$pesquisa_recisoes = "SELECT * FROM acessos_recisoes WHERE usuarios_id =".$_SESSION["id_usuario_login"]['id']." order by data_criacao DESC LIMIT ".$inicio.", ".$limite.";";
 $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
 
 ?>
@@ -274,13 +292,15 @@ $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
                         <form action="editar-rescisoes.php" method="POST">
                             <button class="btn btn-primary btn-sm" title="Editar"><i class=" fa fa-edit"></i></button>
                             <input type="text" name="id_item_selecionado" style="display:none" value="<?php echo $row_recisoes['id'];?>">
+                            <input type="text" name="id_funcionario_selecionado" style="display:none" value="<?php echo $row_recisoes['funcionarios_id'];?>">
+                            <input type="text" name="id_empresa_selecionado" style="display:none" value="<?php echo $row_recisoes['empresas_id'];?>">
                           </form>
                         </td>
                       </tr>
                     <?php } ?>
                     </tbody>
                   </table>
-                  <nav aria-label="Navegação de página exemplo">
+                  <!--<nav aria-label="Navegação de página exemplo">
                     <ul class="pagination justify-content-center">
                       <li class="page-item disabled">
                         <a class="page-link" href="#" tabindex="-1">Anterior</a>
@@ -292,7 +312,18 @@ $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
                         <a class="page-link" href="#">Próximo</a>
                       </li>
                     </ul>
-                  </nav>
+                  </nav>-->
+                  <a href="?pagina=1">PRIMEIRA</a>
+                      <?php if($pagina>1): ?>
+                        <a href="?pagina=<?=$pagina-1?>"><<</a>
+                      <?php endif; ?>
+
+                      <?=$pagina?>
+
+                      <?php if($pagina<$paginas): ?>
+                        <a href="?pagina=<?=$pagina+1?>">>></a>
+                      <?php endif; ?>
+                        <a href="?pagina=<?=$paginas?>">ÚLTIMA</a>
                 </div>
               </div>
             </div>

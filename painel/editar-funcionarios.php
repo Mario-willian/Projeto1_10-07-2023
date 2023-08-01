@@ -7,11 +7,26 @@ require "../complements/begin_page.php";
 
 //Verificando se tem o item selecionado
 if ($_POST['id_item_selecionado'] == "") {
-	header("location:ferias.php");
+	header("location:cadastros.php");
 }
 
 //Recebendo ID do item selecionado
 $id_item_selecionado = $_POST['id_item_selecionado'];
+$id_empresa_selecionado = $_POST['id_empresa_selecionado'];
+
+//Select do funcionario escolhido
+$pesquisa_funcionario = "SELECT * FROM acessos_funcionarios WHERE id_funcionarios =".$id_item_selecionado.";";
+$resultado_funcionario = mysqli_query($conn, $pesquisa_funcionario);
+$row_funcionario = mysqli_fetch_assoc($resultado_funcionario);
+
+//parte valida a data para inserir no input type="date" YYYY-MM-DD
+$data_inicio = substr($row_funcionario['data_inicio'],0,10);
+$data_nascimento = substr($row_funcionario['data_nascimento'],0,10);
+
+//Converter moedas para o padrao php
+//Convertendo Valores no padrão do Banco de _POST
+$funcionario_valor_vale_transporte_input = $row_funcionario['valor_vale_transporte'];
+$funcionario_salario_input = $row_funcionario['salario'];
 
 ?>
 
@@ -143,7 +158,7 @@ $id_item_selecionado = $_POST['id_item_selecionado'];
                 <center><h5><i class="fa fa-edit "></i> EDITAR FUNCIONÁRIO</h5>
               </div>
               <div class="card-body">
-                <form id="cad-funcionario-form">
+                <form method="POST" action="../classes/alter/funcionario.php">
                   <div class="row">
                     
                   </div>
@@ -151,13 +166,13 @@ $id_item_selecionado = $_POST['id_item_selecionado'];
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Nome Completo</label>
-                        <input type="text" name="funcionario_nome" maxlength="100" class="form-control" required="" placeholder="Nome" >
+                        <input type="text" name="funcionario_nome" maxlength="100" value="<?php echo $row_funcionario['nome_completo'];?>" class="form-control" required="" placeholder="Nome" >
                       </div>
                     </div>
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>CPF</label>
-                        <input type="text" name="funcionario_cpf" maxlength="14" class="form-control" required="" placeholder="CPF" OnKeyPress="formatar('###.###.###-##', this)">
+                        <input type="text" name="funcionario_cpf" maxlength="14" value="<?php echo $row_funcionario['cpf'];?>"  class="form-control" required="" placeholder="CPF" OnKeyPress="formatar('###.###.###-##', this)">
                       </div>
                       <script>
                         function formatar(mascara, documento){
@@ -177,17 +192,20 @@ $id_item_selecionado = $_POST['id_item_selecionado'];
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Data de Nascimento</label>
-                        <input type="date" name="funcionario_data_nascimento" class="form-control" required="" >
+                        <input type="date" name="funcionario_data_nascimento" value="<?php echo $data_nascimento; ?>" class="form-control" required="" >
                       </div>
                     </div>
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Status</label>
                         <select name="funcionario_status" class="form-control">
-                          <option value="Ativo">Ativo</option>
-                          <option value="Afastado">Afastado</option>
-                          <option value="Inativo">Inativo</option>
-                          <option value="Transferido">Transferido</option>
+                          <!-- Inicio de uma codição PHP -->
+                        <?php 
+                        
+                        require "../complements/selects/select_status_editar.php";
+                        
+                        ?>
+                        <!-- Fim de uma codição PHP -->
                         </select>
                       </div>
                     </div>
@@ -198,12 +216,12 @@ $id_item_selecionado = $_POST['id_item_selecionado'];
                         <label>Empresa</label>
                         <select name="funcionario_empresa" class="form-control">
                           <!-- Inicio de uma codição PHP -->
-                          <?php 
-
-                          require "../complements/selects/select_empresa.php";
-
-                          ?>
-                          <!-- Fim de uma codição PHP -->
+                        <?php 
+                        
+                        require "../complements/selects/select_empresa_editar.php";
+                        
+                        ?>
+                        <!-- Fim de uma codição PHP -->
                         </select>
                       </div>
                     </div>
@@ -213,21 +231,15 @@ $id_item_selecionado = $_POST['id_item_selecionado'];
                       <div class="form-group">
                         <label>Setor</label>
                         <select name="funcionario_setor" class="form-control">
-                          <option value="Açougue">Açougue</option>
-                          <option value="Padaria">Padaria</option>
-                          <option value="Hortifruti">Hortifruti</option>
-                          <option value="Caixa">Caixa</option>
-                          <option value="Fiscalização">Fiscalização</option>
-                          <option value="Reposição">Reposição</option>
-                          <option value="Limpeza">Limpeza</option>
-                          <option value="Administrativo">Administrativo</option>
-                          <option value="Gerencia">Gerencia</option>
-                          <option value="Frios">Frios</option>
-                          <option value="Sub-Gerencia">Sub-Gerencia</option>
-                          <option value="Entregas">Entregas</option>
-                          <option value="Recebimento Merc.">Recebimento Merc.</option>
-                          <option value="Operação Loja">Operação Loja</option>
-                          <option value="Recursos Humanos">Recursos Humanos</option>
+
+                        <!-- Inicio de uma codição PHP -->
+                        <?php 
+                        
+                        require "../complements/selects/select_setor_editar.php";
+                        
+                        ?>
+                        <!-- Fim de uma codição PHP -->
+
                         </select>
                       </div>
                     </div>
@@ -235,36 +247,15 @@ $id_item_selecionado = $_POST['id_item_selecionado'];
                       <div class="form-group">
                         <label>Função</label>
                         <select name="funcionario_funcao" class="form-control">
-                          <option value="Operador de Caixa">Operador de Caixa</option>
-                          <option value="Frente de Caixa">Frente de Caixa</option>
-                          <option value="Supervisor de Açougue">Supervisor de Açougue</option>
-                          <option value="Encarregado de Açougue">Encarregado de Açougue</option>
-                          <option value="Auxiliar de Açougue">Auxiliar de Açougue</option>
-                          <option value="Supervisor de Padaria">Supervisor de Padaria</option>
-                          <option value="Encarregado de Padaria">Encarregado de Padaria</option>
-                          <option value="Padeiro">Padeiro</option>
-                          <option value="Confeiteiro">Confeiteiro</option>
-                          <option value="Auxiliar de Padaria">Auxiliar de Padaria</option>
-                          <option value="Balconista">Balconista</option>
-                          <option value="Supervisor de Hortifruti">Supervisor de Hortifruti</option>
-                          <option value="ncarregado de Hortifruti">Encarregado de Hortifruti</option>
-                          <option value="Fiscal de Loja">Fiscal de Loja</option>
-                          <option value="Repositor">Repositor</option>
-                          <option value="Embalador">Embalador</option>
-                          <option value="Auxiliar de Serviços Gerais">Auxiliar de Serviços Gerais</option>
-                          <option value="Auxiliar Administrativo">Auxiliar Administrativo</option>
-                          <option value="Assistente Administrativo">Assistente Administrativo</option>
-                          <option value="Assistente Departamento Pessoal">Assistente Departamento Pessoal</option>
-                          <option value="upervisor Departamento Pessoal">Supervisor Departamento Pessoal</option>
-                          <option value="Gerente">Gerente</option>
-                          <option value="Sub-Gerente">Sub-Gerente</option>
-                          <option value="ncarregado de Piso Loja">Encarregado de Piso Loja</option>
-                          <option value="Supervisor de Frios">Supervisor de Frios</option>
-                          <option value="Encarregado de Frios">Encarregado de Frios</option>
-                          <option value="Auxiliar de Frios">Auxiliar de Frios</option>
-                          <option value="Motorista">Motorista</option>
-                          <option value="Conferente">Conferente</option>
-                          <option value="Operador de Loja">Operador de Loja</option>
+                          
+                        <!-- Inicio de uma codição PHP -->
+                        <?php 
+                        
+                        require "../complements/selects/select_funcao_editar.php";
+                        
+                        ?>
+                        <!-- Fim de uma codição PHP -->
+
                         </select>
                       </div>
                     </div>
@@ -274,18 +265,20 @@ $id_item_selecionado = $_POST['id_item_selecionado'];
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Data de Início</label>
-                        <input type="date" name="funcionario_data_de_inicio" class="form-control" required="" >
+                        <input type="date" name="funcionario_data_de_inicio" value="<?php echo $data_inicio; ?>" class="form-control" required="" >
                       </div>
                     </div>
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Vale Transporte</label>
                         <select name="funcionario_vale_transporte" class="form-control">
-                          <option value="Nenhum">Nenhum</option>
-                          <option value="Ótimo">Ótimo</option>
-                          <option value="Bhbus">Bhbus</option>
-                          <option value="Combustível">Combustível</option>
-                          <option value="Dinheiro">Dinheiro</option>
+                        <!-- Inicio de uma codição PHP -->
+                        <?php 
+                        
+                        require "../complements/selects/select_vale_editar.php";
+                        
+                        ?>
+                        <!-- Fim de uma codição PHP -->
                         </select>
                       </div>
                     </div>
@@ -295,13 +288,13 @@ $id_item_selecionado = $_POST['id_item_selecionado'];
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Valor do Vale Transporte</label>
-                        <input size="10" maxlength="10" onkeydown="FormataMoeda(this,10,event)" onkeypress="return maskKeyPress(event)" type="text" name="funcionario_valor_vale_transporte" class="form-control" required="" placeholder="Valor do Vale Transporte" >
+                        <input size="10" maxlength="10" onkeydown="FormataMoeda(this,10,event)" value="<?php echo $row_funcionario['valor_vale_transporte'];?>"  onkeypress="return maskKeyPress(event)" type="text" name="funcionario_valor_vale_transporte" class="form-control" required="" placeholder="Valor do Vale Transporte" >
                       </div>
                     </div>
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Salário</label>
-                         <input size="10" maxlength="10" onkeydown="FormataMoeda(this,10,event)" onkeypress="return maskKeyPress(event)" type="text" name="funcionario_salario" class="form-control" required="" placeholder="Salário" >
+                         <input size="10" maxlength="10" onkeydown="FormataMoeda(this,10,event)" value="<?php echo $row_funcionario['salario'];?>"  onkeypress="return maskKeyPress(event)" type="text" name="funcionario_salario" class="form-control" required="" placeholder="Salário" >
                       </div>
                     </div>
                   </div>
@@ -310,13 +303,13 @@ $id_item_selecionado = $_POST['id_item_selecionado'];
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Nome Pai</label>
-                        <input type="text" name="funcionario_nome_pai" class="form-control" placeholder="Nome do Pai" >
+                        <input type="text" name="funcionario_nome_pai" value="<?php echo $row_funcionario['nome_pai'];?>"  class="form-control" placeholder="Nome do Pai" >
                       </div>
                     </div>
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Nome Mãe</label>
-                        <input type="text" name="funcionario_nome_mae" class="form-control" required="" placeholder="Nome da Mãe" >
+                        <input type="text" name="funcionario_nome_mae" value="<?php echo $row_funcionario['nome_mae'];?>"  class="form-control" required="" placeholder="Nome da Mãe" >
                       </div>
                     </div>
                   </div>
@@ -325,18 +318,23 @@ $id_item_selecionado = $_POST['id_item_selecionado'];
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Observação</label>
-                        <input type="text" name="funcionario_observacao" maxlength="500" class="form-control" placeholder="Observação" >
+                        <input type="text" name="funcionario_observacao" maxlength="500" value="<?php echo $row_funcionario['observacao'];?>"  class="form-control" placeholder="Observação" >
                       </div>
                     </div>
                   </div>
                    <div class="row">
                     <div class="col-md-12">
                       <div class="form-group"><br>
-                        <button type="submit" name="funcionario_enviar" id="cad-funcionario-btn" value="Cadastrar" class="btn btn-outline-success" style="width: 100%;"><b>Confirmar Alterações</b></button><br>
+                      <input type="text" name="funcionario_id" style="display:none" value="<?php echo $row_funcionario['id_funcionarios'];?>">
+                      <input type="text" name="vale_transporte_id" style="display:none" value="<?php echo $row_funcionario['id_vale_transporte'];?>">
+                      <button type="submit" name="funcionario_enviar" id="cad-funcionario-btn" value="Cadastrar" class="btn btn-outline-success" style="width: 100%;"><b>Confirmar Alterações</b></button><br>
                       </div>
                     </div>
                   </div>
-
+                </form>
+                <form method="POST" action="../classes/deletes/funcionario.php">
+                <button type="submit" id="cad-ferias-delete-btn" name="excluir_ferias_enviar" value="Excluir" class="btn btn-danger btn-sm"><b>Excluir</b></button>
+                <input type="text" name="funcionario_id" style="display:none" value="<?php echo $row_funcionario['id_funcionarios'];?>">
                 </form>
               </div>
             </div>
@@ -361,14 +359,9 @@ $id_item_selecionado = $_POST['id_item_selecionado'];
 
 
 <!-- SWEETALERTS dos cadastros-->
-  <script src="../js/sweetalert2.js"></script>
-  <script src="../js/custom_empresa.js"></script>
-  <script src="../js/custom_ferias.js"></script>
-  <script src="../js/custom_funcionario.js"></script>
-  <script src="../js/custom_lembrete.js"></script>
-  <script src="../js/custom_ocorrencia.js"></script>
-  <script src="../js/custom_recisao.js"></script>
-  <script src="../js/custom_usuario.js"></script>
+<script src="../js/sweetalert2.js"></script>
+  <script src="../js/custom_ferias_edit.js"></script>
+  <script src="../js/custom_ferias_delete.js"></script>
 
 <!-- MASCARA DE DINHEIRO -->
    <script type="text/javascript">

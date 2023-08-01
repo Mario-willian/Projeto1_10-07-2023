@@ -13,6 +13,8 @@ $ocorrencia_quantidade_faltas = $dados['ocorrencia_quantidade_faltas'];
 $ocorrencia_valor = $dados['ocorrencia_valor'];
 $ocorrencia_observacao = $dados['ocorrencia_observacao'];
 
+//'ADDSLASHER' para nao conflitar as aspas com o banco
+$ocorrencia_observacao = addslashes($ocorrencia_observacao);
 
 
 if (isset($_FILES['ocorrencia_arquivo']) && !empty($_FILES['ocorrencia_arquivo'])) {
@@ -27,8 +29,6 @@ if (isset($_FILES['ocorrencia_arquivo']) && !empty($_FILES['ocorrencia_arquivo']
 //Recebendo a data Atual
 $data_criacao = date('Y-m-d H:i:s');
 
-//'ADDSLASHER' para nao conflitar as aspas com o banco
-$ocorrencia_observacao = addslashes($ocorrencia_observacao);
 
 //Inserir Lembrete
 $inserir_ocorrencia = "insert into ocorrencias(id, arquivo, motivo, faltas, valor, observacao, status, data_criacao, funcionarios_id, empresas_id) values (NULL, '".$nomes_arquivo."', '".$ocorrencia_motivo."', '".$ocorrencia_quantidade_faltas."', '".$ocorrencia_valor."', '".$ocorrencia_observacao."', 'Ativo', '".$data_criacao."', '".$ocorrencia_funcionarios."', ".$ocorrencia_loja.");";

@@ -34,8 +34,6 @@ if (cadferiasForm) {
             });
             
 
-            // Limpar o formulário com JavaScript
-            cadferiasForm.reset();
         } else {
             // Usar o SweetAlert para apresentar a mensagem de erro após não cadastrar no banco de dados com PHP
             Swal.fire({
