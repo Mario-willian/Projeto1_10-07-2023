@@ -175,7 +175,7 @@ $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
           <div class="w3-display-container" >
             <div class="card card-chart" style="background-color:<?php echo $row_lembrete['cor'];?>;">
             
-            <a href="teste.php"><span style="margin-left: 95%;font-size: 20px;cursor:pointer;" class="w3-display-topright" >&times; </span></a>
+            <a href="teste.php" style="text-decoration: none;"><span class="w3-display-topright xlembrete" >&times; </span></a>
               <div style="margin-top: -30px;" class="card-header">
                 <h5 style="color:black;" class="card-category"><i class="fa fa-tags"></i> Lembrete</h5>
                 <h4 class="card-title"><?php echo $row_lembrete['anotacao'];?></h4>

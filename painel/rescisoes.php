@@ -300,30 +300,26 @@ $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
                     <?php } ?>
                     </tbody>
                   </table>
-                  <!--<nav aria-label="Navegação de página exemplo">
+                  <nav aria-label="Navegação de página exemplo">
                     <ul class="pagination justify-content-center">
                       <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1">Anterior</a>
+                      <a class="page-link" href="?pagina=1" tabindex="-1">Primeira</a>
                       </li>
-                      <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item"> 
+                        <?php if($pagina>1): ?>
+                        <a class="page-link" href="?pagina=<?=$pagina-1?>"><<</a>
+                         <?php endif; ?></li>
+                      <li class="page-item active"><a class="page-link"> <?=$pagina?></a></li>
                       <li class="page-item">
-                        <a class="page-link" href="#">Próximo</a>
+                      <?php if($pagina<$paginas): ?>
+                        <a class="page-link" href="?pagina=<?=$pagina+1?>">>></a>
+                      <?php endif; ?>
+                      </li>
+                      <li class="page-item">
+                      <a class="page-link" href="?pagina=<?=$paginas?>">Última</a>
                       </li>
                     </ul>
-                  </nav>-->
-                  <a href="?pagina=1">PRIMEIRA</a>
-                      <?php if($pagina>1): ?>
-                        <a href="?pagina=<?=$pagina-1?>"><<</a>
-                      <?php endif; ?>
-
-                      <?=$pagina?>
-
-                      <?php if($pagina<$paginas): ?>
-                        <a href="?pagina=<?=$pagina+1?>">>></a>
-                      <?php endif; ?>
-                        <a href="?pagina=<?=$paginas?>">ÚLTIMA</a>
+                  </nav>   
                 </div>
               </div>
             </div>

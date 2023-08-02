@@ -239,7 +239,7 @@ require "../complements/begin_page.php";
  </div>
 </div>
           
-
+  <!-- End Modal -->
           
       
       <footer class="footer">

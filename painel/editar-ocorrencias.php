@@ -254,10 +254,8 @@ $data_criacao = substr($row_ocorrencia['data_criacao'],0,10);
                         <input type="text" name="ocorrencia_id" style="display:none" value="<?php echo $row_ocorrencia['id'];?>">
                       <input type="text" name="ocorrencia_acao" style="display:none" value="Editar" style="display:none">
                           </form>  
-                          <form method="POST" action="../classes/deletes/ocorrencia.php">
-                          <button type="submit" id="cad-ocorrencia-delete-btn" name="excluir_ocorrencia_enviar" value="Excluir" class="btn btn-danger btn-sm"><b>Excluir</b></button>
-                            <input type="text" name="ocorrencia_id" style="display:none" value="<?php echo $row_ocorrencia['id'];?>">
-                        </form>
+                          <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i><b> Excluir</b></button>
+
                       </div>
                     </div>
                   </div>
@@ -268,6 +266,40 @@ $data_criacao = substr($row_ocorrencia['data_criacao'],0,10);
 
  
 
+            <!-- Modal -->
+            <div  class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+    
+      <!-- Modal content-->
+      <div  class="modal-content">
+        <div  class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+                      <center>
+                     <h3> Tem certeza que deseja excluir?<br>
+                      <b style="font-size: 18px;"><i class="fa fa-warning"></i> Ao confirmar não será possível recuperar os dados.</b></h3>
+              
+                    <div class="col-md-8">
+                      <div class="form-group">
+                      <form method="POST" action="../classes/deletes/ocorrencia.php">
+                          <button type="submit" id="cad-ocorrencia-delete-btn" name="excluir_ocorrencia_enviar" value="Excluir" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i><b> Confirmar Exclusão</b></button>
+                            <input type="text" name="ocorrencia_id" style="display:none" value="<?php echo $row_ocorrencia['id'];?>">
+                        </form>
+                      </div>
+                    </div>
+        </div>
+                  <div class="modal-footer">
+                      
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                  </div>
+               
+    </div>
+      
+ </div>
+</div>
+      
+  <!-- End Modal -->    
 
 
                   <!-- FIM -->
