@@ -250,11 +250,11 @@ $data_criacao = substr($row_ocorrencia['data_criacao'],0,10);
                    <div class="row">
                     <div class="col-md-12">
                       <div class="form-group"><br>
-                        <button type="submit" name="ocorrencia_enviar" id="cad-ocorrencia-btn" value="Cadastrar" class="btn btn-outline-success" style="width: 100%;"><b> Confirmar Alterações</b></button><br>
+                        <button type="submit" name="ocorrencia_enviar" id="cad-ocorrencia-btn" value="Cadastrar" class="btn btn-success" style="width: 100%;"><b> Confirmar Alterações</b></button><br>
                         <input type="text" name="ocorrencia_id" style="display:none" value="<?php echo $row_ocorrencia['id'];?>">
                       <input type="text" name="ocorrencia_acao" style="display:none" value="Editar" style="display:none">
                           </form>  
-                          <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i><b> Excluir</b></button>
+                          <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-outline-danger btn-sm"> <i class="fa fa-trash"></i><b> Excluir</b></button>
 
                       </div>
                     </div>
@@ -449,8 +449,6 @@ $data_criacao = substr($row_ocorrencia['data_criacao'],0,10);
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap.min.js"></script>
   <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-  <!--  Google Maps Plugin    -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
   <!-- Chart JS -->
   <script src="assets/js/plugins/chartjs.min.js"></script>
   <!--  Notifications Plugin    -->

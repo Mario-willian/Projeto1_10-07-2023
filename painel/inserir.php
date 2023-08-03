@@ -940,17 +940,6 @@ require "../complements/begin_page.php";
     </div>
   </div>
 
-
-<!-- SWEETALERTS dos cadastros-->
-  <script src="../js/sweetalert2.js"></script>
-  <script src="../js/custom_empresa.js"></script>
-  <script src="../js/custom_ferias.js"></script>
-  <script src="../js/custom_funcionario.js"></script>
-  <script src="../js/custom_lembrete.js"></script>
-  <script src="../js/custom_ocorrencia.js"></script>
-  <script src="../js/custom_recisao.js"></script>
-  <script src="../js/custom_usuario.js"></script>
-
 <!-- MASCARA DE DINHEIRO -->
    <script type="text/javascript">
 
@@ -1069,14 +1058,21 @@ require "../complements/begin_page.php";
         }
     </script>
 
-
+<!-- SWEETALERTS dos cadastros-->
+<script src="../js/sweetalert2.js"></script>
+  <script src="../js/custom_empresa.js"></script>
+  <script src="../js/custom_ferias.js"></script>
+  <script src="../js/custom_funcionario.js"></script>
+  <script src="../js/custom_lembrete.js"></script>
+  <script src="../js/custom_ocorrencia.js"></script>
+  <script src="../js/custom_recisao.js"></script>
+  <script src="../js/custom_usuario.js"></script>
+  
   <!--   Core JS Files   -->
   <script src="assets/js/core/jquery.min.js"></script>
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap.min.js"></script>
   <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-  <!--  Google Maps Plugin    -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
   <!-- Chart JS -->
   <script src="assets/js/plugins/chartjs.min.js"></script>
   <!--  Notifications Plugin    -->

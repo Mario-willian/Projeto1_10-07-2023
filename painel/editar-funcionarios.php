@@ -327,12 +327,12 @@ $funcionario_salario_input = $row_funcionario['salario'];
                       <div class="form-group"><br>
                       <input type="text" name="funcionario_id" style="display:none" value="<?php echo $row_funcionario['id_funcionarios'];?>">
                       <input type="text" name="vale_transporte_id" style="display:none" value="<?php echo $row_funcionario['id_vale_transporte'];?>">
-                      <button type="submit" name="funcionario_enviar" id="cad-funcionario-btn" value="Cadastrar" class="btn btn-outline-success" style="width: 100%;"><b>Confirmar Alterações</b></button><br>
+                      <button type="submit" name="funcionario_enviar" id="cad-funcionario-btn" value="Cadastrar" class="btn btn-success" style="width: 100%;"><b>Confirmar Alterações</b></button><br>
                       </div>
                     </div>
                   </div>
                 </form>
-                <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger btn-sm"><b><i class="fa fa-trash"></i> Excluir</b></button>
+                <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-outline-danger btn-sm"><b><i class="fa fa-trash"></i> Excluir</b></button>
               </div>
             </div>
           </div>
@@ -517,8 +517,6 @@ $funcionario_salario_input = $row_funcionario['salario'];
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap.min.js"></script>
   <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-  <!--  Google Maps Plugin    -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
   <!-- Chart JS -->
   <script src="assets/js/plugins/chartjs.min.js"></script>
   <!--  Notifications Plugin    -->

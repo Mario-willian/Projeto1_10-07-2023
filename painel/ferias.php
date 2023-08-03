@@ -108,7 +108,7 @@ $resultado_ferias = mysqli_query($conn, $pesquisa_ferias);
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand"> Lista de Comentários</a>
+            <a class="navbar-brand"> Férias</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -185,13 +185,26 @@ $resultado_ferias = mysqli_query($conn, $pesquisa_ferias);
 
                   <div class="col-md-2">
                       <div class="form-group"><br>
-                        <button type="submit" name="filtrar" class="btn btn-outline-success" style="width: 100%;"><b><i class="fa fa-search"></i> Buscar</b></button><br>
+                        <button type="submit" name="filtrar" class="btn btn-outline-info" style="width: 100%;"><b><i class="fa fa-search"></i> Buscar</b></button>
                       </div>
-                    </div>
+                  </div>
+                  <div class="col-md-2">
+                      <div class="form-group"><br>
+                        <button title="Exportar Tabela para Arquivo Excel" type="submit" id="btnExcel" name="filtrar" class="btn btn-success" style="width: 100%;"><b><i class="fa fa-download"></i> Excel</b></button>
+                      </div>
+                  </div>
+                  <div class="col-md-2">
+                      <div class="form-group"><br>
+                        <button title="Exportar Tabela para Arquivo PDF" type="submit" id="btnPdf" name="filtrar" class="btn btn-danger" style="width: 100%;"><b><i class="fa fa-download"></i> PDF</b></button>
+                      </div>
+                  </div>
+
               </div>
+
+
               <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table">
+                <div id="divTabela" class="table-responsive">
+                  <table id="Tab" class="table">
                     <thead class=" text-primary">
                       <th>
                         Funcionário
@@ -242,8 +255,10 @@ $resultado_ferias = mysqli_query($conn, $pesquisa_ferias);
                       </tr>
                     <?php } ?>
                     </tbody>
-                  </table>
-                  <nav aria-label="Navegação de página exemplo">
+                  </table>                 
+                      
+                </div>
+                <nav aria-label="Navegação de página exemplo">
                     <ul class="pagination justify-content-center">
                       <li class="page-item disabled">
                       <a class="page-link" href="?pagina=1" tabindex="-1">Primeira</a>
@@ -262,37 +277,77 @@ $resultado_ferias = mysqli_query($conn, $pesquisa_ferias);
                       <a class="page-link" href="?pagina=<?=$paginas?>">Última</a>
                       </li>
                     </ul>
-                  </nav>  
-                      
-                </div>
+                  </nav> 
               </div>
             </div>
           </div>
         </div>
       </div>
-      <footer class="footer">
-        <div class="container-fluid">
-         
-          
-        </div>
-      </footer>
-    </div>
-  </div>
-  <!--   Core JS Files   -->
-  <script src="assets/js/core/jquery.min.js"></script>
-  <script src="assets/js/core/popper.min.js"></script>
-  <script src="assets/js/core/bootstrap.min.js"></script>
-  <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-  <!--  Google Maps Plugin    -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-  <!-- Chart JS -->
-  <script src="assets/js/plugins/chartjs.min.js"></script>
-  <!--  Notifications Plugin    -->
-  <script src="assets/js/plugins/bootstrap-notify.js"></script>
-  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="assets/js/now-ui-dashboard.min.js?v=1.3.0" type="text/javascript"></script>
-  <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
-  <script src="assets/demo/demo.js"></script>
-</body>
+   <!-- excel -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
-</html>
+      <script>
+                          
+             $(document).ready(function(){
+
+              $("#btnExcel").click(function(e){
+              /*preventDefault Serve para evitar abrir o link em uma nova página*/ 
+               e.preventDefault();
+
+                var DivTabela = document.getElementById("divTabela");
+                /*\ufeff serve para ter um arquivo utf-8 sem problemas de acentuação*/
+                var Arquivo = new Blob(["\ufeff" + DivTabela.outerHTML],{type:"application/vnd.ms-excel"});
+
+                var url = window.URL.createObjectURL(Arquivo);
+
+                  var a = document.createElement("a");
+ 
+                    a.href = url; 
+
+                    a.download = "Dados da Tabela Férias";
+
+                     a.click();
+
+                      });
+
+                 });
+
+       </script>
+
+      <script>
+        document.getElementById("btnPdf").addEventListener("click", GerarPdf);
+
+        function GerarPdf(){
+          
+
+            var DivTabela = document.getElementById("divTabela").innerHTML;
+
+            var style = "<style>";
+            style = style + "table {width: 100%; font: 12px Calibri;}";
+            style = style + "table, th, td {border: solid 1px #DDD; border-collapse: collapse;}";
+            style = style + "padding: 2px 3px; text-align: left;";
+            style = style + "</style>";   
+
+            var win = window.open("","","height=700,width=900");
+
+            win.document.write("<html><head>");
+            win.document.write("<title>Listagem de Férias</title>");
+            win.document.write(style);
+            win.document.write("</head>");
+
+            win.document.write("<body>");
+            win.document.write(DivTabela);
+            win.document.write("</body></html>");
+
+            win.document.close();
+
+            win.print();
+
+          }
+       </script>
+
+<?php
+//Carregando o final da pagina
+require "../complements/end_page.php";
+ ?>
+      
