@@ -199,13 +199,13 @@ $data_fim = substr($row_ferias['data_fim'],0,10);
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Data Início</label>
-                        <input type="date" name="ferias_data_inicio" value="<?php echo $data_inicio ?>" class="form-control" required="" >
+                        <input type="date" name="ferias_data_inicio" value="<?php echo $data_inicio; ?>" class="form-control" required="" >
                       </div>
                     </div>
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Data Final</label>
-                        <input type="date" name="ferias_data_final" value="<?php echo $data_fim ?>" class="form-control" required="" >
+                        <input type="date" name="ferias_data_final" value="<?php echo $data_fim; ?>" class="form-control" required="" >
                       </div>
                     </div>
                   </div>
@@ -213,7 +213,7 @@ $data_fim = substr($row_ferias['data_fim'],0,10);
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Observação</label>
-                        <input type="text" name="ferias_observacao" value="<?php echo $row_ferias['observacao'] ?>" class="form-control" >
+                        <input type="text" name="ferias_observacao" value="<?php echo $row_ferias['observacao']; ?>" class="form-control" >
                       </div>
                     </div>
                   </div>
@@ -225,10 +225,8 @@ $data_fim = substr($row_ferias['data_fim'],0,10);
                       <div class="form-group"><br>
                       <input type="text" name="ferias_id" style="display:none" value="<?php echo $row_ferias['id'];?>">
                         <button type="submit" name="ferias_enviar" id="cad-ferias-btn" value="Cadastrar" class="btn btn-success" style="width: 100%;"><b>Confirmar Alterações</b></button><br>
-                        </form>
-                       
+                      </form>
                           <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-outline-danger btn-sm"><b><i class="fa fa-trash"></i> Excluir</b></button>
-                      
                       </div>
                     </div>
                   </div>
@@ -255,7 +253,7 @@ $data_fim = substr($row_ferias['data_fim'],0,10);
                       <div class="form-group">
                       <form method="POST" action="../classes/deletes/ferias.php">
                           <button type="submit" id="cad-ferias-delete-btn" name="excluir_ferias_enviar" value="Excluir" class="btn btn-danger btn-sm"><b><i class="fa fa-trash"></i> Confirmar Exclusão</b></button>
-                            <input type="text" name="ferias_id" style="display:none" value="<?php echo $row_ferias['id'];?>">
+                          <input type="text" name="ferias_id" style="display:none" value="<?php echo $row_ferias['id'];?>">
                         </form>
                       </div>
                     </div>

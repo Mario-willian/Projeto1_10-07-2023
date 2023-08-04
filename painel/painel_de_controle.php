@@ -13,6 +13,14 @@ $resultado_lembrete = mysqli_query($conn, $pesquisa_lembrete);
 $pesquisa_recisoes = "SELECT * FROM acessos_recisoes WHERE usuarios_id =".$_SESSION["id_usuario_login"]['id']." AND data_fim_aviso >= '".date('Y-m-d')."' order by data_fim_aviso limit 5;";
 $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
 
+//Exclusao de Lembretes
+if(isset($_GET['deletar'])){
+  $id_lembrete = $_GET['deletar'];
+  $excluir_lembrete = "DELETE FROM lembretes WHERE id = ".$id_lembrete.";";
+  $enviar_exclusao_notificacao = mysqli_query($conn, $excluir_lembrete);
+  header("location:painel_de_controle.php");
+}
+
 ?>
 
 <body class="user-profile">
@@ -131,7 +139,7 @@ $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
           <div class="col-lg-8">
             <div class="card card-chart"><center>
               <div class="card-header">
-                <h5 class="card-category"><i class="fa fa-user-secret"></i> Administrador</h5>
+                <h5 class="card-category"><i class="fa fa-user-secret"></i> Usuário</h5>
                 <h4 class="card-title">Olá,  <?php echo $_SESSION["id_usuario_login"]['nome_completo'] ?></h4>
                 <div class="chart" id="graficoProdutosAnual"></div>
               </div>
@@ -154,7 +162,7 @@ $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
                 <div class="chart" id="graficoVendedor">
 
                 <?php  while ($row_recisoes = mysqli_fetch_assoc($resultado_recisoes)){ ?>
-                  <?php echo $row_recisoes['id']." - ".date("d/m/Y", strtotime($row_recisoes['data_fim_aviso']))." - ".$row_recisoes['funcionario_nome_completo']." - ".$row_recisoes['empresa_nome_loja'];?> -  <br>
+                  <?php echo $row_recisoes['id']." - ".date("d/m/Y", strtotime($row_recisoes['data_fim_aviso']))." - ".$row_recisoes['funcionario_nome_completo']." - ".$row_recisoes['empresa_nome_loja'];?>  <br>
                 <?php } ?>
 
                 </div>
@@ -175,7 +183,7 @@ $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
           <div class="w3-display-container" >
             <div class="card card-chart" style="background-color:<?php echo $row_lembrete['cor'];?>;">
             
-            <a href="teste.php" style="text-decoration: none;"><span class="w3-display-topright xlembrete" >&times; </span></a>
+            <a href="?deletar=<?php echo $row_lembrete["id"]?>" style="text-decoration: none;"><span class="w3-display-topright xlembrete" >&times; </span></a>
               <div style="margin-top: -30px;" class="card-header">
                 <h5 style="color:black;" class="card-category"><i class="fa fa-tags"></i> Lembrete</h5>
                 <h4 class="card-title"><?php echo $row_lembrete['anotacao'];?></h4>

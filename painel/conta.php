@@ -150,20 +150,20 @@ require "../complements/begin_page.php";
                     <div class="col-md-8">
                       <div class="form-group">
                         <center><label>Nome</label>
-                        <input type="text" name="usuario_nome" class="form-control" disabled style="width: 80%;">
+                        <input type="text" name="usuario_nome" value="<?php echo $_SESSION["id_usuario_login"]['nome_completo'] ?>" class="form-control" disabled style="width: 80%;">
                       </div>
                        </div>
                       <center>
                     <div class="col-md-8">
                       <div class="form-group">
                         <center><label>E-mail</label>
-                        <input type="text" name="usuario_email" class="form-control" disabled style="width: 80%;">
+                        <input type="text" name="usuario_email" value="<?php echo $_SESSION["id_usuario_login"]['email'] ?>" class="form-control" disabled style="width: 80%;">
                       </div>
                     </div>
                     <div class="col-md-8">
                       <div class="form-group">
                         <center><label>Senha</label>
-                        <input type="password" name="usuario_senha" id="myInput" class="form-control" disabled style="width: 80%;"></center>
+                        <input type="password" name="usuario_senha" value="<?php echo $_SESSION["id_usuario_login"]['senhamd5'] ?>" id="myInput" class="form-control" disabled style="width: 80%;"></center>
 
                       </div>
                     </div>
@@ -183,7 +183,13 @@ require "../complements/begin_page.php";
                                       </thead>
                                       <tbody>
                                         <tr>
-                                          <td>PLANALTO</td>
+                                          <!-- Inicio de uma codição PHP -->
+                                            <?php 
+
+                                            require "../complements/selects/select_empresa_acesso_usuario.php";
+
+                                            ?>
+                                          <!-- Fim de uma codição PHP -->
                                         </tr>                                       
                                       </tbody>
                                     </table>
@@ -192,9 +198,25 @@ require "../complements/begin_page.php";
                              </div>
                            </div>
                         </div>
-
                         <button style="width: 50%" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"><i class="fa fa-edit"></i> Editar Dados</button>
                       </form>
+                      <div class="text-center p-t-12" style="color: red;"><br>
+					            <?php
+            			    if(isset($_SESSION["mensagem_login"])):
+              		    	echo $_SESSION["mensagem_login"];
+              		    	unset($_SESSION["mensagem_login"]);
+            			    endif; 
+                      ?>
+                      </div>
+                      <div class="text-center p-t-12" style="color: Green;">
+                      <?php
+                      if(isset($_SESSION["mensagem_editar"])):
+              		    	echo $_SESSION["mensagem_editar"];
+              		    	unset($_SESSION["mensagem_editar"]);
+            			    endif; 
+          			      ?>
+                      </div>
+					        </div>
                 </div>
               </div>
             </div>
@@ -214,25 +236,26 @@ require "../complements/begin_page.php";
                       <center>
                      <h3> Procedimento de Verificação<br>
                       <b style="font-size: 18px;">Confirme seu login para continuar</b></h3>
-                <form action="editar-conta" method="get">
+                <form action="../classes/valida_login_editar.php" method="POST">
                     <div class="col-md-8">
                       <div class="form-group">
                         <center><label>E-mail</label>
-                        <input type="text" name="usuario_email" class="form-control" required>
+                        <input type="text" name="email_login" maxlength="80" class="form-control" required>
                       </div>
                     </div>
                     <div class="col-md-8">
                       <div class="form-group">
                         <center><label>Senha</label>
-                        <input type="password" name="usuario_senha" id="myInput" class="form-control" required></center>
-
+                        <input type="password" name="senha_login" maxlength="18" id="myInput" class="form-control" required></center>
                       </div>
                     </div>
-        </div>
+                  </div>
                   <div class="modal-footer">
                   <button type="submit" class="btn btn-success">Continuar</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                   </div>
+
+                  
                   </form>
     </div>
       

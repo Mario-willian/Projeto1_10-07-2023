@@ -6,7 +6,6 @@ $destino = "../../upload/ocorrencia/";
 //Instanciando a Variavel
 $nomes_arquivo = "";
 
-
 //Repetição para a quantidade de imagens inseridas na input (variavel $Arquivo)
 for ($cont = 0; $cont < count($arquivo['name']); $cont++) {
 
@@ -25,13 +24,9 @@ for ($cont = 0; $cont < count($arquivo['name']); $cont++) {
     // Mover o arquivo com o nome da variavel acima
     move_uploaded_file($arquivo['tmp_name'][$cont], $destino.$novo_nome_arquivo);
 
-    //Juntar somente em uma váriavel o nome de todos os arquivos
-    if($cont == 0){
-        $nomes_arquivo .= $novo_nome_arquivo;
-    }
-    else if(count($arquivo['name']) > 1){
-        $nomes_arquivo .= " / ".$novo_nome_arquivo;
-    }    
+    //Inserir Arquivo
+    $inserir_arquivo= "insert into arquivos_ocorrencias (id, arquivo, data_criacao, ocorrencias_id) values (NULL, '".$novo_nome_arquivo."', '".$data_criacao_upload."', '".$ocorrencia_id_upload."');";
+    $enviar_arquivo = mysqli_query($conn, $inserir_arquivo);  
 }
 
 //Recebe Vazio se nao tiver arquivos

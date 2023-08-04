@@ -29,10 +29,20 @@ $enviar_recisao = mysqli_query($conn, $inserir_recisao);
 //Mensagem de Sucesso ou Falha na operação
 if($enviar_recisao == 1){
     // Criar o array com status e a mensagem de sucesso
-    $retorna = ['status' => true, 'msg' => "Recisão Cadastrado com Sucesso!"];
+    $retorna = ['status' => true, 'msg' => "Rescisão Cadastrado com Sucesso!"];
+
+    //Inserir LOG para gerar a Notificação
+    $criar_log = "insert into `logs` (`id`, `tabela_alterada`, `tarefa_executada`, `cor`, `icone`, `status`, `data_criacao`, `usuarios_id`) VALUES
+    (NULL, 'recisoes', 'A rescisão foi cadastrada com sucesso!', 'success', 'far fa-check-circle faa-tada', 'ativo', '".$data_criacao."', ".$_SESSION["id_usuario_login"]['id'].");";
+    $enviar_log = mysqli_query($conn, $criar_log);
 }else{
     // Criar o array com status e a mensagem de erro
     $retorna = ['status' => false, 'msg' => "Erro ao Cadastrar a Recisão!"];
+
+    //Inserir LOG para gerar a Notificação
+    $criar_log = "insert into `logs` (`id`, `tabela_alterada`, `tarefa_executada`, `cor`, `icone`, `status`, `data_criacao`, `usuarios_id`) VALUES
+    (NULL, 'recisoes', 'Falha ao tentar cadastrar a recisão.', 'danger', 'fa fa-exclamation-triangle faa-flash', 'ativo', '".$data_criacao."', ".$_SESSION["id_usuario_login"]['id'].");";
+    $enviar_log = mysqli_query($conn, $criar_log);
 }
 // Converter o array em objeto e retornar para o JavaScript
 echo json_encode($retorna);

@@ -5,6 +5,18 @@ include_once "../complements/inicio_php.php";
 //Carregando o inicio da pagina
 require "../complements/begin_page.php";
 
+//Evitar Bugs
+//Verificando se está logado
+if (!isset($_SESSION["id_usuario_login_editar"])) {
+	header("location:../painel/conta.php");
+}else{
+  $id_usuario_editar = $_SESSION["id_usuario_login_editar"]['id'];
+  $nome_usuario_editar = $_SESSION["id_usuario_login_editar"]['nome_completo'];
+  $email_usuario_editar = $_SESSION["id_usuario_login_editar"]['email'];
+  $senha_usuario_editar = $_SESSION["id_usuario_login_editar"]['senhamd5'];
+  unset($_SESSION['id_usuario_login_editar']);
+}
+
 ?>
 
 <body class="">
@@ -142,7 +154,7 @@ require "../complements/begin_page.php";
               </div>
               <div class="card-body">
                 <div class="table">
-                <form action="conta.php" method="POST">
+                <form action="../classes/alter/usuario.php" method="POST">
                  <div class="row">
                   <div class="col-md-12">
                  
@@ -150,21 +162,20 @@ require "../complements/begin_page.php";
                     <div class="col-md-8">
                       <div class="form-group">
                         <center><label>Nome</label>
-                        <input type="text" name="usuario_nome" class="form-control" required style="width: 80%;">
+                        <input type="text" name="usuario_nome" maxlength="80" value="<?php echo $nome_usuario_editar; ?>" class="form-control" required style="width: 80%;">
                       </div>
                        </div>
                       <center>
                     <div class="col-md-8">
                       <div class="form-group">
                         <center><label>E-mail</label>
-                        <input type="text" name="usuario_email" class="form-control" required style="width: 80%;">
+                        <input type="text" name="usuario_email" maxlength="80" value="<?php echo $email_usuario_editar; ?>" class="form-control" required style="width: 80%;">
                       </div>
                     </div>
                     <div class="col-md-8">
                       <div class="form-group">
                         <center><label>Senha</label>
-                        <input type="password" name="usuario_senha" id="myInput" class="form-control" required style="width: 80%;"></center>
-
+                        <input type="text" name="usuario_senha" maxlength="18" value="<?php echo $senha_usuario_editar; ?>" id="myInput" class="form-control" required style="width: 80%;"></center>
                       </div>
                     </div>
 
@@ -182,9 +193,13 @@ require "../complements/begin_page.php";
                                         </tr>
                                       </thead>
                                       <tbody>
-                                        <tr>
-                                          <td>PLANALTO</td>
-                                        </tr>                                       
+                                        <!-- Inicio de uma codição PHP -->
+                                        <?php 
+
+                                        require "../complements/selects/select_empresa_acesso_usuario.php";
+                                        
+                                        ?>
+                                        <!-- Fim de uma codição PHP -->                                
                                       </tbody>
                                     </table>
 
@@ -196,7 +211,8 @@ require "../complements/begin_page.php";
                         <div class="row">
                     <div class="col-md-12">
                       <div class="form-group"><br>
-                        <button type="submit" name="ferias_enviar" id="cad-ferias-btn" value="Cadastrar" class="btn btn-outline-success" style="width: 50%;"><b>Confirmar Alterações</b></button><br>
+                        <button type="submit" name="usuario_enviar" id="cad-ferias-btn" value="Cadastrar" class="btn btn-outline-success" style="width: 50%;"><b>Confirmar Alterações</b></button><br>
+                        <input type="number" name="usuario_id" value="<?php echo $id_usuario_editar; ?>" style="display:none" class="form-control" style="width: 80%;">
                       </div>
                     </div>
                   </div>

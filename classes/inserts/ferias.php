@@ -26,9 +26,19 @@ $ferias_observacao = addslashes($ferias_observacao);
     if($enviar_ferias == 1){
         // Criar o array com status e a mensagem de sucesso
         $retorna = ['status' => true, 'msg' => "Ferias Cadastrada com Sucesso!"];
+
+    //Inserir LOG para gerar a Notificação
+    $criar_log = "insert into `logs` (`id`, `tabela_alterada`, `tarefa_executada`, `cor`, `icone`, `status`, `data_criacao`, `usuarios_id`) VALUES
+    (NULL, 'ferias', 'As férias foi cadastrada com sucesso!', 'success', 'far fa-check-circle faa-tada', 'ativo', '".$data_criacao."', ".$_SESSION["id_usuario_login"]['id'].");";
+    $enviar_log = mysqli_query($conn, $criar_log);
     }else{
         // Criar o array com status e a mensagem de erro
         $retorna = ['status' => false, 'msg' => "Erro ao cadastrar as Férias!"];
+
+    //Inserir LOG para gerar a Notificação
+    $criar_log = "insert into `logs` (`id`, `tabela_alterada`, `tarefa_executada`, `cor`, `icone`, `status`, `data_criacao`, `usuarios_id`) VALUES
+    (NULL, 'ferias', 'Falha ao tentar cadastrar as férias.', 'danger', 'fa fa-exclamation-triangle faa-flash', 'ativo', '".$data_criacao."', ".$_SESSION["id_usuario_login"]['id'].");";
+    $enviar_log = mysqli_query($conn, $criar_log);
     }
 
 // Converter o array em objeto e retornar para o JavaScript

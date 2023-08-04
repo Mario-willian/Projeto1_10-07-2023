@@ -22,6 +22,9 @@ $funcionario_nome_mae = $_POST['funcionario_nome_mae'];
 $funcionario_observacao = "";
 $funcionario_observacao = $_POST['funcionario_observacao'];
 
+//Recebendo a data Atual
+$data_criacao = date('Y-m-d H:i:s');
+
 //'ADDSLASHER' para nao conflitar as aspas com o banco
 $funcionario_observacao = addslashes($funcionario_observacao);
 
@@ -39,6 +42,21 @@ $funcionario_observacao = addslashes($funcionario_observacao);
     //Inserir Ferias
     $atualizar_vale_transporte = "UPDATE vale_transportes SET tipo = '".$funcionario_vale_transporte."', valor = '".$funcionario_valor_vale_transporte."', funcionarios_id = ".$funcionario_id." WHERE id = ".$vale_transporte_id."";
     $enviar_vale_transporte = mysqli_query($conn, $atualizar_vale_transporte);
+
+    //Loop para identificar se deu de Sucesso ou Falha na operação, e emitir mensagem nas notificacoes
+    if($enviar_funcionario == 1){
+
+        //Inserir LOG para gerar a Notificação
+        $criar_log = "insert into `logs` (`id`, `tabela_alterada`, `tarefa_executada`, `cor`, `icone`, `status`, `data_criacao`, `usuarios_id`) VALUES
+        (NULL, 'funcionarios', 'O determinado registro de um funcionário foi editado com sucesso!', 'primary', 'fa fa-edit faa-tada', 'ativo', '".$data_criacao."', ".$_SESSION["id_usuario_login"]['id'].");";
+        $enviar_log = mysqli_query($conn, $criar_log);
+    }else{
+
+        //Inserir LOG para gerar a Notificação
+        $criar_log = "insert into `logs` (`id`, `tabela_alterada`, `tarefa_executada`, `cor`, `icone`, `status`, `data_criacao`, `usuarios_id`) VALUES
+        (NULL, 'funcionarios', 'Falha ao tentar editar o determinado registro de um funcionário.', 'danger', 'fa fa-exclamation-triangle faa-flash', 'ativo', '".$data_criacao."', ".$_SESSION["id_usuario_login"]['id'].");";
+        $enviar_log = mysqli_query($conn, $criar_log);
+    }
 
 
     header("location:../../painel/cadastros.php");

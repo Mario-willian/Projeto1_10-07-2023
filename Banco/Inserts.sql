@@ -4,11 +4,12 @@ create view acessos_empresas as SELECT empr.id as id, empr.cnpj as cnpj, empr.no
 FROM empresas empr 
 inner join acessos aces on empr.id = aces.empresas_id;
 
-create view acessos_ocorrencias as SELECT ocor.id as id, ocor.arquivo as arquivo, ocor.motivo as motivo, ocor.faltas as faltas, ocor.valor as valor, ocor.observacao as observacao, ocor.status as status, ocor.data_criacao as data_criacao, ocor.funcionarios_id as funcionarios_id, func.nome_completo as funcionario_nome_completo, ocor.empresas_id as empresas_id, empr.nome_loja as empresa_nome_loja, empr.razao_social as empresa_razao_social, aces.usuarios_id as usuarios_id
+create view acessos_ocorrencias as SELECT ocor.id as id, arqu.arquivo as arquivo, ocor.motivo as motivo, ocor.faltas as faltas, ocor.valor as valor, ocor.observacao as observacao, ocor.status as status, ocor.data_criacao as data_criacao, ocor.funcionarios_id as funcionarios_id, func.nome_completo as funcionario_nome_completo, ocor.empresas_id as empresas_id, empr.nome_loja as empresa_nome_loja, empr.razao_social as empresa_razao_social, aces.usuarios_id as usuarios_id
 FROM ocorrencias ocor 
 inner join acessos aces on ocor.empresas_id = aces.empresas_id
 inner join funcionarios func on ocor.funcionarios_id = func.id
-inner join empresas empr on ocor.empresas_id = empr.id;
+inner join empresas empr on ocor.empresas_id = empr.id
+inner join arquivos_ocorrencias arqu on arqu.ocorrencias_id = ocor.id;
 
 create view acessos_ferias as SELECT feri.id as id, feri.data_inicio as data_inicio, feri.data_fim as data_fim, feri.observacao as observacao, feri.data_criacao as data_criacao, feri.funcionarios_id as funcionarios_id, func.nome_completo as funcionario_nome_completo, feri.empresas_id as empresas_id, empr.nome_loja as empresa_nome_loja, empr.razao_social as empresa_razao_social, aces.usuarios_id as usuarios_id
 FROM ferias feri 
@@ -56,12 +57,19 @@ insert into funcionarios(id, cpf, nome_completo, data_nascimento, salario, nome_
 (NULL, '123.456.789-00', 'Funcionario Teste 4', '2023-07-19', '3000.30', 'Pai Teste4', 'Mae Teste', 'Padaria', 'Operador de Loja', '', 'Ativo', '2023-07-20', '2023-07-19 01:08:48', '1'),
 (NULL, '987.654.321-00', 'Funcionario Teste 5', '2001-11-01', '3000.30', 'Pai Teste5', 'Mae Teste2', 'Caixa', 'Operador de Loja', '', 'Ativo', '2023-08-10', '2023-07-19 02:30:00', '2');
 
-INSERT INTO `ocorrencias` (`id`, `arquivo`, `motivo`, `faltas`, `valor`, `observacao`, `status`, `data_criacao`, `funcionarios_id`, `empresas_id`) VALUES 
-(NULL, 'teste1.png', 'Atestado', 10, '150.00', 'Teste1', 'Ativo', '2023-07-24 01:22:37.000000', '1', '1'), 
-(NULL, 'teste2.png', 'Meta', 1, '562.00', 'teste2', 'Ativo', '2023-07-25 01:22:37.000000', '1', '2'),
-(NULL, 'teste3.png', 'Feriado', 1, '0.00', 'teste3', 'Ativo', '2023-07-26 01:22:37.000000', '1', '3'),
-(NULL, 'teste4.png', 'Meta', 3, '10.00', 'teste4', 'Ativo', '2023-07-27 01:22:37.000000', '2', '1'),
-(NULL, 'teste5.png', 'Feriado', 4, '5.00', 'teste5', 'Ativo', '2023-07-28 01:22:37.000000', '3', '2');
+INSERT INTO `ocorrencias` (`id`, `motivo`, `faltas`, `valor`, `observacao`, `status`, `data_criacao`, `funcionarios_id`, `empresas_id`) VALUES 
+(NULL, 'Atestado', 10, '150.00', 'Teste1', 'Ativo', '2023-07-24 01:22:37.000000', '1', '1'), 
+(NULL, 'Meta', 1, '562.00', 'teste2', 'Ativo', '2023-07-25 01:22:37.000000', '1', '2'),
+(NULL, 'Feriado', 1, '0.00', 'teste3', 'Ativo', '2023-07-26 01:22:37.000000', '1', '3'),
+(NULL, 'Meta', 3, '10.00', 'teste4', 'Ativo', '2023-07-27 01:22:37.000000', '2', '1'),
+(NULL, 'Feriado', 4, '5.00', 'teste5', 'Ativo', '2023-07-28 01:22:37.000000', '3', '2');
+
+INSERT INTO `arquivos_ocorrencias` (`id`, `arquivo`, `data_criacao`, `ocorrencias_id`) VALUES 
+(NULL, 'teste1.png', '2023-07-25 01:22:37.000000', '1'), 
+(NULL, 'teste2.png', '2023-07-25 01:22:37.000000', '2'),
+(NULL, 'teste3.png', '2023-07-25 01:22:37.000000', '3'),
+(NULL, '', '2023-07-25 01:22:37.000000', '4'),
+(NULL, 'teste5.png', '2023-07-25 01:22:37.000000', '5');
 
 INSERT INTO `ferias` (`id`, `data_inicio`, `data_fim`, `observacao`, `data_criacao`, `funcionarios_id`, `empresas_id`) VALUES
 (NULL, '2023-07-25', '2023-07-31', 'teste1', '2023-07-25 02:06:52.000000', '1', '1'),

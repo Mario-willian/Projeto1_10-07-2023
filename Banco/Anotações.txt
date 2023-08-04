@@ -1,17 +1,14 @@
 Pendente:
-**editar dados da pagina conta.php
+
 *Exibir arquivos de ocorrencia NO EDIT
 *Deixar Filtros funcionais -> Trabalhar com post. Se nao tiver recebido nada, faz a busca. Se tiver, faz a busca de acordo a pesquisa
+
+Finalizado: 
+*Inserir delete dos lembretes.
+*editar dados da pagina conta.php
+*Inserir logs em cada crud
 ------------------------------
 
 Acrescentar:
 *Senha em MD5
 ----------------------
-
-Fiquei com duvida em como direcionar o X do lembrete pra uma pagina, pra que eu consiga excluir. Ja ta td configurado, so tem que mandar pra pagina ao clicar no X.
-
-Logs vai inserir em todas as acoes? Ja esta funcionando, so falta os inserts nas acoes. So recebe a notificacao quem realiza ela.
-
-Pendente:
-*Editar Dados do usuario logado.
-*Deixar Filtros funcionais

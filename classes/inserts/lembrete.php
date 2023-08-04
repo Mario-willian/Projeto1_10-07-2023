@@ -25,9 +25,19 @@ $enviar_lembrete = mysqli_query($conn, $inserir_lembrete);
 if($enviar_lembrete == 1){
     // Criar o array com status e a mensagem de sucesso
     $retorna = ['status' => true, 'msg' => "Lembrete Cadastrado com Sucesso!"];
+
+    //Inserir LOG para gerar a Notificação
+    $criar_log = "insert into `logs` (`id`, `tabela_alterada`, `tarefa_executada`, `cor`, `icone`, `status`, `data_criacao`, `usuarios_id`) VALUES
+    (NULL, 'lembretes', 'O lembrete foi cadastrado com sucesso!', 'success', 'far fa-check-circle faa-tada', 'ativo', '".$data_criacao."', ".$_SESSION["id_usuario_login"]['id'].");";
+    $enviar_log = mysqli_query($conn, $criar_log);
 }else{
     // Criar o array com status e a mensagem de erro
     $retorna = ['status' => false, 'msg' => "Erro ao Cadastrar o Lembrete!"];
+
+    //Inserir LOG para gerar a Notificação
+    $criar_log = "insert into `logs` (`id`, `tabela_alterada`, `tarefa_executada`, `cor`, `icone`, `status`, `data_criacao`, `usuarios_id`) VALUES
+    (NULL, 'lembretes', 'Falha ao tentar cadastrar o lembrete.', 'danger', 'fa fa-exclamation-triangle faa-flash', 'ativo', '".$data_criacao."', ".$_SESSION["id_usuario_login"]['id'].");";
+    $enviar_log = mysqli_query($conn, $criar_log);
 }
 
 // Converter o array em objeto e retornar para o JavaScript

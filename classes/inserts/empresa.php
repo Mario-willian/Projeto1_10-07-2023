@@ -64,9 +64,20 @@ if($row_empresa_existente !== NULL){
 if($enviar_empresa == 1){
     // Criar o array com status e a mensagem de sucesso
     $retorna = ['status' => true, 'msg' => "Empresa Cadastrado com Sucesso!"];
+
+    //Inserir LOG para gerar a Notificação
+    $criar_log = "insert into `logs` (`id`, `tabela_alterada`, `tarefa_executada`, `cor`, `icone`, `status`, `data_criacao`, `usuarios_id`) VALUES
+    (NULL, 'empresas', 'A empresa ".$empresa_nome_loja." foi cadastrada com sucesso!', 'success', 'far fa-check-circle faa-tada', 'ativo', '".$data_criacao."', ".$_SESSION["id_usuario_login"]['id'].");";
+    $enviar_log = mysqli_query($conn, $criar_log);
+
 }else{
     // Criar o array com status e a mensagem de erro
     $retorna = ['status' => false, 'msg' => "Erro ao Cadastrar a Empresa! Verifique os Dados Inseridos"];
+
+    //Inserir LOG para gerar a Notificação
+    $criar_log = "insert into `logs` (`id`, `tabela_alterada`, `tarefa_executada`, `cor`, `icone`, `status`, `data_criacao`, `usuarios_id`) VALUES
+    (NULL, 'empresas', 'Falha ao tentar cadastrar a empresa.".$empresa_nome_loja." !', 'danger', 'fa fa-exclamation-triangle faa-flash', 'ativo', '".$data_criacao."', ".$_SESSION["id_usuario_login"]['id'].");";
+    $enviar_log = mysqli_query($conn, $criar_log);
 }
 
 // Converter o array em objeto e retornar para o JavaScript

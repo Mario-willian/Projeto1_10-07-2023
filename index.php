@@ -46,7 +46,7 @@ session_start();
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "E-mail inválido">
-						<input class="input100" name="email_login" type="text" required="" placeholder="E-mail">
+						<input class="input100" name="email_login" maxlength="80" type="text" required="" placeholder="E-mail">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
@@ -54,7 +54,7 @@ session_start();
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Senha inválida">
-						<input class="input100" name="senha_login" type="password" placeholder="Senha" required="">
+						<input class="input100" name="senha_login" maxlength="18" type="password" placeholder="Senha" required="">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 						&nbsp;<i class="fa fa-lock" aria-hidden="true"></i>

@@ -35,6 +35,7 @@ if(!empty($_POST['email_login'] AND !empty($_POST['senha_login']))){
         $_SESSION["id_usuario_login"]['id'] = $row_login['id'];
         $_SESSION["id_usuario_login"]['nome_completo'] = $row_login['nome_completo'];
         $_SESSION["id_usuario_login"]['email'] = $row_login['email'];
+        $_SESSION["id_usuario_login"]['senhamd5'] = $row_login['senha'];
 
         //Startando Variavel
         $i=1;

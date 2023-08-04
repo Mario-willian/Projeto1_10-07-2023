@@ -247,6 +247,45 @@ $data_criacao = substr($row_ocorrencia['data_criacao'],0,10);
                     </div>
                   </div>
 
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Arquivos da Ocorrencia: </label>
+
+                        <?php 
+  /*
+                        $imagens = $row_ocorrencia['arquivo']; 
+
+                        
+
+                        $i=0;
+
+                        //lista todos e seleciona apenas o que está no banco
+                        foreach ($row_ocorrencia['arquivo'] as $value) {
+
+                          $imagens[$i] = $value;
+                          $i++;
+                        }
+
+                        //lista todos e seleciona apenas o que está no banco
+                        foreach ($row_ocorrencia['arquivo'] as $value) {
+
+                          $imagens[$i] = $value;
+                          $i++;
+                        }
+
+                        $imagens[] = $row_ocorrencia['arquivo']; 
+                        
+                        
+                        echo $row_ocorrencia['arquivo']; 
+                        */
+                        ?>
+
+                        <!-- <img src="<?php //echo $row_ocorrencia['arquivo']; ?>"> -->
+                      </div>
+                    </div>
+                  </div>
+
                    <div class="row">
                     <div class="col-md-12">
                       <div class="form-group"><br>
