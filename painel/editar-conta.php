@@ -69,21 +69,7 @@ if (!isset($_SESSION["id_usuario_login_editar"])) {
               <p>Cadastros</p>
             </a>
           </li>
-           <li class="active-pro" id="txt">
-            <a href="" onclick="imprime()">
-              <i class="now-ui-icons arrows-1_cloud-download-93"></i>
-              <script type="text/javascript" language="javascript">
-                function imprime(text){
-                  text=document
-                  print(text)
-                }
-              </script>
-              <form>
-              <p>IMPRIMIR DADOS</p>
-              </form>
-
-            </a>
-          </li>
+          
         </ul>
       </div>
     </div>

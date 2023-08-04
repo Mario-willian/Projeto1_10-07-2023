@@ -93,7 +93,7 @@ $resultado_funcionario = mysqli_query($conn, $pesquisa_funcionario);
       }
     </script>
     <form>
-    <p>IMPRIMIR DADOS</p>
+    <p>IMPRIMIR PÁGINA</p>
     </form>
 
             </a>
@@ -212,7 +212,7 @@ function myFunction() {
                 <h4 class="card-title"><i class="fa fa-id-card-o"></i><b> Seus Funcionários:</b></h4></center>
                 <h6><i class="fa fa-sliders"></i> Filtro</h6>
                 <div class="row">
-                    <div class="col-md-3 pr-1">
+                    <div class="col-md-2 pr-1">
                       <div class="form-group">
                         <label>Nome</label>
                         <input type="text" name="nome" class="form-control" >
@@ -248,7 +248,7 @@ function myFunction() {
                         </select>
                       </div>
                     </div>
-                    <div class="col-md-3 pl-1">
+                    <div class="col-md-2 pl-1">
                       <div class="form-group">
                         <label>Função</label>
                         <select name="funcao" class="form-control">
@@ -292,11 +292,17 @@ function myFunction() {
                       </div>
                     </div>
 
+                    <div class="col-md-2">
+                      <div class="form-group"><br>
+                        <button title="Exportar Tabela para Arquivo Excel" type="submit" id="btnExcel" name="filtrar" class="btn btn-success" style="width: 100%;"><b><i class="fa fa-download"></i> Excel</b></button>
+                      </div>
+                  </div>
+
              </div>
               </div>
               <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table">
+                <div id="divTabela" class="table-responsive">
+                  <table id="Tab" class="table">
                     <thead class=" text-primary">
                       <th>
                         Nome Completo
@@ -386,7 +392,9 @@ function myFunction() {
                     <?php } ?>
                     </tbody>
                   </table>
-                  <nav aria-label="Navegação de página exemplo">
+                    
+                </div><br>
+                <nav aria-label="Navegação de página exemplo">
                     <ul class="pagination justify-content-center">
                       <li class="page-item disabled">
                       <a class="page-link" href="?pagina=1" tabindex="-1">Primeira</a>
@@ -405,14 +413,44 @@ function myFunction() {
                       <a class="page-link" href="?pagina=<?=$paginas?>">Última</a>
                       </li>
                     </ul>
-                  </nav>   
-                </div>
+                  </nav>
               </div>
             </div>
           </div>
 
         </div>
       </div>
+
+         <!-- excel -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+<script>
+                    
+       $(document).ready(function(){
+
+        $("#btnExcel").click(function(e){
+        /*preventDefault Serve para evitar abrir o link em uma nova página*/ 
+         e.preventDefault();
+
+          var DivTabela = document.getElementById("divTabela");
+          /*\ufeff serve para ter um arquivo utf-8 sem problemas de acentuação*/
+          var Arquivo = new Blob(["\ufeff" + DivTabela.outerHTML],{type:"application/vnd.ms-excel"});
+
+          var url = window.URL.createObjectURL(Arquivo);
+
+            var a = document.createElement("a");
+
+              a.href = url; 
+
+              a.download = "Funcionários";
+
+               a.click();
+
+                });
+
+           });
+
+ </script>
       
       <?php
 //Carregando o final da pagina

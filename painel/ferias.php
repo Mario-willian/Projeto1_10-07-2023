@@ -88,7 +88,7 @@ $resultado_ferias = mysqli_query($conn, $pesquisa_ferias);
       }
     </script>
     <form>
-    <p>IMPRIMIR DADOS</p>
+    <p>IMPRIMIR PÁGINA</p>
     </form>
 
             </a>
@@ -257,7 +257,7 @@ $resultado_ferias = mysqli_query($conn, $pesquisa_ferias);
                     </tbody>
                   </table>                 
                       
-                </div>
+                </div><br>
                 <nav aria-label="Navegação de página exemplo">
                     <ul class="pagination justify-content-center">
                       <li class="page-item disabled">

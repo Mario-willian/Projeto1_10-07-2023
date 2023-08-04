@@ -78,7 +78,7 @@ if(isset($_GET['deletar'])){
                 }
               </script>
               <form>
-              <p>IMPRIMIR DADOS</p>
+              <p>IMPRIMIR PÁGINA</p>
               </form>
 
             </a>

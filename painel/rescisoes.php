@@ -89,7 +89,7 @@ $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
       }
     </script>
     <form>
-    <p>IMPRIMIR DADOS</p>
+    <p>IMPRIMIR PÁGINA</p>
     </form>
 
             </a>
@@ -212,12 +212,17 @@ $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
                         <button type="submit" name="filtrar" class="btn btn-outline-info" style="width: 100%;"><b><i class="fa fa-search"></i> Buscar</b></button><br>
                       </div>
                     </div>
+                    <div class="col-md-2">
+                      <div class="form-group"><br>
+                        <button title="Exportar Tabela para Arquivo Excel" type="submit" id="btnExcel" name="filtrar" class="btn btn-success" style="width: 100%;"><b><i class="fa fa-download"></i> Excel</b></button>
+                      </div>
+                  </div>
 
              </div>
 
               </div>
               <div class="card-body">
-                <div class="table-responsive">
+                <div id="divTabela" class="table-responsive">
                   <table class="table">
                     <thead class=" text-primary">
                       <th>
@@ -300,7 +305,9 @@ $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
                     <?php } ?>
                     </tbody>
                   </table>
-                  <nav aria-label="Navegação de página exemplo">
+                   
+                </div><br>
+                <nav aria-label="Navegação de página exemplo">
                     <ul class="pagination justify-content-center">
                       <li class="page-item disabled">
                       <a class="page-link" href="?pagina=1" tabindex="-1">Primeira</a>
@@ -319,13 +326,43 @@ $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
                       <a class="page-link" href="?pagina=<?=$paginas?>">Última</a>
                       </li>
                     </ul>
-                  </nav>   
-                </div>
+                  </nav> 
               </div>
             </div>
           </div>
         </div>
       </div>
+
+               <!-- excel -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+<script>
+                    
+       $(document).ready(function(){
+
+        $("#btnExcel").click(function(e){
+        /*preventDefault Serve para evitar abrir o link em uma nova página*/ 
+         e.preventDefault();
+
+          var DivTabela = document.getElementById("divTabela");
+          /*\ufeff serve para ter um arquivo utf-8 sem problemas de acentuação*/
+          var Arquivo = new Blob(["\ufeff" + DivTabela.outerHTML],{type:"application/vnd.ms-excel"});
+
+          var url = window.URL.createObjectURL(Arquivo);
+
+            var a = document.createElement("a");
+
+              a.href = url; 
+
+              a.download = "Rescisões";
+
+               a.click();
+
+                });
+
+           });
+
+ </script>
       <?php
 //Carregando o final da pagina
 require "../complements/end_page.php";

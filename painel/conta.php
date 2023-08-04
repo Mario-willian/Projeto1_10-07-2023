@@ -57,21 +57,7 @@ require "../complements/begin_page.php";
               <p>Cadastros</p>
             </a>
           </li>
-           <li class="active-pro" id="txt">
-            <a href="" onclick="imprime()">
-              <i class="now-ui-icons arrows-1_cloud-download-93"></i>
-              <script type="text/javascript" language="javascript">
-                function imprime(text){
-                  text=document
-                  print(text)
-                }
-              </script>
-              <form>
-              <p>IMPRIMIR DADOS</p>
-              </form>
-
-            </a>
-          </li>
+         
         </ul>
       </div>
     </div>
@@ -150,20 +136,20 @@ require "../complements/begin_page.php";
                     <div class="col-md-8">
                       <div class="form-group">
                         <center><label>Nome</label>
-                        <input type="text" name="usuario_nome" value="<?php echo $_SESSION["id_usuario_login"]['nome_completo'] ?>" class="form-control" disabled style="width: 80%;">
+                        <input type="text" name="usuario_nome" value="<?php echo $_SESSION["id_usuario_login"]['nome_completo'] ?>" class="form-control" disabled style="width: 80%;text-align:center;font-size: 16px;">
                       </div>
                        </div>
                       <center>
                     <div class="col-md-8">
                       <div class="form-group">
                         <center><label>E-mail</label>
-                        <input type="text" name="usuario_email" value="<?php echo $_SESSION["id_usuario_login"]['email'] ?>" class="form-control" disabled style="width: 80%;">
+                        <input type="text" name="usuario_email" value="<?php echo $_SESSION["id_usuario_login"]['email'] ?>" class="form-control" disabled style="width: 80%;text-align:center;font-size: 16px;">
                       </div>
                     </div>
                     <div class="col-md-8">
                       <div class="form-group">
                         <center><label>Senha</label>
-                        <input type="password" name="usuario_senha" value="<?php echo $_SESSION["id_usuario_login"]['senhamd5'] ?>" id="myInput" class="form-control" disabled style="width: 80%;"></center>
+                        <input type="password" name="usuario_senha" value="<?php echo $_SESSION["id_usuario_login"]['senhamd5'] ?>" id="myInput" class="form-control" disabled style="width: 80%;text-align:center;font-size: 16px;"></center>
 
                       </div>
                     </div>
