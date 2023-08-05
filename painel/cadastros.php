@@ -232,9 +232,9 @@ function myFunction() {
                   </table>
                 </div>
               </div>
-            </div>
+            </div>-->
           </div>
-                    -->
+                    
         <form action="cadastros.php" method="POST">
           <div class="col-md-12">
             <div class="card">
@@ -242,13 +242,13 @@ function myFunction() {
                 <h4 class="card-title"><i class="fa fa-id-card-o"></i><b> Seus Funcionários:</b></h4></center>
                 <h6><i class="fa fa-sliders"></i> Filtro</h6>
                 <div class="row">
-                    <div class="col-md-2 pr-1">
+                    <div class="col-md-2">
                       <div class="form-group">
                         <label>Nome</label>
                         <input type="text" name="funcionario_nome" class="form-control">
                       </div>
                     </div>
-                    <div class="col-md-2 pl-1">
+                    <div class="col-md-2">
                       <div class="form-group">
                         <label>Selecionar Empresa</label>
                         <select name="funcionario_empresa" class="form-control">
@@ -263,7 +263,7 @@ function myFunction() {
                         </select>
                       </div>
                     </div>
-                    <div class="col-md-2 pl-1">
+                    <div class="col-md-2">
                       <div class="form-group">
                         <label>Setor</label>
                         <select name="funcionario_setor" class="form-control">
@@ -278,7 +278,7 @@ function myFunction() {
                         </select>
                       </div>
                     </div>
-                    <div class="col-md-2 pl-1">
+                    <div class="col-md-2">
                       <div class="form-group">
                         <label>Função</label>
                         <select name="funcionario_funcao" class="form-control">
