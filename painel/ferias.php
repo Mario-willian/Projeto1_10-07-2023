@@ -185,13 +185,14 @@ $resultado_ferias = mysqli_query($conn, $pesquisa_ferias);
                 <h4 class="card-title"> <i class="fa fa-list"></i><b> Listagem de Férias</b></h4></center>
                 <h6><i class="fa fa-sliders"></i> Filtro</h6>
                 <div class="row">
-                    <div class="col-md-2 pr-1">
+                    <div class="col-md-2">
                       <div class="form-group">
                         <label>Data Início</label>
                         <input type="date" name="ferias_data_inicio" class="form-control" >
                       </div>
                     </div>
-                    <div class="col-md-2 pl-1">
+                
+                    <div class="col-md-2 ">
                       <div class="form-group">
                         <label>Selecionar Loja</label>
                         <select name="ferias_loja" class="form-control">
@@ -206,7 +207,7 @@ $resultado_ferias = mysqli_query($conn, $pesquisa_ferias);
                         </select>
                       </div>
                     </div>
-                    <div class="col-md-2 pl-1">
+                    <div class="col-md-2">
                       <div class="form-group">
                         <label>Selecionar Funcionário</label>
                         <select name="ferias_funcionario" class="form-control">

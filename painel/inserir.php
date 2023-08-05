@@ -392,7 +392,6 @@ require "../complements/begin_page.php";
 
  <!-- INICIO DIV -->
 
-      <div class="content">
         <div class="row">
           <div class="col-md-6">
             <div class="card card-user">
@@ -538,7 +537,7 @@ require "../complements/begin_page.php";
                  </div>
                </div>
               </div>
-            </div>
+           
           </div>  <!-- FIM DIV -->
 
 

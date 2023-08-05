@@ -154,21 +154,12 @@ require "../complements/begin_page.php";
                       </div>
                     </div>
 
-                      <center>
+                     
                         <div class="col-md-6 pr-1">
-                           <div class="form-group">
-                             <div class="tab">   
-
-                                 <div class="row ">
-
-                                    <table class="table table">
-                                      <thead>
-                                        <tr>                                        
-                                          <th>Empresas Administradas</th>
-                                        </tr>
-                                      </thead>
-                                      <tbody>
-                                        <tr>
+                           <div class="form-group">                                                                                   
+                                      <h4>Empresas Administradas</h4>
+                                                                     
+                                          <ol>
                                           <!-- Inicio de uma codição PHP -->
                                             <?php 
 
@@ -176,12 +167,8 @@ require "../complements/begin_page.php";
 
                                             ?>
                                           <!-- Fim de uma codição PHP -->
-                                        </tr>                                       
-                                      </tbody>
-                                    </table>
-
-                                </div>
-                             </div>
+                                        </ol>                                   
+                                                                                        
                            </div>
                         </div>
                         <button style="width: 50%" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"><i class="fa fa-edit"></i> Editar Dados</button>

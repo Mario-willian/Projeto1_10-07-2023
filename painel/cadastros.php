@@ -307,7 +307,8 @@ function myFunction() {
                   </div>
 
              </div>
-              </div>
+           </div>
+           
               <div class="card-body">
                 <div id="divTabela" class="table-responsive">
                   <table id="Tab" class="table">

@@ -165,32 +165,20 @@ if (!isset($_SESSION["id_usuario_login_editar"])) {
                       </div>
                     </div>
 
-                      <center>
-                        <div class="col-md-6 pr-1">
-                           <div class="form-group">
-                             <div class="tab">   
+                    <div class="col-md-6 pr-1">
+                           <div class="form-group">                                                                                   
+                                      <h4>Empresas Administradas</h4>
+                                                                     
+                                          <ol>
+                                          <!-- Inicio de uma codição PHP -->
+                                            <?php 
 
-                                 <div class="row ">
+                                            require "../complements/selects/select_empresa_acesso_usuario.php";
 
-                                    <table class="table table">
-                                      <thead>
-                                        <tr>                                        
-                                          <th>Empresas Administradas</th>
-                                        </tr>
-                                      </thead>
-                                      <tbody>
-                                        <!-- Inicio de uma codição PHP -->
-                                        <?php 
-
-                                        require "../complements/selects/select_empresa_acesso_usuario.php";
-                                        
-                                        ?>
-                                        <!-- Fim de uma codição PHP -->                                
-                                      </tbody>
-                                    </table>
-
-                                </div>
-                             </div>
+                                            ?>
+                                          <!-- Fim de uma codição PHP -->
+                                        </ol>                                   
+                                                                                        
                            </div>
                         </div>
 

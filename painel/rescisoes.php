@@ -192,13 +192,13 @@ $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
                 <h4 class="card-title"> <i class="fa fa-list"></i><b> Listagem de Rescisões</b></h4></center>
                 <h6><i class="fa fa-sliders"></i> Filtro</h6>
                 <div class="row">
-                    <div class="col-md-2 pr-1">
+                    <div class="col-md-2">
                       <div class="form-group">
                         <label>Data</label>
                         <input type="date" name="recisao_data_criacao" class="form-control" >
                       </div>
                     </div>
-                    <div class="col-md-2 pl-1">
+                    <div class="col-md-2 ">
                       <div class="form-group">
                         <label>Selecionar Loja</label>
                         <select name="recisao_loja" class="form-control">
@@ -213,7 +213,7 @@ $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
                         </select>
                       </div>
                     </div>
-                    <div class="col-md-2 pl-1">
+                    <div class="col-md-2">
                       <div class="form-group">
                         <label>Selecionar Funcionário</label>
                         <select name="recisao_funcionario" class="form-control">
@@ -228,7 +228,7 @@ $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
                         </select>
                       </div>
                     </div>
-                    <div class="col-md-2 pl-1">
+                    <div class="col-md-2">
                       <div class="form-group">
                         <label>Motivo</label>
                         <select name="recisao_motivo" class="form-control">

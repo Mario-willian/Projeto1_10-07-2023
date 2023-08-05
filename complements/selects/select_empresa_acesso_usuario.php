@@ -7,7 +7,7 @@ $resultado_empresas = mysqli_query($conn, $pesquisa_empresas);
 //Loop para listar em opções as empresas que o usuário tem acesso
 while ($row_empresas = mysqli_fetch_assoc($resultado_empresas)){
 
-        echo "<td>".$row_empresas['nome_loja']." - ".$row_empresas['cnpj']."</td>";
+        echo "<li>".$row_empresas['nome_loja']." - (".$row_empresas['cnpj'].")</li>";
         
 }
 
