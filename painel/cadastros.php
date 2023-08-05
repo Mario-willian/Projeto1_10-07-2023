@@ -58,8 +58,6 @@ if(!empty($_POST)){
 
 //Acrescimos ao select
 $pesquisa_funcionario .= " order by id_funcionarios DESC LIMIT ".$inicio.", ".$limite;
-
-echo $pesquisa_funcionario;
 //Executa o Select
 $resultado_funcionario = mysqli_query($conn, $pesquisa_funcionario);
 
