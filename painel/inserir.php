@@ -135,7 +135,7 @@ require "../complements/begin_page.php";
                 <div class="author">
                   <H5><i class="fa fa-warning "></i> INSERIR OCORRÊNCIA</H5>
                 </div>
-                <form method="POST" action="../classes/inserts/ocorrencia.php" enctype="multipart/form-data">
+                <form id="cad-ocorrencia-form" enctype="multipart/form-data">
                   
                   <div class="row">
                     <div class="col-md-6 pr-1">

@@ -24,7 +24,37 @@ $row_recisoes2 = mysqli_fetch_assoc($resultado_recisoes2);
 $paginas = ceil($row_recisoes2['count(id)'] / $limite);
 
 //Select para recisões
-$pesquisa_recisoes = "SELECT * FROM acessos_recisoes WHERE usuarios_id =".$_SESSION["id_usuario_login"]['id']." order by data_criacao DESC LIMIT ".$inicio.", ".$limite.";";
+$pesquisa_recisoes = "SELECT * FROM acessos_recisoes WHERE usuarios_id =".$_SESSION["id_usuario_login"]['id'];
+
+//Verifica se Filtrou a pesquisa
+if(!empty($_POST)){
+  $pesquisa_recisoes .= " AND (1=1)";
+
+  //Verifica se utilizou o filtro MOTIVO
+  if(isset($_POST['recisao_motivo'])){
+    $recisao_motivo = $_POST['recisao_motivo'];
+    $pesquisa_recisoes .= " AND motivo = '".$recisao_motivo."'";
+  }
+  //Verifica se utilizou o filtro Funcionario
+  if(isset($_POST['recisao_funcionario'])){
+    $recisao_funcionario = $_POST['recisao_funcionario'];
+    $pesquisa_recisoes .= " AND funcionarios_id = '".$recisao_funcionario."'";
+  }
+  //Verifica se utilizou o filtro Empresa
+  if(isset($_POST['recisao_loja'])){
+    $recisao_loja = $_POST['recisao_loja'];
+    $pesquisa_recisoes .= " AND empresas_id = '".$recisao_loja."'";
+  }
+  //Verifica se utilizou o filtro DATA
+  if(isset($_POST['recisao_data_criacao']) && $_POST['recisao_data_criacao'] != ""){
+    $recisao_data_criacao = $_POST['recisao_data_criacao']; $recisao_data_criacao = Date($recisao_data_criacao);
+    $pesquisa_recisoes .= " AND data_criacao LIKE '%".$recisao_data_criacao."%'";
+  }
+}
+
+//Acrescimos ao select
+$pesquisa_recisoes .= " order by data_criacao DESC LIMIT ".$inicio.", ".$limite;
+//Executa o Select
 $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
 
 ?>
@@ -158,51 +188,58 @@ $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
             <div class="card">
               <div class="card-header">
               <center>
+                <form action="rescisoes.php" method="POST">
                 <h4 class="card-title"> <i class="fa fa-list"></i><b> Listagem de Rescisões</b></h4></center>
                 <h6><i class="fa fa-sliders"></i> Filtro</h6>
                 <div class="row">
                     <div class="col-md-2 pr-1">
                       <div class="form-group">
                         <label>Data</label>
-                        <input type="date" name="data" class="form-control" >
+                        <input type="date" name="recisao_data_criacao" class="form-control" >
                       </div>
                     </div>
                     <div class="col-md-2 pl-1">
                       <div class="form-group">
                         <label>Selecionar Loja</label>
-                        <select name="" class="form-control">
-                          <option value="">puxar do banco as empresas que o adm administra</option>
+                        <select name="recisao_loja" class="form-control">
+                        <option value="" data-default disabled selected></option>
+                        <!-- Inicio de uma codição PHP -->
+                        <?php 
+                        $id_empresa_selecionado = 0;
+                        require "../complements/selects/select_empresa_editar.php";
+                        
+                        ?>
+                        <!-- Fim de uma codição PHP -->
                         </select>
                       </div>
                     </div>
                     <div class="col-md-2 pl-1">
                       <div class="form-group">
                         <label>Selecionar Funcionário</label>
-                        <select name="" class="form-control">
-                          <option value="">puxar do banco os funcionarios da empresa selecionada</option>
+                        <select name="recisao_funcionario" class="form-control">
+                        <option value="" data-default disabled selected></option>
+                        <!-- Inicio de uma codição PHP -->
+                        <?php 
+                        $id_funcionario_selecionado = 0;
+                        require "../complements/selects/select_funcionario_editar.php";
+                        
+                        ?>
+                        <!-- Fim de uma codição PHP -->
                         </select>
                       </div>
                     </div>
                     <div class="col-md-2 pl-1">
                       <div class="form-group">
                         <label>Motivo</label>
-                        <select name="" class="form-control">
-                          <option value="">Advertência</option>
-                          <option value="">Atestado</option>
-                          <option value="">Atestado de Óbito</option>
-                          <option value="">Erro Operacional</option>
-                          <option value="">Falta Injustificada</option>
-                          <option value="">Reembolso</option>
-                          <option value="">Hora Extra</option>
-                          <option value="">Afastamento INSS</option>
-                          <option value="">Licença Maternidade</option>
-                          <option value="">Licença Paternidade</option>
-                          <option value="">Meta</option>
-                          <option value="">Quebra de Caixa</option>
-                          <option value="">Segunda Via Cartão</option>
-                          <option value="">Vale Avulso</option>
-                          <option value="">Atestado de Comparecimento</option>
-                          <option value="">Feriado</option>
+                        <select name="recisao_motivo" class="form-control">
+                        <option value="" data-default disabled selected></option>
+                          <!-- Inicio de uma codição PHP -->
+                        <?php 
+
+                        require "../complements/selects/select_motivo_recisao_editar.php";
+                        
+                        ?>
+                        <!-- Fim de uma codição PHP -->
                         </select>
                       </div>
                     </div>
@@ -211,7 +248,8 @@ $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
                       <div class="form-group"><br>
                         <button type="submit" name="filtrar" class="btn btn-outline-info" style="width: 100%;"><b><i class="fa fa-search"></i> Buscar</b></button><br>
                       </div>
-                    </div>
+                  </div>
+                  </form>
                     <div class="col-md-2">
                       <div class="form-group"><br>
                         <button title="Exportar Tabela para Arquivo Excel" type="submit" id="btnExcel" name="filtrar" class="btn btn-success" style="width: 100%;"><b><i class="fa fa-download"></i> Excel</b></button>

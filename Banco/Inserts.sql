@@ -66,10 +66,10 @@ INSERT INTO `ocorrencias` (`id`, `motivo`, `faltas`, `valor`, `observacao`, `sta
 
 INSERT INTO `arquivos_ocorrencias` (`id`, `arquivo`, `data_criacao`, `ocorrencias_id`) VALUES 
 (NULL, 'teste1.png', '2023-07-25 01:22:37.000000', '1'), 
-(NULL, 'teste2.png', '2023-07-25 01:22:37.000000', '2'),
-(NULL, 'teste3.png', '2023-07-25 01:22:37.000000', '3'),
+(NULL, 'teste1.png', '2023-07-25 01:22:37.000000', '2'),
+(NULL, 'teste1.png', '2023-07-25 01:22:37.000000', '3'),
 (NULL, '', '2023-07-25 01:22:37.000000', '4'),
-(NULL, 'teste5.png', '2023-07-25 01:22:37.000000', '5');
+(NULL, 'teste1.png', '2023-07-25 01:22:37.000000', '5');
 
 INSERT INTO `ferias` (`id`, `data_inicio`, `data_fim`, `observacao`, `data_criacao`, `funcionarios_id`, `empresas_id`) VALUES
 (NULL, '2023-07-25', '2023-07-31', 'teste1', '2023-07-25 02:06:52.000000', '1', '1'),
@@ -87,14 +87,5 @@ INSERT INTO `vale_transportes` (`id`, `tipo`, `valor`, `data_criacao`, `funciona
 (NULL, 'Otimo', '400.00', '2023-07-25 02:06:52.000000', '1'),
 (NULL, 'Otimo', '130.00', '2023-07-25 02:06:52.000000', '2'),
 (NULL, 'BHBUS', '800.75', '2023-07-25 02:06:52.000000', '3'),
-(NULL, 'Otimo', '120.33', '2023-07-25 02:06:52.000000', '1'),
 (NULL, 'BHBUS', '800.75', '2023-07-25 02:06:52.000000', '4'),
 (NULL, 'Otimo', '120.33', '2023-07-25 02:06:52.000000', '5');
-
-insert into `logs` (`id`, `tabela_alterada`, `tarefa_executada`, `cor`, `icone`, `status`, `data_criacao`, `usuarios_id`) VALUES
-(NULL, 'recisoes', 'O funcionário Mário foi desligado da loja Y', 'danger', 'fa fa-exclamation-triangle faa-flash', 'ativo', '2023-07-29 09:35:00.000000', '1'),
-(NULL, 'ocorrencias', 'O funcionário Jorge da loja H recebeu uma ocorrência por Falta no dia 11/08/2023', 'warning', 'fa fa-info-circle faa-shake', 'ativo', '2023-07-29 10:35:00.000000', '1'),
-(NULL, 'funcionarios', 'Funcionário Mário William da Silva foi Cadastrado com Sucesso na loja Rio Branco!', 'success', 'far fa-check-circle faa-tada', 'ativo', '2023-07-28 09:35:00.000000', '1'),
-(NULL, 'ferias', 'O funcionário Cleydson da loja X está de férias do dia 21/07/2023 até 11/08/2023', 'info', 'fa fa-info-circle faa-shake', 'ativo', '2023-07-27 09:35:00.000000', '1'),
-(NULL, 'recisoes', 'O funcionário Cleydson foi desligado da loja Jabuticabeira', 'danger', 'fa fa-exclamation-triangle faa-flash', 'ativo', '2023-07-27 09:35:00.000000', '1'),
-(NULL, 'usuarios', 'Seus dados foram editados com sucesso!', 'primary', 'fa fa-edit faa-tada', 'ativo', '2023-07-26 09:35:00.000000', '1');

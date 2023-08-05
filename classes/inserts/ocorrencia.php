@@ -13,26 +13,38 @@ $ocorrencia_quantidade_faltas = $dados['ocorrencia_quantidade_faltas'];
 $ocorrencia_valor = $dados['ocorrencia_valor'];
 $ocorrencia_observacao = $dados['ocorrencia_observacao'];
 
-//'ADDSLASHER' para nao conflitar as aspas com o banco
-$ocorrencia_observacao = addslashes($ocorrencia_observacao);
-
-
-if (isset($_FILES['ocorrencia_arquivo']) && !empty($_FILES['ocorrencia_arquivo'])) {
-    //Armazenar os arquivos enviados
-    include_once 'special/upload.php';
-}else{
-    //Recebe Vazio
-    $arquivo = "";
-    $nomes_arquivo = "";
-}
-
 //Recebendo a data Atual
 $data_criacao = date('Y-m-d H:i:s');
 
+//'ADDSLASHER' para nao conflitar as aspas com o banco
+$ocorrencia_observacao = addslashes($ocorrencia_observacao);
 
-//Inserir Lembrete
-$inserir_ocorrencia = "insert into ocorrencias(id, arquivo, motivo, faltas, valor, observacao, status, data_criacao, funcionarios_id, empresas_id) values (NULL, '".$nomes_arquivo."', '".$ocorrencia_motivo."', '".$ocorrencia_quantidade_faltas."', '".$ocorrencia_valor."', '".$ocorrencia_observacao."', 'Ativo', '".$data_criacao."', '".$ocorrencia_funcionarios."', ".$ocorrencia_loja.");";
+//Inserir Ocorrencia
+$inserir_ocorrencia = "insert into ocorrencias(id, motivo, faltas, valor, observacao, status, data_criacao, funcionarios_id, empresas_id) values (NULL, '".$ocorrencia_motivo."', '".$ocorrencia_quantidade_faltas."', '".$ocorrencia_valor."', '".$ocorrencia_observacao."', 'Ativo', '".$data_criacao."', '".$ocorrencia_funcionarios."', ".$ocorrencia_loja.");";
 $enviar_ocorrencia = mysqli_query($conn, $inserir_ocorrencia);
+
+//Pesquisar ocorrencia recem criado
+$pesquisa_ocorrencia = "SELECT id FROM ocorrencias WHERE motivo = '".$ocorrencia_motivo."' AND data_criacao = '".$data_criacao."' ORDER BY id DESC LIMIT 1;";
+$resultado_ocorrencia = mysqli_query($conn, $pesquisa_ocorrencia);
+$row_ocorrencia = mysqli_fetch_assoc($resultado_ocorrencia);
+
+//ID da ocorrencia recem criado
+$ocorrencia_id = $row_ocorrencia['id'];
+
+//Inserindo arquivo da ocorrencia
+if ($_FILES['ocorrencia_arquivo']['error'][0] == 4){
+
+    //Recebe Vazio
+    $arquivo = "";
+    $nomes_arquivo = "";
+    //Inserir Arquivo vazio
+    $inserir_arquivo= "insert into arquivos_ocorrencias (id, arquivo, data_criacao, ocorrencias_id) values (NULL, '', '".$data_criacao."', '".$ocorrencia_id."');";
+    $enviar_arquivo = mysqli_query($conn, $inserir_arquivo);  
+}else{
+
+    //Armazenar os arquivos enviados
+    include_once 'special/upload.php';
+}
 
 //Mensagem de Sucesso ou Falha na operação
 if($enviar_ocorrencia == 1){

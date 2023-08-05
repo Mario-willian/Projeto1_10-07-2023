@@ -24,7 +24,38 @@ $row_ocorrencias2 = mysqli_fetch_assoc($resultado_ocorrencias2);
 $paginas = ceil($row_ocorrencias2['count(id)'] / $limite);
 
 //Select para ocorrencias
-$pesquisa_ocorrencias = "SELECT * FROM acessos_ocorrencias WHERE status = 'Ativo' AND usuarios_id =".$_SESSION["id_usuario_login"]['id']." order by data_criacao DESC LIMIT ".$inicio.", ".$limite.";";
+$pesquisa_ocorrencias = "SELECT * FROM acessos_ocorrencias WHERE status = 'Ativo' AND usuarios_id =".$_SESSION["id_usuario_login"]['id'];
+
+//Verifica se Filtrou a pesquisa
+if(!empty($_POST)){
+  $pesquisa_ocorrencias .= " AND (1=1)";
+
+
+  //Verifica se utilizou o filtro MOTIVO
+  if(isset($_POST['ocorrencia_motivo'])){
+    $ocorrencia_motivo = $_POST['ocorrencia_motivo'];
+    $pesquisa_ocorrencias .= " AND motivo = '".$ocorrencia_motivo."'";
+  }
+  //Verifica se utilizou o filtro Funcionario
+  if(isset($_POST['ocorrencia_funcionario'])){
+    $ocorrencia_funcionario = $_POST['ocorrencia_funcionario'];
+    $pesquisa_ocorrencias .= " AND funcionarios_id = '".$ocorrencia_funcionario."'";
+  }
+  //Verifica se utilizou o filtro Empresa
+  if(isset($_POST['ocorrencia_loja'])){
+    $ocorrencia_loja = $_POST['ocorrencia_loja'];
+    $pesquisa_ocorrencias .= " AND empresas_id = '".$ocorrencia_loja."'";
+  }
+  //Verifica se utilizou o filtro DATA
+  if(isset($_POST['ocorrencia_data']) && $_POST['ocorrencia_data'] != ""){
+    $ocorrencia_data = $_POST['ocorrencia_data']; $ocorrencia_data = Date($ocorrencia_data);
+    $pesquisa_ocorrencias .= " AND data_criacao LIKE '%".$ocorrencia_data."%'";
+  }
+}
+
+//Acrescimos ao select
+$pesquisa_ocorrencias .= " order by data_criacao DESC LIMIT ".$inicio.", ".$limite;
+//Executa o Select
 $resultado_ocorrencias = mysqli_query($conn, $pesquisa_ocorrencias);
 
 ?>
@@ -164,51 +195,58 @@ function myFunction() {
             <div class="card">
               <div class="card-header">
               <center>
+              <form action="ocorrencias.php" method="POST">
                 <h4 class="card-title"> <i class="fa fa-list"></i><b> Listagem de Ocorrências</b></h4></center>
                 <h6><i class="fa fa-sliders"></i> Filtro</h6>
                 <div class="row">
                     <div class="col-md-2 pr-1">
                       <div class="form-group">
                         <label>Data</label>
-                        <input type="date" name="data" class="form-control" >
+                        <input type="date" name="ocorrencia_data" class="form-control" >
                       </div>
                     </div>
                     <div class="col-md-2 pl-1">
                       <div class="form-group">
                         <label>Selecionar Loja</label>
-                        <select name="" class="form-control">
-                          <option value="">puxar do banco as empresas que o adm administra</option>
+                        <select name="ocorrencia_loja" class="form-control">
+                        <option value="" data-default disabled selected></option>
+                        <!-- Inicio de uma codição PHP -->
+                        <?php 
+                        $id_funcionario_selecionado = 0;
+                        require "../complements/selects/select_empresa_editar.php";
+                        
+                        ?>
+                        <!-- Fim de uma codição PHP -->
                         </select>
                       </div>
                     </div>
                     <div class="col-md-2 pl-1">
                       <div class="form-group">
                         <label>Selecionar Funcionário</label>
-                        <select name="" class="form-control">
-                          <option value="">puxar do banco os funcionarios da empresa selecionada</option>
+                        <select name="ocorrencia_funcionario" class="form-control">
+                        <option value="" data-default disabled selected></option>
+                        <!-- Inicio de uma codição PHP -->
+                        <?php 
+                        $id_funcionario_selecionado = 0;
+                        require "../complements/selects/select_funcionario_editar.php";
+                        
+                        ?>
+                        <!-- Fim de uma codição PHP -->
                         </select>
                       </div>
                     </div>
                     <div class="col-md-2 pl-1">
                       <div class="form-group">
                         <label>Motivo</label>
-                        <select name="" class="form-control">
-                          <option value="">Advertência</option>
-                          <option value="">Atestado</option>
-                          <option value="">Atestado de Óbito</option>
-                          <option value="">Erro Operacional</option>
-                          <option value="">Falta Injustificada</option>
-                          <option value="">Reembolso</option>
-                          <option value="">Hora Extra</option>
-                          <option value="">Afastamento INSS</option>
-                          <option value="">Licença Maternidade</option>
-                          <option value="">Licença Paternidade</option>
-                          <option value="">Meta</option>
-                          <option value="">Quebra de Caixa</option>
-                          <option value="">Segunda Via Cartão</option>
-                          <option value="">Vale Avulso</option>
-                          <option value="">Atestado de Comparecimento</option>
-                          <option value="">Feriado</option>
+                        <select name="ocorrencia_motivo" class="form-control">
+                        <option value="" data-default disabled selected></option>
+                        <!-- Inicio de uma codição PHP -->
+                        <?php 
+                        
+                        require "../complements/selects/select_ocorrencias_editar.php";
+                        
+                        ?>
+                        <!-- Fim de uma codição PHP -->
                         </select>
                       </div>
                     </div>
@@ -218,6 +256,7 @@ function myFunction() {
                         <button type="submit" name="filtrar" class="btn btn-outline-info" style="width: 100%;"><b><i class="fa fa-search"></i> Buscar</b></button><br>
                       </div>
                     </div>
+                  </form>
                     <div class="col-md-2">
                       <div class="form-group"><br>
                         <button title="Exportar Tabela para Arquivo Excel" type="submit" id="btnExcel" name="filtrar" class="btn btn-success" style="width: 100%;"><b><i class="fa fa-download"></i> Excel</b></button>
@@ -254,9 +293,6 @@ function myFunction() {
                         Observação
                       </th>
                       <th>
-                        Arquivo
-                      </th>
-                      <th>
                         Editar
                       </th>
                       <th>
@@ -287,10 +323,6 @@ function myFunction() {
                         <td>
                           <?php echo $row_ocorrencias['observacao'];?>
                         </td>
-                        <td>
-                          <?php echo $row_ocorrencias['arquivo'];?>
-                        </td>
-                        
                         <td>
                         <form action="editar-ocorrencias.php" method="POST">
                             <button class="btn btn-primary btn-sm" title="Editar"><i class=" fa fa-edit"></i></button>

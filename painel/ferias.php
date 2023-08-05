@@ -24,7 +24,32 @@ $row_ferias2 = mysqli_fetch_assoc($resultado_ferias2);
 $paginas = ceil($row_ferias2['count(id)'] / $limite);
 
 //Select para Ferias
-$pesquisa_ferias = "SELECT * FROM acessos_ferias WHERE usuarios_id =".$_SESSION["id_usuario_login"]['id']." order by data_criacao DESC LIMIT ".$inicio.", ".$limite.";";
+$pesquisa_ferias = "SELECT * FROM acessos_ferias WHERE usuarios_id =".$_SESSION["id_usuario_login"]['id'];
+
+//Verifica se Filtrou a pesquisa
+if(!empty($_POST)){
+  $pesquisa_ferias .= " AND (1=1)";
+
+  //Verifica se utilizou o filtro Funcionario
+  if(isset($_POST['ferias_funcionario'])){
+    $ferias_funcionario = $_POST['ferias_funcionario'];
+    $pesquisa_ferias .= " AND funcionarios_id = '".$ferias_funcionario."'";
+  }
+  //Verifica se utilizou o filtro Empresa
+  if(isset($_POST['ferias_loja'])){
+    $ferias_loja = $_POST['ferias_loja'];
+    $pesquisa_ferias .= " AND empresas_id = '".$ferias_loja."'";
+  }
+  //Verifica se utilizou o filtro DATA
+  if(isset($_POST['ferias_data_inicio']) && $_POST['ferias_data_inicio'] != ""){
+    $ferias_data = $_POST['ferias_data_inicio']; $ferias_data = Date($ferias_data);
+    $pesquisa_ferias .= " AND data_inicio = '".$ferias_data."'";
+  }
+}
+
+//Acrescimos ao select
+$pesquisa_ferias .= " order by data_criacao DESC LIMIT ".$inicio.", ".$limite;
+//Executa o Select
 $resultado_ferias = mysqli_query($conn, $pesquisa_ferias);
 
 ?>
@@ -156,28 +181,43 @@ $resultado_ferias = mysqli_query($conn, $pesquisa_ferias);
           <div class="col-md-12">
             <div class="card">
               <div class="card-header"><center>
+              <form action="ferias.php" method="POST">
                 <h4 class="card-title"> <i class="fa fa-list"></i><b> Listagem de Férias</b></h4></center>
                 <h6><i class="fa fa-sliders"></i> Filtro</h6>
                 <div class="row">
                     <div class="col-md-2 pr-1">
                       <div class="form-group">
-                        <label>Data</label>
-                        <input type="date" name="data" class="form-control" >
+                        <label>Data Início</label>
+                        <input type="date" name="ferias_data_inicio" class="form-control" >
                       </div>
                     </div>
                     <div class="col-md-2 pl-1">
                       <div class="form-group">
                         <label>Selecionar Loja</label>
-                        <select name="" class="form-control">
-                          <option value="">puxar do banco as empresas que o adm administra</option>
+                        <select name="ferias_loja" class="form-control">
+                        <option value="" data-default disabled selected></option>
+                        <!-- Inicio de uma codição PHP -->
+                        <?php 
+                        $id_funcionario_selecionado = 0;
+                        require "../complements/selects/select_empresa_editar.php";
+                        
+                        ?>
+                        <!-- Fim de uma codição PHP -->
                         </select>
                       </div>
                     </div>
                     <div class="col-md-2 pl-1">
                       <div class="form-group">
                         <label>Selecionar Funcionário</label>
-                        <select name="" class="form-control">
-                          <option value="">puxar do banco os funcionarios da empresa selecionada</option>
+                        <select name="ferias_funcionario" class="form-control">
+                        <option value="" data-default disabled selected></option>
+                        <!-- Inicio de uma codição PHP -->
+                        <?php 
+                        $id_funcionario_selecionado = 0;
+                        require "../complements/selects/select_funcionario_editar.php";
+                        
+                        ?>
+                        <!-- Fim de uma codição PHP -->
                         </select>
                       </div>
                     </div>
@@ -188,6 +228,7 @@ $resultado_ferias = mysqli_query($conn, $pesquisa_ferias);
                         <button type="submit" name="filtrar" class="btn btn-outline-info" style="width: 100%;"><b><i class="fa fa-search"></i> Buscar</b></button>
                       </div>
                   </div>
+                  </form>
                   <div class="col-md-2">
                       <div class="form-group"><br>
                         <button title="Exportar Tabela para Arquivo Excel" type="submit" id="btnExcel" name="filtrar" class="btn btn-success" style="width: 100%;"><b><i class="fa fa-download"></i> Excel</b></button>

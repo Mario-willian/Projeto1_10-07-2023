@@ -15,10 +15,12 @@ $id_item_selecionado = $_POST['id_item_selecionado'];
 $id_funcionario_selecionado = $_POST['id_funcionario_selecionado'];
 $id_empresa_selecionado = $_POST['id_empresa_selecionado'];
 
-//Select das Ocorrenia escolhidas
+//Select da Ocorrencia escolhidas
 $pesquisa_ocorrencia = "SELECT * FROM acessos_ocorrencias WHERE id =".$id_item_selecionado.";";
 $resultado_ocorrencia = mysqli_query($conn, $pesquisa_ocorrencia);
 $row_ocorrencia = mysqli_fetch_assoc($resultado_ocorrencia);
+
+
 
 //parte valida a data para inserir no input type="date" YYYY-MM-DD
 $data_criacao = substr($row_ocorrencia['data_criacao'],0,10);
@@ -250,39 +252,19 @@ $data_criacao = substr($row_ocorrencia['data_criacao'],0,10);
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label>Arquivos da Ocorrencia: </label>
+                        <label>Arquivos da Ocorrencia: </label><br><center>
 
+
+                        <!-- Inicio de uma codição PHP -->
                         <?php 
-  /*
-                        $imagens = $row_ocorrencia['arquivo']; 
-
                         
-
-                        $i=0;
-
-                        //lista todos e seleciona apenas o que está no banco
-                        foreach ($row_ocorrencia['arquivo'] as $value) {
-
-                          $imagens[$i] = $value;
-                          $i++;
-                        }
-
-                        //lista todos e seleciona apenas o que está no banco
-                        foreach ($row_ocorrencia['arquivo'] as $value) {
-
-                          $imagens[$i] = $value;
-                          $i++;
-                        }
-
-                        $imagens[] = $row_ocorrencia['arquivo']; 
+                        require "../complements/selects/select_arquivos_ocorrencias.php";
                         
-                        
-                        echo $row_ocorrencia['arquivo']; 
-                        */
                         ?>
-
-                        <!-- <img src="<?php //echo $row_ocorrencia['arquivo']; ?>"> -->
-                      </div>
+                        <!-- Fim de uma codição PHP -->
+                    </center>
+                  <label>Obs: Basta clicar sobre o documento para visualiza-lo</label>
+                  </div>
                     </div>
                   </div>
 

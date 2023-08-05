@@ -24,11 +24,43 @@ $row_funcionario2 = mysqli_fetch_assoc($resultado_funcionario2);
 $paginas = ceil($row_funcionario2['count(id_funcionarios)'] / $limite);
 
 //Select para Usuarios
-$pesquisa_usuario = "SELECT * FROM acessos_usuarios order by id_usuario DESC;";
-$resultado_usuario = mysqli_query($conn, $pesquisa_usuario);
+//$pesquisa_usuario = "SELECT * FROM acessos_usuarios order by id_usuario DESC;";
+//$resultado_usuario = mysqli_query($conn, $pesquisa_usuario);
 
 //Select para Funcionarios
-$pesquisa_funcionario = "SELECT * FROM acessos_funcionarios order by id_funcionarios DESC LIMIT ".$inicio.", ".$limite.";";
+$pesquisa_funcionario = "SELECT * FROM acessos_funcionarios";
+
+//Verifica se Filtrou a pesquisa
+if(!empty($_POST)){
+  $pesquisa_funcionario .= " WHERE (1=1)";
+
+  //Verifica se utilizou o filtro Funcionario
+  if(isset($_POST['funcionario_nome']) && $_POST['funcionario_nome'] != ""){
+    $funcionario_nome = $_POST['funcionario_nome'];
+    $pesquisa_funcionario .= " AND nome_completo LIKE '%".$funcionario_nome."%'";
+  }
+  //Verifica se utilizou o filtro Setor
+  if(isset($_POST['funcionario_setor'])){
+    $funcionario_setor = $_POST['funcionario_setor'];
+    $pesquisa_funcionario .= " AND setor = '".$funcionario_setor."'";
+  }
+  //Verifica se utilizou o filtro Funcao
+  if(isset($_POST['funcionario_funcao'])){
+    $funcionario_funcao = $_POST['funcionario_funcao'];
+    $pesquisa_funcionario .= " AND funcao = '".$funcionario_funcao."'";
+  }
+  //Verifica se utilizou o filtro Empresa
+  if(isset($_POST['funcionario_empresa']) && $_POST['funcionario_empresa'] != ""){
+    $funcionario_empresa = $_POST['funcionario_empresa']; $funcionario_empresa = Date($funcionario_empresa);
+    $pesquisa_funcionario .= " AND empresas_id = '".$funcionario_empresa."'";
+  }
+}
+
+//Acrescimos ao select
+$pesquisa_funcionario .= " order by id_funcionarios DESC LIMIT ".$inicio.", ".$limite;
+
+echo $pesquisa_funcionario;
+//Executa o Select
 $resultado_funcionario = mysqli_query($conn, $pesquisa_funcionario);
 
 ?>
@@ -205,7 +237,7 @@ function myFunction() {
             </div>
           </div>
                     -->
-                  
+        <form action="cadastros.php" method="POST">
           <div class="col-md-12">
             <div class="card">
               <div class="card-header"><center>
@@ -215,73 +247,51 @@ function myFunction() {
                     <div class="col-md-2 pr-1">
                       <div class="form-group">
                         <label>Nome</label>
-                        <input type="text" name="nome" class="form-control" >
+                        <input type="text" name="funcionario_nome" class="form-control">
                       </div>
                     </div>
                     <div class="col-md-2 pl-1">
                       <div class="form-group">
-                        <label>Selecionar Loja</label>
-                        <select name="" class="form-control">
-                          <option value="">puxar do banco as empresas que o adm administra</option>
+                        <label>Selecionar Empresa</label>
+                        <select name="funcionario_empresa" class="form-control">
+                        <option value="" data-default disabled selected></option>
+                        <!-- Inicio de uma codição PHP -->
+                        <?php 
+                        $id_empresa_selecionado = 0;
+                        require "../complements/selects/select_empresa_editar.php";
+                        
+                        ?>
+                        <!-- Fim de uma codição PHP -->
                         </select>
                       </div>
                     </div>
                     <div class="col-md-2 pl-1">
                       <div class="form-group">
                         <label>Setor</label>
-                        <select name="setor" class="form-control">
-                          <option value="acougue">Açougue</option>
-                          <option value="padaria">Padaria</option>
-                          <option value="hortifruti">Hortifruti</option>
-                          <option value="caixa">Caixa</option>
-                          <option value="fiscalizacao">Fiscalização</option>
-                          <option value="reposicao">Reposição</option>
-                          <option value="limpeza">Limpeza</option>
-                          <option value="administrativo">Administrativo</option>
-                          <option value="gerencia">Gerencia</option>
-                          <option value="frios">Frios</option>
-                          <option value="subgerencia">Sub-Gerencia</option>
-                          <option value="entregas">Entregas</option>
-                          <option value="recebimento">Recebimento Merc.</option>
-                          <option value="operacaoloja">Operação Loja</option>
-                          <option value="rh">Recursos Humanos</option>
+                        <select name="funcionario_setor" class="form-control">
+                        <option value="" data-default disabled selected></option>
+                        <!-- Inicio de uma codição PHP -->
+                        <?php 
+                        
+                        require "../complements/selects/select_setor_editar.php";
+                        
+                        ?>
+                        <!-- Fim de uma codição PHP -->
                         </select>
                       </div>
                     </div>
                     <div class="col-md-2 pl-1">
                       <div class="form-group">
                         <label>Função</label>
-                        <select name="funcao" class="form-control">
-                          <option value="operadorcaixa">Operador de Caixa</option>
-                          <option value="frentecaixa">Frente de Caixa</option>
-                          <option value="supervisoracougue">Supervisor de Açougue</option>
-                          <option value="encarregadoacougue">Encarregado de Açougue</option>
-                          <option value="auxiliaracougue">Auxiliar de Açougue</option>
-                          <option value="supervisorpadaria">Supervisor de Padaria</option>
-                          <option value="encarregadopadaria">Encarregado de Padaria</option>
-                          <option value="padeiro">Padeiro</option>
-                          <option value="confeteiro">Confeiteiro</option>
-                          <option value="auxiliarpadaria">Auxiliar de Padaria</option>
-                          <option value="balconista">Balconista</option>
-                          <option value="supervisorhorti">Supervisor de Hortifruti</option>
-                          <option value="encarregadohorti">Encarregado de Hortifruti</option>
-                          <option value="fiscalloja">Fiscal de Loja</option>
-                          <option value="repositor">Repositor</option>
-                          <option value="embalador">Embalador</option>
-                          <option value="asg">Auxiliar de Serviços Gerais</option>
-                          <option value="auxiliaradm">Auxiliar Administrativo</option>
-                          <option value="assistenteadm">Assistente Administrativo</option>
-                          <option value="adp">Assistente Departamento Pessoal</option>
-                          <option value="sdp">Supervisor Departamento Pessoal</option>
-                          <option value="gerente">Gerente</option>
-                          <option value="subgerente">Sub-Gerente</option>
-                          <option value="epl">Encarregado de Piso Loja</option>
-                          <option value="supervisorfrios">Supervisor de Frios</option>
-                          <option value="encarregadofrios">Encarregado de Frios</option>
-                          <option value="auxiliarfrios">Auxiliar de Frios</option>
-                          <option value="motorista">Motorista</option>
-                          <option value="conferente">Conferente</option>
-                          <option value="operadorloja">Operador de Loja</option>
+                        <select name="funcionario_funcao" class="form-control">
+                        <option value="" data-default disabled selected></option>
+                        <!-- Inicio de uma codição PHP -->
+                        <?php 
+                        
+                        require "../complements/selects/select_funcao_editar.php";
+                        
+                        ?>
+                        <!-- Fim de uma codição PHP -->
                         </select>
                       </div>
                     </div>
@@ -291,7 +301,7 @@ function myFunction() {
                         <button type="submit" name="filtrar" class="btn btn-outline-info" style="width: 100%;"><b><i class="fa fa-search"></i> Buscar</b></button><br>
                       </div>
                     </div>
-
+                    </form>
                     <div class="col-md-2">
                       <div class="form-group"><br>
                         <button title="Exportar Tabela para Arquivo Excel" type="submit" id="btnExcel" name="filtrar" class="btn btn-success" style="width: 100%;"><b><i class="fa fa-download"></i> Excel</b></button>

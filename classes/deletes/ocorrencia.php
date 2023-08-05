@@ -9,9 +9,13 @@ $ocorrencia_id = $_POST['ocorrencia_id'];
 //Recebendo a data Atual
 $data_criacao = date('Y-m-d H:i:s');
 
-//Excluir Funcionário
+//Excluir Ocorrencia
 $excluir_ocorrencia = "DELETE FROM ocorrencias WHERE id = ".$ocorrencia_id.";";
 $enviar_exclusao_ocorrencia = mysqli_query($conn, $excluir_ocorrencia);
+
+//Excluir Arquivos da Ocorrencia
+$excluir_arquivo_ocorrencia = "DELETE FROM arquivos_ocorrencias WHERE ocorrencias_id = ".$ocorrencia_id.";";
+$enviar_exclusao_arquivo_ocorrencia = mysqli_query($conn, $excluir_arquivo_ocorrencia);
 
 //Loop para identificar se deu de Sucesso ou Falha na operação, e emitir mensagem nas notificacoes
 if($enviar_exclusao_ocorrencia == 1){

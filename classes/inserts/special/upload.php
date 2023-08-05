@@ -25,7 +25,7 @@ for ($cont = 0; $cont < count($arquivo['name']); $cont++) {
     move_uploaded_file($arquivo['tmp_name'][$cont], $destino.$novo_nome_arquivo);
 
     //Inserir Arquivo
-    $inserir_arquivo= "insert into arquivos_ocorrencias (id, arquivo, data_criacao, ocorrencias_id) values (NULL, '".$novo_nome_arquivo."', '".$data_criacao_upload."', '".$ocorrencia_id_upload."');";
+    $inserir_arquivo= "insert into arquivos_ocorrencias (id, arquivo, data_criacao, ocorrencias_id) values (NULL, '".$novo_nome_arquivo."', '".$data_criacao."', '".$ocorrencia_id."');";
     $enviar_arquivo = mysqli_query($conn, $inserir_arquivo);  
 }
 

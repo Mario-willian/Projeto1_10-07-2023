@@ -1,6 +1,6 @@
 <?php
 
-$ocorrencias = array("Atestado", "TAtestado de Óbito", "Erro Operacional", "Falta Injustificada", "Reembolso", "Hora Extra", "Afastamento INSS", "Licença Maternidade", 
+$ocorrencias = array("Atestado", "Atestado de Óbito", "Erro Operacional", "Falta Injustificada", "Reembolso", "Hora Extra", "Afastamento INSS", "Licença Maternidade", 
 "Licença Parternidade", "Meta", "Quebra de Caixa", "Segunda Via Cartão", "Vale Avulso", "Atestado de Comparecimento", "Feriado"); 
 
 //lista todos e seleciona apenas o que está no banco
