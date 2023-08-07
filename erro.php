@@ -20,7 +20,7 @@
                 <div class="col-sm-12">
                     <div class="logo">
                        
-                        <h1><a href="index"><img src="img/lg.jpg" style="width: 30%;"></a></h1>
+                        <h1><a href="index.php"><img src="img/lg.jpg" style="width: 30%;"></a></h1>
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -28,7 +28,7 @@
                     <h1><b> Opa!</b></h1><h2>Não conseguimos encontrar a página que você está procurando. 
                     <h3>Código do erro: 404</h3>
                     <h4> Aqui estão alguns links úteis:</h4>
-                    <a style="font-size: 18px;" href="index">Página Inicial</a>
+                    <a style="font-size: 18px;" href="index.php">Página Inicial</a>
                     </div>
                 </div>
                 <div class="col-sm-6">
