@@ -35,7 +35,7 @@ inner join empresas empr on func.empresas_id = empr.id;
 
 INSERT INTO `usuarios` (`id`, `nome_completo`, `email`, `senha`, `status`, `data_criacao`) VALUES
 (NULL, 'Admin 10envolveu', 'admin@10envolveu.com.br', '10envolveu@2023##', 'Ativo', '2023-08-05 14:40:00'),
-(NULL, 'Tiago', 'tiago@hotmail.com', 'Tiago@2023', 'Ativo', '2023-08-05 14:43:00'), 
+(NULL, 'Thiago Furtado de Souza ', 'fsouza.thiago@gmail.com', '@@Paranaiba2004', 'Ativo', '2023-08-05 14:43:00'), 
 (NULL, 'Usuário Generico Limitado', 'usuario@hotmail.com', 'Usuario@2023', 'Ativo', '2023-08-05 14:43:00');
 
 INSERT INTO `empresas` (`id`, `cnpj`, `nome_loja`,  `razao_social`,  `status`, `data_criacao`) VALUES
