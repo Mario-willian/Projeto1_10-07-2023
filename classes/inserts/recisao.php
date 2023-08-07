@@ -11,6 +11,7 @@ $recisao_tipo = $dados['recisao_tipo'];
 $recisao_exame_demissional = $dados['recisao_exame_demissional'];
 $recisao_data_inicio_aviso = $dados['recisao_data_inicio_aviso']; $recisao_data_inicio_aviso = Date($recisao_data_inicio_aviso);
 $recisao_data_final_aviso = $dados['recisao_data_final_aviso']; $recisao_data_final_aviso = Date($recisao_data_final_aviso);
+$recisao_data_prazo_pagamento = $dados['recisao_data_prazo_pagamento']; $recisao_data_prazo_pagamento = Date($recisao_data_prazo_pagamento);
 $recisao_status = $dados['recisao_status'];
 $recisao_observacao = "";
 $recisao_observacao = $dados['recisao_observacao'];
@@ -23,7 +24,7 @@ $data_criacao = date('Y-m-d H:i:s');
 
 
 //Inserir Recisao
-$inserir_recisao = "insert into recisoes(id, exame_demissional, tipo, data_inicio_aviso, data_fim_aviso, motivo, observacao, status, data_criacao, funcionarios_id, empresas_id) values (NULL, '".$recisao_exame_demissional."', '".$recisao_tipo."', '".$recisao_data_inicio_aviso."', '".$recisao_data_final_aviso."', '".$recisao_motivo."', '".$recisao_observacao."', '".$recisao_status."','".$data_criacao."',  '".$recisao_funcionario."', '".$recisao_loja."');";
+$inserir_recisao = "insert into recisoes(id, exame_demissional, tipo, data_inicio_aviso, data_fim_aviso, data_prazo_pagamento, motivo, observacao, status, data_criacao, funcionarios_id, empresas_id) values (NULL, '".$recisao_exame_demissional."', '".$recisao_tipo."', '".$recisao_data_inicio_aviso."', '".$recisao_data_final_aviso."', '".$recisao_data_prazo_pagamento."', '".$recisao_motivo."', '".$recisao_observacao."', '".$recisao_status."','".$data_criacao."',  '".$recisao_funcionario."', '".$recisao_loja."');";
 $enviar_recisao = mysqli_query($conn, $inserir_recisao);
 
 //Mensagem de Sucesso ou Falha na operação

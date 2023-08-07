@@ -11,6 +11,7 @@ $recisao_tipo = $_POST['recisao_tipo'];
 $recisao_exame_demissional = $_POST['recisao_exame_demissional'];
 $recisao_data_inicio_aviso = $_POST['recisao_data_inicio_aviso']; $recisao_data_inicio_aviso = Date($recisao_data_inicio_aviso);
 $recisao_data_final_aviso = $_POST['recisao_data_final_aviso']; $recisao_data_final_aviso = Date($recisao_data_final_aviso);
+$recisao_data_prazo_pagamento = $_POST['recisao_data_prazo_pagamento']; $recisao_data_prazo_pagamento = Date($recisao_data_prazo_pagamento);
 $recisao_status = $_POST['recisao_status'];
 $recisao_observacao = "";
 $recisao_observacao = $_POST['recisao_observacao'];
@@ -26,7 +27,7 @@ $recisao_observacao = addslashes($recisao_observacao);
     $recisao_id = $_POST['recisao_id'];
     
     //Inserir Ferias
-    $atualizar_recisao = "UPDATE recisoes SET exame_demissional = '".$recisao_exame_demissional."', tipo = '".$recisao_tipo."', data_inicio_aviso = '".$recisao_data_inicio_aviso."', data_fim_aviso = '".$recisao_data_final_aviso."', motivo = '".$recisao_motivo."', observacao = '".$recisao_observacao."', status = '".$recisao_status."', funcionarios_id = ".$recisao_funcionario.", empresas_id = ".$recisao_loja." WHERE id = ".$recisao_id."";
+    $atualizar_recisao = "UPDATE recisoes SET exame_demissional = '".$recisao_exame_demissional."', tipo = '".$recisao_tipo."', data_inicio_aviso = '".$recisao_data_inicio_aviso."', data_fim_aviso = '".$recisao_data_final_aviso."', data_prazo_pagamento = '".$recisao_data_prazo_pagamento."', motivo = '".$recisao_motivo."', observacao = '".$recisao_observacao."', status = '".$recisao_status."', funcionarios_id = ".$recisao_funcionario.", empresas_id = ".$recisao_loja." WHERE id = ".$recisao_id."";
     $enviar_recisao = mysqli_query($conn, $atualizar_recisao);
 
     //Loop para identificar se deu de Sucesso ou Falha na operação, e emitir mensagem nas notificacoes

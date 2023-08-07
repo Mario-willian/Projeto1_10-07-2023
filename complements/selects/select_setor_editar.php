@@ -1,7 +1,6 @@
 <?php
 
-$setores = array("Açougue", "Padaria", "Hortifruti", "Caixa", "Fiscalização", "Reposição", "Limpeza", "Administrativo", "Gerencia", "Sub-Gerencia", "Entregas", 
-"Recebimento Merc.", "Operação Loja", "Recursos Humanos"); 
+$setores = array("Administrativo", "Caixa", "Entregas", "Fiscalização", "Frios", "Gerencia", "Hortifruti", "Limpeza", "Operação Loja", "Padaria", "Recebimento Merc.", "Recursos Humanos", "Reposição", "Sub-Gerencia"); 
 
 //Select do setor do funcionario
 $pesquisa_funcionarios = "SELECT * FROM funcionarios where id = ".$id_item_selecionado.";";
@@ -12,7 +11,7 @@ $row_funcionarios = mysqli_fetch_assoc($resultado_funcionarios);
 foreach ($setores as $value) {
 
         if($value == $row_funcionarios['setor']){
-            echo "<option selected value='".$row_funcionarios['carsetorgo']."'>".$row_funcionarios['setor']."</option>";
+            echo "<option selected value='".$row_funcionarios['setor']."'>".$row_funcionarios['setor']."</option>";
         }else{
             echo "<option value='".$value."'>".$value."</option>";
         }

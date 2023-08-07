@@ -16,8 +16,6 @@ $funcionario_vale_transporte = $_POST['funcionario_vale_transporte'];
 $funcionario_valor_vale_transporte = "";
 $funcionario_valor_vale_transporte = $_POST['funcionario_valor_vale_transporte'];
 $funcionario_salario = $_POST['funcionario_salario'];
-$funcionario_nome_pai = "";
-$funcionario_nome_pai = $_POST['funcionario_nome_pai'];
 $funcionario_nome_mae = $_POST['funcionario_nome_mae'];
 $funcionario_observacao = "";
 $funcionario_observacao = $_POST['funcionario_observacao'];
@@ -35,7 +33,7 @@ $funcionario_observacao = addslashes($funcionario_observacao);
     
     //Inserir Ferias
     $atualizar_funcionario = "UPDATE funcionarios SET cpf = '".$funcionario_cpf."', nome_completo = '".$funcionario_nome."', data_nascimento = '".$funcionario_data_nascimento."', salario = '".$funcionario_salario."', 
-    nome_pai = '".$funcionario_nome_pai."', nome_mae = '".$funcionario_nome_mae."', setor = '".$funcionario_setor."', funcao = '".$funcionario_funcao."', observacao = '".$funcionario_observacao."', 
+    nome_mae = '".$funcionario_nome_mae."', setor = '".$funcionario_setor."', funcao = '".$funcionario_funcao."', observacao = '".$funcionario_observacao."', 
     status = '".$funcionario_status."', empresas_id = '".$funcionario_empresa."' WHERE id = ".$funcionario_id.";";
     $enviar_funcionario = mysqli_query($conn, $atualizar_funcionario);
 

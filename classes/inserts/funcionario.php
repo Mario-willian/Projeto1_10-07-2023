@@ -16,8 +16,6 @@ $funcionario_vale_transporte = $dados['funcionario_vale_transporte'];
 $funcionario_valor_vale_transporte = "";
 $funcionario_valor_vale_transporte = $dados['funcionario_valor_vale_transporte'];
 $funcionario_salario = $dados['funcionario_salario'];
-$funcionario_nome_pai = "";
-$funcionario_nome_pai = $dados['funcionario_nome_pai'];
 $funcionario_nome_mae = $dados['funcionario_nome_mae'];
 $funcionario_observacao = "";
 $funcionario_observacao = $dados['funcionario_observacao'];
@@ -34,7 +32,7 @@ $funcionario_salario = numfmt_parse($format, $funcionario_salario);
 $funcionario_valor_vale_transporte = numfmt_parse($format, $funcionario_valor_vale_transporte);
 
 //Inserir Funcionário
-$inserir_funcionario = "insert into funcionarios(id, cpf, nome_completo, data_nascimento, salario, nome_pai, nome_mae, setor, funcao, observacao, status, data_inicio, data_criacao, empresas_id) values (NULL, '".$funcionario_cpf."', '".$funcionario_nome."', '".$funcionario_data_nascimento."', '".$funcionario_salario."', '".$funcionario_nome_pai."', '".$funcionario_nome_mae."', '".$funcionario_setor."', '".$funcionario_funcao."','".$funcionario_observacao."', '".$funcionario_status."', '".$funcionario_data_de_inicio."', '".$data_criacao."', '".$funcionario_empresa."');";
+$inserir_funcionario = "insert into funcionarios(id, cpf, nome_completo, data_nascimento, salario, nome_mae, setor, funcao, observacao, status, data_inicio, data_criacao, empresas_id) values (NULL, '".$funcionario_cpf."', '".$funcionario_nome."', '".$funcionario_data_nascimento."', '".$funcionario_salario."', '".$funcionario_nome_mae."', '".$funcionario_setor."', '".$funcionario_funcao."','".$funcionario_observacao."', '".$funcionario_status."', '".$funcionario_data_de_inicio."', '".$data_criacao."', '".$funcionario_empresa."');";
 $enviar_funcionario = mysqli_query($conn, $inserir_funcionario);
 
 //Pesquisar Funcionário recem criado

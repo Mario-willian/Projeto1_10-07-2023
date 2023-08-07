@@ -1,9 +1,6 @@
 <?php
 
-$cargos = array("Frente de Caixa", "Supervisor de Açougue", "Encarregado de Açougue", "Auxiliar de Açougue", "Supervisor de Padaria", "Encarregado de Padaria", "Padeiro", 
-"Confeiteiro", "Auxiliar de Padaria", "Balconista", "Supervisor de Hortifruti", "Encarregado de Hortifruti", "Fiscal de Loja", "Repositor", "Embalador", "Repositor", 
-"Auxiliar de Serviços Gerais", "Auxiliar Administrativo", "Assistente Administrativo", "Assistente Departamento Pessoal", "Supervisor Departamento Pessoal", "Gerente", "Sub-Gerente",  
-"Encarregado de Piso Loja", "Supervisor de Frios", "Encarregado de Frios", "Auxiliar de Frios", "Motorista", "Conferente", "Operador de Loja"); 
+$cargos = array("Assistente Administrativo", "Assistente Departamento Pessoal", "Auxiliar Administrativo", "Auxiliar de Açougue", "Auxiliar de Frios", "Auxiliar de Padaria", "Auxiliar de Serviços Gerais", "Balconista", "Confeiteiro", "Conferente", "Embalador", "Encarregado de Açougue", "Encarregado de Frios", "Encarregado de Hortifruti", "Encarregado de Padaria", "Encarregado de Piso Loja", "Frente de Caixa", "Fiscal de Loja", "Gerente", "Motorista", "Operador de Caixa", "Operador de Loja", "Padeiro", "Repositor", "Sub-Gerente", "Supervisor Departamento Pessoal", "Supervisor de Açougue", "Supervisor de Hortifruti", "Supervisor de Padaria", "Supervisor de Frios");
 
 //Select ja está no php select_setor_editar
 

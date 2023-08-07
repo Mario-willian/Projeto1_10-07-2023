@@ -47,10 +47,23 @@ if(!empty($_POST)){
     $pesquisa_ocorrencias .= " AND empresas_id = '".$ocorrencia_loja."'";
   }
   //Verifica se utilizou o filtro DATA
-  if(isset($_POST['ocorrencia_data']) && $_POST['ocorrencia_data'] != ""){
+  if(isset($_POST['ocorrencia_data']) && $_POST['ocorrencia_data'] != "" && isset($_POST['ocorrencia_data_fim']) && $_POST['ocorrencia_data_fim'] != ""){
     $ocorrencia_data = $_POST['ocorrencia_data']; $ocorrencia_data = Date($ocorrencia_data);
-    $pesquisa_ocorrencias .= " AND data_criacao LIKE '%".$ocorrencia_data."%'";
+    $pesquisa_ocorrencias .= " AND data_criacao BETWEEN '".$ocorrencia_data."%'";
+    $ocorrencia_data_fim = $_POST['ocorrencia_data_fim']; $ocorrencia_data_fim = Date($ocorrencia_data_fim);
+    $pesquisa_ocorrencias .= " AND '".$ocorrencia_data_fim."%'";
   }
+  //Verifica se utilizou o filtro DATA Inico
+  if(isset($_POST['ocorrencia_data']) && $_POST['ocorrencia_data'] != "" && $_POST['ocorrencia_data_fim'] == ""){
+    $ocorrencia_data = $_POST['ocorrencia_data']; $ocorrencia_data = Date($ocorrencia_data);
+    $pesquisa_ocorrencias .= " AND data_criacao >= '".$ocorrencia_data."%'";
+  }
+  //Verifica se utilizou o filtro DATA Fim
+  if(isset($_POST['ocorrencia_data_fim']) && $_POST['ocorrencia_data_fim'] != "" && $_POST['ocorrencia_data'] == ""){
+    $ocorrencia_data_fim = $_POST['ocorrencia_data_fim']; $ocorrencia_data_fim = Date($ocorrencia_data_fim);
+    $pesquisa_ocorrencias .= " AND data_criacao <= '".$ocorrencia_data_fim."%'";
+  }
+
 }
 
 //Acrescimos ao select
@@ -201,10 +214,18 @@ function myFunction() {
                 <div class="row">
                     <div class="col-md-2">
                       <div class="form-group">
-                        <label>Data</label>
+                        <label>Data Inicial</label>
                         <input type="date" name="ocorrencia_data" class="form-control" >
                       </div>
                     </div>
+
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label>Data Final</label>
+                        <input type="date" name="ocorrencia_data_fim" class="form-control" >
+                      </div>
+                    </div>
+
                     <div class="col-md-2">
                       <div class="form-group">
                         <label>Selecionar Loja</label>

@@ -46,14 +46,28 @@ if(!empty($_POST)){
     $pesquisa_recisoes .= " AND empresas_id = '".$recisao_loja."'";
   }
   //Verifica se utilizou o filtro DATA
-  if(isset($_POST['recisao_data_criacao']) && $_POST['recisao_data_criacao'] != ""){
+  if(isset($_POST['recisao_data_criacao']) && $_POST['recisao_data_criacao'] != "" && isset($_POST['recisao_data_fim']) && $_POST['recisao_data_fim'] != ""){
     $recisao_data_criacao = $_POST['recisao_data_criacao']; $recisao_data_criacao = Date($recisao_data_criacao);
-    $pesquisa_recisoes .= " AND data_criacao LIKE '%".$recisao_data_criacao."%'";
+    $pesquisa_recisoes .= " AND data_criacao BETWEEN '".$recisao_data_criacao."%'";
+    $recisao_data_fim = $_POST['recisao_data_fim']; $recisao_data_fim = Date($recisao_data_fim);
+    $pesquisa_recisoes .= " AND '".$recisao_data_fim."%'";
+  }
+  //Verifica se utilizou o filtro DATA Inico
+  if(isset($_POST['recisao_data_criacao']) && $_POST['recisao_data_criacao'] != "" && $_POST['recisao_data_fim'] == ""){
+    $recisao_data_criacao = $_POST['recisao_data_criacao']; $recisao_data_criacao = Date($recisao_data_criacao);
+    $pesquisa_recisoes .= " AND data_criacao >= '".$recisao_data_criacao."%'";
+  }
+  //Verifica se utilizou o filtro DATA Fim
+  if(isset($_POST['recisao_data_fim']) && $_POST['recisao_data_fim'] != "" && $_POST['recisao_data_criacao'] == ""){
+    $recisao_data_fim = $_POST['recisao_data_fim']; $recisao_data_fim = Date($recisao_data_fim);
+    $pesquisa_recisoes .= " AND data_criacao <= '".$recisao_data_fim."%'";
   }
 }
 
 //Acrescimos ao select
 $pesquisa_recisoes .= " order by data_criacao DESC LIMIT ".$inicio.", ".$limite;
+
+
 //Executa o Select
 $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
 
@@ -194,10 +208,19 @@ $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
                 <div class="row">
                     <div class="col-md-2">
                       <div class="form-group">
-                        <label>Data</label>
+                        <label>Data Inicial</label>
                         <input type="date" name="recisao_data_criacao" class="form-control" >
                       </div>
                     </div>
+
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label>Data Final</label>
+                        <input type="date" name="recisao_data_fim" class="form-control" >
+                      </div>
+                    </div>
+
+
                     <div class="col-md-2 ">
                       <div class="form-group">
                         <label>Selecionar Loja</label>

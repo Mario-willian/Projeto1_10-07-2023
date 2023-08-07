@@ -271,22 +271,9 @@ function myFunction() {
                         <!-- Inicio de uma codição PHP -->
                         <?php
 
-$setores = array("Açougue", "Padaria", "Hortifruti", "Caixa", "Fiscalização", "Reposição", "Limpeza", "Administrativo", "Gerencia", "Sub-Gerencia", "Entregas", 
-"Recebimento Merc.", "Operação Loja", "Recursos Humanos"); 
+                        require "../complements/selects/select_setor.php";
 
-//Select do setor do funcionario
-$pesquisa_funcionarios3 = "SELECT * FROM funcionarios";
-$resultado_funcionarios3 = mysqli_query($conn, $pesquisa_funcionarios3);
-$row_funcionarios3 = mysqli_fetch_assoc($resultado_funcionarios3);
-
-//lista todos e seleciona apenas o que está no banco
-foreach ($setores as $value) {
-
-            echo "<option value='".$value."'>".$value."</option>";
-
-    }
-
-?>
+                        ?>
                         <!-- Fim de uma codição PHP -->
                         </select>
                       </div>

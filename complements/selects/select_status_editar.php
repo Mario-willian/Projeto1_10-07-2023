@@ -1,6 +1,6 @@
 <?php
 
-$status = array("Ativo", "Afastado", "Inativo", "Transferido"); 
+$status = array("Ativo", "Afastado", "Inativo", "Justiça", "Transferido"); 
 
 //Select do setor do funcionario
 $pesquisa_funcionarios2 = "SELECT * FROM acessos_funcionarios where id_funcionarios = ".$id_item_selecionado.";";

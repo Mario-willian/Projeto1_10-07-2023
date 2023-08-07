@@ -23,6 +23,7 @@ $row_recisao = mysqli_fetch_assoc($resultado_recisao);
 //parte valida a data para inserir no input type="date" YYYY-MM-DD
 $data_inicio_aviso = substr($row_recisao['data_inicio_aviso'],0,10);
 $data_fim_aviso = substr($row_recisao['data_fim_aviso'],0,10);
+$data_prazo_pagamento = substr($row_recisao['data_prazo_pagamento'],0,10);
 
 ?>
 
@@ -277,6 +278,15 @@ $data_fim_aviso = substr($row_recisao['data_fim_aviso'],0,10);
                       </div>
                     </div> 
                  </div>
+
+                 <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group"> 
+                        <label>Data Prazo de Pagamento</label>
+                        <input type="date" name="recisao_data_prazo_pagamento" value="<?php echo $data_prazo_pagamento ?>" class="form-control" required="">
+                      </div>
+                    </div>
+                  </div>
 
                  <div class="row">
                     <div class="col-md-12">

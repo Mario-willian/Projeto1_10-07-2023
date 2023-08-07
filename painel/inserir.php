@@ -187,21 +187,22 @@ require "../complements/begin_page.php";
                         <label>Motivo</label>
                            <select name="ocorrencia_motivo" class="form-control">
                           <option value="Advertencia">Advertência</option>
+                          <option value="Afastamento INSS">Afastamento INSS</option>
                           <option value="Atestado">Atestado</option>
+                          <option value="Atestado de Comparecimento">Atestado de Comparecimento</option>
                           <option value="Atestado de Óbito">Atestado de Óbito</option>
                           <option value="Erro Operacional">Erro Operacional</option>
                           <option value="Falta Injustificada">Falta Injustificada</option>
-                          <option value="Reembolso">Reembolso</option>
+                          <option value="Feriado">Feriado</option>
                           <option value="Hora Extra">Hora Extra</option>
-                          <option value="Afastamento INSS">Afastamento INSS</option>
+                          <option value="Justiça">Justiça</option>
                           <option value="Licença Maternidade">Licença Maternidade</option>
                           <option value="Licença Parternidade">Licença Parternidade</option>
                           <option value="Meta">Meta</option>
                           <option value="Quebra de Caixa">Quebra de Caixa</option>
+                          <option value="Reembolso">Reembolso</option>
                           <option value="Segunda Via Cartão">Segunda Via Cartão</option>
                           <option value="Vale Avulso">Vale Avulso</option>
-                          <option value="Atestado de Comparecimento">Atestado de Comparecimento</option>
-                          <option value="Feriado">Feriado</option>
                         </select>
                       </div>
                     </div>
@@ -316,11 +317,12 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>Motivo</label>
                         <select name="recisao_motivo" class="form-control">
-                          <option value="Término de Contrato">Término de Contrato</option>
-                          <option value="Término de Contrato Antecipado">Término de Contrato Antecipado</option>
-                          <option value="Aviso">Aviso</option>
-                          <option value="Dispensa">Dispensa</option>
-                          <option value="Pedido de Demissão">Pedido de Demissão</option>
+                        <option value="Aviso">Aviso</option>
+                        <option value="Dispensa">Dispensa</option>
+                        <option value="Justiça">Justiça</option>
+                        <option value="Pedido de Demissão">Pedido de Demissão</option>
+                        <option value="Término de Contrato">Término de Contrato</option>
+                        <option value="Término de Contrato Antecipado">Término de Contrato Antecipado</option>
                         </select>
                       </div>
                     </div>         
@@ -331,9 +333,9 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>Tipo</label>
                         <select name="recisao_tipo" class="form-control">
-                          <option value="Normal">Normal</option>
                           <option value="Acordo">Acordo</option>
                           <option value="Justiça">Justiça</option>
+                          <option value="Normal">Normal</option>
                         </select>
                       </div>
                     </div> 
@@ -353,6 +355,7 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                       <label>Status</label>
                         <select name="recisao_status" class="form-control">
+                        <option value="Justiça">Justiça</option>
                           <option value="Pago">Pago</option>
                           <option value="Pendente">Pendente</option>
                         </select>
@@ -360,11 +363,20 @@ require "../complements/begin_page.php";
                     </div> 
                      <div class="col-md-6 pl-1">
                       <div class="form-group">
-                      <label>Data Final de Aviso</label>
+                       <label>Data Final de Aviso</label>
                        <input type="date" name="recisao_data_final_aviso" required class="form-control">
                       </div>
                     </div> 
                  </div>
+
+                 <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group"> 
+                       <label>Data Prazo de Pagamento</label>
+                       <input type="date" name="recisao_data_prazo_pagamento" required class="form-control">
+                      </div>
+                    </div>
+                  </div>
 
                  <div class="row">
                     <div class="col-md-12">
@@ -594,6 +606,7 @@ require "../complements/begin_page.php";
                           <option value="Ativo">Ativo</option>
                           <option value="Afastado">Afastado</option>
                           <option value="Inativo">Inativo</option>
+                          <option value="Justiça">Justiça</option>
                           <option value="Transferido">Transferido</option>
                         </select>
                       </div>
@@ -620,21 +633,22 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>Setor</label>
                         <select name="funcionario_setor" class="form-control">
-                          <option value="Açougue">Açougue</option>
-                          <option value="Padaria">Padaria</option>
-                          <option value="Hortifruti">Hortifruti</option>
-                          <option value="Caixa">Caixa</option>
-                          <option value="Fiscalização">Fiscalização</option>
-                          <option value="Reposição">Reposição</option>
-                          <option value="Limpeza">Limpeza</option>
-                          <option value="Administrativo">Administrativo</option>
-                          <option value="Gerencia">Gerencia</option>
-                          <option value="Frios">Frios</option>
-                          <option value="Sub-Gerencia">Sub-Gerencia</option>
-                          <option value="Entregas">Entregas</option>
-                          <option value="Recebimento Merc.">Recebimento Merc.</option>
-                          <option value="Operação Loja">Operação Loja</option>
-                          <option value="Recursos Humanos">Recursos Humanos</option>
+                        <option value="Açougue">Açougue</option>
+                        <option value="Administrativo">Administrativo</option>
+                        <option value="Caixa">Caixa</option>
+                        <option value="Entregas">Entregas</option>
+                        <option value="Fiscalização">Fiscalização</option>
+                        <option value="Frios">Frios</option>
+                        <option value="Gerencia">Gerencia</option>
+                        <option value="Hortifruti">Hortifruti</option>
+                        <option value="Limpeza">Limpeza</option>
+                        <option value="Operação Loja">Operação Loja</option>
+                        <option value="Padaria">Padaria</option>
+                        <option value="Recebimento Merc.">Recebimento Merc.</option>
+                        <option value="Recursos Humanos">Recursos Humanos</option>
+                        <option value="Reposição">Reposição</option>
+                        <option value="Sub-Gerencia">Sub-Gerencia</option>
+
                         </select>
                       </div>
                     </div>
@@ -642,36 +656,36 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>Função</label>
                         <select name="funcionario_funcao" class="form-control">
-                          <option value="Operador de Caixa">Operador de Caixa</option>
-                          <option value="Frente de Caixa">Frente de Caixa</option>
-                          <option value="Supervisor de Açougue">Supervisor de Açougue</option>
-                          <option value="Encarregado de Açougue">Encarregado de Açougue</option>
-                          <option value="Auxiliar de Açougue">Auxiliar de Açougue</option>
-                          <option value="Supervisor de Padaria">Supervisor de Padaria</option>
-                          <option value="Encarregado de Padaria">Encarregado de Padaria</option>
-                          <option value="Padeiro">Padeiro</option>
-                          <option value="Confeiteiro">Confeiteiro</option>
-                          <option value="Auxiliar de Padaria">Auxiliar de Padaria</option>
-                          <option value="Balconista">Balconista</option>
-                          <option value="Supervisor de Hortifruti">Supervisor de Hortifruti</option>
-                          <option value="ncarregado de Hortifruti">Encarregado de Hortifruti</option>
-                          <option value="Fiscal de Loja">Fiscal de Loja</option>
-                          <option value="Repositor">Repositor</option>
-                          <option value="Embalador">Embalador</option>
-                          <option value="Auxiliar de Serviços Gerais">Auxiliar de Serviços Gerais</option>
-                          <option value="Auxiliar Administrativo">Auxiliar Administrativo</option>
-                          <option value="Assistente Administrativo">Assistente Administrativo</option>
-                          <option value="Assistente Departamento Pessoal">Assistente Departamento Pessoal</option>
-                          <option value="upervisor Departamento Pessoal">Supervisor Departamento Pessoal</option>
-                          <option value="Gerente">Gerente</option>
-                          <option value="Sub-Gerente">Sub-Gerente</option>
-                          <option value="ncarregado de Piso Loja">Encarregado de Piso Loja</option>
-                          <option value="Supervisor de Frios">Supervisor de Frios</option>
-                          <option value="Encarregado de Frios">Encarregado de Frios</option>
-                          <option value="Auxiliar de Frios">Auxiliar de Frios</option>
-                          <option value="Motorista">Motorista</option>
-                          <option value="Conferente">Conferente</option>
-                          <option value="Operador de Loja">Operador de Loja</option>
+                        <option value="Assistente Administrativo">Assistente Administrativo</option>
+                        <option value="Assistente Departamento Pessoal">Assistente Departamento Pessoal</option>
+                        <option value="Auxiliar Administrativo">Auxiliar Administrativo</option>
+                        <option value="Auxiliar de Açougue">Auxiliar de Açougue</option>
+                        <option value="Auxiliar de Frios">Auxiliar de Frios</option>
+                        <option value="Auxiliar de Padaria">Auxiliar de Padaria</option>
+                        <option value="Auxiliar de Serviços Gerais">Auxiliar de Serviços Gerais</option>
+                        <option value="Balconista">Balconista</option>
+                        <option value="Confeiteiro">Confeiteiro</option>
+                        <option value="Conferente">Conferente</option>
+                        <option value="Embalador">Embalador</option>
+                        <option value="Encarregado de Açougue">Encarregado de Açougue</option>
+                        <option value="Encarregado de Frios">Encarregado de Frios</option>
+                        <option value="Encarregado de Hortifruti">Encarregado de Hortifruti</option>
+                        <option value="Encarregado de Padaria">Encarregado de Padaria</option>
+                        <option value="Encarregado de Piso Loja">Encarregado de Piso Loja</option>
+                        <option value="Frente de Caixa">Frente de Caixa</option>
+                        <option value="Fiscal de Loja">Fiscal de Loja</option>
+                        <option value="Gerente">Gerente</option>
+                        <option value="Motorista">Motorista</option>
+                        <option value="Operador de Caixa">Operador de Caixa</option>
+                        <option value="Operador de Loja">Operador de Loja</option>
+                        <option value="Padeiro">Padeiro</option>
+                        <option value="Repositor">Repositor</option>
+                        <option value="Sub-Gerente">Sub-Gerente</option>
+                        <option value="Supervisor Departamento Pessoal">Supervisor Departamento Pessoal</option>
+                        <option value="Supervisor de Açougue">Supervisor de Açougue</option>
+                        <option value="Supervisor de Hortifruti">Supervisor de Hortifruti</option>
+                        <option value="Supervisor de Padaria">Supervisor de Padaria</option>
+                        <option value="Supervisor de Frios">Supervisor de Frios</option>
                         </select>
                       </div>
                     </div>
@@ -688,11 +702,11 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>Vale Transporte</label>
                         <select name="funcionario_vale_transporte" class="form-control">
-                          <option value="Nenhum">Nenhum</option>
-                          <option value="Ótimo">Ótimo</option>
-                          <option value="Bhbus">Bhbus</option>
-                          <option value="Combustível">Combustível</option>
-                          <option value="Dinheiro">Dinheiro</option>
+                        <option value="Bhbus">Bhbus</option>
+                        <option value="Combustível">Combustível</option>
+                        <option value="Dinheiro">Dinheiro</option>
+                        <option value="Nenhum">Nenhum</option>
+                        <option value="Ótimo">Ótimo</option>
                         </select>
                       </div>
                     </div>
@@ -702,7 +716,7 @@ require "../complements/begin_page.php";
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Valor do Vale Transporte</label>
-                        <input size="10" maxlength="10" onkeydown="FormataMoeda(this,10,event)" onkeypress="return maskKeyPress(event)" type="text" name="funcionario_valor_vale_transporte" class="form-control" placeholder="Valor do Vale Transporte" >
+                        <input size="10" maxlength="10" required="" onkeydown="FormataMoeda(this,10,event)" onkeypress="return maskKeyPress(event)" type="text" name="funcionario_valor_vale_transporte" class="form-control" placeholder="Valor do Vale Transporte" >
                       </div>
                     </div>
                     <div class="col-md-6 pl-1">
@@ -714,13 +728,7 @@ require "../complements/begin_page.php";
                   </div>
 
                   <div class="row">
-                    <div class="col-md-6 pr-1">
-                      <div class="form-group">
-                        <label>Nome Pai</label>
-                        <input type="text" name="funcionario_nome_pai" maxlength="80" class="form-control" placeholder="Nome do Pai" >
-                      </div>
-                    </div>
-                    <div class="col-md-6 pl-1">
+                    <div class="col-md-12">
                       <div class="form-group">
                         <label>Nome Mãe</label>
                         <input type="text" name="funcionario_nome_mae"  maxlength="80" class="form-control" required="" placeholder="Nome da Mãe" >

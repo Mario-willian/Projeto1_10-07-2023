@@ -288,7 +288,7 @@ $funcionario_salario_input = $row_funcionario['salario'];
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Valor do Vale Transporte</label>
-                        <input size="10" maxlength="10" onkeydown="FormataMoeda(this,10,event)" value="<?php echo $row_funcionario['valor_vale_transporte'];?>"  onkeypress="return maskKeyPress(event)" type="text" name="funcionario_valor_vale_transporte" class="form-control" required="" placeholder="Valor do Vale Transporte" >
+                        <input size="10" maxlength="10" required="" onkeydown="FormataMoeda(this,10,event)" value="<?php echo $row_funcionario['valor_vale_transporte'];?>"  onkeypress="return maskKeyPress(event)" type="text" name="funcionario_valor_vale_transporte" class="form-control" required="" placeholder="Valor do Vale Transporte" >
                       </div>
                     </div>
                     <div class="col-md-6 pl-1">
@@ -300,13 +300,7 @@ $funcionario_salario_input = $row_funcionario['salario'];
                   </div>
 
                   <div class="row">
-                    <div class="col-md-6 pr-1">
-                      <div class="form-group">
-                        <label>Nome Pai</label>
-                        <input type="text" name="funcionario_nome_pai" value="<?php echo $row_funcionario['nome_pai'];?>"  class="form-control" placeholder="Nome do Pai" >
-                      </div>
-                    </div>
-                    <div class="col-md-6 pl-1">
+                    <div class="col-md-12">
                       <div class="form-group">
                         <label>Nome Mãe</label>
                         <input type="text" name="funcionario_nome_mae" value="<?php echo $row_funcionario['nome_mae'];?>"  class="form-control" required="" placeholder="Nome da Mãe" >
@@ -332,7 +326,7 @@ $funcionario_salario_input = $row_funcionario['salario'];
                     </div>
                   </div>
                 </form>
-                <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-outline-danger btn-sm"><b><i class="fa fa-trash"></i> Excluir</b></button>
+                <!-- <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-outline-danger btn-sm"><b><i class="fa fa-trash"></i> Excluir</b></button> -->
               </div>
             </div>
           </div>

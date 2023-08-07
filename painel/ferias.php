@@ -40,10 +40,23 @@ if(!empty($_POST)){
     $ferias_loja = $_POST['ferias_loja'];
     $pesquisa_ferias .= " AND empresas_id = '".$ferias_loja."'";
   }
-  //Verifica se utilizou o filtro DATA
-  if(isset($_POST['ferias_data_inicio']) && $_POST['ferias_data_inicio'] != ""){
+  //Verifica se utilizou o filtro DATA Inico e Fim
+  if(isset($_POST['ferias_data_inicio']) && $_POST['ferias_data_inicio'] != "" && isset($_POST['ferias_data_fim']) && $_POST['ferias_data_fim'] != ""){
     $ferias_data = $_POST['ferias_data_inicio']; $ferias_data = Date($ferias_data);
-    $pesquisa_ferias .= " AND data_inicio = '".$ferias_data."'";
+    $pesquisa_ferias .= " AND data_inicio BETWEEN '".$ferias_data."'";
+    $ferias_data_fim = $_POST['ferias_data_fim']; $ferias_data_fim = Date($ferias_data_fim);
+    $pesquisa_ferias .= " AND '".$ferias_data_fim."'";
+  }
+  //Verifica se utilizou o filtro DATA Inico
+  if(isset($_POST['ferias_data_inicio']) && $_POST['ferias_data_inicio'] != "" && $_POST['ferias_data_fim'] == ""){
+    $ferias_data = $_POST['ferias_data_inicio']; $ferias_data = Date($ferias_data);
+    $pesquisa_ferias .= " AND data_inicio >= '".$ferias_data."'";
+  }
+
+  //Verifica se utilizou o filtro DATA Fim
+  if(isset($_POST['ferias_data_fim']) && $_POST['ferias_data_fim'] != "" && $_POST['ferias_data_inicio'] == ""){
+    $ferias_data_fim = $_POST['ferias_data_fim']; $ferias_data_fim = Date($ferias_data_fim);
+    $pesquisa_ferias .= " AND data_fim <= '".$ferias_data_fim."'";
   }
 }
 
@@ -187,8 +200,15 @@ $resultado_ferias = mysqli_query($conn, $pesquisa_ferias);
                 <div class="row">
                     <div class="col-md-2">
                       <div class="form-group">
-                        <label>Data Início</label>
+                        <label>Data Inicial</label>
                         <input type="date" name="ferias_data_inicio" class="form-control" >
+                      </div>
+                    </div>
+
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label>Data Final</label>
+                        <input type="date" name="ferias_data_fim" class="form-control" >
                       </div>
                     </div>
                 
