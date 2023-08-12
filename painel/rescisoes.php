@@ -370,7 +370,7 @@ $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
                 </div><br>
                 <nav aria-label="Navegação de página exemplo">
                     <ul class="pagination justify-content-center">
-                      <li class="page-item disabled">
+                      <li class="page-item">
                       <a class="page-link" href="?pagina=1" tabindex="-1">Primeira</a>
                       </li>
                       <li class="page-item"> 

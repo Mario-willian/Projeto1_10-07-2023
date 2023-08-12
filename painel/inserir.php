@@ -636,6 +636,7 @@ require "../complements/begin_page.php";
                         <option value="Açougue">Açougue</option>
                         <option value="Administrativo">Administrativo</option>
                         <option value="Caixa">Caixa</option>
+                        <option value="Depósito">Depósito</option>
                         <option value="Entregas">Entregas</option>
                         <option value="Fiscalização">Fiscalização</option>
                         <option value="Frios">Frios</option>
@@ -648,7 +649,6 @@ require "../complements/begin_page.php";
                         <option value="Recursos Humanos">Recursos Humanos</option>
                         <option value="Reposição">Reposição</option>
                         <option value="Sub-Gerencia">Sub-Gerencia</option>
-
                         </select>
                       </div>
                     </div>
@@ -656,18 +656,23 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>Função</label>
                         <select name="funcionario_funcao" class="form-control">
+                        <option value="Açougueiro">Açougueiro</option>
                         <option value="Assistente Administrativo">Assistente Administrativo</option>
                         <option value="Assistente Departamento Pessoal">Assistente Departamento Pessoal</option>
+                        <option value="Atendente de Padaria">Atendente de Padaria</option>
                         <option value="Auxiliar Administrativo">Auxiliar Administrativo</option>
                         <option value="Auxiliar de Açougue">Auxiliar de Açougue</option>
                         <option value="Auxiliar de Frios">Auxiliar de Frios</option>
+                        <option value="Auxiliar de Hortifruti">Auxiliar de Hortifruti</option>
                         <option value="Auxiliar de Padaria">Auxiliar de Padaria</option>
                         <option value="Auxiliar de Serviços Gerais">Auxiliar de Serviços Gerais</option>
                         <option value="Balconista">Balconista</option>
                         <option value="Confeiteiro">Confeiteiro</option>
                         <option value="Conferente">Conferente</option>
+                        <option value="Desossador">Desossador</option>
                         <option value="Embalador">Embalador</option>
                         <option value="Encarregado de Açougue">Encarregado de Açougue</option>
+                        <option value="Encarregado de Depósito">Encarregado de Depósito</option>
                         <option value="Encarregado de Frios">Encarregado de Frios</option>
                         <option value="Encarregado de Hortifruti">Encarregado de Hortifruti</option>
                         <option value="Encarregado de Padaria">Encarregado de Padaria</option>
