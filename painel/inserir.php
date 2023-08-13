@@ -147,7 +147,8 @@ require "../complements/begin_page.php";
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Selecionar Loja</label>
-                        <select name="ocorrencia_loja" class="form-control">
+                        <select name="ocorrencia_loja" id="ocorrencia_loja" class="form-control">
+                        <option value="0" selected disabled>Selecionar...</option>
 
 
                         <!-- Inicio de uma codição PHP -->
@@ -167,18 +168,8 @@ require "../complements/begin_page.php";
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Selecionar Funcionário</label>
-                        <select name="ocorrencia_funcionarios" class="form-control">
-
-
-                        <!-- Inicio de uma codição PHP -->
-                        <?php 
-                        
-                        require "../complements/selects/select_funcionario.php";
-                        
-                        ?>
-                        <!-- Fim de uma codição PHP -->
-
-
+                        <select name="ocorrencia_funcionarios" id="ocorrencia_funcionarios" class="form-control">
+                        <option value="0" selected disabled>Selecionar...</option>
                         </select>
                       </div>
                     </div>
@@ -276,8 +267,8 @@ require "../complements/begin_page.php";
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Selecionar Loja</label>
-                        <select name="recisao_loja" class="form-control">
-
+                        <select name="recisao_loja" id="recisao_loja" class="form-control">
+                        <option value="0" selected disabled>Selecionar...</option>
 
                         <!-- Inicio de uma codição PHP -->
                         <?php 
@@ -298,17 +289,8 @@ require "../complements/begin_page.php";
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Selecionar Funcionário</label>
-                        <select name="recisao_funcionario" class="form-control">
-                        
-                        <!-- Inicio de uma codição PHP -->
-                        <?php 
-                        
-                        require "../complements/selects/select_funcionario.php";
-                        
-                        ?>
-                        <!-- Fim de uma codição PHP -->
-
-
+                        <select name="recisao_funcionario" id="recisao_funcionario" class="form-control">
+                        <option value="0" selected disabled>Selecionar...</option>
                         </select>
                       </div>
                     </div>              
@@ -418,8 +400,8 @@ require "../complements/begin_page.php";
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Selecionar Loja</label>
-                        <select name="ferias_loja" class="form-control">
-
+                        <select name="ferias_loja" id="ferias_loja" class="form-control">
+                        <option value="0" selected disabled>Selecionar...</option>
 
                         <!-- Inicio de uma codição PHP -->
                         <?php 
@@ -436,22 +418,16 @@ require "../complements/begin_page.php";
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Selecionar Funcionário</label>
-                        <select name="ferias_funcionario" class="form-control">
-                          
-
-                        <!-- Inicio de uma codição PHP -->
-                        <?php 
-                        
-                        require "../complements/selects/select_funcionario.php";
-                        
-                        ?>
-                        <!-- Fim de uma codição PHP -->
-
-
+                        <select name="ferias_funcionario" id="ferias_funcionario" class="form-control">
+                        <option value="0"  selected disabled>Selecionar...</option>
                         </select>
                       </div>
                     </div>
                   </div>
+
+                  
+
+
                   <div class="row">
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
@@ -617,6 +593,7 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>Empresa</label>
                         <select name="funcionario_empresa" class="form-control">
+                        <option value="0" selected disabled>Selecionar...</option>
                           <!-- Inicio de uma codição PHP -->
                           <?php 
 
@@ -1079,6 +1056,11 @@ require "../complements/begin_page.php";
   <script src="../js/custom_ocorrencia.js"></script>
   <script src="../js/custom_recisao.js"></script>
   <script src="../js/custom_usuario.js"></script>
+
+<!--Selecionando Funcionarios de acordo a empresa selecionada-->
+  <script src="../js/ferias.js"></script>
+  <script src="../js/ocorrencia.js"></script>
+  <script src="../js/recisao.js"></script>
   
   <!--   Core JS Files   -->
   <script src="assets/js/core/jquery.min.js"></script>
