@@ -161,7 +161,7 @@ $data_fim = substr($row_ferias['data_fim'],0,10);
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Selecionar Loja</label>
-                        <select name="ferias_loja" class="form-control">
+                        <select name="ferias_loja" id="ferias_loja" class="form-control">
 
 
                         <!-- Inicio de uma codição PHP -->
@@ -179,7 +179,7 @@ $data_fim = substr($row_ferias['data_fim'],0,10);
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Selecionar Funcionário</label>
-                        <select name="ferias_funcionario" class="form-control">
+                        <select name="ferias_funcionario" id="ferias_funcionario" class="form-control">
                           
 
                         <!-- Inicio de uma codição PHP -->
@@ -409,6 +409,9 @@ $data_fim = substr($row_ferias['data_fim'],0,10);
             }
         }
     </script>
+
+<!--Selecionando Funcionarios de acordo a empresa selecionada-->
+  <script src="../js/ferias_editar.js"></script>
 
 
   <!--   Core JS Files   -->

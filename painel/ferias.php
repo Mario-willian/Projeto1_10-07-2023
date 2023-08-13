@@ -215,7 +215,7 @@ $resultado_ferias = mysqli_query($conn, $pesquisa_ferias);
                     <div class="col-md-2 ">
                       <div class="form-group">
                         <label>Selecionar Loja</label>
-                        <select name="ferias_loja" class="form-control">
+                        <select name="ferias_loja" id="ferias_loja" class="form-control">
                         <option value="" data-default disabled selected></option>
                         <!-- Inicio de uma codição PHP -->
                         <?php 
@@ -230,15 +230,8 @@ $resultado_ferias = mysqli_query($conn, $pesquisa_ferias);
                     <div class="col-md-2">
                       <div class="form-group">
                         <label>Selecionar Funcionário</label>
-                        <select name="ferias_funcionario" class="form-control">
-                        <option value="" data-default disabled selected></option>
-                        <!-- Inicio de uma codição PHP -->
-                        <?php 
-                        $id_funcionario_selecionado = 0;
-                        require "../complements/selects/select_funcionario_editar.php";
-                        
-                        ?>
-                        <!-- Fim de uma codição PHP -->
+                        <select name="ferias_funcionario" id="ferias_funcionario" class="form-control">
+                        <option value="0"  selected disabled>Antes selecione a loja...</option>
                         </select>
                       </div>
                     </div>
@@ -407,6 +400,9 @@ $resultado_ferias = mysqli_query($conn, $pesquisa_ferias);
 
           }
        </script>
+
+<!--Selecionando Funcionarios de acordo a empresa selecionada-->
+<script src="../js/ferias.js"></script>
 
 <?php
 //Carregando o final da pagina

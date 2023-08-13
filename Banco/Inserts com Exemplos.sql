@@ -71,15 +71,15 @@ insert into funcionarios(id, cpf, nome_completo, data_nascimento, salario, nome_
 (NULL, '123.456.789-00', 'Funcionario Teste 1', '2023-07-19', '3000.30', 'Mae Teste', 'Hortifruti', 'Motorista', '', 'Ativo', '2023-07-20', '2023-07-19 01:08:48', '1'),
 (NULL, '987.654.321-00', 'Funcionario Teste 2', '2001-11-01', '3000.30', 'Mae Teste2', 'Açougue', 'Conferente', '', 'Inativo', '2023-08-10', '2023-07-19 02:30:00', '2'),
 (NULL, '123.123.852-10', 'Funcionario Teste 3', '1984-07-30', '3000.30', 'Mae Teste3', 'Padaria', 'Conferente', 'CLT', 'Afastado', '2023-07-24', '2023-07-24 10:08:48', '2'),
-(NULL, '123.456.789-00', 'Funcionario Teste 4', '2023-07-19', '3000.30', 'Mae Teste', 'Padaria', 'Operador de Loja', '', 'Ativo', '2023-07-20', '2023-07-19 01:08:48', '1'),
-(NULL, '987.654.321-00', 'Funcionario Teste 5', '2001-11-01', '3000.30', 'Mae Teste2', 'Caixa', 'Operador de Loja', '', 'Ativo', '2023-08-10', '2023-07-19 02:30:00', '2');
+(NULL, '123.456.789-00', 'Funcionario Teste 4', '2023-07-19', '3000.30', 'Mae Teste', 'Padaria', 'Operador de Loja', '', 'Ativo', '2023-07-20', '2023-07-19 01:08:48', '3'),
+(NULL, '987.654.321-00', 'Funcionario Teste 5', '2001-11-01', '3000.30', 'Mae Teste2', 'Caixa', 'Operador de Loja', '', 'Ativo', '2023-08-10', '2023-07-19 02:30:00', '1');
 
 INSERT INTO `ocorrencias` (`id`, `motivo`, `faltas`, `valor`, `observacao`, `status`, `data_criacao`, `funcionarios_id`, `empresas_id`) VALUES 
 (NULL, 'Atestado', 10, '150.00', 'Teste1', 'Ativo', '2023-07-24 01:22:37.000000', '1', '1'), 
-(NULL, 'Meta', 1, '562.00', 'teste2', 'Ativo', '2023-07-25 01:22:37.000000', '1', '2'),
-(NULL, 'Feriado', 1, '0.00', 'teste3', 'Ativo', '2023-07-26 01:22:37.000000', '1', '3'),
-(NULL, 'Meta', 3, '10.00', 'teste4', 'Ativo', '2023-07-27 01:22:37.000000', '2', '1'),
-(NULL, 'Feriado', 4, '5.00', 'teste5', 'Ativo', '2023-07-28 01:22:37.000000', '3', '2');
+(NULL, 'Meta', 1, '562.00', 'teste2', 'Ativo', '2023-07-25 01:22:37.000000', '1', '1'),
+(NULL, 'Feriado', 1, '0.00', 'teste3', 'Ativo', '2023-07-26 01:22:37.000000', '1', '1'),
+(NULL, 'Meta', 3, '10.00', 'teste4', 'Ativo', '2023-07-27 01:22:37.000000', '4', '3'),
+(NULL, 'Feriado', 4, '5.00', 'teste5', 'Ativo', '2023-07-28 01:22:37.000000', '5', '1');
 
 INSERT INTO `arquivos_ocorrencias` (`id`, `arquivo`, `data_criacao`, `ocorrencias_id`) VALUES 
 (NULL, 'teste1.png', '2023-07-25 01:22:37.000000', '1'), 
@@ -91,14 +91,14 @@ INSERT INTO `arquivos_ocorrencias` (`id`, `arquivo`, `data_criacao`, `ocorrencia
 INSERT INTO `ferias` (`id`, `data_inicio`, `data_fim`, `observacao`, `data_criacao`, `funcionarios_id`, `empresas_id`) VALUES
 (NULL, '2023-07-25', '2023-07-31', 'teste1', '2023-07-25 02:06:52.000000', '1', '1'),
 (NULL, '2023-06-25', '2023-06-29', 'teste2', '2023-07-25 02:06:52.000000', '2', '2'),
-(NULL, '2023-04-25', '2023-05-31', 'teste3', '2023-07-25 02:06:52.000000', '3', '3'),
-(NULL, '2020-03-25', '2020-04-20', 'teste4', '2023-07-25 02:06:52.000000', '1', '3');
+(NULL, '2023-04-25', '2023-05-31', 'teste3', '2023-07-25 02:06:52.000000', '3', '2'),
+(NULL, '2020-03-25', '2020-04-20', 'teste4', '2023-07-25 02:06:52.000000', '5', '1');
 
 insert into recisoes(id, exame_demissional, tipo, data_inicio_aviso, data_fim_aviso, data_prazo_pagamento, motivo, observacao, status, data_criacao, funcionarios_id, empresas_id) values 
 (NULL, 'Sim', 'Normal', '2023-07-25', '2023-08-04', '2023-08-04', 'Término de Contrato', 'teste1', 'Pago','2023-07-24 23:22:27', '1', '1'),
 (NULL, 'Sim', 'Acordo', '2023-06-25', '2023-08-04', '2023-08-04', 'Término de Contrato', 'teste2', 'Pago','2023-07-24 23:22:27', '2', '2'),
-(NULL, 'Não', 'Justiça', '2023-05-25', '2023-05-26', '2023-05-26', 'Aviso', 'teste3', 'Pendente','2023-07-24 23:22:27', '3', '3'),
-(NULL, 'Não', 'Normal', '2023-07-20', '2023-08-01', '2023-08-01', 'Aviso', 'teste4', 'Pendente','2023-07-24 23:22:27', '1', '3');
+(NULL, 'Não', 'Justiça', '2023-05-25', '2023-05-26', '2023-05-26', 'Aviso', 'teste3', 'Pendente','2023-07-24 23:22:27', '3', '2'),
+(NULL, 'Não', 'Normal', '2023-07-20', '2023-08-01', '2023-08-01', 'Aviso', 'teste4', 'Pendente','2023-07-24 23:22:27', '5', '1');
 
 INSERT INTO `vale_transportes` (`id`, `tipo`, `valor`, `data_criacao`, `funcionarios_id`) VALUES
 (NULL, 'Otimo', '400.00', '2023-07-25 02:06:52.000000', '1'),

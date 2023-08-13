@@ -1,8 +1,7 @@
 <?php
 
-
 //Select para todos funcionários
-$pesquisa_funcionarios = "SELECT * FROM funcionarios ORDER BY nome_completo;";
+$pesquisa_funcionarios = "SELECT * FROM funcionarios WHERE empresas_id = ".$id_empresa_selecionado." ORDER BY nome_completo;";
 $resultado_funcionarios = mysqli_query($conn, $pesquisa_funcionarios);
 
 //Loop para listar os funcionários

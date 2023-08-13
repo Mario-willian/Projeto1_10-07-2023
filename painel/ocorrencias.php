@@ -229,7 +229,7 @@ function myFunction() {
                     <div class="col-md-2">
                       <div class="form-group">
                         <label>Selecionar Loja</label>
-                        <select name="ocorrencia_loja" class="form-control">
+                        <select name="ocorrencia_loja" id="ocorrencia_loja" class="form-control">
                         <option value="" data-default disabled selected></option>
                         <!-- Inicio de uma codição PHP -->
                         <?php 
@@ -244,15 +244,8 @@ function myFunction() {
                     <div class="col-md-2">
                       <div class="form-group">
                         <label>Selecionar Funcionário</label>
-                        <select name="ocorrencia_funcionario" class="form-control">
-                        <option value="" data-default disabled selected></option>
-                        <!-- Inicio de uma codição PHP -->
-                        <?php 
-                        $id_funcionario_selecionado = 0;
-                        require "../complements/selects/select_funcionario_editar.php";
-                        
-                        ?>
-                        <!-- Fim de uma codição PHP -->
+                        <select name="ocorrencia_funcionario" id="ocorrencia_funcionarios" class="form-control">
+                        <option value="0"  selected disabled>Antes selecione a loja...</option>
                         </select>
                       </div>
                     </div>
@@ -414,6 +407,10 @@ function myFunction() {
            });
 
  </script>
+
+<!--Selecionando Funcionarios de acordo a empresa selecionada-->
+  <script src="../js/ocorrencia.js"></script>
+
       <?php
 //Carregando o final da pagina
 require "../complements/end_page.php";

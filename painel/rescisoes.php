@@ -224,7 +224,7 @@ $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
                     <div class="col-md-2 ">
                       <div class="form-group">
                         <label>Selecionar Loja</label>
-                        <select name="recisao_loja" class="form-control">
+                        <select name="recisao_loja" id="recisao_loja" class="form-control">
                         <option value="" data-default disabled selected></option>
                         <!-- Inicio de uma codição PHP -->
                         <?php 
@@ -239,15 +239,8 @@ $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
                     <div class="col-md-2">
                       <div class="form-group">
                         <label>Selecionar Funcionário</label>
-                        <select name="recisao_funcionario" class="form-control">
-                        <option value="" data-default disabled selected></option>
-                        <!-- Inicio de uma codição PHP -->
-                        <?php 
-                        $id_funcionario_selecionado = 0;
-                        require "../complements/selects/select_funcionario_editar.php";
-                        
-                        ?>
-                        <!-- Fim de uma codição PHP -->
+                        <select name="recisao_funcionario" id="recisao_funcionario" class="form-control">
+                        <option value="0"  selected disabled>Antes selecione a loja...</option>
                         </select>
                       </div>
                     </div>
@@ -424,6 +417,10 @@ $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
            });
 
  </script>
+
+<!--Selecionando Funcionarios de acordo a empresa selecionada-->
+<script src="../js/recisao.js"></script>
+
       <?php
 //Carregando o final da pagina
 require "../complements/end_page.php";

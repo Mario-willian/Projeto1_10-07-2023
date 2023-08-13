@@ -171,7 +171,7 @@ $data_criacao = substr($row_ocorrencia['data_criacao'],0,10);
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Selecionar Loja</label>
-                        <select name="ocorrencia_loja" class="form-control">
+                        <select name="ocorrencia_loja" id="ocorrencia_loja" class="form-control">
 
 
                         <!-- Inicio de uma codição PHP -->
@@ -191,7 +191,7 @@ $data_criacao = substr($row_ocorrencia['data_criacao'],0,10);
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Selecionar Funcionário</label>
-                        <select name="ocorrencia_funcionarios" class="form-control">
+                        <select name="ocorrencia_funcionarios" id="ocorrencia_funcionarios" class="form-control">
 
 
                         <!-- Inicio de uma codição PHP -->
@@ -463,6 +463,9 @@ $data_criacao = substr($row_ocorrencia['data_criacao'],0,10);
             }
         }
     </script>
+
+<!--Selecionando Funcionarios de acordo a empresa selecionada-->
+  <script src="../js/ocorrencia_editar.js"></script>
 
 
   <!--   Core JS Files   -->

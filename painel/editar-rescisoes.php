@@ -168,7 +168,7 @@ $data_prazo_pagamento = substr($row_recisao['data_prazo_pagamento'],0,10);
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Selecionar Loja</label>
-                        <select name="recisao_loja" class="form-control">
+                        <select name="recisao_loja" id="recisao_loja" class="form-control">
 
 
                         <!-- Inicio de uma codição PHP -->
@@ -190,7 +190,7 @@ $data_prazo_pagamento = substr($row_recisao['data_prazo_pagamento'],0,10);
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Selecionar Funcionário</label>
-                        <select name="recisao_funcionario" class="form-control">
+                        <select name="recisao_funcionario" id="recisao_funcionario" class="form-control">
                         
                         <!-- Inicio de uma codição PHP -->
                         <?php 
@@ -495,6 +495,9 @@ $data_prazo_pagamento = substr($row_recisao['data_prazo_pagamento'],0,10);
             }
         }
     </script>
+
+<!--Selecionando Funcionarios de acordo a empresa selecionada-->
+  <script src="../js/recisao_editar.js"></script>
 
 
   <!--   Core JS Files   -->
