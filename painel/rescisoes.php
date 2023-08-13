@@ -46,21 +46,21 @@ if(!empty($_POST)){
     $pesquisa_recisoes .= " AND empresas_id = '".$recisao_loja."'";
   }
   //Verifica se utilizou o filtro DATA
-  if(isset($_POST['recisao_data_criacao']) && $_POST['recisao_data_criacao'] != "" && isset($_POST['recisao_data_fim']) && $_POST['recisao_data_fim'] != ""){
-    $recisao_data_criacao = $_POST['recisao_data_criacao']; $recisao_data_criacao = Date($recisao_data_criacao);
-    $pesquisa_recisoes .= " AND data_criacao BETWEEN '".$recisao_data_criacao."%'";
-    $recisao_data_fim = $_POST['recisao_data_fim']; $recisao_data_fim = Date($recisao_data_fim);
-    $pesquisa_recisoes .= " AND '".$recisao_data_fim."%'";
+  if(isset($_POST['recisao_data_inicio_do_fim_do_aviso']) && $_POST['recisao_data_inicio_do_fim_do_aviso'] != "" && isset($_POST['recisao_data_fim_do_fim_do_aviso']) && $_POST['recisao_data_fim_do_fim_do_aviso'] != ""){
+    $recisao_data_inicio_do_fim_do_aviso = $_POST['recisao_data_inicio_do_fim_do_aviso']; $recisao_data_inicio_do_fim_do_aviso = Date($recisao_data_inicio_do_fim_do_aviso);
+    $pesquisa_recisoes .= " AND data_fim_aviso BETWEEN '".$recisao_data_inicio_do_fim_do_aviso."%'";
+    $recisao_data_fim_do_fim_do_aviso = $_POST['recisao_data_fim_do_fim_do_aviso']; $recisao_data_fim_do_fim_do_aviso = Date($recisao_data_fim_do_fim_do_aviso);
+    $pesquisa_recisoes .= " AND '".$recisao_data_fim_do_fim_do_aviso."%'";
   }
   //Verifica se utilizou o filtro DATA Inico
-  if(isset($_POST['recisao_data_criacao']) && $_POST['recisao_data_criacao'] != "" && $_POST['recisao_data_fim'] == ""){
-    $recisao_data_criacao = $_POST['recisao_data_criacao']; $recisao_data_criacao = Date($recisao_data_criacao);
-    $pesquisa_recisoes .= " AND data_criacao >= '".$recisao_data_criacao."%'";
+  if(isset($_POST['recisao_data_inicio_do_fim_do_aviso']) && $_POST['recisao_data_inicio_do_fim_do_aviso'] != "" && $_POST['recisao_data_fim_do_fim_do_aviso'] == ""){
+    $recisao_data_inicio_do_fim_do_aviso = $_POST['recisao_data_inicio_do_fim_do_aviso']; $recisao_data_inicio_do_fim_do_aviso = Date($recisao_data_inicio_do_fim_do_aviso);
+    $pesquisa_recisoes .= " AND data_fim_aviso >= '".$recisao_data_inicio_do_fim_do_aviso."%'";
   }
   //Verifica se utilizou o filtro DATA Fim
-  if(isset($_POST['recisao_data_fim']) && $_POST['recisao_data_fim'] != "" && $_POST['recisao_data_criacao'] == ""){
-    $recisao_data_fim = $_POST['recisao_data_fim']; $recisao_data_fim = Date($recisao_data_fim);
-    $pesquisa_recisoes .= " AND data_criacao <= '".$recisao_data_fim."%'";
+  if(isset($_POST['recisao_data_fim_do_fim_do_aviso']) && $_POST['recisao_data_fim_do_fim_do_aviso'] != "" && $_POST['recisao_data_inicio_do_fim_do_aviso'] == ""){
+    $recisao_data_fim_do_fim_do_aviso = $_POST['recisao_data_fim_do_fim_do_aviso']; $recisao_data_fim_do_fim_do_aviso = Date($recisao_data_fim_do_fim_do_aviso);
+    $pesquisa_recisoes .= " AND data_fim_aviso <= '".$recisao_data_fim_do_fim_do_aviso."%'";
   }
 }
 
@@ -209,14 +209,14 @@ $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
                     <div class="col-md-2">
                       <div class="form-group">
                         <label>Data Inicial</label>
-                        <input type="date" name="recisao_data_criacao" class="form-control" >
+                        <input type="date" name="recisao_data_inicio_do_fim_do_aviso" class="form-control" >
                       </div>
                     </div>
 
                     <div class="col-md-2">
                       <div class="form-group">
                         <label>Data Final</label>
-                        <input type="date" name="recisao_data_fim" class="form-control" >
+                        <input type="date" name="recisao_data_fim_do_fim_do_aviso" class="form-control" >
                       </div>
                     </div>
 

@@ -6,7 +6,7 @@ include_once "../complements/inicio_php.php";
 require "../complements/begin_page.php";
 
 //Select para Ferias
-$pesquisa_lembrete = "SELECT * FROM lembretes WHERE usuarios_id = ".$_SESSION["id_usuario_login"]['id']." AND data_desativada >= '".date('Y-m-d')."' order by data_criacao DESC;";
+$pesquisa_lembrete = "SELECT * FROM lembretes WHERE usuarios_id = ".$_SESSION["id_usuario_login"]['id']." order by data_criacao DESC;";
 $resultado_lembrete = mysqli_query($conn, $pesquisa_lembrete);
 
 //Select para recisões

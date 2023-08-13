@@ -54,7 +54,14 @@ if(!empty($_POST)){
     $funcionario_empresa = $_POST['funcionario_empresa']; $funcionario_empresa = Date($funcionario_empresa);
     $pesquisa_funcionario .= " AND empresas_id = '".$funcionario_empresa."'";
   }
+  //Verifica se utilizou o filtro Status
+  if(isset($_POST['funcionario_status'])){
+    $funcionario_status = $_POST['funcionario_status'];
+    $pesquisa_funcionario .= " AND status = '".$funcionario_status."'";
+  }
 }
+
+
 
 //Acrescimos ao select
 $pesquisa_funcionario .= " order by id_funcionarios DESC LIMIT ".$inicio.", ".$limite;
@@ -287,6 +294,21 @@ function myFunction() {
                         <?php 
                         
                         require "../complements/selects/select_funcao_editar.php";
+                        
+                        ?>
+                        <!-- Fim de uma codição PHP -->
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label>Status</label>
+                        <select name="funcionario_status" class="form-control">
+                        <option value="" data-default disabled selected></option>
+                        <!-- Inicio de uma codição PHP -->
+                        <?php 
+                        require "../complements/selects/select_status.php";
                         
                         ?>
                         <!-- Fim de uma codição PHP -->
