@@ -183,7 +183,7 @@ if(isset($_GET['deletar'])){
           <div class="w3-display-container" >
             <div class="card card-chart" style="background-color:<?php echo $row_lembrete['cor'];?>;">
             
-            <a href="?deletar=<?php echo $row_lembrete["id"]?>" style="text-decoration: none;"><span class="w3-display-topright xlembrete" >&times; </span></a>
+            <span class="w3-display-topright xlembrete" ><a title="Apagar Lembrete" href="?deletar=<?php echo $row_lembrete["id"]?>" style="text-decoration: none;">&times;</span></a>
               <div style="margin-top: -30px;" class="card-header">
                 <h5 style="color:black;" class="card-category"><i class="fa fa-tags"></i> Lembrete</h5>
                 <h4 class="card-title"><?php echo $row_lembrete['anotacao'];?></h4>
