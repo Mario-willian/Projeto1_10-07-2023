@@ -17,59 +17,118 @@ $limite = 10;
 $inicio = ($pagina * $limite) - $limite;
 
 //Select para paginacao
-$pesquisa_ocorrencias2 = "SELECT count(id) FROM acessos_ocorrencias WHERE usuarios_id =".$_SESSION["id_usuario_login"]['id'].";";
-$resultado_ocorrencias2 = mysqli_query($conn, $pesquisa_ocorrencias2);
-$row_ocorrencias2 = mysqli_fetch_assoc($resultado_ocorrencias2);
-//PAGINACAO
-$paginas = ceil($row_ocorrencias2['count(id)'] / $limite);
+$pesquisa_ocorrencias2 = "SELECT count(id) FROM acessos_ocorrencias WHERE usuarios_id =".$_SESSION["id_usuario_login"]['id'];
 
 //Select para ocorrencias
 $pesquisa_ocorrencias = "SELECT * FROM acessos_ocorrencias WHERE status = 'Ativo' AND usuarios_id =".$_SESSION["id_usuario_login"]['id'];
 
 //Verifica se Filtrou a pesquisa
-if(!empty($_POST)){
   $pesquisa_ocorrencias .= " AND (1=1)";
+  $pesquisa_ocorrencias2 .= " AND (1=1)";
+
+    //Verifica se utilizou o filtro MOTIVO
+    //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
+    if(empty($_SESSION['ocorrencia_motivo'])){
+      if(isset($_POST['ocorrencia_motivo'])){
+        $ocorrencia_motivo = $_POST['ocorrencia_motivo'];
+        $pesquisa_ocorrencias .= " AND motivo = '".$ocorrencia_motivo."'";
+        $pesquisa_ocorrencias2 .= " AND motivo = '".$ocorrencia_motivo."'";
+        $_SESSION['ocorrencia_motivo'] = $_POST['ocorrencia_motivo'];
+      }
+    //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
+    }else{
+      if(isset($_POST['ocorrencia_motivo'])){
+        $ocorrencia_motivo = $_POST['ocorrencia_motivo'];
+        $pesquisa_ocorrencias .= " AND motivo = '".$ocorrencia_motivo."'";
+        $pesquisa_ocorrencias2 .= " AND motivo = '".$ocorrencia_motivo."'";
+        $_SESSION['ocorrencia_motivo'] = $_POST['ocorrencia_motivo'];
+      }else{
+        $ocorrencia_motivo = $_SESSION['ocorrencia_motivo'];
+        $pesquisa_ocorrencias .= " AND motivo = '".$ocorrencia_motivo."'";
+        $pesquisa_ocorrencias2 .= " AND motivo = '".$ocorrencia_motivo."'";
+      }
+    }
+  
+    //Verifica se utilizou o filtro Funcionario
+    //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
+    if(empty($_SESSION['ocorrencia_funcionario'])){
+      if(isset($_POST['ocorrencia_funcionario'])){
+        $ocorrencia_funcionario = $_POST['ocorrencia_funcionario'];
+        $pesquisa_ocorrencias .= " AND funcionarios_id = '".$ocorrencia_funcionario."'";
+        $pesquisa_ocorrencias2 .= " AND funcionarios_id = '".$ocorrencia_funcionario."'";
+        $_SESSION['ocorrencia_funcionario'] = $_POST['ocorrencia_funcionario'];
+      }
+    //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
+    }else{
+      if(isset($_POST['ocorrencia_funcionario'])){
+        $ocorrencia_funcionario = $_POST['ocorrencia_funcionario'];
+        $pesquisa_ocorrencias .= " AND funcionarios_id = '".$ocorrencia_funcionario."'";
+        $pesquisa_ocorrencias2 .= " AND funcionarios_id = '".$ocorrencia_funcionario."'";
+        $_SESSION['ocorrencia_funcionario'] = $_POST['ocorrencia_funcionario'];
+      }else{
+        $ocorrencia_funcionario = $_SESSION['ocorrencia_funcionario'];
+        $pesquisa_ocorrencias .= " AND funcionarios_id = '".$ocorrencia_funcionario."'";
+        $pesquisa_ocorrencias2 .= " AND funcionarios_id = '".$ocorrencia_funcionario."'";
+      }
+    }
 
 
-  //Verifica se utilizou o filtro MOTIVO
-  if(isset($_POST['ocorrencia_motivo'])){
-    $ocorrencia_motivo = $_POST['ocorrencia_motivo'];
-    $pesquisa_ocorrencias .= " AND motivo = '".$ocorrencia_motivo."'";
-  }
-  //Verifica se utilizou o filtro Funcionario
-  if(isset($_POST['ocorrencia_funcionario'])){
-    $ocorrencia_funcionario = $_POST['ocorrencia_funcionario'];
-    $pesquisa_ocorrencias .= " AND funcionarios_id = '".$ocorrencia_funcionario."'";
-  }
-  //Verifica se utilizou o filtro Empresa
-  if(isset($_POST['ocorrencia_loja'])){
-    $ocorrencia_loja = $_POST['ocorrencia_loja'];
-    $pesquisa_ocorrencias .= " AND empresas_id = '".$ocorrencia_loja."'";
-  }
+    //Verifica se utilizou o filtro Empresa
+    //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
+    if(empty($_SESSION['ocorrencia_loja'])){
+      if(isset($_POST['ocorrencia_loja'])){
+        $ocorrencia_loja = $_POST['ocorrencia_loja'];
+        $pesquisa_ocorrencias .= " AND empresas_id = '".$ocorrencia_loja."'";
+        $pesquisa_ocorrencias2 .= " AND empresas_id = '".$ocorrencia_loja."'";
+        $_SESSION['ocorrencia_loja'] = $_POST['ocorrencia_loja'];
+      }
+    //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
+    }else{
+      if(isset($_POST['ocorrencia_loja'])){
+        $ocorrencia_loja = $_POST['ocorrencia_loja'];
+        $pesquisa_ocorrencias .= " AND empresas_id = '".$ocorrencia_loja."'";
+        $pesquisa_ocorrencias2 .= " AND empresas_id = '".$ocorrencia_loja."'";
+        $_SESSION['ocorrencia_loja'] = $_POST['ocorrencia_loja'];
+      }else{
+        $ocorrencia_loja = $_SESSION['ocorrencia_loja'];
+        $pesquisa_ocorrencias .= " AND empresas_id = '".$ocorrencia_loja."'";
+        $pesquisa_ocorrencias2 .= " AND empresas_id = '".$ocorrencia_loja."'";
+      }
+    }
+
   //Verifica se utilizou o filtro DATA
   if(isset($_POST['ocorrencia_data']) && $_POST['ocorrencia_data'] != "" && isset($_POST['ocorrencia_data_fim']) && $_POST['ocorrencia_data_fim'] != ""){
     $ocorrencia_data = $_POST['ocorrencia_data']; $ocorrencia_data = Date($ocorrencia_data);
     $pesquisa_ocorrencias .= " AND data_criacao BETWEEN '".$ocorrencia_data."%'";
+    $pesquisa_ocorrencias2 .= " AND data_criacao BETWEEN '".$ocorrencia_data."%'";
     $ocorrencia_data_fim = $_POST['ocorrencia_data_fim']; $ocorrencia_data_fim = Date($ocorrencia_data_fim);
     $pesquisa_ocorrencias .= " AND '".$ocorrencia_data_fim."%'";
+    $pesquisa_ocorrencias2 .= " AND '".$ocorrencia_data_fim."%'";
   }
   //Verifica se utilizou o filtro DATA Inico
   if(isset($_POST['ocorrencia_data']) && $_POST['ocorrencia_data'] != "" && $_POST['ocorrencia_data_fim'] == ""){
     $ocorrencia_data = $_POST['ocorrencia_data']; $ocorrencia_data = Date($ocorrencia_data);
     $pesquisa_ocorrencias .= " AND data_criacao >= '".$ocorrencia_data."%'";
+    $pesquisa_ocorrencias2 .= " AND data_criacao >= '".$ocorrencia_data."%'";
   }
   //Verifica se utilizou o filtro DATA Fim
   if(isset($_POST['ocorrencia_data_fim']) && $_POST['ocorrencia_data_fim'] != "" && $_POST['ocorrencia_data'] == ""){
     $ocorrencia_data_fim = $_POST['ocorrencia_data_fim']; $ocorrencia_data_fim = Date($ocorrencia_data_fim);
     $pesquisa_ocorrencias .= " AND data_criacao <= '".$ocorrencia_data_fim."%'";
+    $pesquisa_ocorrencias2 .= " AND data_criacao <= '".$ocorrencia_data_fim."%'";
   }
 
-}
 
 //Acrescimos ao select
 $pesquisa_ocorrencias .= " order by data_criacao DESC LIMIT ".$inicio.", ".$limite;
 //Executa o Select
 $resultado_ocorrencias = mysqli_query($conn, $pesquisa_ocorrencias);
+
+//Select para paginacao
+$resultado_ocorrencias2 = mysqli_query($conn, $pesquisa_ocorrencias2);
+$row_ocorrencias2 = mysqli_fetch_assoc($resultado_ocorrencias2);
+//PAGINACAO
+$paginas = ceil($row_ocorrencias2['count(id)'] / $limite);
 
 ?>
 
@@ -271,12 +330,17 @@ function myFunction() {
                       </div>
                     </div>
                   </form>
+                    
                     <div class="col-md-2">
                       <div class="form-group"><br>
                         <button title="Exportar Tabela para Arquivo Excel" type="submit" id="btnExcel" name="filtrar" class="btn btn-success" style="width: 100%;"><b><i class="fa fa-download"></i> Excel</b></button>
                       </div>
                   </div>
-
+                  <form action="../classes/limpa_filtro_ocorrencia.php" method="post">
+                      <div class="form-group"><br>
+                        <button act type="submit" name="limpar_filtro" class="btn btn-outline-info" style="width: 100%;"><b><i class="fa fa-search"></i> Limpar Filtro</b></button>
+                      </div>
+                  </form>    
              </div>
           </div>
 

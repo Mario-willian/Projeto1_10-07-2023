@@ -1,0 +1,9 @@
+<?php
+session_start();
+unset($_SESSION['funcionario_nome']);
+unset($_SESSION['funcionario_setor']);
+unset($_SESSION['funcionario_funcao']);
+unset($_SESSION['funcionario_status']);
+unset($_SESSION['funcionario_empresa']);
+header("location:../painel/cadastros.php");
+?>

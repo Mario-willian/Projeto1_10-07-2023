@@ -18,58 +18,119 @@ $inicio = ($pagina * $limite) - $limite;
 
 //Select para paginacao
 $pesquisa_recisoes2 = "SELECT count(id) FROM acessos_recisoes WHERE usuarios_id =".$_SESSION["id_usuario_login"]['id'];
-$resultado_recisoes2 = mysqli_query($conn, $pesquisa_recisoes2);
-$row_recisoes2 = mysqli_fetch_assoc($resultado_recisoes2);
-//PAGINACAO
-$paginas = ceil($row_recisoes2['count(id)'] / $limite);
 
 //Select para recisões
 $pesquisa_recisoes = "SELECT * FROM acessos_recisoes WHERE usuarios_id =".$_SESSION["id_usuario_login"]['id'];
 
 //Verifica se Filtrou a pesquisa
-if(!empty($_POST)){
   $pesquisa_recisoes .= " AND (1=1)";
+  $pesquisa_recisoes2 .= " AND (1=1)";
+
 
   //Verifica se utilizou o filtro MOTIVO
-  if(isset($_POST['recisao_motivo'])){
-    $recisao_motivo = $_POST['recisao_motivo'];
-    $pesquisa_recisoes .= " AND motivo = '".$recisao_motivo."'";
+  //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
+  if(empty($_SESSION['recisao_motivo'])){
+    if(isset($_POST['recisao_motivo'])){
+      $recisao_motivo = $_POST['recisao_motivo'];
+      $pesquisa_recisoes .= " AND motivo = '".$recisao_motivo."'";
+      $pesquisa_recisoes2 .= " AND motivo = '".$recisao_motivo."'";
+      $_SESSION['recisao_motivo'] = $_POST['recisao_motivo'];
+    }
+  //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
+  }else{
+    if(isset($_POST['recisao_motivo'])){
+      $recisao_motivo = $_POST['recisao_motivo'];
+      $pesquisa_recisoes .= " AND motivo = '".$recisao_motivo."'";
+      $pesquisa_recisoes2 .= " AND motivo = '".$recisao_motivo."'";
+      $_SESSION['recisao_motivo'] = $_POST['recisao_motivo'];
+    }else{
+      $recisao_motivo = $_SESSION['recisao_motivo'];
+      $pesquisa_recisoes .= " AND motivo = '".$recisao_motivo."'";
+      $pesquisa_recisoes2 .= " AND motivo = '".$recisao_motivo."'";
+    }
   }
+
   //Verifica se utilizou o filtro Funcionario
-  if(isset($_POST['recisao_funcionario'])){
-    $recisao_funcionario = $_POST['recisao_funcionario'];
-    $pesquisa_recisoes .= " AND funcionarios_id = '".$recisao_funcionario."'";
+  //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
+  if(empty($_SESSION['recisao_funcionario'])){
+    if(isset($_POST['recisao_funcionario'])){
+      $recisao_funcionario = $_POST['recisao_funcionario'];
+      $pesquisa_recisoes .= " AND funcionarios_id = '".$recisao_funcionario."'";
+      $pesquisa_recisoes2 .= " AND funcionarios_id = '".$recisao_funcionario."'";
+      $_SESSION['recisao_funcionario'] = $_POST['recisao_funcionario'];
+    }
+  //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
+  }else{
+    if(isset($_POST['recisao_funcionario'])){
+      $recisao_funcionario = $_POST['recisao_funcionario'];
+      $pesquisa_recisoes .= " AND funcionarios_id = '".$recisao_funcionario."'";
+      $pesquisa_recisoes2 .= " AND funcionarios_id = '".$recisao_funcionario."'";
+      $_SESSION['recisao_funcionario'] = $_POST['recisao_funcionario'];
+    }else{
+      $recisao_funcionario = $_SESSION['recisao_funcionario'];
+      $pesquisa_recisoes .= " AND funcionarios_id = '".$recisao_funcionario."'";
+      $pesquisa_recisoes2 .= " AND funcionarios_id = '".$recisao_funcionario."'";
+    }
   }
+
+
   //Verifica se utilizou o filtro Empresa
-  if(isset($_POST['recisao_loja'])){
-    $recisao_loja = $_POST['recisao_loja'];
-    $pesquisa_recisoes .= " AND empresas_id = '".$recisao_loja."'";
+  //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
+  if(empty($_SESSION['recisao_loja'])){
+    if(isset($_POST['recisao_loja'])){
+      $recisao_loja = $_POST['recisao_loja'];
+      $pesquisa_recisoes .= " AND empresas_id = '".$recisao_loja."'";
+      $pesquisa_recisoes2 .= " AND empresas_id = '".$recisao_loja."'";
+      $_SESSION['recisao_loja'] = $_POST['recisao_loja'];
+    }
+  //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
+  }else{
+    if(isset($_POST['recisao_loja'])){
+      $recisao_loja = $_POST['recisao_loja'];
+      $pesquisa_recisoes .= " AND empresas_id = '".$recisao_loja."'";
+      $pesquisa_recisoes2 .= " AND empresas_id = '".$recisao_loja."'";
+      $_SESSION['recisao_loja'] = $_POST['recisao_loja'];
+    }else{
+      $recisao_loja = $_SESSION['recisao_loja'];
+      $pesquisa_recisoes .= " AND empresas_id = '".$recisao_loja."'";
+      $pesquisa_recisoes2 .= " AND empresas_id = '".$recisao_loja."'";
+    }
   }
+
+ 
   //Verifica se utilizou o filtro DATA
   if(isset($_POST['recisao_data_inicio_do_fim_do_aviso']) && $_POST['recisao_data_inicio_do_fim_do_aviso'] != "" && isset($_POST['recisao_data_fim_do_fim_do_aviso']) && $_POST['recisao_data_fim_do_fim_do_aviso'] != ""){
     $recisao_data_inicio_do_fim_do_aviso = $_POST['recisao_data_inicio_do_fim_do_aviso']; $recisao_data_inicio_do_fim_do_aviso = Date($recisao_data_inicio_do_fim_do_aviso);
     $pesquisa_recisoes .= " AND data_fim_aviso BETWEEN '".$recisao_data_inicio_do_fim_do_aviso."%'";
+    $pesquisa_recisoes2 .= " AND data_fim_aviso BETWEEN '".$recisao_data_inicio_do_fim_do_aviso."%'";
     $recisao_data_fim_do_fim_do_aviso = $_POST['recisao_data_fim_do_fim_do_aviso']; $recisao_data_fim_do_fim_do_aviso = Date($recisao_data_fim_do_fim_do_aviso);
     $pesquisa_recisoes .= " AND '".$recisao_data_fim_do_fim_do_aviso."%'";
+    $pesquisa_recisoes2 .= " AND '".$recisao_data_fim_do_fim_do_aviso."%'";
   }
   //Verifica se utilizou o filtro DATA Inico
   if(isset($_POST['recisao_data_inicio_do_fim_do_aviso']) && $_POST['recisao_data_inicio_do_fim_do_aviso'] != "" && $_POST['recisao_data_fim_do_fim_do_aviso'] == ""){
     $recisao_data_inicio_do_fim_do_aviso = $_POST['recisao_data_inicio_do_fim_do_aviso']; $recisao_data_inicio_do_fim_do_aviso = Date($recisao_data_inicio_do_fim_do_aviso);
     $pesquisa_recisoes .= " AND data_fim_aviso >= '".$recisao_data_inicio_do_fim_do_aviso."%'";
+    $pesquisa_recisoes2 .= " AND data_fim_aviso >= '".$recisao_data_inicio_do_fim_do_aviso."%'";
   }
   //Verifica se utilizou o filtro DATA Fim
   if(isset($_POST['recisao_data_fim_do_fim_do_aviso']) && $_POST['recisao_data_fim_do_fim_do_aviso'] != "" && $_POST['recisao_data_inicio_do_fim_do_aviso'] == ""){
     $recisao_data_fim_do_fim_do_aviso = $_POST['recisao_data_fim_do_fim_do_aviso']; $recisao_data_fim_do_fim_do_aviso = Date($recisao_data_fim_do_fim_do_aviso);
     $pesquisa_recisoes .= " AND data_fim_aviso <= '".$recisao_data_fim_do_fim_do_aviso."%'";
+    $pesquisa_recisoes2 .= " AND data_fim_aviso <= '".$recisao_data_fim_do_fim_do_aviso."%'";
   }
-}
 
 //Acrescimos ao select
 $pesquisa_recisoes .= " order by data_criacao DESC LIMIT ".$inicio.", ".$limite;
 
-
 //Executa o Select
 $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
+
+//Select para paginacao
+$resultado_recisoes2 = mysqli_query($conn, $pesquisa_recisoes2);
+$row_recisoes2 = mysqli_fetch_assoc($resultado_recisoes2);
+//PAGINACAO
+$paginas = ceil($row_recisoes2['count(id)'] / $limite);
 
 ?>
 
@@ -271,6 +332,11 @@ $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
                         <button title="Exportar Tabela para Arquivo Excel" type="submit" id="btnExcel" name="filtrar" class="btn btn-success" style="width: 100%;"><b><i class="fa fa-download"></i> Excel</b></button>
                       </div>
                   </div>
+                  <form action="../classes/limpa_filtro_recisao.php" method="post">
+                      <div class="form-group"><br>
+                        <button act type="submit" name="limpar_filtro" class="btn btn-outline-info" style="width: 100%;"><b><i class="fa fa-search"></i> Limpar Filtro</b></button>
+                      </div>
+                  </form>    
 
              </div>
 

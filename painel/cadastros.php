@@ -31,37 +31,110 @@ $paginas = ceil($row_funcionario2['count(id_funcionarios)'] / $limite);
 $pesquisa_funcionario = "SELECT * FROM acessos_funcionarios";
 
 //Verifica se Filtrou a pesquisa
-if(!empty($_POST)){
   $pesquisa_funcionario .= " WHERE (1=1)";
 
   //Verifica se utilizou o filtro Funcionario
-  if(isset($_POST['funcionario_nome']) && $_POST['funcionario_nome'] != ""){
-    $funcionario_nome = $_POST['funcionario_nome'];
-    $pesquisa_funcionario .= " AND nome_completo LIKE '%".$funcionario_nome."%'";
+  //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
+  if(empty($_SESSION['funcionario_nome'])){
+    if(isset($_POST['funcionario_nome'])){
+      $funcionario_nome = $_POST['funcionario_nome'];
+      $pesquisa_funcionario .= " AND nome_completo LIKE '%".$funcionario_nome."%'";
+      $_SESSION['funcionario_nome'] = $_POST['funcionario_nome'];
+    }
+  //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
+  }else{
+    if(isset($_POST['funcionario_nome'])){
+      $funcionario_nome = $_POST['funcionario_nome'];
+      $pesquisa_funcionario .= " AND nome_completo LIKE '%".$funcionario_nome."%'";
+      $_SESSION['funcionario_nome'] = $_POST['funcionario_nome'];
+    }else{
+      $funcionario_nome = $_SESSION['funcionario_nome'];
+      $pesquisa_funcionario .= " AND nome_completo LIKE '%".$funcionario_nome."%'";
+    }
   }
+
+
   //Verifica se utilizou o filtro Setor
-  if(isset($_POST['funcionario_setor'])){
-    $funcionario_setor = $_POST['funcionario_setor'];
-    $pesquisa_funcionario .= " AND setor = '".$funcionario_setor."'";
+  //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
+  if(empty($_SESSION['funcionario_setor'])){
+    if(isset($_POST['funcionario_setor'])){
+      $funcionario_setor = $_POST['funcionario_setor'];
+      $pesquisa_funcionario .= " AND setor = '".$funcionario_setor."'";
+      $_SESSION['funcionario_setor'] = $_POST['funcionario_setor'];
+    }
+  //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
+  }else{
+    if(isset($_POST['funcionario_setor'])){
+      $funcionario_setor = $_POST['funcionario_setor'];
+      $pesquisa_funcionario .= " AND setor = '".$funcionario_setor."'";
+      $_SESSION['funcionario_setor'] = $_POST['funcionario_setor'];
+    }else{
+      $funcionario_setor = $_SESSION['funcionario_setor'];
+      $pesquisa_funcionario .= " AND setor = '".$funcionario_setor."'";
+    }
   }
+
+
   //Verifica se utilizou o filtro Funcao
-  if(isset($_POST['funcionario_funcao'])){
-    $funcionario_funcao = $_POST['funcionario_funcao'];
-    $pesquisa_funcionario .= " AND funcao = '".$funcionario_funcao."'";
+  //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
+  if(empty($_SESSION['funcionario_funcao'])){
+    if(isset($_POST['funcionario_funcao'])){
+      $funcionario_funcao = $_POST['funcionario_funcao'];
+      $pesquisa_funcionario .= " AND funcao = '".$funcionario_funcao."'";
+      $_SESSION['funcionario_funcao'] = $_POST['funcionario_funcao'];
+    }
+  //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
+  }else{
+    if(isset($_POST['funcionario_funcao'])){
+      $funcionario_funcao = $_POST['funcionario_funcao'];
+      $pesquisa_funcionario .= " AND funcao = '".$funcionario_funcao."'";
+      $_SESSION['funcionario_funcao'] = $_POST['funcionario_funcao'];
+    }else{
+      $funcionario_funcao = $_SESSION['funcionario_funcao'];
+      $pesquisa_funcionario .= " AND funcao = '".$funcionario_funcao."'";
+    }
   }
+
   //Verifica se utilizou o filtro Empresa
-  if(isset($_POST['funcionario_empresa']) && $_POST['funcionario_empresa'] != ""){
-    $funcionario_empresa = $_POST['funcionario_empresa']; $funcionario_empresa = Date($funcionario_empresa);
-    $pesquisa_funcionario .= " AND empresas_id = '".$funcionario_empresa."'";
+  //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
+  if(empty($_SESSION['funcionario_empresa'])){
+    if(isset($_POST['funcionario_empresa'])){
+      $funcionario_empresa = $_POST['funcionario_empresa'];
+      $pesquisa_funcionario .= " AND empresas_id = '".$funcionario_empresa."'";
+      $_SESSION['funcionario_empresa'] = $_POST['funcionario_empresa'];
+    }
+  //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
+  }else{
+    if(isset($_POST['funcionario_empresa'])){
+      $funcionario_empresa = $_POST['funcionario_empresa'];
+      $pesquisa_funcionario .= " AND empresas_id = '".$funcionario_empresa."'";
+      $_SESSION['funcionario_empresa'] = $_POST['funcionario_empresa'];
+    }else{
+      $funcionario_empresa = $_SESSION['funcionario_empresa'];
+      $pesquisa_funcionario .= " AND empresas_id = '".$funcionario_empresa."'";
+    }
   }
+
+
   //Verifica se utilizou o filtro Status
-  if(isset($_POST['funcionario_status'])){
-    $funcionario_status = $_POST['funcionario_status'];
-    $pesquisa_funcionario .= " AND status = '".$funcionario_status."'";
+  //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
+  if(empty($_SESSION['funcionario_status'])){
+    if(isset($_POST['funcionario_status'])){
+      $funcionario_status = $_POST['funcionario_status'];
+      $pesquisa_funcionario .= " AND status = '".$funcionario_status."'";
+      $_SESSION['funcionario_status'] = $_POST['funcionario_status'];
+    }
+  //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
+  }else{
+    if(isset($_POST['funcionario_status'])){
+      $funcionario_status = $_POST['funcionario_status'];
+      $pesquisa_funcionario .= " AND status = '".$funcionario_status."'";
+      $_SESSION['funcionario_status'] = $_POST['funcionario_status'];
+    }else{
+      $funcionario_status = $_SESSION['funcionario_status'];
+      $pesquisa_funcionario .= " AND status = '".$funcionario_status."'";
+    }
   }
-}
-
-
 
 //Acrescimos ao select
 $pesquisa_funcionario .= " order by id_funcionarios DESC LIMIT ".$inicio.", ".$limite;
@@ -327,7 +400,11 @@ function myFunction() {
                         <button title="Exportar Tabela para Arquivo Excel" type="submit" id="btnExcel" name="filtrar" class="btn btn-success" style="width: 100%;"><b><i class="fa fa-download"></i> Excel</b></button>
                       </div>
                   </div>
-
+                  <form action="../classes/limpa_filtro_funcionario.php" method="post">
+                      <div class="form-group"><br>
+                        <button act type="submit" name="limpar_filtro" class="btn btn-outline-info" style="width: 100%;"><b><i class="fa fa-search"></i> Limpar Filtro</b></button>
+                      </div>
+                  </form>    
              </div>
            </div>
            
