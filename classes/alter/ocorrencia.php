@@ -24,7 +24,7 @@ $ocorrencia_observacao = addslashes($ocorrencia_observacao);
     $ocorrencia_id = $_POST['ocorrencia_id'];
     
     //Inserir Ferias
-    $atualizar_ocorrencia = "UPDATE ocorrencias SET motivo = '".$ocorrencia_motivo."', faltas = '".$ocorrencia_quantidade_faltas."', valor = '".$ocorrencia_valor."', observacao = '".$ocorrencia_observacao."', funcionarios_id = ".$ocorrencia_funcionarios.", empresas_id = ".$ocorrencia_loja." WHERE id = ".$ocorrencia_id."";
+    $atualizar_ocorrencia = "UPDATE ocorrencias SET motivo = '".$ocorrencia_motivo."', data_criacao = '".$ocorrencia_data."', faltas = '".$ocorrencia_quantidade_faltas."', valor = '".$ocorrencia_valor."', observacao = '".$ocorrencia_observacao."', funcionarios_id = ".$ocorrencia_funcionarios.", empresas_id = ".$ocorrencia_loja." WHERE id = ".$ocorrencia_id."";
     $enviar_ocorrencia = mysqli_query($conn, $atualizar_ocorrencia);
 
     //Loop para identificar se deu de Sucesso ou Falha na operação, e emitir mensagem nas notificacoes
