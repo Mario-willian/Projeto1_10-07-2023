@@ -105,8 +105,8 @@ $pesquisa_ocorrencias = "SELECT * FROM acessos_ocorrencias WHERE status = 'Ativo
         $pesquisa_ocorrencias .= " AND data_criacao BETWEEN '".$ocorrencia_data."%'";
         $pesquisa_ocorrencias2 .= " AND data_criacao BETWEEN '".$ocorrencia_data."%'";
         $ocorrencia_data_fim = $_POST['ocorrencia_data_fim']; $ocorrencia_data_fim = Date($ocorrencia_data_fim);
-        $pesquisa_ocorrencias .= " AND '".$ocorrencia_data_fim."%'";
-        $pesquisa_ocorrencias2 .= " AND '".$ocorrencia_data_fim."%'";
+        $pesquisa_ocorrencias .= " AND '".$ocorrencia_data_fim." 23:59:59%%'";
+        $pesquisa_ocorrencias2 .= " AND '".$ocorrencia_data_fim." 23:59:59%%'";
         $_SESSION['ocorrencia_data'] = $_POST['ocorrencia_data'];
         $_SESSION['ocorrencia_data_fim'] = $_POST['ocorrencia_data_fim'];
       }
@@ -117,8 +117,8 @@ $pesquisa_ocorrencias = "SELECT * FROM acessos_ocorrencias WHERE status = 'Ativo
         $pesquisa_ocorrencias .= " AND data_criacao BETWEEN '".$ocorrencia_data."%'";
         $pesquisa_ocorrencias2 .= " AND data_criacao BETWEEN '".$ocorrencia_data."%'";
         $ocorrencia_data_fim = $_POST['ocorrencia_data_fim']; $ocorrencia_data_fim = Date($ocorrencia_data_fim);
-        $pesquisa_ocorrencias .= " AND '".$ocorrencia_data_fim."%'";
-        $pesquisa_ocorrencias2 .= " AND '".$ocorrencia_data_fim."%'";
+        $pesquisa_ocorrencias .= " AND '".$ocorrencia_data_fim." 23:59:59%%'";
+        $pesquisa_ocorrencias2 .= " AND '".$ocorrencia_data_fim." 23:59:59%%'";
         $_SESSION['ocorrencia_data'] = $_POST['ocorrencia_data'];
         $_SESSION['ocorrencia_data_fim'] = $_POST['ocorrencia_data_fim'];
       }
@@ -127,8 +127,8 @@ $pesquisa_ocorrencias = "SELECT * FROM acessos_ocorrencias WHERE status = 'Ativo
         $ocorrencia_data_fim = $_SESSION['ocorrencia_data_fim'];
         $pesquisa_ocorrencias .= " AND data_criacao BETWEEN '".$ocorrencia_data."%'";
         $pesquisa_ocorrencias2 .= " AND data_criacao BETWEEN '".$ocorrencia_data."%'";
-        $pesquisa_ocorrencias .= " AND '".$ocorrencia_data_fim."%'";
-        $pesquisa_ocorrencias2 .= " AND '".$ocorrencia_data_fim."%'";
+        $pesquisa_ocorrencias .= " AND '".$ocorrencia_data_fim." 23:59:59%'";
+        $pesquisa_ocorrencias2 .= " AND '".$ocorrencia_data_fim." 23:59:59%'";
       }
     }
 
@@ -167,21 +167,21 @@ $pesquisa_ocorrencias = "SELECT * FROM acessos_ocorrencias WHERE status = 'Ativo
     if(empty($_SESSION['ocorrencia_data_fim'])){
       if(isset($_POST['ocorrencia_data_fim']) && $_POST['ocorrencia_data_fim'] != "" && $_POST['ocorrencia_data'] == ""){
         $ocorrencia_data_fim = $_POST['ocorrencia_data_fim'];
-        $pesquisa_ocorrencias .= " AND data_criacao <= '".$ocorrencia_data_fim."%'";
-        $pesquisa_ocorrencias2 .= " AND data_criacao <= '".$ocorrencia_data_fim."%'";
+        $pesquisa_ocorrencias .= " AND data_criacao <= '".$ocorrencia_data_fim." 23:59:59%'";
+        $pesquisa_ocorrencias2 .= " AND data_criacao <= '".$ocorrencia_data_fim." 23:59:59%'";
         $_SESSION['ocorrencia_data_fim'] = $_POST['ocorrencia_data_fim'];
       }
     //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
     }else{
       if(isset($_POST['ocorrencia_data_fim']) && $_POST['ocorrencia_data_fim'] != "" && $_POST['ocorrencia_data'] == ""){
         $ocorrencia_data_fim = $_POST['ocorrencia_data_fim'];
-        $pesquisa_ocorrencias .= " AND data_criacao <= '".$ocorrencia_data_fim."%'";
-        $pesquisa_ocorrencias2 .= " AND data_criacao <= '".$ocorrencia_data_fim."%'";
+        $pesquisa_ocorrencias .= " AND data_criacao <= '".$ocorrencia_data_fim." 23:59:59%'";
+        $pesquisa_ocorrencias2 .= " AND data_criacao <= '".$ocorrencia_data_fim." 23:59:59%'";
         $_SESSION['ocorrencia_data_fim'] = $_POST['ocorrencia_data_fim'];
       }else if(empty($ocorrencia_data_fim)){
         $ocorrencia_data_fim = $_SESSION['ocorrencia_data_fim'];
-        $pesquisa_ocorrencias .= " AND data_criacao <= '".$ocorrencia_data_fim."%'";
-        $pesquisa_ocorrencias2 .= " AND data_criacao <= '".$ocorrencia_data_fim."%'";
+        $pesquisa_ocorrencias .= " AND data_criacao <= '".$ocorrencia_data_fim." 23:59:59%'";
+        $pesquisa_ocorrencias2 .= " AND data_criacao <= '".$ocorrencia_data_fim." 23:59:59%'";
       }
     }
 
