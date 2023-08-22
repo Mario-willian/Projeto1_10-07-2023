@@ -348,27 +348,32 @@ $paginas = ceil($row_ferias2['count(id)'] / $limite);
 
                   <div class="col-md-2">
                       <div class="form-group"><br>
-                        <button type="submit" name="filtrar" class="btn btn-outline-info" style="width: 100%;"><b><i class="fa fa-search"></i> Buscar</b></button>
+                        <button type="submit" name="filtrar" class="btn btn-outline-info btn-100"><b><i class="fa fa-search"></i> Buscar</b></button>
                       </div>
+                  </div>
+                  </form>
+
+                  <div class="col-md-2">
+                  <form action="../classes/limpa_filtro_ferias.php" method="post">
+                      <div class="form-group"><br>
+                        <button act type="submit" name="limpar_filtro" class="btn btn-outline-info btn-100" ><b><i class="fa fa-refresh"></i> Limpar Filtro</b></button>
+                      </div>
+                  </form> 
                   </div>
                                
                   <div class="col-md-2">
                       <div class="form-group"><br>
-                        <button title="Exportar Tabela para Arquivo Excel" type="submit" id="btnExcel" name="filtrar" class="btn btn-success" style="width: 100%;"><b><i class="fa fa-download"></i> Excel</b></button>
+                        <button title="Exportar Tabela para Arquivo Excel" type="submit" id="btnExcel" name="filtrar" class="btn btn-success btn-100"><b><i class="fa fa-download"></i> Excel</b></button>
                       </div>
-                  </div>
+                  </div>                 
                   
                   <div class="col-md-2">
                       <div class="form-group"><br>
-                        <button title="Exportar Tabela para Arquivo PDF" type="submit" id="btnPdf" name="filtrar" class="btn btn-danger" style="width: 100%;"><b><i class="fa fa-download"></i> PDF</b></button>
+                        <button title="Exportar Tabela para Arquivo PDF" type="submit" id="btnPdf" name="filtrar" class="btn btn-danger btn-100"><b><i class="fa fa-download"></i> PDF</b></button>
                       </div>
                   </div>
-                  </form>
-                  <form action="../classes/limpa_filtro_ferias.php" method="post">
-                      <div class="form-group"><br>
-                        <button act type="submit" name="limpar_filtro" class="btn btn-outline-info" style="width: 100%;"><b><i class="fa fa-search"></i> Limpar Filtro</b></button>
-                      </div>
-                  </form>     
+                 
+                      
               </div>
               <div class="card-body">
                 <div id="divTabela" class="table-responsive">
@@ -433,19 +438,19 @@ $paginas = ceil($row_ferias2['count(id)'] / $limite);
                       </li>
                       <li class="page-item"> 
                         <?php if($pagina>1): ?>
-                        <a class="page-link" href="?pagina=<?=$pagina-1?>"><<</a>
+                        <a class="page-link" href="?pagina=<?=$pagina-1?>"><i class="fa fa-arrow-left"></i></a>
                          <?php endif; ?></li>
                       <li class="page-item active"><a class="page-link"> <?=$pagina?></a></li>
                       <li class="page-item">
                       <?php if($pagina<$paginas): ?>
-                        <a class="page-link" href="?pagina=<?=$pagina+1?>">>></a>
+                        <a class="page-link" href="?pagina=<?=$pagina+1?>"><i class="fa fa-arrow-right"></i></a>
                       <?php endif; ?>
                       </li>
                       <li class="page-item">
                       <a class="page-link" href="?pagina=<?=$paginas?>">Última</a>
                       </li>
                     </ul>
-                  </nav> 
+                  </nav>  
               </div>
             </div>
           </div>

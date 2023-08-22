@@ -46,6 +46,10 @@
  
 }
 
+.btn-100{
+  width: 100%;
+}
+
 
 .xlembrete{
   margin-left: 95%;font-size: 20px;cursor:pointer;color:black;
