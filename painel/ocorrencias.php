@@ -96,28 +96,94 @@ $pesquisa_ocorrencias = "SELECT * FROM acessos_ocorrencias WHERE status = 'Ativo
       }
     }
 
-  //Verifica se utilizou o filtro DATA
-  if(isset($_POST['ocorrencia_data']) && $_POST['ocorrencia_data'] != "" && isset($_POST['ocorrencia_data_fim']) && $_POST['ocorrencia_data_fim'] != ""){
-    $ocorrencia_data = $_POST['ocorrencia_data']; $ocorrencia_data = Date($ocorrencia_data);
-    $pesquisa_ocorrencias .= " AND data_criacao BETWEEN '".$ocorrencia_data."%'";
-    $pesquisa_ocorrencias2 .= " AND data_criacao BETWEEN '".$ocorrencia_data."%'";
-    $ocorrencia_data_fim = $_POST['ocorrencia_data_fim']; $ocorrencia_data_fim = Date($ocorrencia_data_fim);
-    $pesquisa_ocorrencias .= " AND '".$ocorrencia_data_fim."%'";
-    $pesquisa_ocorrencias2 .= " AND '".$ocorrencia_data_fim."%'";
-  }
-  //Verifica se utilizou o filtro DATA Inico
-  if(isset($_POST['ocorrencia_data']) && $_POST['ocorrencia_data'] != "" && $_POST['ocorrencia_data_fim'] == ""){
-    $ocorrencia_data = $_POST['ocorrencia_data']; $ocorrencia_data = Date($ocorrencia_data);
-    $pesquisa_ocorrencias .= " AND data_criacao >= '".$ocorrencia_data."%'";
-    $pesquisa_ocorrencias2 .= " AND data_criacao >= '".$ocorrencia_data."%'";
-  }
-  //Verifica se utilizou o filtro DATA Fim
-  if(isset($_POST['ocorrencia_data_fim']) && $_POST['ocorrencia_data_fim'] != "" && $_POST['ocorrencia_data'] == ""){
-    $ocorrencia_data_fim = $_POST['ocorrencia_data_fim']; $ocorrencia_data_fim = Date($ocorrencia_data_fim);
-    $pesquisa_ocorrencias .= " AND data_criacao <= '".$ocorrencia_data_fim."%'";
-    $pesquisa_ocorrencias2 .= " AND data_criacao <= '".$ocorrencia_data_fim."%'";
-  }
 
+    //Verifica se utilizou o filtro Data INICIO e FIM
+    //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
+    if(empty($_SESSION['ocorrencia_data']) && empty($_SESSION['ocorrencia_data_fim'])){
+      if(isset($_POST['ocorrencia_data']) && $_POST['ocorrencia_data'] != "" && isset($_POST['ocorrencia_data_fim']) && $_POST['ocorrencia_data_fim'] != ""){
+        $ocorrencia_data = $_POST['ocorrencia_data']; $ocorrencia_data = Date($ocorrencia_data);
+        $pesquisa_ocorrencias .= " AND data_criacao BETWEEN '".$ocorrencia_data."%'";
+        $pesquisa_ocorrencias2 .= " AND data_criacao BETWEEN '".$ocorrencia_data."%'";
+        $ocorrencia_data_fim = $_POST['ocorrencia_data_fim']; $ocorrencia_data_fim = Date($ocorrencia_data_fim);
+        $pesquisa_ocorrencias .= " AND '".$ocorrencia_data_fim."%'";
+        $pesquisa_ocorrencias2 .= " AND '".$ocorrencia_data_fim."%'";
+        $_SESSION['ocorrencia_data'] = $_POST['ocorrencia_data'];
+        $_SESSION['ocorrencia_data_fim'] = $_POST['ocorrencia_data_fim'];
+      }
+    //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
+    }else{
+      if(isset($_POST['ocorrencia_data']) && $_POST['ocorrencia_data'] != "" && isset($_POST['ocorrencia_data_fim']) && $_POST['ocorrencia_data_fim'] != ""){
+        $ocorrencia_data = $_POST['ocorrencia_data']; $ocorrencia_data = Date($ocorrencia_data);
+        $pesquisa_ocorrencias .= " AND data_criacao BETWEEN '".$ocorrencia_data."%'";
+        $pesquisa_ocorrencias2 .= " AND data_criacao BETWEEN '".$ocorrencia_data."%'";
+        $ocorrencia_data_fim = $_POST['ocorrencia_data_fim']; $ocorrencia_data_fim = Date($ocorrencia_data_fim);
+        $pesquisa_ocorrencias .= " AND '".$ocorrencia_data_fim."%'";
+        $pesquisa_ocorrencias2 .= " AND '".$ocorrencia_data_fim."%'";
+        $_SESSION['ocorrencia_data'] = $_POST['ocorrencia_data'];
+        $_SESSION['ocorrencia_data_fim'] = $_POST['ocorrencia_data_fim'];
+      }
+      else if (!empty($_SESSION['ocorrencia_data']) && !empty($_SESSION['ocorrencia_data_fim'])){
+        $ocorrencia_data = $_SESSION['ocorrencia_data'];
+        $ocorrencia_data_fim = $_SESSION['ocorrencia_data_fim'];
+        $pesquisa_ocorrencias .= " AND data_criacao BETWEEN '".$ocorrencia_data."%'";
+        $pesquisa_ocorrencias2 .= " AND data_criacao BETWEEN '".$ocorrencia_data."%'";
+        $pesquisa_ocorrencias .= " AND '".$ocorrencia_data_fim."%'";
+        $pesquisa_ocorrencias2 .= " AND '".$ocorrencia_data_fim."%'";
+      }
+    }
+
+
+
+
+    
+    //Verifica se utilizou o filtro Data INICIO
+    //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
+    if(empty($_SESSION['ocorrencia_data'])){
+      if(isset($_POST['ocorrencia_data']) && $_POST['ocorrencia_data'] != "" && $_POST['ocorrencia_data_fim'] == ""){
+        $ocorrencia_data = $_POST['ocorrencia_data'];
+        $pesquisa_ocorrencias .= " AND data_criacao >= '".$ocorrencia_data."%'";
+        $pesquisa_ocorrencias2 .= " AND data_criacao >= '".$ocorrencia_data."%'";
+        $_SESSION['ocorrencia_data'] = $_POST['ocorrencia_data'];
+      }
+    //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
+    }else{
+      if(isset($_POST['ocorrencia_data']) && $_POST['ocorrencia_data'] != "" && $_POST['ocorrencia_data_fim'] == ""){
+        $ocorrencia_data = $_POST['ocorrencia_data'];
+        $pesquisa_ocorrencias .= " AND data_criacao >= '".$ocorrencia_data."%'";
+        $pesquisa_ocorrencias2 .= " AND data_criacao >= '".$ocorrencia_data."%'";
+        $_SESSION['ocorrencia_data'] = $_POST['ocorrencia_data'];
+      }else if(empty($ocorrencia_data)){
+        $ocorrencia_data = $_SESSION['ocorrencia_data'];
+        $pesquisa_ocorrencias .= " AND data_criacao >= '".$ocorrencia_data."%'";
+        $pesquisa_ocorrencias2 .= " AND data_criacao >= '".$ocorrencia_data."%'";
+      }
+    }
+
+
+
+
+    //Verifica se utilizou o filtro Data FIM
+    //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
+    if(empty($_SESSION['ocorrencia_data_fim'])){
+      if(isset($_POST['ocorrencia_data_fim']) && $_POST['ocorrencia_data_fim'] != "" && $_POST['ocorrencia_data'] == ""){
+        $ocorrencia_data_fim = $_POST['ocorrencia_data_fim'];
+        $pesquisa_ocorrencias .= " AND data_criacao <= '".$ocorrencia_data_fim."%'";
+        $pesquisa_ocorrencias2 .= " AND data_criacao <= '".$ocorrencia_data_fim."%'";
+        $_SESSION['ocorrencia_data_fim'] = $_POST['ocorrencia_data_fim'];
+      }
+    //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
+    }else{
+      if(isset($_POST['ocorrencia_data_fim']) && $_POST['ocorrencia_data_fim'] != "" && $_POST['ocorrencia_data'] == ""){
+        $ocorrencia_data_fim = $_POST['ocorrencia_data_fim'];
+        $pesquisa_ocorrencias .= " AND data_criacao <= '".$ocorrencia_data_fim."%'";
+        $pesquisa_ocorrencias2 .= " AND data_criacao <= '".$ocorrencia_data_fim."%'";
+        $_SESSION['ocorrencia_data_fim'] = $_POST['ocorrencia_data_fim'];
+      }else if(empty($ocorrencia_data_fim)){
+        $ocorrencia_data_fim = $_SESSION['ocorrencia_data_fim'];
+        $pesquisa_ocorrencias .= " AND data_criacao <= '".$ocorrencia_data_fim."%'";
+        $pesquisa_ocorrencias2 .= " AND data_criacao <= '".$ocorrencia_data_fim."%'";
+      }
+    }
 
 //Acrescimos ao select
 $pesquisa_ocorrencias .= " order by data_criacao DESC LIMIT ".$inicio.", ".$limite;

@@ -3,5 +3,7 @@ session_start();
 unset($_SESSION['ocorrencia_motivo']);
 unset($_SESSION['ocorrencia_funcionario']);
 unset($_SESSION['ocorrencia_loja']);
+unset($_SESSION['ocorrencia_data_fim']);
+unset($_SESSION['ocorrencia_data']);
 header("location:../painel/ocorrencias.php");
 ?>

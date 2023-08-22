@@ -97,28 +97,95 @@ $pesquisa_recisoes = "SELECT * FROM acessos_recisoes WHERE usuarios_id =".$_SESS
     }
   }
 
- 
-  //Verifica se utilizou o filtro DATA
-  if(isset($_POST['recisao_data_inicio_do_fim_do_aviso']) && $_POST['recisao_data_inicio_do_fim_do_aviso'] != "" && isset($_POST['recisao_data_fim_do_fim_do_aviso']) && $_POST['recisao_data_fim_do_fim_do_aviso'] != ""){
-    $recisao_data_inicio_do_fim_do_aviso = $_POST['recisao_data_inicio_do_fim_do_aviso']; $recisao_data_inicio_do_fim_do_aviso = Date($recisao_data_inicio_do_fim_do_aviso);
-    $pesquisa_recisoes .= " AND data_fim_aviso BETWEEN '".$recisao_data_inicio_do_fim_do_aviso."%'";
-    $pesquisa_recisoes2 .= " AND data_fim_aviso BETWEEN '".$recisao_data_inicio_do_fim_do_aviso."%'";
-    $recisao_data_fim_do_fim_do_aviso = $_POST['recisao_data_fim_do_fim_do_aviso']; $recisao_data_fim_do_fim_do_aviso = Date($recisao_data_fim_do_fim_do_aviso);
-    $pesquisa_recisoes .= " AND '".$recisao_data_fim_do_fim_do_aviso."%'";
-    $pesquisa_recisoes2 .= " AND '".$recisao_data_fim_do_fim_do_aviso."%'";
-  }
-  //Verifica se utilizou o filtro DATA Inico
-  if(isset($_POST['recisao_data_inicio_do_fim_do_aviso']) && $_POST['recisao_data_inicio_do_fim_do_aviso'] != "" && $_POST['recisao_data_fim_do_fim_do_aviso'] == ""){
-    $recisao_data_inicio_do_fim_do_aviso = $_POST['recisao_data_inicio_do_fim_do_aviso']; $recisao_data_inicio_do_fim_do_aviso = Date($recisao_data_inicio_do_fim_do_aviso);
-    $pesquisa_recisoes .= " AND data_fim_aviso >= '".$recisao_data_inicio_do_fim_do_aviso."%'";
-    $pesquisa_recisoes2 .= " AND data_fim_aviso >= '".$recisao_data_inicio_do_fim_do_aviso."%'";
-  }
-  //Verifica se utilizou o filtro DATA Fim
-  if(isset($_POST['recisao_data_fim_do_fim_do_aviso']) && $_POST['recisao_data_fim_do_fim_do_aviso'] != "" && $_POST['recisao_data_inicio_do_fim_do_aviso'] == ""){
-    $recisao_data_fim_do_fim_do_aviso = $_POST['recisao_data_fim_do_fim_do_aviso']; $recisao_data_fim_do_fim_do_aviso = Date($recisao_data_fim_do_fim_do_aviso);
-    $pesquisa_recisoes .= " AND data_fim_aviso <= '".$recisao_data_fim_do_fim_do_aviso."%'";
-    $pesquisa_recisoes2 .= " AND data_fim_aviso <= '".$recisao_data_fim_do_fim_do_aviso."%'";
-  }
+
+  //Verifica se utilizou o filtro Data INICIO e FIM
+    //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
+    if(empty($_SESSION['recisao_data_inicio_do_fim_do_aviso']) && empty($_SESSION['recisao_data_fim_do_fim_do_aviso'])){
+      if(isset($_POST['recisao_data_inicio_do_fim_do_aviso']) && $_POST['recisao_data_inicio_do_fim_do_aviso'] != "" && isset($_POST['recisao_data_fim_do_fim_do_aviso']) && $_POST['recisao_data_fim_do_fim_do_aviso'] != ""){
+        $recisao_data_inicio_do_fim_do_aviso = $_POST['recisao_data_inicio_do_fim_do_aviso']; $recisao_data_inicio_do_fim_do_aviso = Date($recisao_data_inicio_do_fim_do_aviso);
+        $pesquisa_recisoes .= " AND data_fim_aviso BETWEEN '".$recisao_data_inicio_do_fim_do_aviso."%'";
+        $pesquisa_recisoes2 .= " AND data_fim_aviso BETWEEN '".$recisao_data_inicio_do_fim_do_aviso."%'";
+        $recisao_data_fim_do_fim_do_aviso = $_POST['recisao_data_fim_do_fim_do_aviso']; $recisao_data_fim_do_fim_do_aviso = Date($recisao_data_fim_do_fim_do_aviso);
+        $pesquisa_recisoes .= " AND '".$recisao_data_fim_do_fim_do_aviso."%'";
+        $pesquisa_recisoes2 .= " AND '".$recisao_data_fim_do_fim_do_aviso."%'";
+        $_SESSION['recisao_data_inicio_do_fim_do_aviso'] = $_POST['recisao_data_inicio_do_fim_do_aviso'];
+        $_SESSION['recisao_data_fim_do_fim_do_aviso'] = $_POST['recisao_data_fim_do_fim_do_aviso'];
+      }
+    //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
+    }else{
+      if(isset($_POST['recisao_data_inicio_do_fim_do_aviso']) && $_POST['recisao_data_inicio_do_fim_do_aviso'] != "" && isset($_POST['recisao_data_fim_do_fim_do_aviso']) && $_POST['recisao_data_fim_do_fim_do_aviso'] != ""){
+        $recisao_data_inicio_do_fim_do_aviso = $_POST['recisao_data_inicio_do_fim_do_aviso']; $recisao_data_inicio_do_fim_do_aviso = Date($recisao_data_inicio_do_fim_do_aviso);
+        $pesquisa_recisoes .= " AND data_fim_aviso BETWEEN '".$recisao_data_inicio_do_fim_do_aviso."%'";
+        $pesquisa_recisoes2 .= " AND data_fim_aviso BETWEEN '".$recisao_data_inicio_do_fim_do_aviso."%'";
+        $recisao_data_fim_do_fim_do_aviso = $_POST['recisao_data_fim_do_fim_do_aviso']; $recisao_data_fim_do_fim_do_aviso = Date($recisao_data_fim_do_fim_do_aviso);
+        $pesquisa_recisoes .= " AND '".$recisao_data_fim_do_fim_do_aviso."%'";
+        $pesquisa_recisoes2 .= " AND '".$recisao_data_fim_do_fim_do_aviso."%'";
+        $_SESSION['recisao_data_inicio_do_fim_do_aviso'] = $_POST['recisao_data_inicio_do_fim_do_aviso'];
+        $_SESSION['recisao_data_fim_do_fim_do_aviso'] = $_POST['recisao_data_fim_do_fim_do_aviso'];
+      }
+      else if (!empty($_SESSION['recisao_data_inicio_do_fim_do_aviso']) && !empty($_SESSION['recisao_data_fim_do_fim_do_aviso'])){
+        $recisao_data_inicio_do_fim_do_aviso = $_SESSION['recisao_data_inicio_do_fim_do_aviso'];
+        $recisao_data_fim_do_fim_do_aviso = $_SESSION['recisao_data_fim_do_fim_do_aviso'];
+        $pesquisa_recisoes .= " AND data_fim_aviso BETWEEN '".$recisao_data_inicio_do_fim_do_aviso."%'";
+        $pesquisa_recisoes2 .= " AND data_fim_aviso BETWEEN '".$recisao_data_inicio_do_fim_do_aviso."%'";
+        $pesquisa_recisoes .= " AND '".$recisao_data_fim_do_fim_do_aviso."%'";
+        $pesquisa_recisoes2 .= " AND '".$recisao_data_fim_do_fim_do_aviso."%'";
+      }
+    }
+
+
+
+    
+    
+    //Verifica se utilizou o filtro Data INICIO
+    //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
+    if(empty($_SESSION['recisao_data_inicio_do_fim_do_aviso'])){
+      if(isset($_POST['recisao_data_inicio_do_fim_do_aviso']) && $_POST['recisao_data_inicio_do_fim_do_aviso'] != "" && $_POST['recisao_data_fim_do_fim_do_aviso'] == ""){
+        $recisao_data_inicio_do_fim_do_aviso = $_POST['recisao_data_inicio_do_fim_do_aviso'];
+        $pesquisa_recisoes .= " AND data_fim_aviso >= '".$recisao_data_inicio_do_fim_do_aviso."%'";
+        $pesquisa_recisoes2 .= " AND data_fim_aviso >= '".$recisao_data_inicio_do_fim_do_aviso."%'";
+        $_SESSION['recisao_data_inicio_do_fim_do_aviso'] = $_POST['recisao_data_inicio_do_fim_do_aviso'];
+      }
+    //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
+    }else{
+      if(isset($_POST['recisao_data_inicio_do_fim_do_aviso']) && $_POST['recisao_data_inicio_do_fim_do_aviso'] != "" && $_POST['recisao_data_fim_do_fim_do_aviso'] == ""){
+        $recisao_data_inicio_do_fim_do_aviso = $_POST['recisao_data_inicio_do_fim_do_aviso'];
+        $pesquisa_recisoes .= " AND data_fim_aviso >= '".$recisao_data_inicio_do_fim_do_aviso."%'";
+        $pesquisa_recisoes2 .= " AND data_fim_aviso >= '".$recisao_data_inicio_do_fim_do_aviso."%'";
+        $_SESSION['recisao_data_inicio_do_fim_do_aviso'] = $_POST['recisao_data_inicio_do_fim_do_aviso'];
+      }else if(empty($recisao_data_inicio_do_fim_do_aviso)){
+        $recisao_data_inicio_do_fim_do_aviso = $_SESSION['recisao_data_inicio_do_fim_do_aviso'];
+        $pesquisa_recisoes .= " AND data_fim_aviso >= '".$recisao_data_inicio_do_fim_do_aviso."%'";
+        $pesquisa_recisoes2 .= " AND data_fim_aviso >= '".$recisao_data_inicio_do_fim_do_aviso."%'";
+      }
+    }
+
+
+
+
+    //Verifica se utilizou o filtro Data FIM
+    //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
+    if(empty($_SESSION['recisao_data_fim_do_fim_do_aviso'])){
+      if(isset($_POST['recisao_data_fim_do_fim_do_aviso']) && $_POST['recisao_data_fim_do_fim_do_aviso'] != "" && $_POST['recisao_data_inicio_do_fim_do_aviso'] == ""){
+        $recisao_data_fim_do_fim_do_aviso = $_POST['recisao_data_fim_do_fim_do_aviso'];
+        $pesquisa_recisoes .= " AND data_fim_aviso <= '".$recisao_data_fim_do_fim_do_aviso."%'";
+        $pesquisa_recisoes2 .= " AND data_fim_aviso <= '".$recisao_data_fim_do_fim_do_aviso."%'";
+        $_SESSION['recisao_data_fim_do_fim_do_aviso'] = $_POST['recisao_data_fim_do_fim_do_aviso'];
+      }
+    //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
+    }else{
+      if(isset($_POST['recisao_data_fim_do_fim_do_aviso']) && $_POST['recisao_data_fim_do_fim_do_aviso'] != "" && $_POST['recisao_data_inicio_do_fim_do_aviso'] == ""){
+        $recisao_data_fim_do_fim_do_aviso = $_POST['recisao_data_fim_do_fim_do_aviso'];
+        $pesquisa_recisoes .= " AND data_fim_aviso <= '".$recisao_data_fim_do_fim_do_aviso."%'";
+        $pesquisa_recisoes2 .= " AND data_fim_aviso <= '".$recisao_data_fim_do_fim_do_aviso."%'";
+        $_SESSION['recisao_data_fim_do_fim_do_aviso'] = $_POST['recisao_data_fim_do_fim_do_aviso'];
+      }else if(empty($recisao_data_fim_do_fim_do_aviso)){
+        $recisao_data_fim_do_fim_do_aviso = $_SESSION['recisao_data_fim_do_fim_do_aviso'];
+        $pesquisa_recisoes .= " AND data_fim_aviso <= '".$recisao_data_fim_do_fim_do_aviso."%'";
+        $pesquisa_recisoes2 .= " AND data_fim_aviso <= '".$recisao_data_fim_do_fim_do_aviso."%'";
+      }
+    }
+
 
 //Acrescimos ao select
 $pesquisa_recisoes .= " order by data_criacao DESC LIMIT ".$inicio.", ".$limite;

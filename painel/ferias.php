@@ -72,112 +72,94 @@ $pesquisa_ferias = "SELECT * FROM acessos_ferias WHERE usuarios_id =".$_SESSION[
   }
 
 
-  /*
-  //DATA
-  //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
-  if(empty($_SESSION['ferias_data_inicio']) && empty($_SESSION['ferias_data_fim'])){
-    if(isset($_POST['ferias_data_inicio']) && $_POST['ferias_data_inicio'] != "" && isset($_POST['ferias_data_fim']) && $_POST['ferias_data_fim'] != ""){
-      $ferias_data = $_POST['ferias_data_inicio']; $ferias_data = Date($ferias_data);
-      $pesquisa_ferias .= " AND data_inicio BETWEEN '".$ferias_data."'";
-      $pesquisa_ferias2 .= " AND data_inicio BETWEEN '".$ferias_data."'";
-      $ferias_data_fim = $_POST['ferias_data_fim']; $ferias_data_fim = Date($ferias_data_fim);
-      $pesquisa_ferias .= " AND '".$ferias_data_fim."'";
-      $pesquisa_ferias2 .= " AND '".$ferias_data_fim."'";
-      $_SESSION['ferias_data_inicio'] = $_POST['ferias_data_inicio']; $ferias_data = Date($ferias_data);
-      $_SESSION['ferias_data_fim'] = $_POST['ferias_data_fim']; $ferias_data_fim = Date($ferias_data_fim);
-    }
-  //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
-  }else{
-    if(isset($_POST['ferias_data_inicio']) && $_POST['ferias_data_inicio'] != "" && isset($_POST['ferias_data_fim']) && $_POST['ferias_data_fim'] != ""){
-      $ferias_data = $_POST['ferias_data_inicio']; $ferias_data = Date($ferias_data);
-      $pesquisa_ferias .= " AND data_inicio BETWEEN '".$ferias_data."'";
-      $pesquisa_ferias2 .= " AND data_inicio BETWEEN '".$ferias_data."'";
-      $ferias_data_fim = $_POST['ferias_data_fim']; $ferias_data_fim = Date($ferias_data_fim);
-      $pesquisa_ferias .= " AND '".$ferias_data_fim."'";
-      $pesquisa_ferias2 .= " AND '".$ferias_data_fim."'";
-      $_SESSION['ferias_data_inicio'] = $_POST['ferias_data_inicio']; $ferias_data = Date($ferias_data);
-      $_SESSION['ferias_data_fim'] = $_POST['ferias_data_fim']; $ferias_data_fim = Date($ferias_data_fim);
+
+      //Verifica se utilizou o filtro Data INICIO e FIM
+    //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
+    if(empty($_SESSION['ferias_data_inicio']) && empty($_SESSION['ferias_data_fim'])){
+      if(isset($_POST['ferias_data_inicio']) && $_POST['ferias_data_inicio'] != "" && isset($_POST['ferias_data_fim']) && $_POST['ferias_data_fim'] != ""){
+        $ferias_data_inicio = $_POST['ferias_data_inicio']; $ferias_data_inicio = Date($ferias_data_inicio);
+        $pesquisa_ferias .= " AND data_inicio BETWEEN '".$ferias_data_inicio."%'";
+        $pesquisa_ferias2 .= " AND data_inicio BETWEEN '".$ferias_data_inicio."%'";
+        $ferias_data_fim = $_POST['ferias_data_fim']; $ferias_data_fim = Date($ferias_data_fim);
+        $pesquisa_ferias .= " AND '".$ferias_data_fim."%'";
+        $pesquisa_ferias2 .= " AND '".$ferias_data_fim."%'";
+        $_SESSION['ferias_data_inicio'] = $_POST['ferias_data_inicio'];
+        $_SESSION['ferias_data_fim'] = $_POST['ferias_data_fim'];
+      }
+    //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
     }else{
-      $ferias_data = $_SESSION['ferias_data_inicio'];
-      $ferias_data_fim = $_SESSION['ferias_data_fim'];
-      $pesquisa_ferias .= " AND data_inicio BETWEEN '".$ferias_data."'";
-      $pesquisa_ferias2 .= " AND data_inicio BETWEEN '".$ferias_data."'";
-      $pesquisa_ferias .= " AND '".$ferias_data_fim."'";
-      $pesquisa_ferias2 .= " AND '".$ferias_data_fim."'";
+      if(isset($_POST['ferias_data_inicio']) && $_POST['ferias_data_inicio'] != "" && isset($_POST['ferias_data_fim']) && $_POST['ferias_data_fim'] != ""){
+        $ferias_data_inicio = $_POST['ferias_data_inicio']; $ferias_data_inicio = Date($ferias_data_inicio);
+        $pesquisa_ferias .= " AND data_inicio BETWEEN '".$ferias_data_inicio."%'";
+        $pesquisa_ferias2 .= " AND data_inicio BETWEEN '".$ferias_data_inicio."%'";
+        $ferias_data_fim = $_POST['ferias_data_fim']; $ferias_data_fim = Date($ferias_data_fim);
+        $pesquisa_ferias .= " AND '".$ferias_data_fim."%'";
+        $pesquisa_ferias2 .= " AND '".$ferias_data_fim."%'";
+        $_SESSION['ferias_data_inicio'] = $_POST['ferias_data_inicio'];
+        $_SESSION['ferias_data_fim'] = $_POST['ferias_data_fim'];
+      }
+      else if (!empty($_SESSION['ferias_data_inicio']) && !empty($_SESSION['ferias_data_fim'])){
+        $ferias_data_inicio = $_SESSION['ferias_data_inicio'];
+        $ferias_data_fim = $_SESSION['ferias_data_fim'];
+        $pesquisa_ferias .= " AND data_inicio BETWEEN '".$ferias_data_inicio."%'";
+        $pesquisa_ferias2 .= " AND data_inicio BETWEEN '".$ferias_data_inicio."%'";
+        $pesquisa_ferias .= " AND '".$ferias_data_fim."%'";
+        $pesquisa_ferias2 .= " AND '".$ferias_data_fim."%'";
+      }
     }
-  }
 
-  //DATA INICIO
-  //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
-  if(empty($_SESSION['ferias_data_inicio'])){
-    if(isset($_POST['ferias_data_inicio']) && $_POST['ferias_data_inicio'] != "" && $_POST['ferias_data_fim'] == ""){
-      $ferias_data = $_POST['ferias_data_inicio']; $ferias_data = Date($ferias_data);
-      $pesquisa_ferias .= " AND data_inicio >= '".$ferias_data."'";
-      $pesquisa_ferias2 .= " AND data_inicio >= '".$ferias_data."'";
-      $_SESSION['ferias_data_inicio'] = $_POST['ferias_data_inicio']; $ferias_data = Date($ferias_data);
-    }
-  //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
-  }else{
-    if(isset($_POST['ferias_data_inicio']) && $_POST['ferias_data_inicio'] != "" && $_POST['ferias_data_fim'] == ""){
-      $ferias_data = $_POST['ferias_data_inicio']; $ferias_data = Date($ferias_data);
-      $pesquisa_ferias .= " AND data_inicio >= '".$ferias_data."'";
-      $pesquisa_ferias2 .= " AND data_inicio >= '".$ferias_data."'";
-      $_SESSION['ferias_data_inicio'] = $_POST['ferias_data_inicio']; $ferias_data = Date($ferias_data);
+
+
+
+    
+    //Verifica se utilizou o filtro Data INICIO
+    //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
+    if(empty($_SESSION['ferias_data_inicio'])){
+      if(isset($_POST['ferias_data_inicio']) && $_POST['ferias_data_inicio'] != "" && $_POST['ferias_data_fim'] == ""){
+        $ferias_data_inicio = $_POST['ferias_data_inicio'];
+        $pesquisa_ferias .= " AND data_inicio >= '".$ferias_data_inicio."%'";
+        $pesquisa_ferias2 .= " AND data_inicio >= '".$ferias_data_inicio."%'";
+        $_SESSION['ferias_data_inicio'] = $_POST['ferias_data_inicio'];
+      }
+    //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
     }else{
-      $ferias_data = $_SESSION['ferias_loja'];
-      $pesquisa_ferias .= " AND data_inicio >= '".$ferias_data."'";
-      $pesquisa_ferias2 .= " AND data_inicio >= '".$ferias_data."'";
+      if(isset($_POST['ferias_data_inicio']) && $_POST['ferias_data_inicio'] != "" && $_POST['ferias_data_fim'] == ""){
+        $ferias_data_inicio = $_POST['ferias_data_inicio'];
+        $pesquisa_ferias .= " AND data_inicio >= '".$ferias_data_inicio."%'";
+        $pesquisa_ferias2 .= " AND data_inicio >= '".$ferias_data_inicio."%'";
+        $_SESSION['ferias_data_inicio'] = $_POST['ferias_data_inicio'];
+      }else if(empty($ferias_data_inicio)){
+        $ferias_data_inicio = $_SESSION['ferias_data_inicio'];
+        $pesquisa_ferias .= " AND data_inicio >= '".$ferias_data_inicio."%'";
+        $pesquisa_ferias2 .= " AND data_inicio >= '".$ferias_data_inicio."%'";
+      }
     }
-  }
 
 
-  //DATA FIM
-  //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
-  if(empty($_SESSION['ferias_data_fim'])){
-    if(isset($_POST['ferias_data_fim']) && $_POST['ferias_data_fim'] != "" && $_POST['ferias_data_inicio'] == ""){
-    $ferias_data_fim = $_POST['ferias_data_fim']; $ferias_data_fim = Date($ferias_data_fim);
-    $pesquisa_ferias .= " AND data_fim <= '".$ferias_data_fim."'";
-    $pesquisa_ferias2 .= " AND data_fim <= '".$ferias_data_fim."'";
-    $_SESSION['ferias_data_fim'] = $_POST['ferias_data_fim']; $ferias_data_fim = Date($ferias_data_fim);
-    }
-  //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
-  }else{
-    if(isset($_POST['ferias_data_fim']) && $_POST['ferias_data_fim'] != "" && $_POST['ferias_data_inicio'] == ""){
-    $ferias_data_fim = $_POST['ferias_data_fim']; $ferias_data_fim = Date($ferias_data_fim);
-    $pesquisa_ferias .= " AND data_fim <= '".$ferias_data_fim."'";
-    $pesquisa_ferias2 .= " AND data_fim <= '".$ferias_data_fim."'";
-    $_SESSION['ferias_data_fim'] = $_POST['ferias_data_fim']; $ferias_data_fim = Date($ferias_data_fim);
+
+
+    //Verifica se utilizou o filtro Data FIM
+    //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
+    if(empty($_SESSION['ferias_data_fim'])){
+      if(isset($_POST['ferias_data_fim']) && $_POST['ferias_data_fim'] != "" && $_POST['ferias_data_inicio'] == ""){
+        $ferias_data_fim = $_POST['ferias_data_fim'];
+        $pesquisa_ferias .= " AND data_fim <= '".$ferias_data_fim."%'";
+        $pesquisa_ferias2 .= " AND data_fim <= '".$ferias_data_fim."%'";
+        $_SESSION['ferias_data_fim'] = $_POST['ferias_data_fim'];
+      }
+    //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
     }else{
-    $ferias_data = $_SESSION['ferias_data_fim'];
-    $pesquisa_ferias .= " AND data_fim <= '".$ferias_data_fim."'";
-    $pesquisa_ferias2 .= " AND data_fim <= '".$ferias_data_fim."'";
+      if(isset($_POST['ferias_data_fim']) && $_POST['ferias_data_fim'] != "" && $_POST['ferias_data_inicio'] == ""){
+        $ferias_data_fim = $_POST['ferias_data_fim'];
+        $pesquisa_ferias .= " AND data_fim <= '".$ferias_data_fim."%'";
+        $pesquisa_ferias2 .= " AND data_fim <= '".$ferias_data_fim."%'";
+        $_SESSION['ferias_data_fim'] = $_POST['ferias_data_fim'];
+      }else if(empty($ferias_data_fim)){
+        $ferias_data_fim = $_SESSION['ferias_data_fim'];
+        $pesquisa_ferias .= " AND data_fim <= '".$ferias_data_fim."%'";
+        $pesquisa_ferias2 .= " AND data_fim <= '".$ferias_data_fim."%'";
+      }
     }
-  }
-*/
-
-
-  //Verifica se utilizou o filtro DATA Inico e Fim
-  if(isset($_POST['ferias_data_inicio']) && $_POST['ferias_data_inicio'] != "" && isset($_POST['ferias_data_fim']) && $_POST['ferias_data_fim'] != ""){
-    $ferias_data = $_POST['ferias_data_inicio']; $ferias_data = Date($ferias_data);
-    $pesquisa_ferias .= " AND data_inicio BETWEEN '".$ferias_data."'";
-    $pesquisa_ferias2 .= " AND data_inicio BETWEEN '".$ferias_data."'";
-    $ferias_data_fim = $_POST['ferias_data_fim']; $ferias_data_fim = Date($ferias_data_fim);
-    $pesquisa_ferias .= " AND '".$ferias_data_fim."'";
-    $pesquisa_ferias2 .= " AND '".$ferias_data_fim."'";
-  }
-  //Verifica se utilizou o filtro DATA Inico
-  if(isset($_POST['ferias_data_inicio']) && $_POST['ferias_data_inicio'] != "" && $_POST['ferias_data_fim'] == ""){
-    $ferias_data = $_POST['ferias_data_inicio']; $ferias_data = Date($ferias_data);
-    $pesquisa_ferias .= " AND data_inicio >= '".$ferias_data."'";
-    $pesquisa_ferias2 .= " AND data_inicio >= '".$ferias_data."'";
-  }
-
-  //Verifica se utilizou o filtro DATA Fim
-  if(isset($_POST['ferias_data_fim']) && $_POST['ferias_data_fim'] != "" && $_POST['ferias_data_inicio'] == ""){
-    $ferias_data_fim = $_POST['ferias_data_fim']; $ferias_data_fim = Date($ferias_data_fim);
-    $pesquisa_ferias .= " AND data_fim <= '".$ferias_data_fim."'";
-    $pesquisa_ferias2 .= " AND data_fim <= '".$ferias_data_fim."'";
-  }
 
 //Acrescimos ao select
 $pesquisa_ferias .= " order by data_criacao DESC LIMIT ".$inicio.", ".$limite;
