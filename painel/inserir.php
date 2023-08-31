@@ -182,7 +182,9 @@ require "../complements/begin_page.php";
                           <option value="Atestado">Atestado</option>
                           <option value="Atestado de Comparecimento">Atestado de Comparecimento</option>
                           <option value="Atestado de Óbito">Atestado de Óbito</option>
+                          <option value="Dispensa">Dispensa</option>
                           <option value="Erro Operacional">Erro Operacional</option>
+                          <option value="Exame Demissional">Exame Demissional</option>
                           <option value="Falta Injustificada">Falta Injustificada</option>
                           <option value="Feriado">Feriado</option>
                           <option value="Hora Extra">Hora Extra</option>
@@ -193,6 +195,7 @@ require "../complements/begin_page.php";
                           <option value="Quebra de Caixa">Quebra de Caixa</option>
                           <option value="Reembolso">Reembolso</option>
                           <option value="Segunda Via Cartão">Segunda Via Cartão</option>
+                          <option value="Término de Contrato">Término de Contrato</option>
                           <option value="Vale Avulso">Vale Avulso</option>
                         </select>
                       </div>
@@ -581,8 +584,11 @@ require "../complements/begin_page.php";
                         <select name="funcionario_status" class="form-control">
                           <option value="Ativo">Ativo</option>
                           <option value="Afastado">Afastado</option>
+                          <option value="Demitido">Demitido</option>
                           <option value="Inativo">Inativo</option>
+                          <option value="INSS">INSS</option>
                           <option value="Justiça">Justiça</option>
+                          <option value="Licença Maternidade">Licença Maternidade</option>
                           <option value="Transferido">Transferido</option>
                         </select>
                       </div>

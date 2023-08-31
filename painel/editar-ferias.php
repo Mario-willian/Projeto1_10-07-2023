@@ -257,7 +257,7 @@ $data_fim = substr($row_ferias['data_fim'],0,10);
                         </form>
                       </div>
                     </div>
-        </div>
+                  </div>
                   <div class="modal-footer">
                       
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>

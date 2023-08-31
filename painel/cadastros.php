@@ -23,9 +23,8 @@ $row_funcionario2 = mysqli_fetch_assoc($resultado_funcionario2);
 //PAGINACAO
 $paginas = ceil($row_funcionario2['count(id_funcionarios)'] / $limite);
 
-//Select para Usuarios
-//$pesquisa_usuario = "SELECT * FROM acessos_usuarios order by id_usuario DESC;";
-//$resultado_usuario = mysqli_query($conn, $pesquisa_usuario);
+//Declarando Variavel
+$funcionario_status = "";
 
 //Select para Funcionarios
 $pesquisa_funcionario = "SELECT * FROM acessos_funcionarios";
@@ -136,8 +135,16 @@ $pesquisa_funcionario = "SELECT * FROM acessos_funcionarios";
     }
   }
 
-//Acrescimos ao select
-$pesquisa_funcionario .= " order by id_funcionarios DESC LIMIT ".$inicio.", ".$limite;
+if($funcionario_status != "Demitido"){
+  //Acrescimos ao select
+  $pesquisa_funcionario .= " AND status != 'demitido' order by nome_completo LIMIT ".$inicio.", ".$limite;
+}else{
+  //Acrescimos ao select
+  $pesquisa_funcionario .= " order by nome_completo LIMIT ".$inicio.", ".$limite;
+}
+
+
+
 //Executa o Select
 $resultado_funcionario = mysqli_query($conn, $pesquisa_funcionario);
 
@@ -320,6 +327,14 @@ function myFunction() {
             <div class="card">
               <div class="card-header"><center>
                 <h4 class="card-title"><i class="fa fa-id-card-o"></i><b> Seus Funcionários:</b></h4></center>
+                <div class="text-center p-t-12">
+					      <?php
+            			if(isset($_SESSION["mensagem_funcionario"])):
+              			echo $_SESSION["mensagem_funcionario"];
+              			unset($_SESSION["mensagem_funcionario"]);
+            			endif; 
+          			?>
+					      </div>
                 <h6><i class="fa fa-sliders"></i> Filtro</h6>
                 <div class="row">
                     <div class="col-md-2">

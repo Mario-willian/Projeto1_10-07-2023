@@ -326,7 +326,7 @@ $funcionario_salario_input = $row_funcionario['salario'];
                     </div>
                   </div>
                 </form>
-                <!-- <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-outline-danger btn-sm"><b><i class="fa fa-trash"></i> Excluir</b></button> -->
+                <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-outline-danger btn-sm"><b><i class="fa fa-trash"></i> Excluir</b></button>
               </div>
             </div>
           </div>
@@ -344,17 +344,17 @@ $funcionario_salario_input = $row_funcionario['salario'];
         <div class="modal-body">
                       <center>
                      <h3> Tem certeza que deseja excluir?<br>
-                      <b style="font-size: 18px;"><i class="fa fa-warning"></i> Ao confirmar não será possível recuperar os dados.</b></h3>
+                      <b style="font-size: 18px;"><i class="fa fa-warning"></i> Ao confirmar não será possível recuperar os dados.</b></h3><h5>Observação: Só é possivel excluir o funcionário caso ele não tenha nenhum registro vinculado a ele.</h5>
               
                     <div class="col-md-8">
                       <div class="form-group">
                       <form method="POST" action="../classes/deletes/funcionario.php">
-                <button type="submit" id="cad-ferias-delete-btn" name="excluir_ferias_enviar" value="Excluir" class="btn btn-danger btn-sm"><b><i class="fa fa-trash"></i> Confirmar Exclusão</b></button>
-                <input type="text" name="funcionario_id" style="display:none" value="<?php echo $row_funcionario['id_funcionarios'];?>">
-                </form>
+                          <button type="submit" id="cad-ferias-delete-btn" name="excluir_ferias_enviar" value="Excluir" class="btn btn-danger btn-sm"><b><i class="fa fa-trash"></i> Confirmar Exclusão</b></button>
+                          <input type="text" name="funcionario_id" style="display:none" value="<?php echo $row_funcionario['id_funcionarios'];?>">
+                        </form>
                       </div>
                     </div>
-        </div>
+                  </div>
                   <div class="modal-footer">
                       
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
