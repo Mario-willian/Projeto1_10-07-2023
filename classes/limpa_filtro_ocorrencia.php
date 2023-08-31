@@ -5,5 +5,6 @@ unset($_SESSION['ocorrencia_funcionario']);
 unset($_SESSION['ocorrencia_loja']);
 unset($_SESSION['ocorrencia_data_fim']);
 unset($_SESSION['ocorrencia_data']);
+unset($_SESSION['ocorrencia_quantidade_itens']);
 header("location:../painel/ocorrencias.php");
 ?>

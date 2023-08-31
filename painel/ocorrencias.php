@@ -14,7 +14,7 @@ if(!$pagina){
   $pagina = 1;
 }
 $limite = 10;
-$inicio = ($pagina * $limite) - $limite;
+
 
 //Select para paginacao
 $pesquisa_ocorrencias2 = "SELECT count(id) FROM acessos_ocorrencias WHERE usuarios_id =".$_SESSION["id_usuario_login"]['id'];
@@ -132,6 +132,24 @@ $pesquisa_ocorrencias = "SELECT * FROM acessos_ocorrencias WHERE status = 'Ativo
       }
     }
 
+      //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
+    if(empty($_SESSION['ocorrencia_quantidade_itens'])){
+    if(isset($_POST['ocorrencia_quantidade_itens'])){
+      $ocorrencia_quantidade_itens = $_POST['ocorrencia_quantidade_itens'];
+      $limite = $ocorrencia_quantidade_itens;
+      $_SESSION['ocorrencia_quantidade_itens'] = $_POST['ocorrencia_quantidade_itens'];
+    }
+  //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
+  }else{
+    if(isset($_POST['ocorrencia_quantidade_itens'])){
+      $ocorrencia_quantidade_itens = $_POST['ocorrencia_quantidade_itens'];
+      $limite = $ocorrencia_quantidade_itens;
+      $_SESSION['ocorrencia_quantidade_itens'] = $_POST['ocorrencia_quantidade_itens'];
+    }else{
+      $ocorrencia_quantidade_itens = $_SESSION['ocorrencia_quantidade_itens'];
+      $limite = $ocorrencia_quantidade_itens;
+    }
+  }
 
 
 
@@ -159,9 +177,6 @@ $pesquisa_ocorrencias = "SELECT * FROM acessos_ocorrencias WHERE status = 'Ativo
       }
     }
 
-
-
-
     //Verifica se utilizou o filtro Data FIM
     //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
     if(empty($_SESSION['ocorrencia_data_fim'])){
@@ -184,6 +199,9 @@ $pesquisa_ocorrencias = "SELECT * FROM acessos_ocorrencias WHERE status = 'Ativo
         $pesquisa_ocorrencias2 .= " AND data_criacao <= '".$ocorrencia_data_fim." 23:59:59%'";
       }
     }
+
+//PAGINACAO
+$inicio = ($pagina * $limite) - $limite;
 
 //Acrescimos ao select
 $pesquisa_ocorrencias .= " order by data_criacao DESC LIMIT ".$inicio.", ".$limite;
@@ -386,6 +404,23 @@ function myFunction() {
                         
                         ?>
                         <!-- Fim de uma codição PHP -->
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label>Quantidade de Itens</label>
+                        <select name="ocorrencia_quantidade_itens" id="ocorrencia_quantidade_itens" class="form-control">
+                        <option value="" data-default disabled selected></option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        <option value="500">500</option>
+                        <option value="1000">1.000</option>
+                        <option value="5000">5.000</option>
+                        <option value="10000">10.000</option>
                         </select>
                       </div>
                     </div>

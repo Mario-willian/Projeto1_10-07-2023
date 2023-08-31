@@ -14,7 +14,7 @@ if(!$pagina){
   $pagina = 1;
 }
 $limite = 10;
-$inicio = ($pagina * $limite) - $limite;
+
 
 //Select para paginacao
 $pesquisa_recisoes2 = "SELECT count(id) FROM acessos_recisoes WHERE usuarios_id =".$_SESSION["id_usuario_login"]['id'];
@@ -96,6 +96,25 @@ $pesquisa_recisoes = "SELECT * FROM acessos_recisoes WHERE usuarios_id =".$_SESS
       $pesquisa_recisoes2 .= " AND empresas_id = '".$recisao_loja."'";
     }
   }
+
+    //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
+    if(empty($_SESSION['recisao_quantidade_itens'])){
+      if(isset($_POST['recisao_quantidade_itens'])){
+        $recisao_quantidade_itens = $_POST['recisao_quantidade_itens'];
+        $limite = $recisao_quantidade_itens;
+        $_SESSION['recisao_quantidade_itens'] = $_POST['recisao_quantidade_itens'];
+      }
+    //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
+    }else{
+      if(isset($_POST['recisao_quantidade_itens'])){
+        $recisao_quantidade_itens = $_POST['recisao_quantidade_itens'];
+        $limite = $recisao_quantidade_itens;
+        $_SESSION['recisao_quantidade_itens'] = $_POST['recisao_quantidade_itens'];
+      }else{
+        $recisao_quantidade_itens = $_SESSION['recisao_quantidade_itens'];
+        $limite = $recisao_quantidade_itens;
+      }
+    }
 
 
   //Verifica se utilizou o filtro Data INICIO e FIM
@@ -186,6 +205,8 @@ $pesquisa_recisoes = "SELECT * FROM acessos_recisoes WHERE usuarios_id =".$_SESS
       }
     }
 
+//PAGINACAO
+$inicio = ($pagina * $limite) - $limite;
 
 //Acrescimos ao select
 $pesquisa_recisoes .= " order by data_prazo_pagamento DESC LIMIT ".$inicio.", ".$limite;
@@ -384,6 +405,23 @@ $paginas = ceil($row_recisoes2['count(id)'] / $limite);
                         
                         ?>
                         <!-- Fim de uma codição PHP -->
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label>Quantidade de Itens</label>
+                        <select name="recisao_quantidade_itens" id="recisao_quantidade_itens" class="form-control">
+                        <option value="" data-default disabled selected></option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        <option value="500">500</option>
+                        <option value="1000">1.000</option>
+                        <option value="5000">5.000</option>
+                        <option value="10000">10.000</option>
                         </select>
                       </div>
                     </div>

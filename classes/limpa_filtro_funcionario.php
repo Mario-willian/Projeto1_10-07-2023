@@ -5,5 +5,6 @@ unset($_SESSION['funcionario_setor']);
 unset($_SESSION['funcionario_funcao']);
 unset($_SESSION['funcionario_status']);
 unset($_SESSION['funcionario_empresa']);
+unset($_SESSION['funcionario_quantidade_itens']);
 header("location:../painel/cadastros.php");
 ?>

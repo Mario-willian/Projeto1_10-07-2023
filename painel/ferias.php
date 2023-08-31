@@ -14,8 +14,6 @@ if(!$pagina){
   $pagina = 1;
 }
 $limite = 10;
-$inicio = ($pagina * $limite) - $limite;
-
 
 //Select para paginacao
 $pesquisa_ferias2 = "SELECT count(id) FROM acessos_ferias WHERE usuarios_id =".$_SESSION["id_usuario_login"]['id'];
@@ -71,6 +69,28 @@ $pesquisa_ferias = "SELECT * FROM acessos_ferias WHERE usuarios_id =".$_SESSION[
     }
   }
 
+  //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
+  if(empty($_SESSION['ferias_quantidade_itens'])){
+    if(isset($_POST['ferias_quantidade_itens'])){
+      $ferias_quantidade_itens = $_POST['ferias_quantidade_itens'];
+      $limite = $ferias_quantidade_itens;
+      $_SESSION['ferias_quantidade_itens'] = $_POST['ferias_quantidade_itens'];
+    }
+  //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
+  }else{
+    if(isset($_POST['ferias_quantidade_itens'])){
+      $ferias_quantidade_itens = $_POST['ferias_quantidade_itens'];
+      $limite = $ferias_quantidade_itens;
+      $_SESSION['ferias_quantidade_itens'] = $_POST['ferias_quantidade_itens'];
+    }else{
+      $ferias_quantidade_itens = $_SESSION['ferias_quantidade_itens'];
+      $limite = $ferias_quantidade_itens;
+    }
+  }
+
+
+
+
 
 
       //Verifica se utilizou o filtro Data INICIO e FIM
@@ -108,10 +128,6 @@ $pesquisa_ferias = "SELECT * FROM acessos_ferias WHERE usuarios_id =".$_SESSION[
       }
     }
 
-
-
-
-    
     //Verifica se utilizou o filtro Data INICIO
     //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
     if(empty($_SESSION['ferias_data_inicio'])){
@@ -135,9 +151,6 @@ $pesquisa_ferias = "SELECT * FROM acessos_ferias WHERE usuarios_id =".$_SESSION[
       }
     }
 
-
-
-
     //Verifica se utilizou o filtro Data FIM
     //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
     if(empty($_SESSION['ferias_data_fim'])){
@@ -160,6 +173,10 @@ $pesquisa_ferias = "SELECT * FROM acessos_ferias WHERE usuarios_id =".$_SESSION[
         $pesquisa_ferias2 .= " AND data_fim <= '".$ferias_data_fim."%'";
       }
     }
+
+//PAGINACAO
+$inicio = ($pagina * $limite) - $limite;
+
 
 //Acrescimos ao select
 $pesquisa_ferias .= " order by data_criacao DESC LIMIT ".$inicio.", ".$limite;
@@ -344,7 +361,28 @@ $paginas = ceil($row_ferias2['count(id)'] / $limite);
                         </select>
                       </div>
                     </div>
-                   
+
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label>Quantidade de Itens</label>
+                        <select name="ferias_quantidade_itens" id="ferias_quantidade_itens" class="form-control">
+                        <option value="" data-default disabled selected></option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        <option value="500">500</option>
+                        <option value="1000">1.000</option>
+                        <option value="5000">5.000</option>
+                        <option value="10000">10.000</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-2">
+                      <div class="form-group">
+                      </div>
+                    </div>
 
                   <div class="col-md-2">
                       <div class="form-group"><br>

@@ -5,5 +5,6 @@ unset($_SESSION['recisao_funcionario']);
 unset($_SESSION['recisao_loja']);
 unset($_SESSION['recisao_data_fim_do_fim_do_aviso']);
 unset($_SESSION['recisao_data_inicio_do_fim_do_aviso']);
+unset($_SESSION['recisao_quantidade_itens']);
 header("location:../painel/rescisoes.php");
 ?>

@@ -1,22 +1,8 @@
 Pendente:
-- Opção excluir cadastro somente quando não tiver registros a esse funcionário
-- bloqueio no ato de cadastro em caso de duplicidade de CPF
 
-Bug do sistema
-Todos relatórios do excel puxam apenas a primeira página, preciso que puxe todas páginas do filtro selecionado
 
-------------------------------
+----------------------------
 
 Finalizado: 
-
-nas ocorrências inclui + esses motivos
-- Rescisão de Contrato
-- Termino de Contrato
-- Dispensa
-- Exame Demissional
-observação: Ordenar as ocorrências por data, do menor para maior
-
-*Nos cadastros de funcionários *
-- Ordenar por ordem alfabética os funcionários (esse e muito importante)
-- incluir status: Demitido, Inss, Licença Maternidade
-- Da pesquisa, ocultar demitidos, somente se pesquisar o status demitidos p aparecer os nomes, senao mistura demitidos c ativos e fica uma bagunça.
+- bloqueio no ato de cadastro em caso de duplicidade de CPF
+- Todos relatórios do excel puxam apenas a primeira página, preciso que puxe todas páginas do filtro selecionado

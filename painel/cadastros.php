@@ -14,14 +14,9 @@ if(!$pagina){
   $pagina = 1;
 }
 $limite = 10;
-$inicio = ($pagina * $limite) - $limite;
 
-//Select para paginacao
-$pesquisa_funcionario2 = "SELECT count(id_funcionarios) FROM acessos_funcionarios;";
-$resultado_funcionario2 = mysqli_query($conn, $pesquisa_funcionario2);
-$row_funcionario2 = mysqli_fetch_assoc($resultado_funcionario2);
-//PAGINACAO
-$paginas = ceil($row_funcionario2['count(id_funcionarios)'] / $limite);
+
+
 
 //Declarando Variavel
 $funcionario_status = "";
@@ -135,6 +130,36 @@ $pesquisa_funcionario = "SELECT * FROM acessos_funcionarios";
     }
   }
 
+
+  //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
+  if(empty($_SESSION['funcionario_quantidade_itens'])){
+    if(isset($_POST['funcionario_quantidade_itens'])){
+      $funcionario_quantidade_itens = $_POST['funcionario_quantidade_itens'];
+      $limite = $funcionario_quantidade_itens;
+      $_SESSION['funcionario_quantidade_itens'] = $_POST['funcionario_quantidade_itens'];
+    }
+  //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
+  }else{
+    if(isset($_POST['funcionario_quantidade_itens'])){
+      $funcionario_quantidade_itens = $_POST['funcionario_quantidade_itens'];
+      $limite = $funcionario_quantidade_itens;
+      $_SESSION['funcionario_quantidade_itens'] = $_POST['funcionario_quantidade_itens'];
+    }else{
+      $funcionario_quantidade_itens = $_SESSION['funcionario_quantidade_itens'];
+      $limite = $funcionario_quantidade_itens;
+    }
+  }
+
+//Select para paginacao
+$pesquisa_funcionario2 = "SELECT count(id_funcionarios) FROM acessos_funcionarios;";
+$resultado_funcionario2 = mysqli_query($conn, $pesquisa_funcionario2);
+$row_funcionario2 = mysqli_fetch_assoc($resultado_funcionario2);
+//PAGINACAO
+$paginas = ceil($row_funcionario2['count(id_funcionarios)'] / $limite);
+//PAGINACAO
+$inicio = ($pagina * $limite) - $limite;
+
+//Evitar de Filtro Demitido, a nao ser que filtre por ele.
 if($funcionario_status != "Demitido"){
   //Acrescimos ao select
   $pesquisa_funcionario .= " AND status != 'demitido' order by nome_completo LIMIT ".$inicio.", ".$limite;
@@ -142,8 +167,6 @@ if($funcionario_status != "Demitido"){
   //Acrescimos ao select
   $pesquisa_funcionario .= " order by nome_completo LIMIT ".$inicio.", ".$limite;
 }
-
-
 
 //Executa o Select
 $resultado_funcionario = mysqli_query($conn, $pesquisa_funcionario);
@@ -328,12 +351,14 @@ function myFunction() {
               <div class="card-header"><center>
                 <h4 class="card-title"><i class="fa fa-id-card-o"></i><b> Seus Funcionários:</b></h4></center>
                 <div class="text-center p-t-12">
+                  <a style="color: red;">
 					      <?php
             			if(isset($_SESSION["mensagem_funcionario"])):
               			echo $_SESSION["mensagem_funcionario"];
               			unset($_SESSION["mensagem_funcionario"]);
             			endif; 
           			?>
+                </a>
 					      </div>
                 <h6><i class="fa fa-sliders"></i> Filtro</h6>
                 <div class="row">
@@ -400,6 +425,23 @@ function myFunction() {
                         
                         ?>
                         <!-- Fim de uma codição PHP -->
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label>Quantidade de Itens</label>
+                        <select name="funcionario_quantidade_itens" id="funcionario_quantidade_itens" class="form-control">
+                        <option value="" data-default disabled selected></option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        <option value="500">500</option>
+                        <option value="1000">1.000</option>
+                        <option value="5000">5.000</option>
+                        <option value="10000">10.000</option>
                         </select>
                       </div>
                     </div>

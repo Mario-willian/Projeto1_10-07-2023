@@ -26,11 +26,28 @@ $data_criacao = date('Y-m-d H:i:s');
 //'ADDSLASHER' para nao conflitar as aspas com o banco
 $funcionario_observacao = addslashes($funcionario_observacao);
 
-    //Condição para Atualizar
-    //Recebendo ID do Funcionario e Vale
-    $funcionario_id = $_POST['funcionario_id'];
-    $vale_transporte_id = $_POST['vale_transporte_id'];
-    
+//Condição para Atualizar
+//Recebendo ID do Funcionario e Vale
+$funcionario_id = $_POST['funcionario_id'];
+$vale_transporte_id = $_POST['vale_transporte_id'];
+
+
+//Pesquisar Funcionário já criado
+$pesquisa_funcionario_existente = "SELECT cpf FROM funcionarios WHERE cpf = '".$funcionario_cpf."' ORDER BY id LIMIT 1;";
+$resultado_funcionario_existente = mysqli_query($conn, $pesquisa_funcionario_existente);
+$row_funcionario_existente = mysqli_fetch_assoc($resultado_funcionario_existente);
+
+//Nao deixar editar caso já exista o CPF
+if(!empty($row_funcionario_existente)){
+
+    //Inserir LOG para gerar a Notificação
+    $criar_log = "insert into `logs` (`id`, `tabela_alterada`, `tarefa_executada`, `cor`, `icone`, `status`, `data_criacao`, `usuarios_id`) VALUES
+    (NULL, 'funcionarios', 'Falha ao tentar editar os dados do(a) funcionário(a), CPF já cadastrado.', 'danger', 'fa fa-exclamation-triangle faa-flash', 'ativo', '".$data_criacao."', ".$_SESSION["id_usuario_login"]['id'].");";
+    $enviar_log = mysqli_query($conn, $criar_log);
+    //Mensagem de erro por se tratar de um cpf já utilizado
+    $_SESSION['mensagem_funcionario'] = "Falha ao tentar editar os dados do(a) funcionário(a), CPF já cadastrado.";
+}else{
+
     //Inserir Ferias
     $atualizar_funcionario = "UPDATE funcionarios SET cpf = '".$funcionario_cpf."', nome_completo = '".$funcionario_nome."', data_nascimento = '".$funcionario_data_nascimento."', salario = '".$funcionario_salario."', 
     nome_mae = '".$funcionario_nome_mae."', setor = '".$funcionario_setor."', funcao = '".$funcionario_funcao."', observacao = '".$funcionario_observacao."', 
@@ -56,6 +73,8 @@ $funcionario_observacao = addslashes($funcionario_observacao);
         $enviar_log = mysqli_query($conn, $criar_log);
     }
 
+
+}
 
     header("location:../../painel/cadastros.php");
 ?>

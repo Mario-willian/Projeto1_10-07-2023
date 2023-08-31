@@ -31,6 +31,23 @@ $format = numfmt_create('pt_BR', NumberFormatter::DECIMAL);
 $funcionario_salario = numfmt_parse($format, $funcionario_salario);
 $funcionario_valor_vale_transporte = numfmt_parse($format, $funcionario_valor_vale_transporte);
 
+//Pesquisar Funcionário já criado
+$pesquisa_funcionario_existente = "SELECT cpf FROM funcionarios WHERE cpf = '".$funcionario_cpf."' ORDER BY id LIMIT 1;";
+$resultado_funcionario_existente = mysqli_query($conn, $pesquisa_funcionario_existente);
+$row_funcionario_existente = mysqli_fetch_assoc($resultado_funcionario_existente);
+
+//Nao deixar editar caso já exista o CPF
+if(!empty($row_funcionario_existente)){
+
+    // Criar o array com status e a mensagem de erro
+    $retorna = ['status' => false, 'msg' => "Erro ao Cadastrar o(a) Funcionário(a), CPF Já Cadastrado!"];
+
+    //Inserir LOG para gerar a Notificação
+    $criar_log = "insert into `logs` (`id`, `tabela_alterada`, `tarefa_executada`, `cor`, `icone`, `status`, `data_criacao`, `usuarios_id`) VALUES
+    (NULL, 'funcionarios', 'Falha ao tentar cadastrar o(a) funcionário(a), CPF já cadastrado.', 'danger', 'fa fa-exclamation-triangle faa-flash', 'ativo', '".$data_criacao."', ".$_SESSION["id_usuario_login"]['id'].");";
+    $enviar_log = mysqli_query($conn, $criar_log);
+}else{
+
 //Inserir Funcionário
 $inserir_funcionario = "insert into funcionarios(id, cpf, nome_completo, data_nascimento, salario, nome_mae, setor, funcao, observacao, status, data_inicio, data_criacao, empresas_id) values (NULL, '".$funcionario_cpf."', '".$funcionario_nome."', '".$funcionario_data_nascimento."', '".$funcionario_salario."', '".$funcionario_nome_mae."', '".$funcionario_setor."', '".$funcionario_funcao."','".$funcionario_observacao."', '".$funcionario_status."', '".$funcionario_data_de_inicio."', '".$data_criacao."', '".$funcionario_empresa."');";
 $enviar_funcionario = mysqli_query($conn, $inserir_funcionario);
@@ -65,6 +82,11 @@ if($enviar_funcionario == 1){
     (NULL, 'funcionarios', 'Falha ao tentar cadastrar o(a) funcionário(A).', 'danger', 'fa fa-exclamation-triangle faa-flash', 'ativo', '".$data_criacao."', ".$_SESSION["id_usuario_login"]['id'].");";
     $enviar_log = mysqli_query($conn, $criar_log);
 }
+
+}
+
+
+
 
 // Converter o array em objeto e retornar para o JavaScript
 echo json_encode($retorna);
