@@ -446,6 +446,11 @@ function myFunction() {
                       </div>
                     </div>
 
+                    <div class="col-md-2">
+                      <div class="form-group">
+                      </div>
+                    </div>
+
                   <div class="col-md-2">
                       <div class="form-group"><br>
                         <button type="submit" name="filtrar" class="btn btn-outline-info btn-100" ><b><i class="fa fa-search"></i> Buscar</b></button><br>

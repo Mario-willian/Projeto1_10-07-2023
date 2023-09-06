@@ -4,20 +4,20 @@ create view acessos_empresas as SELECT empr.id as id, empr.cnpj as cnpj, empr.no
 FROM empresas empr 
 inner join acessos aces on empr.id = aces.empresas_id;
 
-create view acessos_ocorrencias as SELECT ocor.id as id, arqu.arquivo as arquivo, ocor.motivo as motivo, ocor.faltas as faltas, ocor.valor as valor, ocor.observacao as observacao, ocor.status as status, ocor.data_criacao as data_criacao, ocor.funcionarios_id as funcionarios_id, func.nome_completo as funcionario_nome_completo, ocor.empresas_id as empresas_id, empr.nome_loja as empresa_nome_loja, empr.razao_social as empresa_razao_social, aces.usuarios_id as usuarios_id
+create view acessos_ocorrencias as SELECT ocor.id as id, arqu.arquivo as arquivo, ocor.motivo as motivo, ocor.faltas as faltas, ocor.valor as valor, ocor.observacao as observacao, ocor.status as status, func.status as status_funcionario, ocor.data_criacao as data_criacao, ocor.funcionarios_id as funcionarios_id, func.nome_completo as funcionario_nome_completo, ocor.empresas_id as empresas_id, empr.nome_loja as empresa_nome_loja, empr.razao_social as empresa_razao_social, aces.usuarios_id as usuarios_id
 FROM ocorrencias ocor 
 inner join acessos aces on ocor.empresas_id = aces.empresas_id
 inner join funcionarios func on ocor.funcionarios_id = func.id
 inner join empresas empr on ocor.empresas_id = empr.id
 inner join arquivos_ocorrencias arqu on arqu.ocorrencias_id = ocor.id;
 
-create view acessos_ferias as SELECT feri.id as id, feri.data_inicio as data_inicio, feri.data_fim as data_fim, feri.observacao as observacao, feri.data_criacao as data_criacao, feri.funcionarios_id as funcionarios_id, func.nome_completo as funcionario_nome_completo, feri.empresas_id as empresas_id, empr.nome_loja as empresa_nome_loja, empr.razao_social as empresa_razao_social, aces.usuarios_id as usuarios_id
+create view acessos_ferias as SELECT feri.id as id, feri.data_inicio as data_inicio, feri.data_fim as data_fim, feri.observacao as observacao, feri.data_criacao as data_criacao, feri.funcionarios_id as funcionarios_id, func.nome_completo as funcionario_nome_completo, func.status as status_funcionario, feri.empresas_id as empresas_id, empr.nome_loja as empresa_nome_loja, empr.razao_social as empresa_razao_social, aces.usuarios_id as usuarios_id
 FROM ferias feri 
 inner join acessos aces on feri.empresas_id = aces.empresas_id
 inner join funcionarios func on feri.funcionarios_id = func.id
 inner join empresas empr on feri.empresas_id = empr.id;
 
-create view acessos_recisoes as SELECT resi.id as id, resi.motivo as motivo, resi.data_criacao as data_criacao, resi.tipo as tipo, resi.exame_demissional as exame_demissional, resi.data_inicio_aviso as data_inicio_aviso, resi.data_fim_aviso as data_fim_aviso, resi.data_prazo_pagamento as data_prazo_pagamento, resi.status as status, resi.observacao as observacao, resi.funcionarios_id as funcionarios_id, func.nome_completo as funcionario_nome_completo, resi.empresas_id as empresas_id, empr.nome_loja as empresa_nome_loja, empr.razao_social as empresa_razao_social, aces.usuarios_id as usuarios_id
+create view acessos_recisoes as SELECT resi.id as id, resi.motivo as motivo, resi.data_criacao as data_criacao, resi.tipo as tipo, resi.exame_demissional as exame_demissional, resi.data_inicio_aviso as data_inicio_aviso, resi.data_fim_aviso as data_fim_aviso, resi.data_prazo_pagamento as data_prazo_pagamento, resi.status as status, func.status as status_funcionario, resi.observacao as observacao, resi.funcionarios_id as funcionarios_id, func.nome_completo as funcionario_nome_completo, resi.empresas_id as empresas_id, empr.nome_loja as empresa_nome_loja, empr.razao_social as empresa_razao_social, aces.usuarios_id as usuarios_id
 FROM recisoes resi 
 inner join acessos aces on resi.empresas_id = aces.empresas_id
 inner join funcionarios func on resi.funcionarios_id = func.id

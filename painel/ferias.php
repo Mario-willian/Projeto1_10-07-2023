@@ -15,6 +15,9 @@ if(!$pagina){
 }
 $limite = 10;
 
+//Declarando Variavel
+$ferias_status_funcionario = "";
+
 //Select para paginacao
 $pesquisa_ferias2 = "SELECT count(id) FROM acessos_ferias WHERE usuarios_id =".$_SESSION["id_usuario_login"]['id'];
 
@@ -68,6 +71,28 @@ $pesquisa_ferias = "SELECT * FROM acessos_ferias WHERE usuarios_id =".$_SESSION[
       $pesquisa_ferias2 .= " AND empresas_id = '".$ferias_loja."'";
     }
   }
+
+    //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
+    if(empty($_SESSION['ferias_status_funcionario'])){
+      if(isset($_POST['ferias_status_funcionario'])){
+        $ferias_status_funcionario = $_POST['ferias_status_funcionario'];
+        $pesquisa_ferias .= " AND status_funcionario = '".$ferias_status_funcionario."'";
+        $pesquisa_ferias2 .= " AND status_funcionario = '".$ferias_status_funcionario."'";
+        $_SESSION['ferias_status_funcionario'] = $_POST['ferias_status_funcionario'];
+      }
+    //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
+    }else{
+      if(isset($_POST['ferias_status_funcionario'])){
+        $ferias_status_funcionario = $_POST['ferias_status_funcionario'];
+        $pesquisa_ferias .= " AND status_funcionario = '".$ferias_status_funcionario."'";
+        $pesquisa_ferias2 .= " AND status_funcionario = '".$ferias_status_funcionario."'";
+        $_SESSION['ferias_status_funcionario'] = $_POST['ferias_status_funcionario'];
+      }else{
+        $ferias_status_funcionario = $_SESSION['ferias_status_funcionario'];
+        $pesquisa_ferias .= " AND status_funcionario = '".$ferias_status_funcionario."'";
+        $pesquisa_ferias2 .= " AND status_funcionario = '".$ferias_status_funcionario."'";
+      }
+    }
 
   //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
   if(empty($_SESSION['ferias_quantidade_itens'])){
@@ -174,22 +199,31 @@ $pesquisa_ferias = "SELECT * FROM acessos_ferias WHERE usuarios_id =".$_SESSION[
       }
     }
 
-//PAGINACAO
-$inicio = ($pagina * $limite) - $limite;
 
 
-//Acrescimos ao select
-$pesquisa_ferias .= " order by data_criacao DESC LIMIT ".$inicio.", ".$limite;
-//Executa o Select
-$resultado_ferias = mysqli_query($conn, $pesquisa_ferias);
+//Evitar de Filtro Demitido, a nao ser que filtre por ele.
+if($ferias_status_funcionario != "Demitido"){
+  //Acrescimos ao select
+  $pesquisa_ferias .= " AND status_funcionario != 'demitido'";
+  $pesquisa_ferias2 .= " AND status_funcionario != 'demitido'";
+}
+ 
+
 
 //Select para paginacao
 $resultado_ferias2 = mysqli_query($conn, $pesquisa_ferias2);
 $row_ferias2 = mysqli_fetch_assoc($resultado_ferias2);
 //PAGINACAO
 $paginas = ceil($row_ferias2['count(id)'] / $limite);
+//PAGINACAO
+$inicio = ($pagina * $limite) - $limite;
 
 
+
+//Acrescimos ao select
+$pesquisa_ferias .= " order by data_criacao DESC LIMIT ".$inicio.", ".$limite;
+//Enviar Select
+$resultado_ferias = mysqli_query($conn, $pesquisa_ferias);
 
 ?>
 <body class="">
@@ -364,6 +398,21 @@ $paginas = ceil($row_ferias2['count(id)'] / $limite);
 
                     <div class="col-md-2">
                       <div class="form-group">
+                        <label>Status Funcionário</label>
+                        <select name="ferias_status_funcionario" class="form-control">
+                        <option value="" data-default disabled selected></option>
+                        <!-- Inicio de uma codição PHP -->
+                        <?php 
+                        require "../complements/selects/select_status.php";
+                        
+                        ?>
+                        <!-- Fim de uma codição PHP -->
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-2">
+                      <div class="form-group">
                         <label>Quantidade de Itens</label>
                         <select name="ferias_quantidade_itens" id="ferias_quantidade_itens" class="form-control">
                         <option value="" data-default disabled selected></option>
@@ -383,6 +432,8 @@ $paginas = ceil($row_ferias2['count(id)'] / $limite);
                       <div class="form-group">
                       </div>
                     </div>
+
+                    
 
                   <div class="col-md-2">
                       <div class="form-group"><br>

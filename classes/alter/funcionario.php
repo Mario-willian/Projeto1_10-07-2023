@@ -33,12 +33,12 @@ $vale_transporte_id = $_POST['vale_transporte_id'];
 
 
 //Pesquisar Funcionário já criado
-$pesquisa_funcionario_existente = "SELECT cpf FROM funcionarios WHERE cpf = '".$funcionario_cpf."' ORDER BY id LIMIT 1;";
+$pesquisa_funcionario_existente = "SELECT cpf, id FROM funcionarios WHERE cpf = '".$funcionario_cpf."' ORDER BY id LIMIT 1;";
 $resultado_funcionario_existente = mysqli_query($conn, $pesquisa_funcionario_existente);
 $row_funcionario_existente = mysqli_fetch_assoc($resultado_funcionario_existente);
 
 //Nao deixar editar caso já exista o CPF
-if(!empty($row_funcionario_existente)){
+if(!empty($row_funcionario_existente) && $row_funcionario_existente['id'] != $funcionario_id){
 
     //Inserir LOG para gerar a Notificação
     $criar_log = "insert into `logs` (`id`, `tabela_alterada`, `tarefa_executada`, `cor`, `icone`, `status`, `data_criacao`, `usuarios_id`) VALUES

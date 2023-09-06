@@ -15,6 +15,8 @@ if(!$pagina){
 }
 $limite = 10;
 
+//Declarando Variavel
+$ocorrencias_status_funcionario = "";
 
 //Select para paginacao
 $pesquisa_ocorrencias2 = "SELECT count(id) FROM acessos_ocorrencias WHERE usuarios_id =".$_SESSION["id_usuario_login"]['id'];
@@ -96,6 +98,48 @@ $pesquisa_ocorrencias = "SELECT * FROM acessos_ocorrencias WHERE status = 'Ativo
       }
     }
 
+    //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
+    if(empty($_SESSION['ocorrencias_status_funcionario'])){
+      if(isset($_POST['ocorrencias_status_funcionario'])){
+        $ocorrencias_status_funcionario = $_POST['ocorrencias_status_funcionario'];
+        $pesquisa_ocorrencias .= " AND status_funcionario = '".$ocorrencias_status_funcionario."'";
+        $pesquisa_ocorrencias2 .= " AND status_funcionario = '".$ocorrencias_status_funcionario."'";
+        $_SESSION['ocorrencias_status_funcionario'] = $_POST['ocorrencias_status_funcionario'];
+      }
+    //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
+    }else{
+      if(isset($_POST['ocorrencias_status_funcionario'])){
+        $ocorrencias_status_funcionario = $_POST['ocorrencias_status_funcionario'];
+        $pesquisa_ocorrencias .= " AND status_funcionario = '".$ocorrencias_status_funcionario."'";
+        $pesquisa_ocorrencias2 .= " AND status_funcionario = '".$ocorrencias_status_funcionario."'";
+        $_SESSION['ocorrencias_status_funcionario'] = $_POST['ocorrencias_status_funcionario'];
+      }else{
+        $ocorrencias_status_funcionario = $_SESSION['ocorrencias_status_funcionario'];
+        $pesquisa_ocorrencias .= " AND status_funcionario = '".$ocorrencias_status_funcionario."'";
+        $pesquisa_ocorrencias2 .= " AND status_funcionario = '".$ocorrencias_status_funcionario."'";
+      }
+    }
+
+      //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
+      if(empty($_SESSION['ocorrencia_quantidade_itens'])){
+        if(isset($_POST['ocorrencia_quantidade_itens'])){
+          $ocorrencia_quantidade_itens = $_POST['ocorrencia_quantidade_itens'];
+          $limite = $ocorrencia_quantidade_itens;
+          $_SESSION['ocorrencia_quantidade_itens'] = $_POST['ocorrencia_quantidade_itens'];
+        }
+      //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
+      }else{
+        if(isset($_POST['ocorrencia_quantidade_itens'])){
+          $ocorrencia_quantidade_itens = $_POST['ocorrencia_quantidade_itens'];
+          $limite = $ocorrencia_quantidade_itens;
+          $_SESSION['ocorrencia_quantidade_itens'] = $_POST['ocorrencia_quantidade_itens'];
+        }else{
+          $ocorrencia_quantidade_itens = $_SESSION['ocorrencia_quantidade_itens'];
+          $limite = $ocorrencia_quantidade_itens;
+        }
+      }
+
+
 
     //Verifica se utilizou o filtro Data INICIO e FIM
     //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
@@ -132,24 +176,7 @@ $pesquisa_ocorrencias = "SELECT * FROM acessos_ocorrencias WHERE status = 'Ativo
       }
     }
 
-      //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
-    if(empty($_SESSION['ocorrencia_quantidade_itens'])){
-    if(isset($_POST['ocorrencia_quantidade_itens'])){
-      $ocorrencia_quantidade_itens = $_POST['ocorrencia_quantidade_itens'];
-      $limite = $ocorrencia_quantidade_itens;
-      $_SESSION['ocorrencia_quantidade_itens'] = $_POST['ocorrencia_quantidade_itens'];
-    }
-  //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
-  }else{
-    if(isset($_POST['ocorrencia_quantidade_itens'])){
-      $ocorrencia_quantidade_itens = $_POST['ocorrencia_quantidade_itens'];
-      $limite = $ocorrencia_quantidade_itens;
-      $_SESSION['ocorrencia_quantidade_itens'] = $_POST['ocorrencia_quantidade_itens'];
-    }else{
-      $ocorrencia_quantidade_itens = $_SESSION['ocorrencia_quantidade_itens'];
-      $limite = $ocorrencia_quantidade_itens;
-    }
-  }
+
 
 
 
@@ -200,19 +227,30 @@ $pesquisa_ocorrencias = "SELECT * FROM acessos_ocorrencias WHERE status = 'Ativo
       }
     }
 
-//PAGINACAO
-$inicio = ($pagina * $limite) - $limite;
 
-//Acrescimos ao select
-$pesquisa_ocorrencias .= " order by data_criacao DESC LIMIT ".$inicio.", ".$limite;
-//Executa o Select
-$resultado_ocorrencias = mysqli_query($conn, $pesquisa_ocorrencias);
+//Evitar de Filtro Demitido, a nao ser que filtre por ele.
+if($ocorrencias_status_funcionario != "Demitido"){
+  //Acrescimos ao select
+  $pesquisa_ocorrencias .= " AND status_funcionario != 'demitido'";
+  $pesquisa_ocorrencias2 .= " AND status_funcionario != 'demitido'";
+}
+
+
 
 //Select para paginacao
 $resultado_ocorrencias2 = mysqli_query($conn, $pesquisa_ocorrencias2);
 $row_ocorrencias2 = mysqli_fetch_assoc($resultado_ocorrencias2);
 //PAGINACAO
 $paginas = ceil($row_ocorrencias2['count(id)'] / $limite);
+//PAGINACAO
+$inicio = ($pagina * $limite) - $limite;
+
+
+
+//Acrescimos ao select
+$pesquisa_ocorrencias .= " order by data_criacao DESC LIMIT ".$inicio.", ".$limite;
+//Executa o Select
+$resultado_ocorrencias = mysqli_query($conn, $pesquisa_ocorrencias);
 
 ?>
 
@@ -401,6 +439,21 @@ function myFunction() {
                         <?php 
                         
                         require "../complements/selects/select_ocorrencias_editar.php";
+                        
+                        ?>
+                        <!-- Fim de uma codição PHP -->
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label>Status Funcionário</label>
+                        <select name="ocorrencias_status_funcionario" class="form-control">
+                        <option value="" data-default disabled selected></option>
+                        <!-- Inicio de uma codição PHP -->
+                        <?php 
+                        require "../complements/selects/select_status.php";
                         
                         ?>
                         <!-- Fim de uma codição PHP -->

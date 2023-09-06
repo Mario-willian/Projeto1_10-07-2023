@@ -4,5 +4,5 @@ Pendente:
 ----------------------------
 
 Finalizado: 
-- bloqueio no ato de cadastro em caso de duplicidade de CPF
-- Todos relatórios do excel puxam apenas a primeira página, preciso que puxe todas páginas do filtro selecionado
+-Ao editar funcionario qualquer coisa fala q o cpf ja existe e ignora a edicao
+-tirar dados dos funcionarios demitidos

@@ -15,6 +15,9 @@ if(!$pagina){
 }
 $limite = 10;
 
+//Declarando Variavel
+$recisao_status_funcionario = "";
+
 
 //Select para paginacao
 $pesquisa_recisoes2 = "SELECT count(id) FROM acessos_recisoes WHERE usuarios_id =".$_SESSION["id_usuario_login"]['id'];
@@ -96,6 +99,28 @@ $pesquisa_recisoes = "SELECT * FROM acessos_recisoes WHERE usuarios_id =".$_SESS
       $pesquisa_recisoes2 .= " AND empresas_id = '".$recisao_loja."'";
     }
   }
+
+    //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
+    if(empty($_SESSION['recisao_status_funcionario'])){
+      if(isset($_POST['recisao_status_funcionario'])){
+        $recisao_status_funcionario = $_POST['recisao_status_funcionario'];
+        $pesquisa_recisoes .= " AND status_funcionario = '".$recisao_status_funcionario."'";
+        $pesquisa_recisoes2 .= " AND status_funcionario = '".$recisao_status_funcionario."'";
+        $_SESSION['recisao_status_funcionario'] = $_POST['recisao_status_funcionario'];
+      }
+    //Existe sessao, mas antes de pegar ela verifica se recebeu algo do input. Prioridade é o input
+    }else{
+      if(isset($_POST['recisao_status_funcionario'])){
+        $recisao_status_funcionario = $_POST['recisao_status_funcionario'];
+        $pesquisa_recisoes .= " AND status_funcionario = '".$recisao_status_funcionario."'";
+        $pesquisa_recisoes2 .= " AND status_funcionario = '".$recisao_status_funcionario."'";
+        $_SESSION['recisao_status_funcionario'] = $_POST['recisao_status_funcionario'];
+      }else{
+        $recisao_status_funcionario = $_SESSION['recisao_status_funcionario'];
+        $pesquisa_recisoes .= " AND status_funcionario = '".$recisao_status_funcionario."'";
+        $pesquisa_recisoes2 .= " AND status_funcionario = '".$recisao_status_funcionario."'";
+      }
+    }
 
     //Caso nao exista a sessao receberá o input, caso o input nao seja enviado nao recebe nada
     if(empty($_SESSION['recisao_quantidade_itens'])){
@@ -205,20 +230,30 @@ $pesquisa_recisoes = "SELECT * FROM acessos_recisoes WHERE usuarios_id =".$_SESS
       }
     }
 
-//PAGINACAO
-$inicio = ($pagina * $limite) - $limite;
 
-//Acrescimos ao select
-$pesquisa_recisoes .= " order by data_prazo_pagamento DESC LIMIT ".$inicio.", ".$limite;
+//Evitar de Filtro Demitido, a nao ser que filtre por ele.
+if($recisao_status_funcionario != "Demitido"){
+  //Acrescimos ao select
+  $pesquisa_recisoes .= " AND status_funcionario != 'demitido'";
+  $pesquisa_recisoes2 .= " AND status_funcionario != 'demitido'";
+}
 
-//Executa o Select
-$resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
+
 
 //Select para paginacao
 $resultado_recisoes2 = mysqli_query($conn, $pesquisa_recisoes2);
 $row_recisoes2 = mysqli_fetch_assoc($resultado_recisoes2);
 //PAGINACAO
 $paginas = ceil($row_recisoes2['count(id)'] / $limite);
+//PAGINACAO
+$inicio = ($pagina * $limite) - $limite;
+
+
+
+//Acrescimos ao select
+$pesquisa_recisoes .= " order by data_prazo_pagamento DESC LIMIT ".$inicio.", ".$limite;
+//Executa o Select
+$resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
 
 ?>
 
@@ -402,6 +437,21 @@ $paginas = ceil($row_recisoes2['count(id)'] / $limite);
                         <?php 
 
                         require "../complements/selects/select_motivo_recisao_editar.php";
+                        
+                        ?>
+                        <!-- Fim de uma codição PHP -->
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label>Status Funcionário</label>
+                        <select name="recisao_status_funcionario" class="form-control">
+                        <option value="" data-default disabled selected></option>
+                        <!-- Inicio de uma codição PHP -->
+                        <?php 
+                        require "../complements/selects/select_status.php";
                         
                         ?>
                         <!-- Fim de uma codição PHP -->

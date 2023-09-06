@@ -5,5 +5,6 @@ unset($_SESSION['ferias_funcionario']);
 unset($_SESSION['ferias_data_inicio']);
 unset($_SESSION['ferias_data_fim']);
 unset($_SESSION['ferias_quantidade_itens']);
+unset($_SESSION['ferias_status_funcionario']);
 header("location:../painel/ferias.php");
 ?>
