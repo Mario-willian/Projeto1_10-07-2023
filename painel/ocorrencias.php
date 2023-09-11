@@ -13,7 +13,7 @@ if(isset($_GET['pagina'])){
 if(!$pagina){
   $pagina = 1;
 }
-$limite = 10;
+$limite = 100;
 
 //Declarando Variavel
 $ocorrencias_status_funcionario = "";
