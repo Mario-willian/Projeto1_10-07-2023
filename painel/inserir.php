@@ -240,7 +240,7 @@ require "../complements/begin_page.php";
                    <div class="row">
                     <div class="col-md-12">
                       <div class="form-group"><br>
-                        <button type="submit" name="ocorrencia_enviar" id="cad-ocorrencia-btn" value="Cadastrar" class="btn btn-outline-success" style="width: 100%;"><b> Cadastrar Ocorrência</b></button><br>
+                        <button type="submit" name="ocorrencia_enviar" id="cad-ocorrencia-btn" value="Cadastrar" class="btn btn-outline-success" style="width: 100%;font-size:15px;"><b> Cadastrar Ocorrência</b></button><br>
                       </div>
                     </div>
                   </div>
@@ -376,7 +376,7 @@ require "../complements/begin_page.php";
                    <div class="row">
                     <div class="col-md-12">
                       <div class="form-group"><br>
-                        <button type="submit" name="recisao_enviar" id="cad-recisao-btn" value="Cadastrar" class="btn btn-outline-success" style="width: 100%;"><b>Cadastrar Rescisão</b></button><br>
+                        <button type="submit" name="recisao_enviar" id="cad-recisao-btn" value="Cadastrar" class="btn btn-outline-success" style="width: 100%;font-size:15px;"><b>Cadastrar Rescisão</b></button><br>
                       </div>
                     </div>
                   </div>
@@ -458,7 +458,7 @@ require "../complements/begin_page.php";
                     <div class="col-md-12">
                       <div class="form-group"><br>
                         <input type="text" name="ferias_acao" style="display:none" value="Inserir" style="display:none">
-                        <button type="submit" name="ferias_enviar" id="cad-ferias-btn" value="Cadastrar" class="btn btn-outline-success" style="width: 100%;"><b>Cadastrar Férias</b></button><br>
+                        <button type="submit" name="ferias_enviar" id="cad-ferias-btn" value="Cadastrar" class="btn btn-outline-success" style="width: 100%;font-size:15px;"><b>Cadastrar Férias</b></button><br>
                       </div>
                     </div>
                   </div>
@@ -520,7 +520,7 @@ require "../complements/begin_page.php";
                    <div class="row">
                     <div class="col-md-12">
                       <div class="form-group"><br>
-                        <button type="submit" name="lembrete_enviar" id="cad-lembrete-btn" value="Cadastrar" class="btn btn-outline-success" style="width: 100%;"><b>Cadastrar Lembrete</b></button><br>
+                        <button type="submit" name="lembrete_enviar" id="cad-lembrete-btn" value="Cadastrar" class="btn btn-outline-success" style="width: 100%;font-size:15px;"><b>Cadastrar Lembrete</b></button><br>
                       </div>
                     </div>
                   </div></form>
@@ -537,10 +537,11 @@ require "../complements/begin_page.php";
         <div class="row">
           <div class="col-md-12">
             <div class="card">
-              <div class="card-header"><br><br>
+              <div class="author"><br><br>
                 <center><h5><i class="fa fa-user-plus"></i> CADASTRAR FUNCIONÁRIO</h5>
               </div>
               <div class="card-body">
+                
                 <form id="cad-funcionario-form">
                   <div class="row">
                     
@@ -735,7 +736,7 @@ require "../complements/begin_page.php";
                    <div class="row">
                     <div class="col-md-12">
                       <div class="form-group"><br>
-                        <button type="submit" name="funcionario_enviar" id="cad-funcionario-btn" value="Cadastrar" class="btn btn-outline-success" style="width: 100%;"><b>Cadastrar Funcionário</b></button><br>
+                        <button type="submit" name="funcionario_enviar" id="cad-funcionario-btn" value="Cadastrar" class="btn btn-outline-success" style="width: 100%;font-size:15px;"><b>Cadastrar Funcionário</b></button><br>
                       </div>
                     </div>
                   </div>
