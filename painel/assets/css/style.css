@@ -63,11 +63,42 @@
   font-weight: bold;
 }
 
+.form-group option{
+  font-size: 17px;
+  font-weight: bold;
+}
+.form-group select{
+  font-size: 17px;
+  font-weight: bold;
+}
+
+input[type="date"]{
+  font-size: 17px;
+  font-weight: bold;
+}
+input[type="text"]{
+  font-size: 17px;
+  font-weight: bold;
+}
+input[type="number"]{
+  font-size: 17px;
+  font-weight: bold;
+}
+
+#divTabela th{
+  font-size: 17px;
+  font-weight: bold;
+}
+
+#divTabela td{
+  font-size: 14px;
+}
+
 .author h5{
   font-weight: bold;
 }
 
-.card-body label{
+.card label{
   font-size: 14px;
   font-weight: bold;
 }
@@ -76,8 +107,7 @@
   font-size: 15px;
 }
 
-
-
+/*FIM modificações do cliente */
 
   .alert>.start-icon {
     margin-right: 0;
