@@ -182,6 +182,7 @@ require "../complements/begin_page.php";
                           <option value="Atestado">Atestado</option>
                           <option value="Atestado de Comparecimento">Atestado de Comparecimento</option>
                           <option value="Atestado de Óbito">Atestado de Óbito</option>
+                          <option value="Aviso">Aviso</option>
                           <option value="Dispensa">Dispensa</option>
                           <option value="Erro Operacional">Erro Operacional</option>
                           <option value="Exame Demissional">Exame Demissional</option>
@@ -194,6 +195,7 @@ require "../complements/begin_page.php";
                           <option value="Meta">Meta</option>
                           <option value="Quebra de Caixa">Quebra de Caixa</option>
                           <option value="Reembolso">Reembolso</option>
+                          <option value="Rescisão">Rescisão</option>
                           <option value="Segunda Via Cartão">Segunda Via Cartão</option>
                           <option value="Término de Contrato">Término de Contrato</option>
                           <option value="Vale Avulso">Vale Avulso</option>
@@ -833,9 +835,11 @@ require "../complements/begin_page.php";
               </div>
             </div>
        
- 
+    -->
 
-      <div class="col-md-6">
+   
+    <!--
+        <div class="col-md-6">
           <div class="card card-user">
             <div class="image">
               </div>
@@ -863,7 +867,7 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>CNPJ</label>
                          <input type="text" name="empresa_cnpj" id="produto-1-cnpj"  maxlength="18" class="form-control textcenter" required="" >
-                        -->
+         -->        
                          <!-- MÁSCARA CNPJ-->
                           <!--
                          <script>
@@ -871,7 +875,8 @@ require "../complements/begin_page.php";
                                 var x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,3})(\d{0,3})(\d{0,4})(\d{0,2})/);
                                 e.target.value = !x[2] ? x[1] : x[1] + '.' + x[2] + '.' + x[3] + '/' + x[4] + (x[5] ? '-' + x[5] : '');
                               });
-                        </script>
+                        </script>-->
+     <!--                   
                       </div>
                     </div>
 
@@ -890,16 +895,16 @@ require "../complements/begin_page.php";
                             </thead>
                             <tbody>
 
-                            -->
-                            <!-- Inicio de uma codição PHP -->
+                           
+                     
                             <?php 
 
-                            //require "../complements/selects/select_usuario.php";
+                           // require "../complements/selects/select_usuario.php";
 
                             ?>
-                            <!-- Fim de uma codição PHP -->
+                          
 
-                                        <!--
+                                      
                             </tbody>
                           </table>
                         </div>
@@ -921,7 +926,10 @@ require "../complements/begin_page.php";
                </div>
               </div>
             </div>
-          </div>  --><!-- FIM DIV -->
+          </div>  
+                            -->
+          
+          <!-- FIM DIV -->
                             
 
                   <!-- FIM -->
