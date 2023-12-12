@@ -1,6 +1,6 @@
 <?php
 
-$exame_demissional = array("Sim", "Não"); 
+$exame_demissional = array("Selecionar...","Sim", "Não"); 
 
 //lista todos e seleciona apenas o que está no banco
 foreach ($exame_demissional as $value) {

@@ -1,6 +1,6 @@
 <?php
 
-$status = array("Ativo", "Afastado", "Demitido", "Inativo", "INSS", "Licença Maternidade", "Justiça", "Transferido"); 
+$status = array("Selecionar...","Ativo", "Afastado", "Demitido", "Inativo", "INSS", "Licença Maternidade", "Justiça", "Transferido"); 
 
 //Select do setor do funcionario
 $pesquisa_funcionarios_status = "SELECT status FROM acessos_funcionarios;";

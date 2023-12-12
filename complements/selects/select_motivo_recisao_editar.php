@@ -1,6 +1,6 @@
 <?php
 
-$motivo = array("Dispensa", "Justiça", "Pedido de Demissão", "Término de Contrato", "Término de Contrato Antecipado"); 
+$motivo = array("Selecionar...","Aviso","Dispensa", "Justiça", "Pedido de Demissão", "Término de Contrato", "Término de Contrato Antecipado"); 
 
 //lista todos e seleciona apenas o que está no banco
 foreach ($motivo as $value) {

@@ -1,6 +1,6 @@
 <?php
 
-$tipo_recisao = array("Acordo", "Justiça", "Normal"); 
+$tipo_recisao = array("Selecionar...","Acordo", "Justiça", "Normal"); 
 
 //lista todos e seleciona apenas o que está no banco
 foreach ($tipo_recisao as $value) {

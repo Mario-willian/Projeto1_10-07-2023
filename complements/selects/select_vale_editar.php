@@ -1,6 +1,6 @@
 <?php
 
-$vale_transporte = array("BHBUS", "Combustivel", "Dinheiro", "Nenhum", "Otimo"); 
+$vale_transporte = array("Selecionar...","BHBUS", "Combustivel", "Dinheiro", "Nenhum", "Otimo"); 
 
 //lista todos e seleciona apenas o que está no banco
 foreach ($vale_transporte as $value) {

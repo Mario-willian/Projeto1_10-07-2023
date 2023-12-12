@@ -1,6 +1,6 @@
 <?php
 
-$setores = array("Açougue", "Administrativo", "Caixa", "Depósito", "Entregas", "Fiscalização", "Frios", "Gerencia", "Hortifruti", "Limpeza", "Operação Loja", "Padaria", "Recebimento Merc.", "Recursos Humanos", "Reposição", "Sub-Gerencia"); 
+$setores = array("Selecionar...","Açougue", "Administrativo", "Caixa", "Depósito", "Entregas", "Fiscalização", "Frios", "Gerencia", "Hortifruti", "Limpeza", "Operação Loja", "Padaria", "Recebimento Merc.", "Recursos Humanos", "Reposição", "Sub-Gerencia"); 
 
 //Select do setor do funcionario
 $pesquisa_funcionarios = "SELECT * FROM funcionarios where id = ".$id_item_selecionado.";";

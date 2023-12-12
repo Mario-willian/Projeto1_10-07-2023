@@ -177,6 +177,7 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>Motivo</label>
                            <select name="ocorrencia_motivo" class="form-control">
+                          <option value="Selecionar...">Selecionar...</option>
                           <option value="Advertencia">Advertência</option>
                           <option value="Afastamento INSS">Afastamento INSS</option>
                           <option value="Atestado">Atestado</option>
@@ -197,6 +198,7 @@ require "../complements/begin_page.php";
                           <option value="Reembolso">Reembolso</option>
                           <option value="Rescisão">Rescisão</option>
                           <option value="Segunda Via Cartão">Segunda Via Cartão</option>
+                          <option value="Suspensão">Suspensão</option>
                           <option value="Término de Contrato">Término de Contrato</option>
                           <option value="Vale Avulso">Vale Avulso</option>
                         </select>
@@ -304,6 +306,7 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>Motivo</label>
                         <select name="recisao_motivo" class="form-control">
+                        <option value="Selecionar...">Selecionar...</option>
                         <option value="Aviso">Aviso</option>
                         <option value="Dispensa">Dispensa</option>
                         <option value="Justiça">Justiça</option>
@@ -320,6 +323,7 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>Tipo</label>
                         <select name="recisao_tipo" class="form-control">
+                        <option value="Selecionar...">Selecionar...</option>
                           <option value="Acordo">Acordo</option>
                           <option value="Justiça">Justiça</option>
                           <option value="Normal">Normal</option>
@@ -330,6 +334,7 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                        <label>Exame Demissional</label>
                          <select name="recisao_exame_demissional" class="form-control">
+                         <option value="Selecionar...">Selecionar...</option>
                           <option value="Não">Não</option>
                            <option value="Sim">Sim</option>
                         </select>
@@ -342,6 +347,7 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                       <label>Status</label>
                         <select name="recisao_status" class="form-control">
+                        <option value="Selecionar...">Selecionar...</option>
                         <option value="Justiça">Justiça</option>
                           <option value="Pago">Pago</option>
                           <option value="Pendente">Pendente</option>
@@ -585,6 +591,7 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>Status</label>
                         <select name="funcionario_status" class="form-control">
+                        <option value="Selecionar...">Selecionar...</option>
                           <option value="Ativo">Ativo</option>
                           <option value="Afastado">Afastado</option>
                           <option value="Demitido">Demitido</option>
@@ -619,6 +626,7 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>Setor</label>
                         <select name="funcionario_setor" class="form-control">
+                        <option value="Selecionar...">Selecionar...</option>
                         <option value="Açougue">Açougue</option>
                         <option value="Administrativo">Administrativo</option>
                         <option value="Caixa">Caixa</option>
@@ -642,6 +650,7 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>Função</label>
                         <select name="funcionario_funcao" class="form-control">
+                        <option value="Selecionar...">Selecionar...</option>
                         <option value="Açougueiro">Açougueiro</option>
                         <option value="Assistente Administrativo">Assistente Administrativo</option>
                         <option value="Assistente Departamento Pessoal">Assistente Departamento Pessoal</option>
@@ -693,6 +702,7 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>Vale Transporte</label>
                         <select name="funcionario_vale_transporte" class="form-control">
+                        <option value="Selecionar...">Selecionar...</option>
                         <option value="Bhbus">Bhbus</option>
                         <option value="Combustível">Combustível</option>
                         <option value="Dinheiro">Dinheiro</option>

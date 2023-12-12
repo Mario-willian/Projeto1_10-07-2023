@@ -1,6 +1,6 @@
 <?php
 
-$status = array("Justiça", "Pago", "Pendente"); 
+$status = array("Selecionar...","Justiça", "Pago", "Pendente"); 
 
 //lista todos e seleciona apenas o que está no banco
 foreach ($status as $value) {

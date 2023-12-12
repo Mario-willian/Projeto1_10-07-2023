@@ -1,6 +1,6 @@
 <?php
 
-$ocorrencias = array("Advertencia", "Afastamento INSS", "Atestado", "Atestado de Comparecimento", "Atestado de Óbito", "Dispensa", "Erro Operacional", "Exame Demissional", "Falta Injustificada", "Feriado", "Hora Extra", "Justiça", "Licença Maternidade", "Licença Parternidade", "Meta", "Quebra de Caixa", "Reembolso", "Segunda Via Cartão", "Término de Contrato", "Vale Avulso"); 
+$ocorrencias = array("Selecionar...","Advertencia", "Afastamento INSS", "Atestado", "Atestado de Comparecimento", "Atestado de Óbito", "Aviso", "Dispensa", "Erro Operacional", "Exame Demissional", "Falta Injustificada", "Feriado", "Hora Extra", "Justiça", "Licença Maternidade", "Licença Parternidade", "Meta", "Quebra de Caixa", "Reembolso", "Rescisão", "Segunda Via Cartão", "Suspensão", "Término de Contrato", "Vale Avulso"); 
 
 //lista todos e seleciona apenas o que está no banco
 foreach ($ocorrencias as $value) {
