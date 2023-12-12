@@ -476,7 +476,8 @@ function myFunction() {
            </div>
            
               <div class="card-body">
-                <div id="divTabela" class="table-responsive">
+                <div class="table-responsive">
+                  <div id="divTabela">
                   <table id="Tab" class="table">
                     <thead class=" text-primary">
                       <th>
@@ -503,17 +504,17 @@ function myFunction() {
                       <th>
                         Vale Transporte
                       </th>
-                      <th>
+                     <!-- <th>
                         Valor do Vale Transporte
                       </th>
                       <th>
                         Salário
-                      </th>
+                      </th>-->
                       <th>
                         Observação
                       </th>
                       <th>
-                        Editar
+                        
                       </th>
 
                     </thead>
@@ -544,16 +545,16 @@ function myFunction() {
                         <td>
                           <?php echo $row_funcionario['tipo_vale_transporte'];?>
                         </td>
-                        <td>
+                       <!-- <td>
                           R$ <?php echo $row_funcionario['valor_vale_transporte'];?>
                         </td>
                         <td>
                           R$ <?php echo $row_funcionario['salario'];?> 
-                        </td>
+                        </td>-->
                         <td>
                           <?php echo $row_funcionario['observacao'];?>
                         </td>
-                        
+                    </div>
                         <td>
                         <form action="editar-funcionarios.php" method="POST">
                             <button class="btn btn-primary btn-sm" title="Editar"><i class=" fa fa-edit"></i></button>

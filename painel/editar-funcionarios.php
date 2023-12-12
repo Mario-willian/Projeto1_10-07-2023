@@ -284,7 +284,7 @@ $funcionario_salario_input = $row_funcionario['salario'];
                     </div>
                   </div>
 
-                   <div class="row">
+                 <!--  <div class="row">
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Valor do Vale Transporte</label>
@@ -306,7 +306,7 @@ $funcionario_salario_input = $row_funcionario['salario'];
                         <input type="text" name="funcionario_nome_mae" value="<?php echo $row_funcionario['nome_mae'];?>"  class="form-control" required="" placeholder="Nome da Mãe" >
                       </div>
                     </div>
-                  </div>
+                  </div>-->
 
                   <div class="row">
                     <div class="col-md-12">

@@ -502,7 +502,8 @@ $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
 
               </div>
               <div class="card-body">
-                <div id="divTabela" class="table-responsive">
+                <div class="table-responsive">
+                  <div id="divTabela" >
                   <table class="table">
                     <thead class=" text-primary">
                       <th>
@@ -539,7 +540,7 @@ $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
                         Observação
                       </th>
                       <th>
-                        Editar
+                       
                       </th>
                     </thead>
                     <tbody>
@@ -578,7 +579,7 @@ $resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
                         <td>
                           <?php echo $row_recisoes['observacao'];?>
                         </td>
-                        
+                    </div>
                         <td>
                         <form action="editar-rescisoes.php" method="POST">
                             <button class="btn btn-primary btn-sm" title="Editar"><i class=" fa fa-edit"></i></button>

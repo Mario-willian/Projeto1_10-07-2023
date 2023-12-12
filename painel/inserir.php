@@ -713,17 +713,18 @@ require "../complements/begin_page.php";
                     </div>
                   </div>
 
-                   <div class="row">
+                  <!--
+                     <div class="row">
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
-                        <label>Valor do Vale Transporte</label>
-                        <input size="10" maxlength="10" required="" onkeydown="FormataMoeda(this,10,event)" onkeypress="return maskKeyPress(event)" type="text" name="funcionario_valor_vale_transporte" class="form-control" placeholder="Valor do Vale Transporte" >
+                        <label>Valor do Vale Transporte</label> 
+                     <input size="10" maxlength="10" onkeydown="FormataMoeda(this,10,event)" onkeypress="return maskKeyPress(event)" type="text" name="funcionario_valor_vale_transporte" class="form-control" placeholder="Valor do Vale Transporte" > 
                       </div>
                     </div>
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
-                        <label>Salário</label>
-                         <input size="10" maxlength="10" onkeydown="FormataMoeda(this,10,event)" onkeypress="return maskKeyPress(event)" type="text" name="funcionario_salario" class="form-control" required="" placeholder="Salário" >
+                        <label>Salário</label> 
+                         <input size="10" maxlength="10" onkeydown="FormataMoeda(this,10,event)" onkeypress="return maskKeyPress(event)" type="text" name="funcionario_salario" class="form-control"  placeholder="Salário" >
                       </div>
                     </div>
                   </div>
@@ -731,11 +732,11 @@ require "../complements/begin_page.php";
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label>Nome Mãe</label>
-                        <input type="text" name="funcionario_nome_mae"  maxlength="80" class="form-control" required="" placeholder="Nome da Mãe" >
+                        <label>Nome Mãe</label> 
+                        <input type="text" name="funcionario_nome_mae"  maxlength="80" class="form-control" placeholder="Nome da Mãe" >
                       </div>
                     </div>
-                  </div>
+                  </div>-->
 
                   <div class="row">
                     <div class="col-md-12">

@@ -504,7 +504,8 @@ function myFunction() {
 
 
               <div class="card-body">
-                <div id="divTabela" class="table-responsive">
+                <div class="table-responsive">
+                  <div id="divTabela">
                   <table class="table">
                     <thead class=" text-primary">
                       <th>
@@ -529,7 +530,7 @@ function myFunction() {
                         Observação
                       </th>
                       <th>
-                        Editar
+                        
                       </th>
                       <th>
                         
@@ -559,6 +560,7 @@ function myFunction() {
                         <td>
                           <?php echo $row_ocorrencias['observacao'];?>
                         </td>
+                      </div>
                         <td>
                         <form action="editar-ocorrencias.php" method="POST">
                             <button class="btn btn-primary btn-sm" title="Editar"><i class=" fa fa-edit"></i></button>

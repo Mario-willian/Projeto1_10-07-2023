@@ -465,7 +465,8 @@ $resultado_ferias = mysqli_query($conn, $pesquisa_ferias);
                       
               </div>
               <div class="card-body">
-                <div id="divTabela" class="table-responsive">
+                <div class="table-responsive">
+                  <div id="divTabela">
                   <table id="Tab" class="table">
                     <thead class=" text-primary">
                       <th>
@@ -484,7 +485,7 @@ $resultado_ferias = mysqli_query($conn, $pesquisa_ferias);
                         Observação
                       </th>
                       <th>
-                        Editar
+                        
                       </th>
                     </thead>
                     <tbody>
@@ -505,7 +506,7 @@ $resultado_ferias = mysqli_query($conn, $pesquisa_ferias);
                         <td>
                           <?php echo $row_ferias['observacao'];?>
                         </td>
-                        
+                    </div>
                         <td>
                           <form action="editar-ferias.php" method="POST">
                             <button class="btn btn-primary btn-sm" title="Editar"><i class=" fa fa-edit"></i></button>
