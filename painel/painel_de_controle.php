@@ -45,6 +45,12 @@ if(isset($_GET['deletar'])){
             </a>
           </li>
           <li>
+            <a href="./lembretes.php">
+              <i class="fa fa-tags"></i>
+              <p>Lembretes</p>
+            </a>
+          </li>
+          <li>
             <a href="./inserir.php">
               <i class="fa fa-plus"></i>
               <p>Cadastrar</p>
@@ -177,30 +183,7 @@ if(isset($_GET['deletar'])){
             </div>
           </div>
 
-      <?php  while ($row_lembrete = mysqli_fetch_assoc($resultado_lembrete)){ ?>
-
-        <div class="col-lg-4">
-          <div class="w3-display-container" >
-            <div class="card card-chart" style="background-color:<?php echo $row_lembrete['cor'];?>;">
-            
-            <span class="w3-display-topright xlembrete" ><a title="Apagar Lembrete" href="?deletar=<?php echo $row_lembrete["id"]?>" style="text-decoration: none;">&times;</span></a>
-              <div style="margin-top: -30px;" class="card-header">
-                <h5 style="color:black;" class="card-category"><i class="fa fa-tags"></i> Lembrete</h5>
-                <h4 class="card-title"><?php echo $row_lembrete['anotacao'];?></h4>
-              </div>
-              <div class="card-footer ">
-                <hr>
-                <div class="stats" style="color:black;">
-                <input type="text" name="lembrete_id" style="display:none" value="<?php echo $row_lembrete['id'];?>">
-                  <i  class="now-ui-icons ui-1_calendar-60"></i> <?php echo date("d/m/Y", strtotime($row_lembrete['data_criacao']));?> - 
-                  <i  class="now-ui-icons ui-1_calendar-60"></i> <?php echo date("d/m/Y", strtotime($row_lembrete['data_desativada']));?>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      <?php } ?>
+    
 
    </div>
     

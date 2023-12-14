@@ -194,6 +194,12 @@ $resultado_funcionario = mysqli_query($conn, $pesquisa_funcionario);
             </a>
           </li>
           <li>
+            <a href="./lembretes.php">
+              <i class="fa fa-tags"></i>
+              <p>Lembretes</p>
+            </a>
+          </li>
+          <li>
             <a href="./inserir.php">
               <i class="fa fa-plus"></i>
               <p>Cadastrar</p>

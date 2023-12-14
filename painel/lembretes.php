@@ -5,44 +5,49 @@ include_once "../complements/inicio_php.php";
 //Carregando o inicio da pagina
 require "../complements/begin_page.php";
 
-//Evitar Bugs
-//Verificando se está logado
-if (!isset($_SESSION["id_usuario_login_editar"])) {
-	header("location:../painel/conta.php");
-}else{
-  $id_usuario_editar = $_SESSION["id_usuario_login_editar"]['id'];
-  $nome_usuario_editar = $_SESSION["id_usuario_login_editar"]['nome_completo'];
-  $email_usuario_editar = $_SESSION["id_usuario_login_editar"]['email'];
-  $senha_usuario_editar = $_SESSION["id_usuario_login_editar"]['senhamd5'];
-  unset($_SESSION['id_usuario_login_editar']);
+//Select para Ferias
+$pesquisa_lembrete = "SELECT * FROM lembretes WHERE usuarios_id = ".$_SESSION["id_usuario_login"]['id']." order by data_criacao DESC;";
+$resultado_lembrete = mysqli_query($conn, $pesquisa_lembrete);
+
+//Select para recisões
+$pesquisa_recisoes = "SELECT * FROM acessos_recisoes WHERE usuarios_id =".$_SESSION["id_usuario_login"]['id']." AND data_fim_aviso >= '".date('Y-m-d')."' order by data_fim_aviso limit 5;";
+$resultado_recisoes = mysqli_query($conn, $pesquisa_recisoes);
+
+//Exclusao de Lembretes
+if(isset($_GET['deletar'])){
+  $id_lembrete = $_GET['deletar'];
+  $excluir_lembrete = "DELETE FROM lembretes WHERE id = ".$id_lembrete.";";
+  $enviar_exclusao_notificacao = mysqli_query($conn, $excluir_lembrete);
+  header("location:painel_de_controle.php");
 }
 
 ?>
 
-<body class="">
+<body class="user-profile">
   <div class="wrapper ">
     <div class="sidebar" data-color="blue">
       <!--
-        data-color="blue | green | orange | red | yellow"
+         data-color="blue | green | orange | red | yellow"
     -->
       <div class="logo">
-
         <a href="" class="simple-text logo-normal">
-          <center><b>SUPERMERCADOS PARANAIBA</b></center>
+          <CENTER><b>SUPERMERCADOS PARANAIBA</b></CENTER>
         </a>
       </div><b>
       <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
+          
+          
           <li>
             <a href="./painel_de_controle.php">
               <i class="now-ui-icons tech_tv"></i>
               <p>Painel de Controle</p>
             </a>
           </li>
-          <li>
-            <a href="./lembretes.php">
+          <li class="active">
+            <a href="./lembreste.php">
               <i class="fa fa-tags"></i>
-              <p>Lembretes</p>
+              <p>Lembretes <span class="badge badge-light"></p>
             </a>
           </li>
           <li>
@@ -75,7 +80,6 @@ if (!isset($_SESSION["id_usuario_login_editar"])) {
               <p>Cadastros</p>
             </a>
           </li>
-          
         </ul>
       </div>
     </div>
@@ -91,7 +95,7 @@ if (!isset($_SESSION["id_usuario_login_editar"])) {
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand"> Conta</a>
+            <a class="navbar-brand">Painel de Controle</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -100,7 +104,7 @@ if (!isset($_SESSION["id_usuario_login_editar"])) {
           </button>
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
             <form>
-            
+             
             </form>
             <ul class="navbar-nav">
 
@@ -113,7 +117,7 @@ if (!isset($_SESSION["id_usuario_login_editar"])) {
                   </p>
                 </a>
               </li>
-
+              
               <li style="cursor: pointer;" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="now-ui-icons users_single-02"></i>
@@ -126,84 +130,93 @@ if (!isset($_SESSION["id_usuario_login_editar"])) {
                 <a class="dropdown-item" href="../classes/retira_login.php">Sair</a>
                 </div>
               </li>
-
-              </ul>
+              
+            </ul>
           </div>
         </div>
       </nav>
-      
       <!-- End Navbar -->
-     
+
+
       <div class="panel-header panel-header-sm">
       </div>
-      
       <div class="content">
+       
         <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-header"><center>
-                <h4 class="card-title"><i class="fa fa-edit"></i> EDITAR CONTA</h4>
+
+         
+
+      <?php  while ($row_lembrete = mysqli_fetch_assoc($resultado_lembrete)){ ?>
+
+        <div class="col-lg-4">
+          <div class="w3-display-container" >
+            <div class="card card-chart" style="background-color:<?php echo $row_lembrete['cor'];?>;">
+            
+            <span class="w3-display-topright xlembrete" ><a title="Apagar Lembrete" href="?deletar=<?php echo $row_lembrete["id"]?>" style="text-decoration: none;color:black;">&times;</span></a>
+              <div style="margin-top: -30px;" class="card-header">
+                <h5 style="color:black;" class="card-category"><i class="fa fa-tags"></i> Lembrete</h5>
+                <h4 class="card-title"><?php echo $row_lembrete['anotacao'];?></h4>
               </div>
-              <div class="card-body">
-                <div class="table">
-                <form action="../classes/alter/usuario.php" method="POST">
-                 <div class="row">
-                  <div class="col-md-12">
-                 
-                    <center>
-                    <div class="col-md-8">
-                      <div class="form-group">
-                        <center><label>Nome</label>
-                        <input type="text" name="usuario_nome" maxlength="80" value="<?php echo $nome_usuario_editar; ?>" class="form-control" required style="width: 80%;">
-                      </div>
-                       </div>
-                      <center>
-                    <div class="col-md-8">
-                      <div class="form-group">
-                        <center><label>E-mail</label>
-                        <input type="text" name="usuario_email" maxlength="80" value="<?php echo $email_usuario_editar; ?>" class="form-control" required style="width: 80%;">
-                      </div>
-                    </div>
-                    <div class="col-md-8">
-                      <div class="form-group">
-                        <center><label>Senha</label>
-                        <input type="text" name="usuario_senha" maxlength="18" value="<?php echo $senha_usuario_editar; ?>" id="myInput" class="form-control" required style="width: 80%;"></center>
-                      </div>
-                    </div>
-
-                    <div class="col-md-6 pr-1">
-                           <div class="form-group">                                                                                   
-                                      <h4>Empresas Administradas</h4>
-                                                                     
-                                          <ol>
-                                          <!-- Inicio de uma codição PHP -->
-                                            <?php 
-
-                                            require "../complements/selects/select_empresa_acesso_usuario.php";
-
-                                            ?>
-                                          <!-- Fim de uma codição PHP -->
-                                        </ol>                                   
-                                                                                        
-                           </div>
-                        </div>
-
-                        <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group"><br>
-                        <button type="submit" name="usuario_enviar" id="cad-ferias-btn" value="Cadastrar" class="btn btn-outline-success" style="width: 50%;"><b>Confirmar Alterações</b></button><br>
-                        <input type="number" name="usuario_id" value="<?php echo $id_usuario_editar; ?>" style="display:none" class="form-control" style="width: 80%;">
-                      </div>
-                    </div>
-                  </div>
-                      </form>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats" style="color:black;">
+                <input type="text" name="lembrete_id" style="display:none" value="<?php echo $row_lembrete['id'];?>">
+                  <i  class="now-ui-icons ui-1_calendar-60"></i> <?php echo date("d/m/Y", strtotime($row_lembrete['data_criacao']));?> - 
+                  <i  class="now-ui-icons ui-1_calendar-60"></i> <?php echo date("d/m/Y", strtotime($row_lembrete['data_desativada']));?>
                 </div>
               </div>
             </div>
           </div>
-         
+        </div>
+
+      <?php } ?>
+
+   </div>
+    
+  <!--   Core JS Files   -->
+  <script src="assets/js/core/jquery.min.js"></script>
+  <script src="assets/js/core/popper.min.js"></script>
+  <script src="assets/js/core/bootstrap.min.js"></script>
+  <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <!-- Chart JS -->
+  <script src="assets/js/plugins/chartjs.min.js"></script>
+  <!--  Notifications Plugin    -->
+  <script src="assets/js/plugins/bootstrap-notify.js"></script>
+  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="assets/js/now-ui-dashboard.min.js?v=1.3.0" type="text/javascript"></script>
   
-          <?php
-//Carregando o final da pagina
-require "../complements/end_page.php";
- ?>
+</body>
+
+<script src="assets/lib/jquery.min.js"></script>
+<script src="assets/lib/bootstrap.min.js"></script>
+<script src="assets/lib/raphael.min.js"></script>
+<script src="assets/lib/morris.min.js"></script>
+
+<script>
+    $(function () {
+        var data4 = {};
+
+        $.ajax({
+            url: "../inc/dados_grafico_vendedor.php",
+            async: false,
+            dataType: 'json',
+            success: function(data) {
+                data4 = data;
+            }
+        });
+
+        var bar = new Morris.Bar({
+            element: 'bar-chart',
+            resize: true,
+            data: data4,
+            barColors: ['#5F9EA0', '#cd5c5c', '#778899', '#ff4500', '8b4513'],
+            xkey: 'eixoX',
+            ykeys: ['a', 'b','c','d','e'],
+            labels: ['a)', 'b)', 'c)', 'd)', 'e)'],
+            hideHover: 'auto'
+        });
+
+    });
+</script>
+
+</html>

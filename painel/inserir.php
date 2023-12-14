@@ -26,6 +26,12 @@ require "../complements/begin_page.php";
               <p>Painel de Controle</p>
             </a>
           </li>
+          <li>
+            <a href="./lembretes.php">
+              <i class="fa fa-tags"></i>
+              <p>Lembretes</p>
+            </a>
+          </li>
           <li class="active ">
             <a href="./inserir.php">
               <i class="fa fa-plus"></i>
