@@ -498,11 +498,11 @@ require "../complements/begin_page.php";
                       <div class="form-group">
                         <label>Cor</label>
                         <select name="lembrete_cor" class="form-control">
-                          <option value="Orange">Laranja</option>
-                          <option value="Red">Vermelho</option>
+                          <option value="#FFC037">Laranja</option>
+                          <option value="#F65E61">Vermelho</option>
                           <option value="Yellow">Amarelo</option>
-                          <option value="Green">Verde</option>
-                          <option value="dodgerblue">Azul</option>
+                          <option value="#9DFF95">Verde</option>
+                          <option value="#95CDFF">Azul</option>
                         </select>
                       </div>
                     </div>

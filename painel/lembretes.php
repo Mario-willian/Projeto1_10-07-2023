@@ -18,7 +18,7 @@ if(isset($_GET['deletar'])){
   $id_lembrete = $_GET['deletar'];
   $excluir_lembrete = "DELETE FROM lembretes WHERE id = ".$id_lembrete.";";
   $enviar_exclusao_notificacao = mysqli_query($conn, $excluir_lembrete);
-  header("location:painel_de_controle.php");
+  header("location:lembretes.php");
 }
 
 ?>
