@@ -28,7 +28,7 @@ FROM usuarios usua
 inner join acessos aces on usua.id = aces.usuarios_id
 inner join empresas empr on aces.empresas_id = empr.id;
 
-create view acessos_funcionarios as SELECT func.id as id_funcionarios, func.nome_completo as nome_completo, func.cpf as cpf, func.data_nascimento as data_nascimento, func.status as status, empr.id as empresas_id, empr.nome_loja as nome_loja, empr.razao_social as razao_social, func.setor as setor, func.funcao as funcao, func.data_inicio as data_inicio, vale.id as id_vale_transporte, vale.tipo as tipo_vale_transporte, vale.valor as valor_vale_transporte, func.salario as salario, func.nome_pai as nome_pai, func.nome_mae as nome_mae, func.observacao as observacao
+create view acessos_funcionarios as SELECT func.id as id_funcionarios, func.nome_completo as nome_completo, func.cpf as cpf, func.data_nascimento as data_nascimento, func.status as status, empr.id as empresas_id, empr.nome_loja as nome_loja, empr.razao_social as razao_social, func.setor as setor, func.funcao as funcao, func.data_inicio as data_inicio, vale.id as id_vale_transporte, vale.tipo as tipo_vale_transporte, vale.valor as valor_vale_transporte, func.salario as salario, func.nome_mae as nome_mae, func.observacao as observacao
 FROM funcionarios func 
 inner join vale_transportes vale on func.id = vale.funcionarios_id
 inner join empresas empr on func.empresas_id = empr.id;
