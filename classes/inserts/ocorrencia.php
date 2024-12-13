@@ -6,7 +6,7 @@ include_once "../../complements/inicio_classe.php";
 //Recebendo os campos do formulário
 $ocorrencia_data = $dados['ocorrencia_data'];
 $ocorrencia_data = Date($ocorrencia_data." H:i:s");
-$ocorrencia_data_validacao = Date($ocorrencia_data);
+$ocorrencia_data_validacao = date('Y-m-d', strtotime($ocorrencia_data));
 $ocorrencia_loja = $dados['ocorrencia_loja'];
 $ocorrencia_funcionarios = $dados['ocorrencia_funcionarios'];
 $ocorrencia_motivo = $dados['ocorrencia_motivo'];
@@ -25,7 +25,7 @@ $pesquisa_ocorrencia_existente = "SELECT id FROM ocorrencias WHERE DATE(data_cri
 $resultado_ocorrencia_existente = mysqli_query($conn, $pesquisa_ocorrencia_existente);
 $row_ocorrencia_existente = mysqli_fetch_assoc($resultado_ocorrencia_existente);
 
-//Nao deixar editar caso já exista o CPF
+//Nao deixar editar caso já exista a ocorrencia
 if(!empty($row_ocorrencia_existente)){
 
     // Criar o array com status e a mensagem de erro
@@ -33,7 +33,7 @@ if(!empty($row_ocorrencia_existente)){
 
     //Inserir LOG para gerar a Notificação
     $criar_log = "insert into `logs` (`id`, `tabela_alterada`, `tarefa_executada`, `cor`, `icone`, `status`, `data_criacao`, `usuarios_id`) VALUES
-    (NULL, 'funcionarios', 'Falha ao tentar cadastrar o(a) funcionário(a), CPF já cadastrado.', 'danger', 'fa fa-exclamation-triangle faa-flash', 'ativo', '".$data_criacao."', ".$_SESSION["id_usuario_login"]['id'].");";
+    (NULL, 'funcionarios', 'Erro ao Cadastrar a Ocorrência: Já existe um ocorrencia semelhante para esta data (funcionário, motivo e loja)!', 'danger', 'fa fa-exclamation-triangle faa-flash', 'ativo', '".$data_criacao."', ".$_SESSION["id_usuario_login"]['id'].");";
     $enviar_log = mysqli_query($conn, $criar_log);
 }else{
 
