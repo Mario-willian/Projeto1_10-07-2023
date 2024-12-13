@@ -6,6 +6,7 @@ include_once "../../complements/inicio_classe.php";
 //Recebendo os campos do formulário
 $ocorrencia_data = $dados['ocorrencia_data'];
 $ocorrencia_data = Date($ocorrencia_data." H:i:s");
+$ocorrencia_data_validacao = Date($ocorrencia_data);
 $ocorrencia_loja = $dados['ocorrencia_loja'];
 $ocorrencia_funcionarios = $dados['ocorrencia_funcionarios'];
 $ocorrencia_motivo = $dados['ocorrencia_motivo'];
@@ -18,6 +19,23 @@ $data_criacao = date('Y-m-d H:i:s');
 
 //'ADDSLASHER' para nao conflitar as aspas com o banco
 $ocorrencia_observacao = addslashes($ocorrencia_observacao);
+
+//Pesquisar Ocorrencia já criada
+$pesquisa_ocorrencia_existente = "SELECT id FROM ocorrencias WHERE DATE(data_criacao) = '".$ocorrencia_data_validacao."' AND funcionarios_id = ".$ocorrencia_funcionarios." AND empresas_id = ".$ocorrencia_loja." AND motivo = '".$ocorrencia_motivo."' ORDER BY id LIMIT 1;";
+$resultado_ocorrencia_existente = mysqli_query($conn, $pesquisa_ocorrencia_existente);
+$row_ocorrencia_existente = mysqli_fetch_assoc($resultado_ocorrencia_existente);
+
+//Nao deixar editar caso já exista o CPF
+if(!empty($row_ocorrencia_existente)){
+
+    // Criar o array com status e a mensagem de erro
+    $retorna = ['status' => false, 'msg' => "Erro ao Cadastrar a Ocorrência: Já existe um ocorrencia semelhante para esta data (funcionário, motivo e loja)!"];
+
+    //Inserir LOG para gerar a Notificação
+    $criar_log = "insert into `logs` (`id`, `tabela_alterada`, `tarefa_executada`, `cor`, `icone`, `status`, `data_criacao`, `usuarios_id`) VALUES
+    (NULL, 'funcionarios', 'Falha ao tentar cadastrar o(a) funcionário(a), CPF já cadastrado.', 'danger', 'fa fa-exclamation-triangle faa-flash', 'ativo', '".$data_criacao."', ".$_SESSION["id_usuario_login"]['id'].");";
+    $enviar_log = mysqli_query($conn, $criar_log);
+}else{
 
 //Inserir Ocorrencia
 $inserir_ocorrencia = "insert into ocorrencias(id, motivo, faltas, valor, observacao, status, data_criacao, funcionarios_id, empresas_id) values (NULL, '".$ocorrencia_motivo."', '".$ocorrencia_quantidade_faltas."', '".$ocorrencia_valor."', '".$ocorrencia_observacao."', 'Ativo', '".$ocorrencia_data."', '".$ocorrencia_funcionarios."', ".$ocorrencia_loja.");";
@@ -63,6 +81,8 @@ if($enviar_ocorrencia == 1){
     $criar_log = "insert into `logs` (`id`, `tabela_alterada`, `tarefa_executada`, `cor`, `icone`, `status`, `data_criacao`, `usuarios_id`) VALUES
     (NULL, 'ocorrencias', 'Falha ao tentar cadastrar a ocorrencia.', 'danger', 'fa fa-exclamation-triangle faa-flash', 'ativo', '".$data_criacao."', ".$_SESSION["id_usuario_login"]['id'].");";
     $enviar_log = mysqli_query($conn, $criar_log);
+}
+
 }
 
 // Converter o array em objeto e retornar para o JavaScript
